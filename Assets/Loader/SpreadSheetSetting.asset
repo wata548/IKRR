@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 215b7b0a3da74015aab6d4464df48c2b, type: 3}
+  m_Name: SpreadSheetSetting
+  m_EditorClassIdentifier: 
+  _apiKey: AIzaSyD9TQEfDm8OY3DtfdvZayoZi96QHLl_SA0
+  _path: 1km_peftDHmbWyP0qFY_ygCrUk8991cIVZiMbA35XA9s
+  _infos:
+  - RawDatas:
+    - SymbolData
+    TargetTypeName: SymbolData
+    csvDataStyle: 1
