@@ -1,0 +1,93 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Character.Skill;
+using UnityEngine;
+using Data;
+
+namespace Character.Entity {
+    public abstract class EnemyBase: MonoBehaviour, IEntity {
+
+        const string PATTERN = @"\s*(?<Skill>.+)\s*\=\s*(?<Appearance>\d+)";
+        
+        //==================================================||Fields
+        private List<(int Appearance, ISkill Skill)> _skillAppearance = new();  
+        
+        //==================================================||Properties 
+        public Positions Position { get; private set; }
+        public int MaxHp { get; private set; }
+        public int Hp { get; private set; }
+        public bool IsAlive { get; private set; }
+        
+        //==================================================||Methods 
+        public void SetUp(Positions pPosition) =>
+            Position = pPosition;
+       
+        public void ReceiveDamage(int pAmount) {
+            
+            Hp = Math.Max(0, Hp - pAmount);
+            OnReceiveDamage(pAmount);
+            if (Hp == 0) {
+                IsAlive = false;
+                OnDeath();
+            }
+        }
+
+        public void Heal(int pAmount) {
+            Hp = Math.Min(MaxHp, Hp + pAmount);
+            OnHeal(pAmount);
+        }
+
+        public void SetSkillSet(string pSkillSet) =>
+            SetSkillSet(Regex.Split(pSkillSet, PATTERN));
+        
+        public void SetSkillSet(string[] pSkills) {
+
+            _skillAppearance.Clear();
+            
+            foreach (var row in pSkills) {
+                var match = Regex.Match(row, PATTERN).Groups;
+                var appearance = int.Parse(match["Appearance"].Value);
+                //prefix
+                if (_skillAppearance.Count > 0)
+                    appearance += _skillAppearance[^1].Appearance;
+                
+                var skill = SkillInterpreter.Interpret(match["Skill"].Value);
+                _skillAppearance.Add((appearance, skill));
+            }
+        }
+
+        public ISkill GetSkill() {
+            
+            var point = UnityEngine.Random.Range(1, _skillAppearance[^1].Appearance);
+            var start = 0;
+            var end = _skillAppearance.Count - 1;
+            while (start < end) {
+                var middle = (start + end) / 2;
+                var compare = point.CompareTo(_skillAppearance[middle].Appearance);
+                
+                if (compare == 0) {
+                    start = middle;
+                    break;
+                }
+                if (compare > 0)
+                    start = middle + 1;
+                else
+                    end = middle;
+            }
+
+            var skill = _skillAppearance[start].Skill;
+            return skill;
+        }
+        
+        protected virtual void OnReceiveDamage(int pAmount) =>
+            Debug.Log($"{name} receive damage {pAmount}");
+
+        protected virtual void OnDeath() =>
+            Debug.Log($"{name} is death");
+
+        protected virtual void OnHeal(int pAmount) =>
+            Debug.Log($"{name} heal {pAmount}");
+    }
+}

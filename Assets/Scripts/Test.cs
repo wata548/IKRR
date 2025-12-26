@@ -8,7 +8,7 @@ namespace DefaultNamespace {
     public static class Test {
         [TestMethod]
         public static void Flag() {
-            var target = Targets.AllEnemy;
+            var target = Positions.AllEnemy;
             var result = string.Join(',', target.Split().Select(target => target.ToString()));
             Debug.Log(result);
         }

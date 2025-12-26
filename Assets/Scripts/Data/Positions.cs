@@ -2,7 +2,7 @@
 
 namespace Data {
     [Flags, Serializable]
-    public enum Targets {
+    public enum Positions {
         None    = 0b0000000,
         Player  = 0b0000001,
         Caster  = 0b0000010,
