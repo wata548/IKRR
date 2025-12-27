@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Text.RegularExpressions;
-using UnityEngine;
 using Data;
-using Random = UnityEngine.Random;
 
 namespace Character.Skill.Data {
     public readonly struct TargetValue {
 
         //==================================================||Fields 
-        public readonly Positions Targets;
+        public readonly Positions Value;
 
         //==================================================||Constructors 
-        public TargetValue(Positions pTargets) => Targets = pTargets;
+        public TargetValue(Positions pTargets) => Value = pTargets;
         public TargetValue(string pValue) =>
-            Targets = (Positions)Enum.Parse(typeof(Positions), pValue.Replace('|', ','));
+            Value = (Positions)Enum.Parse(typeof(Positions), pValue.Replace('|', ','));
         //==================================================||Methods 
         public static TargetValue Parse(string pValue) => new(pValue);
-        public override string ToString() => Targets.ToString();
+        public override string ToString() => Value.ToString();
     }
 }

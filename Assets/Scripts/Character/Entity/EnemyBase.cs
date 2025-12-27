@@ -9,7 +9,7 @@ using Data;
 namespace Character.Entity {
     public abstract class EnemyBase: MonoBehaviour, IEntity {
 
-        const string PATTERN = @"\s*(?<Skill>.+)\s*\=\s*(?<Appearance>\d+)";
+        private const string PATTERN = @"\s*(?<Skill>.+?)\s*=\s*(?<Appearance>\d+)";
         
         //==================================================||Fields
         private List<(int Appearance, ISkill Skill)> _skillAppearance = new();  
@@ -39,25 +39,22 @@ namespace Character.Entity {
             OnHeal(pAmount);
         }
 
-        public void SetSkillSet(string pSkillSet) =>
-            SetSkillSet(Regex.Split(pSkillSet, PATTERN));
-        
-        public void SetSkillSet(string[] pSkills) {
-
-            _skillAppearance.Clear();
+        public void SetSkillSet(string pSkillSet) {
             
-            foreach (var row in pSkills) {
-                var match = Regex.Match(row, PATTERN).Groups;
-                var appearance = int.Parse(match["Appearance"].Value);
+            _skillAppearance.Clear();
+            var matches = Regex.Matches(pSkillSet, PATTERN);
+                        
+            foreach (Match match in matches) {
+                var appearance = int.Parse(match.Groups["Appearance"].Value);
                 //prefix
                 if (_skillAppearance.Count > 0)
                     appearance += _skillAppearance[^1].Appearance;
-                
-                var skill = SkillInterpreter.Interpret(match["Skill"].Value);
+                            
+                var skill = SkillInterpreter.Interpret(match.Groups["Skill"].Value);
                 _skillAppearance.Add((appearance, skill));
             }
         }
-
+        
         public ISkill GetSkill() {
             
             var point = UnityEngine.Random.Range(1, _skillAppearance[^1].Appearance);

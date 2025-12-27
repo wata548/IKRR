@@ -6,18 +6,18 @@ using Extension;
 using UnityEngine;
 
 namespace Character {
-    public class CharactersManager: MonoSingleton<CharactersManager> {
-        protected override bool IsNarrowSingleton { get; set; } = true;
-        private Dictionary<Positions, IEntity> _entities = new();
-
-        public void Clear() => _entities.Clear();
+    public static class CharactersManager {
         
-        public void SetEntity(Positions pPoint, IEntity pEntity) {
+        private static Dictionary<Positions, IEntity> _entities = new();
+
+        public static void Clear() => _entities.Clear();
+        
+        public static void SetEntity(Positions pPoint, IEntity pEntity) {
             if (!_entities.TryAdd(pPoint, pEntity))
                 _entities[pPoint] = pEntity;
         }
         
-        public IEntity[] GetEntity(Positions pCaster, Positions pPosition) {
+        public static IEntity[] GetEntity(Positions pCaster, Positions pPosition) {
             
             if ((pPosition & Positions.Caster) != Positions.None) {
                 pPosition ^= Positions.Caster;
