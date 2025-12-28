@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using CSVData;
 using Data;
 
 namespace Symbol {
+    
     public class SpreadSheetLoader: ISymbolDataLoader {
 
-        private readonly string _apiKey;
-        private readonly string _path;
-        private readonly string _sheet;
+        private readonly string _apiKey = "AIzaSyD9TQEfDm8OY3DtfdvZayoZi96QHLl_SA0";
+        private readonly string _path = "1BLW__Va3NhcIJzwd6oblRmFck1DOADGoB3fww_RGqpo";
+        private readonly string _sheet = "Symbol";
 
+        public SpreadSheetLoader() {}
+        
         public SpreadSheetLoader(string api, string path, string sheet) =>
             (_apiKey, _path, _sheet) = (api, path, sheet);
         
@@ -18,3 +22,4 @@ namespace Symbol {
         }
     }
 }
+#endif

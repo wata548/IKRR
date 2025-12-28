@@ -4,11 +4,11 @@ using System;
 using System.Linq;
 
 namespace Data {
-    public class Status {
+    public static class Status {
 
-        private Dictionary<TargetStatus, int> _statusValue = new();
+        private static Dictionary<TargetStatus, int> _statusValue = new();
 
-        public int GetValue(TargetStatus pStatus) {
+        public static int GetValue(TargetStatus pStatus) {
             if (!((int)pStatus).IsFlag())
                 return -1;
             
@@ -16,7 +16,7 @@ namespace Data {
             return _statusValue[pStatus];
         }
 
-        public void SetValue(TargetStatus pStatus, int pValue) {
+        public static void SetValue(TargetStatus pStatus, int pValue) {
 
             if (!((int)pStatus).IsFlag())
                 return;
@@ -25,12 +25,12 @@ namespace Data {
                 _statusValue[pStatus] = pValue;
         }
 
-        public void AddValue(TargetStatus pStatus, int pAmount) {
+        public static void AddValue(TargetStatus pStatus, int pAmount) {
             foreach (var status in pStatus.Split()) {
                 SetValue(status, GetValue(pStatus) + pAmount);
             }
         }
-        public void MulValue(TargetStatus pStatus, int pAmount) {
+        public static void MulValue(TargetStatus pStatus, int pAmount) {
             foreach (var status in pStatus.Split()) {
                 SetValue(status, GetValue(pStatus) * pAmount);
             }

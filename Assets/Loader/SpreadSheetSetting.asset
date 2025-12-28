@@ -13,9 +13,21 @@ MonoBehaviour:
   m_Name: SpreadSheetSetting
   m_EditorClassIdentifier: 
   _apiKey: AIzaSyD9TQEfDm8OY3DtfdvZayoZi96QHLl_SA0
-  _path: 1km_peftDHmbWyP0qFY_ygCrUk8991cIVZiMbA35XA9s
+  _path: 1BLW__Va3NhcIJzwd6oblRmFck1DOADGoB3fww_RGqpo
   _infos:
   - RawDatas:
-    - SymbolData
-    TargetTypeName: SymbolData
+    - Symbol
+    TargetTypeName: Symbol
+    csvDataStyle: 1
+  - RawDatas:
+    - Enemy
+    TargetTypeName: Enemy
+    csvDataStyle: 1
+  - RawDatas:
+    - StageType
+    TargetTypeName: StageType
+    csvDataStyle: 1
+  - RawDatas:
+    - StageWidth
+    TargetTypeName: StageWidth
     csvDataStyle: 1
