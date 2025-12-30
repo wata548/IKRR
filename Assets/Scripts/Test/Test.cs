@@ -30,12 +30,5 @@ namespace Test {
                 .Select(property => $"{property.Name}: {property.PropertyType}");
             Debug.Log(string.Join("\n", properties));
         }
-
-        [TestMethod]
-        public static void SetSkill(string pSkillSet) {
-            var obj = new GameObject("Enemy1");
-            var enemy = obj.AddComponent<Enemy1>();
-            enemy.SetSkillSet(pSkillSet);
-        }
     }
 }

@@ -66,7 +66,7 @@ namespace Character.Skill {
                 if(int.TryParse(pContext, out var value))
                     result.Push(new NumberToken(value));
                 else
-                    result.Push(new CommandToken(pContext)); 
+                    result.Push(new CommandToken(Generate(pContext))); 
             }
             void AddSymbol(char c) {
                 if (!CalculatePriority.TryGetValue(c, out var value)) 

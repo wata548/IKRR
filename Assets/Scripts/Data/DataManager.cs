@@ -3,11 +3,16 @@ using UnityEngine;
 
 namespace Data {
     public static class DataManager {
-        public static readonly SymbolDataStore SymbolDB = new();
 
-        [RuntimeInitializeOnLoadMethod]
+        public const int ERROR_SYMBOL = 9999;
+        
+        public static readonly IDB<ISymbolData> SymbolDB = new SymbolDB();
+        public static readonly IDB<IEnemyData> EnemyDB = new EnemyDB();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void SetSymbolDB() {
-            SymbolDB.LoadData(new SpreadSheetLoader());
+            SymbolDB.LoadData(new SpreadSheetSymbolLoader());
+            EnemyDB.LoadData(new SpreadSheetEnemyLoader());
         } 
     }
 }

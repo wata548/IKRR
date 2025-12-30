@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Data;
 using Extension;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace Roulette {
             }
 
             public void Set(int pIdx, int pValue) => _column[pIdx] = pValue;
-            public int Get(int pIdx) => _column[pIdx];
+            public int this[int pIdx] => _column[pIdx];
             public static void SetHeight(int pHeight) => Height = pHeight;
             
             public int Roll(int pIn) {
@@ -102,11 +103,11 @@ namespace Roulette {
 
         public static void RemoveByPos(int pColumn, int pRow) {
             if (pColumn < 0 || pColumn >= Width || pRow < 0 || pRow >= Height) {
-                Debug.LogError($"Position must be (0 <= pColumn < {Width} && 0 <= pRow < {Height}) but ({pColumn}, {pRow})");
+                Debug.LogWarning($"Position must be (0 <= pColumn < {Width} && 0 <= pRow < {Height}) but ({pColumn}, {pRow})");
                 return;
             }
 
-            _hand[_current[pColumn].Get(pRow)]--;
+            _hand[_current[pColumn][pRow]]--;
             _hand[0]++;
             _current[pColumn].Set(pRow, 0);
         }
@@ -118,6 +119,21 @@ namespace Roulette {
             _hand[0] -= pAmount;
             _hand[pSymbol] += pAmount;
             return true;
+        }
+
+        public static int Get(int pColumn, int pRow) {
+            if (pColumn < 0 || pColumn >= Width || pRow < 0 || pRow >= Height) {
+                Debug.LogWarning($"Position must be (0 <= pColumn < {Width} && 0 <= pRow < {Height}) but ({pColumn}, {pRow})");
+                return DataManager.ERROR_SYMBOL;
+            }           
+            return _current[pColumn][pRow];
+        }
+
+        public static void Change(int pColumn, int pRow, int pNewCode) {
+            _hand[_current[pColumn][pRow]]--;
+            if(!_hand.TryAdd(pNewCode, 1))
+                _hand[pNewCode]++;
+            _current[pColumn].Set(pRow, pNewCode);
         }
     }
 }

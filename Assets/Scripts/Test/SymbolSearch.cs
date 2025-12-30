@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using System;
+using Data;
 using Lang;
 using TMPro;
 using UnityEngine;

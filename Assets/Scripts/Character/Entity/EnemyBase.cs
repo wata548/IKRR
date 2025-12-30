@@ -16,13 +16,25 @@ namespace Character.Entity {
         
         //==================================================||Properties 
         public Positions Position { get; private set; }
+        public EenemySize Size{ get; private set; }
+        public string Name{ get; private set; }
         public int MaxHp { get; private set; }
         public int Hp { get; private set; }
         public bool IsAlive { get; private set; }
         
         //==================================================||Methods 
-        public void SetUp(Positions pPosition) =>
+        public void SetUp(IEnemyData pData, Positions pPosition) {
+
+            Name = pData.Name;
+            Size = pData.Size;
+            
+            MaxHp = pData.MaxHp;
+            Hp = MaxHp;
+            IsAlive = true;
+            
             Position = pPosition;
+            SetSkillSet(pData.SkillInfo);
+        }
        
         public void ReceiveDamage(int pAmount) {
             
@@ -39,7 +51,7 @@ namespace Character.Entity {
             OnHeal(pAmount);
         }
 
-        public void SetSkillSet(string pSkillSet) {
+        private void SetSkillSet(string pSkillSet) {
             
             _skillAppearance.Clear();
             var matches = Regex.Matches(pSkillSet, PATTERN);
@@ -79,12 +91,12 @@ namespace Character.Entity {
         }
         
         protected virtual void OnReceiveDamage(int pAmount) =>
-            Debug.Log($"{name} receive damage {pAmount}");
+            Debug.Log($"{Name}({gameObject.name}) receive damage {pAmount}");
 
         protected virtual void OnDeath() =>
-            Debug.Log($"{name} is death");
+            Debug.Log($"{Name}({gameObject.name}) is death");
 
         protected virtual void OnHeal(int pAmount) =>
-            Debug.Log($"{name} heal {pAmount}");
+            Debug.Log($"{Name}({gameObject.name}) heal {pAmount}");
     }
 }

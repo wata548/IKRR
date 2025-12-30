@@ -8,7 +8,6 @@ namespace Character.Skill {
         private class CommandToken: INoSymbolToken {
             public readonly ISkill Skill;
             
-            public CommandToken(string pInput) => Skill = Generate(pInput);
             public CommandToken(ISkill pInput) => Skill = pInput;
         }
         private class OperatorToken: IToken {
