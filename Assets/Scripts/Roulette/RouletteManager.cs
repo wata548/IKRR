@@ -81,7 +81,7 @@ namespace Roulette {
             
                 var column = idx % Width;
                 var row = idx / Width;
-                _current[column].Set(row, column);
+                _current[column].Set(row, 0);
             }
         }
         

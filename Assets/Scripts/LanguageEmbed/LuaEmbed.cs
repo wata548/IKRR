@@ -25,7 +25,7 @@ namespace LanguageEmbed {
             meta.Dispose();
 
             try {
-                _env.DoString(pCode, "chunk", scriptEnv);
+                _env.DoString(pCode);
                 var function = scriptEnv.Get<LuaFunction>(pFunctionName);
                 if (function == null) {
                     Debug.LogError($"{pFunctionName} isn't exist");

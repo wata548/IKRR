@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Data;
 using Lang;
+using Roulette;
+using Symbol;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +15,7 @@ namespace Test {
         [SerializeField] private TMP_LangText _name;
         [SerializeField] private TMP_LangText _description;
         [SerializeField] private TMP_LangText _condition;
+        [SerializeField] private TMP_Text _usable;
 
         private void Search() {
             var targetSymbol = int.Parse(_input.text);
@@ -23,6 +27,8 @@ namespace Test {
                 return;
             }
 
+            RouletteManager.Change(0, 0, targetSymbol);
+            _usable.text = $"Usable: {SymbolExecuteManager.Executor.IsUsable(0, 0)}";
             _name.text = data.Name;
             _description.text = data.Description;
             _condition.text = data.Condition;
@@ -30,6 +36,8 @@ namespace Test {
         
         private void Awake() {
             _searchButton.onClick.AddListener(Search);
+            RouletteManager.Initialize(new List<int>());
+            
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Symbol {
         public bool IsUsable(int pColumn, int pRow) {
             SetUp();
             var targetItem = RouletteManager.Get(pColumn, pRow);
-            var condition = DataManager.SymbolDB.GetSymbolData(targetItem).Condition;
+            var condition = DataManager.SymbolDB.GetSymbolData(targetItem).ConditionCode;
 
             var code = string.Format(_luaFuncFormat, nameof(IsUsable), condition);
             return _language.Invoke<bool>(code, nameof(IsUsable), new object[]{pColumn, pRow});

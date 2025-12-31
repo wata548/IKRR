@@ -2,6 +2,7 @@ function {0}(column, row)
     Field = CS.Character.CharactersManager;
     Symbol = CS.Data.DataManager.SymbolDB;
     Roulette = CS.Roulette.RouletteManager;
-    Stat = CS.Data.Status;
+    Status = CS.Data.Status;
+    Stat = CS.Data.TargetStatus;
     {1}
 end
