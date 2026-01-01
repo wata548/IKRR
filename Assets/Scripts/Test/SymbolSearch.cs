@@ -28,7 +28,7 @@ namespace Test {
             }
 
             RouletteManager.Change(0, 0, targetSymbol);
-            _usable.text = $"Usable: {SymbolExecuteManager.Executor.IsUsable(0, 0)}";
+            _usable.text = $"Usable: {SymbolExecutor.Instance.IsUsable(0, 0)}";
             _name.text = data.Name;
             _description.text = data.Description;
             _condition.text = data.Condition;

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Character.Skill;
 using Data;
 using LanguageEmbed;
 using Roulette;
@@ -32,27 +33,25 @@ namespace Symbol {
             return _language.Invoke<bool>(code, nameof(IsUsable), new object[]{pColumn, pRow});
         }
 
-        public void Evolution(int pColumn, int pRow) {
+        public int Evolution(int pColumn, int pRow) {
             SetUp();
             var targetItem = RouletteManager.Get(pColumn, pRow);
             var evolveCondition = DataManager.SymbolDB.GetSymbolData(targetItem).EvolveCondition;
 
             var code = string.Format(_luaFuncFormat, nameof(Evolution), evolveCondition);
             var result = _language.Invoke<int>(code, nameof(Evolution), new object[]{pColumn, pRow});
-            if (result == targetItem)
-                return;
-
-            RouletteManager.Change(pColumn, pRow, result);
+            return result;
         }
 
-        public void Execute(int pColumn, int pRow) {
+        public ISkill Execute(int pColumn, int pRow) {
             SetUp();
             SetUp();
             var targetItem = RouletteManager.Get(pColumn, pRow);
             var effectCode = DataManager.SymbolDB.GetSymbolData(targetItem).EffectCode;
 
             var code = string.Format(_luaFuncFormat, nameof(Execute), effectCode);
-            _language.Invoke<object>(code, nameof(Execute));
+            var skillCode = _language.Invoke<string>(code, nameof(Execute));
+            return SkillInterpreter.Interpret(skillCode);
         }
     }
 }

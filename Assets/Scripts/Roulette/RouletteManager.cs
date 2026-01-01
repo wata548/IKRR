@@ -2,35 +2,12 @@
 using System.Linq;
 using Data;
 using Extension;
+using Symbol;
 using UnityEngine;
 
 namespace Roulette {
     
-    public static class RouletteManager {
-        private class RouletteColumn {
-            public const int MAX_HEIGHT = 8;
-            public static int Height { get; private set; } 
-            private int[] _column = new int[MAX_HEIGHT];
-
-            public void Clear() {
-                for (int i = 0; i < _column.Length; i++)
-                    _column[i] = 0;
-            }
-
-            public void Set(int pIdx, int pValue) => _column[pIdx] = pValue;
-            public int this[int pIdx] => _column[pIdx];
-            public static void SetHeight(int pHeight) => Height = pHeight;
-            
-            public int Roll(int pIn) {
-                var last = _column[Height - 1];
-                for (int i = 0; i < Height - 1; i++) {
-                    _column[i + 1] = _column[i];
-                }
-
-                _column[0] = pIn;
-                return last;
-            }
-        }
+    public static partial class RouletteManager {
         
         //==================================================||Properties 
         public static int Width { get; private set; } = 5;
@@ -65,6 +42,12 @@ namespace Roulette {
             ResetRoulette();
         }
 
+        public static void ClearStatus() {
+            foreach (var column in _current) {
+                column.ClearStatus();
+            }
+        }
+        
         public static void ResetRoulette() {
             _remainSymbol.Clear();
             RouletteColumn.SetHeight(Height);
@@ -121,6 +104,16 @@ namespace Roulette {
             return true;
         }
 
+        public static CellStatus GetStatus(int pColumn, int pRow) =>
+            _current[pColumn].GetStatus(pRow);
+
+        public static void Refresh() {
+            int idx = 0;
+            foreach (var column in _current) {
+                column.RefreshStatus(idx++);
+            }
+        }
+        
         public static int Get(int pColumn, int pRow) {
             if (pColumn < 0 || pColumn >= Width || pRow < 0 || pRow >= Height) {
                 Debug.LogWarning($"Position must be (0 <= pColumn < {Width} && 0 <= pRow < {Height}) but ({pColumn}, {pRow})");
@@ -129,11 +122,36 @@ namespace Roulette {
             return _current[pColumn][pRow];
         }
 
-        public static void Change(int pColumn, int pRow, int pNewCode) {
-            _hand[_current[pColumn][pRow]]--;
-            if(!_hand.TryAdd(pNewCode, 1))
-                _hand[pNewCode]++;
-            _current[pColumn].Set(pRow, pNewCode);
+        public static bool Change(int pColumn, int pRow, int pNewItem) {
+
+            var target = _current[pColumn][pRow];
+            if (target == pNewItem)
+                return false;
+            
+            _hand[target]--;
+            if(!_hand.TryAdd(pNewItem, 1))
+                _hand[pNewItem]++;
+            _current[pColumn].Set(pRow, pNewItem);
+            return true;
+        }
+
+        public static List<(int, int)> Evolve() {
+            var isChanged = false;
+            var changed = new List<(int, int)>();
+            for (int row = 0; row < Height; row++) {
+                for (int column = 0; column < Width; column++) {
+                    var newCode = SymbolExecutor.Instance.Evolution(column, row);
+
+                    if (Change(column, row, newCode)) {
+                        isChanged = true;
+                        changed.Add(new(column, row));
+                    }
+                }
+            }
+
+            if (isChanged)
+                Refresh();
+            return changed;
         }
     }
 }
