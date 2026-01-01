@@ -29,7 +29,7 @@ namespace Roulette {
                 for (int i = 0; i < Height; i++) {
                     if(_column[i].Item2 == CellStatus.Used)
                         continue;
-                    _column[i].Item2 = SymbolExecutor.Instance.IsUsable(pColumnIdx, i)
+                    _column[i].Item2 = SymbolExecutor.IsUsable(pColumnIdx, i)
                         ? CellStatus.Usable
                         : CellStatus.Impossible;
                 }

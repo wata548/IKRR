@@ -1,19 +1,19 @@
 ﻿using Character.Skill;
-using Extension;
+using Extension.StaticUpdate;
 
 namespace Symbol {
-    public class SymbolExecutor: MonoSingleton<SymbolExecutor> {
-        private readonly ISymbolExecutor _executor = new LuaSymbolExecutor();
-        protected override bool IsNarrowSingleton { get; set; } = false;
+    public static class SymbolExecutor {
+        private static readonly ISymbolExecutor _executor = new LuaSymbolExecutor();
         
         //==================================================|| 
-        private new void Update() {
-            base.Update();
+        
+        [StaticUpdate]
+        private static void Update() {
             _executor.Update();
         }
         
-        public bool IsUsable(int pColumn, int pRow) => _executor.IsUsable(pColumn, pRow);
-        public int Evolution(int pColumn, int pRow) => _executor.Evolution(pColumn, pRow);
-        public ISkill Execute(int pColumn, int pRow) => _executor.Execute(pColumn, pRow);
+        public static bool IsUsable(int pColumn, int pRow) => _executor.IsUsable(pColumn, pRow);
+        public static int Evolution(int pColumn, int pRow) => _executor.Evolution(pColumn, pRow);
+        public static ISkill Execute(int pColumn, int pRow) => _executor.Execute(pColumn, pRow);
     }
 }

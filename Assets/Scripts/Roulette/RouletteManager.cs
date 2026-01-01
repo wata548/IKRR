@@ -140,7 +140,7 @@ namespace Roulette {
             var changed = new List<(int, int)>();
             for (int row = 0; row < Height; row++) {
                 for (int column = 0; column < Width; column++) {
-                    var newCode = SymbolExecutor.Instance.Evolution(column, row);
+                    var newCode = SymbolExecutor.Evolution(column, row);
 
                     if (Change(column, row, newCode)) {
                         isChanged = true;
