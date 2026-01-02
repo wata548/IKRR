@@ -30,5 +30,15 @@ namespace Test {
                 .Select(property => $"{property.Name}: {property.PropertyType}");
             Debug.Log(string.Join("\n", properties));
         }
+
+        [TestMethod]
+        private static void ZipTest() {
+            var a = new[] { 1, 2, 3, 4, 5 };
+            var b = new[] { "a", "b", "c", "d" };
+            var c = a.Zip(b, (n, m) => (n, m));
+            foreach (var element in c) {
+                Debug.Log($"{element.n} - {element.m}");
+            }
+        }
     }
 }

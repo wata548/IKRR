@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 2144337701d754f42b86121bd9e84ff8
+guid: 8162d151d54770d40b16f050be117b96
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2030362344941826669
-    second: -1_0
-  - first:
-      213: -669635084069099925
-    second: -1_1
+      213: -3084340018358695892
+    second: RouletteBackGround_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: -1_0
+      name: RouletteBackGround_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 0
-        width: 32
-        height: 32
+        width: 60
+        height: 53
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d62369f9bcb4d2c10800000000000000
-      internalID: 2030362344941826669
+      spriteID: c28453748193235d0800000000000000
+      internalID: -3084340018358695892
       vertices: []
       indices: 
       edges: []
@@ -128,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b5454e2a0d5d2b347a211abc8b6792ef
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -138,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      -1_0: 2030362344941826669
-      -1_1: -669635084069099925
+      RouletteBackGround_0: -3084340018358695892
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

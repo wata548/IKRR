@@ -19,22 +19,20 @@ namespace Roulette {
         //==================================================||Fields 
         private static readonly Dictionary<int, int> _hand = new();
         private static readonly Queue<int> _remainSymbol = new();
-        private static readonly List<RouletteColumn> _current = Enumerable.Repeat(new RouletteColumn(), Width).ToList();
+        private static List<RouletteColumn> _current = new();
         
         //==================================================||Methods 
-        public static void Roll(int pColumn) {
-            if (pColumn > Width) {
-                Debug.LogError($"pRow must be lower than {Width}");
-                return;
-            }
+        
+        public static void Init(IEnumerable<int> pInitHand) {
 
-            var symbol = _remainSymbol.Dequeue();
-            var @out = _current[pColumn].Roll(symbol);
-            _remainSymbol.Enqueue(@out);
-        }
-        public static void Initialize(IEnumerable<int> pInitHand) {
+            if (_current.Count == 0) {
+                for (int i = 0; i < Width; i++) {
+                    _current.Add(new());
+                }
+            }
+            
             _hand.Clear();
-            _hand.Add(0, HandSize - _hand.Count);
+            _hand.Add(0, HandSize - pInitHand.Count());
             foreach (var symbol in pInitHand) {
                 if (!_hand.TryAdd(symbol, 1))
                     _hand[symbol]++;
@@ -42,6 +40,22 @@ namespace Roulette {
             ResetRoulette();
         }
 
+        /// <summary>
+        /// output is inserted symbolCode
+        /// </summary>
+        /// <returns></returns>
+        public static int Roll(int pColumn) {
+            if (pColumn > Width) {
+                Debug.LogError($"pRow must be lower than {Width}");
+                return DataManager.ERROR_SYMBOL;
+            }
+
+            var symbol = _remainSymbol.Dequeue();
+            var @out = _current[pColumn].Roll(symbol);
+            _remainSymbol.Enqueue(@out);
+            return symbol;
+        }
+        
         public static void ClearStatus() {
             foreach (var column in _current) {
                 column.ClearStatus();
@@ -50,7 +64,6 @@ namespace Roulette {
         
         public static void ResetRoulette() {
             _remainSymbol.Clear();
-            RouletteColumn.SetHeight(Height);
             foreach (var column in  _current)
                 column.Clear();
             
@@ -64,7 +77,7 @@ namespace Roulette {
             
                 var column = idx % Width;
                 var row = idx / Width;
-                _current[column].Set(row, 0);
+                _current[column].Set(row, symbol);
             }
         }
         
@@ -113,6 +126,9 @@ namespace Roulette {
                 column.RefreshStatus(idx++);
             }
         }
+
+        public static IEnumerable<CellInfo> GetColumn(int pColumn) =>
+            (CellInfo[])_current[pColumn];
         
         public static int Get(int pColumn, int pRow) {
             if (pColumn < 0 || pColumn >= Width || pRow < 0 || pRow >= Height) {
@@ -135,16 +151,16 @@ namespace Roulette {
             return true;
         }
 
-        public static List<(int, int)> Evolve() {
+        public static List<EvolveInfo> Evolve() {
             var isChanged = false;
-            var changed = new List<(int, int)>();
+            var changed = new List<EvolveInfo>();
             for (int row = 0; row < Height; row++) {
                 for (int column = 0; column < Width; column++) {
                     var newCode = SymbolExecutor.Evolution(column, row);
 
                     if (Change(column, row, newCode)) {
                         isChanged = true;
-                        changed.Add(new(column, row));
+                        changed.Add(new(column, row, newCode));
                     }
                 }
             }

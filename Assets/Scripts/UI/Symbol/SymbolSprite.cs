@@ -10,9 +10,12 @@ namespace UI.Symbol {
         
         [RuntimeInitializeOnLoadMethod]
         private static void Init() {
-            const string PATTERN = @"^\d+";
-            //_symbolIcon = Resources.LoadAll<Sprite>("Symbols")
-                //.ToDictionary(sprite => int.Parse(Regex.Match(sprite.name, PATTERN).Value), sprite => sprite);
+            const string PATTERN = @"^(-?\d+)";
+            _symbolIcon = Resources.LoadAll<Sprite>("Symbols")
+                .ToDictionary(
+                    sprite => int.Parse(Regex.Match(sprite.name, PATTERN).Value), 
+                    sprite => sprite
+                );
         }
 
         public static Sprite GetIcon(this int pCode) {

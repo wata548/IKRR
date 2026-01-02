@@ -36,7 +36,7 @@ namespace Test {
         
         private void Awake() {
             _searchButton.onClick.AddListener(Search);
-            RouletteManager.Initialize(new List<int>());
+            RouletteManager.Init(new List<int>());
             
         }
     }
