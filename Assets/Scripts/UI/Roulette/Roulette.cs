@@ -3,11 +3,13 @@ using System.Linq;
 using Extension;
 using Roulette;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.Roulette {
     public class Roulette: MonoBehaviour {
         //==================================================||Fields
         [SerializeField] private Wheel _wheelPrefab;
+        [SerializeField] private Button _lever;
         private RectTransform _rect;
         private readonly List<Wheel> _wheels = new();
         
@@ -48,12 +50,19 @@ namespace UI.Roulette {
                 wheel.Init(i, RouletteManager.Height, RouletteManager.GetColumn(i));
             }
         }
+
+        private void Stop() {
+            if (!IsRoll)
+                return;
+            _wheels.First(wheel => wheel.IsRoll).StopRoll();
+        }
         
        //==================================================||Unity 
        private void Start() {
            //TODO: This code is just test code
            RouletteManager.Init(Enumerable.Repeat(1001, 12));
 
+           _lever.onClick.AddListener(Stop);
            SetUp();
 
            //TODO: This code is just test code
