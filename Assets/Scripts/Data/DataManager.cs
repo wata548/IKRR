@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Data {
     public static class DataManager {
 
-        public const int ERROR_SYMBOL = 9999;
+        public const int ERROR_SYMBOL = -1;
         
         public static readonly IDB<ISymbolData> SymbolDB = new SymbolDB();
         public static readonly IDB<IEnemyData> EnemyDB = new EnemyDB();
