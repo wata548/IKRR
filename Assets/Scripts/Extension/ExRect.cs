@@ -199,7 +199,7 @@ namespace Extension {
 
         }
         public static void SetLocalPositionX(this RectTransform rect, PivotLocation pivot = PivotLocation.Middle, float ratio = 0f) => 
-            SetLocalPositionY(rect, rect.parent!.GetComponent<RectTransform>(), pivot, ratio);
+            SetLocalPositionX(rect, rect.parent!.GetComponent<RectTransform>(), pivot, ratio);
         
         public static void SetLocalPositionY(this RectTransform rect, RectTransform parent, PivotLocation pivot = PivotLocation.Middle, float ratio = 0f) {
 

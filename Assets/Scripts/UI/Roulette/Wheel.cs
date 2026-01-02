@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Extension;
 using Roulette;
 using UnityEngine;
@@ -97,7 +98,8 @@ namespace UI.Roulette {
 
             var delta = 0.5f / (_cells.Count - 1) - pos;
             foreach (var cell in _cells) {
-                cell.RectTransform.AddLocalPosition(cell.Parent, new(0, delta));
+                cell.RectTransform.DOLocalMoveY(cell.RectTransform.localPosition.y + cell.Parent.sizeDelta.y * delta, 0.8f)
+                    .SetEase(Ease.OutElastic);
             }
         }
 

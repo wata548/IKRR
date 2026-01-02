@@ -23,7 +23,7 @@ namespace Character.Entity {
         public bool IsAlive { get; private set; }
         
         //==================================================||Methods 
-        public void SetUp(IEnemyData pData, Positions pPosition) {
+        public void SetUp(EnemyData pData, Positions pPosition) {
 
             Name = pData.Name;
             Size = pData.Size;

@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using CSVData;
-using Symbol;
+using Extension;
 using UnityEngine;
 
 namespace Data {
-    public class EnemyDB : IDB<IEnemyData> {
+    public class EnemyDB : IDB<int, EnemyData> {
        
-        private IReadOnlyDictionary<int, IEnemyData> _enemyBySerialNumber = null;
-        public void LoadData(IDataLoader<IEnemyData> pLoader) {
-            _enemyBySerialNumber = pLoader.Load();
+        private IReadOnlyDictionary<int, EnemyData> _enemyBySerialNumber = null;
+        public void LoadData(IDataLoader<int, EnemyData> pLoader) {
+            _enemyBySerialNumber = pLoader.Load().ToDictionary();
         }
 
-        public IEnemyData GetSymbolData(int pNumber) {
+        public EnemyData GetSymbolData(int pNumber) {
             if(_enemyBySerialNumber.TryGetValue(pNumber, out var data))
                 return data;
 

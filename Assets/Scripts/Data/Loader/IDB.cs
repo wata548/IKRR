@@ -1,8 +1,6 @@
-﻿using Data;
-
-namespace Symbol {
-    public interface IDB<T> {
-        public void LoadData(IDataLoader<T> pLoader);
-        public T GetSymbolData(int pNumber);
+﻿namespace Data {
+    public interface IDB<TKey, TValue> {
+        public void LoadData(IDataLoader<TKey, TValue> pLoader);
+        public TValue GetSymbolData(TKey pNumber);
     }
 }

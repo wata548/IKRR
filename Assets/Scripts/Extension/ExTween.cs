@@ -1,4 +1,4 @@
-/*using DG.Tweening;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Extension {
@@ -9,4 +9,4 @@ namespace Extension {
                 .SetEase(pEase)
                 .SetLoops(-1, LoopType.Yoyo);
     }
-}*/
+}
