@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Data.Map;
 using Extension;
 
-namespace MapGenerator {
+namespace Data.Map {
     public static class StageTypeFrequency {
 
         //==================================================||Fields
