@@ -14,7 +14,7 @@ namespace Data {
             return _statusValue[pStatus];
         }
 
-        public static void SetValue(TargetStatus pStatus, int pValue) {
+        private static void SetFlagValue(TargetStatus pStatus, int pValue) {
 
             if (!((int)pStatus).IsFlag())
                 return;
@@ -22,15 +22,31 @@ namespace Data {
             if (!_statusValue.TryAdd(pStatus, pValue))
                 _statusValue[pStatus] = pValue;
         }
+        
+        public static void SetValue(TargetStatus pStatus, int pAmount) {
+            foreach (var status in pStatus.Split()) {
+                SetFlagValue(status, pAmount);
+            }
+        }
 
         public static void AddValue(TargetStatus pStatus, int pAmount) {
             foreach (var status in pStatus.Split()) {
-                SetValue(status, GetValue(pStatus) + pAmount);
+                SetFlagValue(status, GetValue(pStatus) + pAmount);
             }
         }
         public static void MulValue(TargetStatus pStatus, int pAmount) {
             foreach (var status in pStatus.Split()) {
-                SetValue(status, GetValue(pStatus) * pAmount);
+                SetFlagValue(status, GetValue(pStatus) * pAmount);
+            }
+        }
+        public static void DivValue(TargetStatus pStatus, int pAmount) {
+            foreach (var status in pStatus.Split()) {
+                SetFlagValue(status, GetValue(pStatus) / pAmount);
+            }
+        }
+        public static void SubValue(TargetStatus pStatus, int pAmount) {
+            foreach (var status in pStatus.Split()) {
+                SetFlagValue(status, GetValue(pStatus) - pAmount);
             }
         }
     }

@@ -19,6 +19,12 @@ namespace Test {
         }
 
         [TestMethod]
+        public static void SymbolIcon(TargetStatus pTarget) {
+            Debug.Log(string.Join(',', Resources.LoadAll($"Status").Select(sprite => sprite.name)));
+            Debug.Log(Resources.Load<Sprite>($"Status/{pTarget}"));
+        }
+        
+        [TestMethod]
         public static void SkillParameter(string pTargetSkillName) {
             const BindingFlags flags = 
                 BindingFlags.Instance 

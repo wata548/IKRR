@@ -39,9 +39,10 @@ namespace LanguageEmbed {
                 scriptEnv.Dispose();
             }
         }
-        
-        public T Invoke<T>(string pCode, string pFunctionName, object[] pArgs) => 
-            (T)InvokeRaw(pCode, pFunctionName, pArgs)?[0];
+
+        public T Invoke<T>(string pCode, string pFunctionName, object[] pArgs) {
+            return (T)InvokeRaw(pCode, pFunctionName, pArgs)?[0];
+        }
 
         public void Update() {
             _env.Tick();

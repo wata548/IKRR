@@ -43,14 +43,13 @@ namespace Symbol {
             return result;
         }
 
-        public ISkill Execute(int pColumn, int pRow) {
-            SetUp();
+        public ISkill GetSkill(int pColumn, int pRow) {
             SetUp();
             var targetItem = RouletteManager.Get(pColumn, pRow);
             var effectCode = DataManager.SymbolDB.GetData(targetItem).EffectCode;
 
-            var code = string.Format(_luaFuncFormat, nameof(Execute), effectCode);
-            var skillCode = _language.Invoke<string>(code, nameof(Execute));
+            var code = string.Format(_luaFuncFormat, nameof(GetSkill), effectCode);
+            var skillCode = _language.Invoke<string>(code, nameof(GetSkill));
             return SkillInterpreter.Interpret(skillCode);
         }
     }

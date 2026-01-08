@@ -6,7 +6,9 @@ using Extension;
 
 namespace Character.Skill {
     public static partial class SkillInterpreter {
-        
+
+
+        private const char IGNORE_SYMBOL = '`'; 
         private static readonly ReadOnlyDictionary<char, int> CalculatePriority = new(
             new Dictionary<char, int> {
                 {'*', 2},
@@ -17,11 +19,15 @@ namespace Character.Skill {
         
         public static ISkill Interpret(string pInput) {
 
+            if (string.IsNullOrWhiteSpace(pInput))
+                return null;
+            
             var result = new Stack<INoSymbolToken>();
             var symbolBuffer = new Stack<OperatorToken>();
             var buffer = new StringBuilder();
 
             pInput = pInput.RemoveWhiteSpace();
+            var prev = ' ';
             foreach (var c in pInput) {
                 
                 switch (c) {
@@ -38,14 +44,16 @@ namespace Character.Skill {
                         break;
                     
                     default:
-                        if (CalculatePriority.TryGetValue(c, out var priority)) {
+                        if (prev != '`' && CalculatePriority.TryGetValue(c, out var priority)) {
                             AddToken(buffer.ToString());
                             buffer.Clear();
                             AddSymbol(c);
                         }
-                        else
-                            buffer.Append(c);
-                        
+                        else {
+                            if(c != IGNORE_SYMBOL)
+                                buffer.Append(c);
+                            prev = c;
+                        }
                         break;
                 }
             }

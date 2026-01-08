@@ -5,17 +5,14 @@ namespace Extension {
     public abstract class MonoSingleton<T> : MonoBehaviour 
         where T: MonoBehaviour {
 
-        private static bool exitMyGame = false;
+        private static bool exitGame = false;
         public static T Instance { get; private set; }
-        /// <summary>
-        /// Do you use this single on just one scene?
-        /// </summary>
-        protected abstract bool IsNarrowSingleton { set; get; }
+        protected abstract bool IsNarrowSingleton { get; }
 
-        private static void EnterMyGame() => exitMyGame = false;
-        private static void ExitMyGame() => exitMyGame = true;
+        private static void EnterGame() => exitGame = false;
+        private static void ExitGame() => exitGame = true;
         
-        protected void Awake() {
+        protected virtual void Awake() {
             
             if (Instance != null) {
 
@@ -40,9 +37,11 @@ namespace Extension {
                 DontDestroyOnLoad(gameObject);
         }
 
-        protected void Update() {
-            if(exitMyGame)
+        protected virtual void Update() {
+            if (exitGame) {
                 Destroy(gameObject);
+                Instance = null;
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Character.Skill {
     public abstract class SkillBase: ISkill {
         
         //==================================================||Properties 
-        public bool IsEnd { get; private set; } = false;
+        public bool IsEnd { get; protected set; } = false;
         public Action OnEnd { get; set; } = null;
 
         //==================================================||Constructors 
@@ -29,7 +29,7 @@ namespace Character.Skill {
 
             for (int i = 0; i < pData.Length; i++) {
                 var propertyType = properties[i].PropertyType;
-                var value = ExParse.ParseToObject(propertyType, pData[i]);
+                var value = ExParse.ParseToObject(propertyType, pData[i].Trim());
                 properties[i].SetValue(this, value);
             }
         }
@@ -38,6 +38,7 @@ namespace Character.Skill {
         protected abstract void Implement(Positions pCaster);
 
         public void Execute(Positions pCaster) {
+            IsEnd = false;
             Implement(pCaster);
             ExRoutine.StartRoutine(Wait());
             return;
@@ -47,5 +48,7 @@ namespace Character.Skill {
                 OnEnd?.Invoke();
             }
         }
+
+        protected void End() => IsEnd = true;
     }
 }

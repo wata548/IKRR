@@ -33,6 +33,10 @@ namespace Test {
             _description.text = data.Description;
             _condition.text = data.Condition;
         }
+
+        public void Execute() {
+            SymbolExecutor.GetSkill(0, 0)?.Execute(Positions.Player);
+        }
         
         private void Awake() {
             _searchButton.onClick.AddListener(Search);

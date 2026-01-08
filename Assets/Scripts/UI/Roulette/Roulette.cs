@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Extension;
+using FSM;
 using Roulette;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,6 +35,7 @@ namespace UI.Roulette {
             if (IsRoll)
                 return;
             
+            Fsm.Instance.Change(State.Rolling);
             ClearStatus();
             _origin = transform.position;   
             _animation = transform.DOShakePosition(1, ANIMATION_POWER, fadeOut:false).SetLoops(-1);
@@ -76,11 +76,13 @@ namespace UI.Roulette {
         }
 
         private void Stop() {
-            if (!IsRoll)
+            if (!IsRoll || Fsm.Instance.State != State.Rolling)
                 return;
             
             _wheels.First(wheel => wheel.IsRoll).StopRoll();
             if (!IsRoll) {
+                
+                Fsm.Instance.Change(State.PlayerTurn);
                 _animation?.Kill();
                 transform.position = _origin;
                 Refresh();
@@ -102,11 +104,14 @@ namespace UI.Roulette {
         }
         
         private bool Use(int pColumn, int pRow) {
+            if (Fsm.Instance.State != State.PlayerTurn)
+                return false;
             if (!RouletteManager.Use(pColumn, pRow, out var status))
                 return false;
             _wheels[pColumn].Use(pRow, status);
             return true;
         }
+        
         
         //==================================================||Unity 
         private void Start() {

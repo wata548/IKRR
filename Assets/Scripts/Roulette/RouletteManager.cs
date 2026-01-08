@@ -115,6 +115,7 @@ namespace Roulette {
             
             _hand[0] -= pAmount;
             _hand[pSymbol] += pAmount;
+            ResetRoulette();
             return true;
         }
 
@@ -143,6 +144,9 @@ namespace Roulette {
             status = GetStatus(pColumn, pRow);
             if (status != CellStatus.Usable)
                 return false;
+
+            SymbolExecutor.GetSkill(pColumn, pRow)
+                ?.Execute(Positions.Player);
             
             _current[pColumn].UseSkill(pRow);
             status = GetStatus(pColumn, pRow);
@@ -151,6 +155,9 @@ namespace Roulette {
 
         public static bool Change(int pColumn, int pRow, int pNewItem) {
 
+            if (pColumn < 0 || pColumn > Width || pRow < 0 || pRow > Height)
+                return false;
+            
             var target = _current[pColumn][pRow];
             if (target == pNewItem)
                 return false;
@@ -181,9 +188,9 @@ namespace Roulette {
             return changed;
         }
         
-        public static List<(int Column, int Row)> UsableBuff() {
+        public static Queue<(int Column, int Row)> UsableBuff() {
 
-            var result = new List<(int, int)>();
+            var result = new Queue<(int, int)>();
             for (int row = 0; row < Height; row++) {
                 for (int column = 0; column < Width; column++) {
                     
@@ -193,7 +200,7 @@ namespace Roulette {
                     if(targetType != SymbolType.Buff)
                         continue;
                     
-                    result.Add((column, row));
+                    result.Enqueue((column, row));
                 }
             }
 
