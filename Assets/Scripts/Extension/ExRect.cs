@@ -172,7 +172,7 @@ namespace Extension {
                 _ => 0,
             };
 
-            rect.position = rect.position.ToVec2() + result;
+            rect.localPosition = rect.localPosition.ToVec2() + result;
         }
 
         public static void AddLocalPosition(this RectTransform rect, RectTransform parent, Vector2 ratio) =>

@@ -84,7 +84,9 @@ namespace UI.Roulette {
             
             var speed = -_power * Time.deltaTime;
             foreach (var cell in _cells) {
-                cell.RectTransform.AddPositionY(speed);
+                var pos = cell.RectTransform.localPosition;
+                pos.y += speed;
+                cell.RectTransform.localPosition = pos;
             }
 
             var nextPoint = -0.5f / (_cells.Count - 1);

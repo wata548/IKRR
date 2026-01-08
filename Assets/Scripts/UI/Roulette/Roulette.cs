@@ -58,8 +58,8 @@ namespace UI.Roulette {
                 _wheels.Add(wheel);
                 
                 wheel.RectTransform.sizeDelta = wheelSize;
-                wheel.RectTransform.SetLocalPosition(Pivot.Down, pos);
-                wheel.RectTransform.ChangeVirtualPivot(Pivot.Down);
+                wheel.RectTransform.SetLocalPosition(new Pivot(PivotLocation.Down), pos);
+                wheel.RectTransform.ChangeVirtualPivot(new Pivot(PivotLocation.Down));
                 wheel.Init(i, RouletteManager.Height, RouletteManager.GetColumn(i), OnClick);
             }
 
