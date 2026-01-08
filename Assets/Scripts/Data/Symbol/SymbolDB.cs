@@ -10,7 +10,7 @@ namespace Data {
             _symbolBySerialNumber = pLoader.Load().ToDictionary();
         }
 
-        public SymbolData GetSymbolData(int pNumber) {
+        public SymbolData GetData(int pNumber) {
             if(_symbolBySerialNumber.TryGetValue(pNumber, out var data))
                 return data;
 

@@ -23,6 +23,7 @@ namespace MapGenerator {
         [Space]
         [Header("Target")]
         [SerializeField] private GameObject _map;
+        [SerializeField] private GameObject _mapPannel;
         
         [Space]
         [Header("Position")]
@@ -42,22 +43,40 @@ namespace MapGenerator {
         private IDataLoader<StageWidth> _stageWidthFrequency = new SpreadSheetStageWidthLoader();
         private IDataLoader<Stage, int> _stageTypeFrequency = new SpreadSheetStageFrequencyLoader();
         private List<StageWidth> _stageWidthInfos;
+        private Vector2Int _curStage = -Vector2Int.one;
         
         //==================================================||Methods 
-
-        public void ClearStage(Vector2Int pPos) {
-            
-            _mapNodes[pPos.y][pPos.x].ActiveNextEdges();
-            foreach (var node in _mapNodes[pPos.y]) {
-                node.SetActive(false);
+        public void SelectStage(Vector2Int pNextStage) {
+            if (_curStage.y != -1) {
+                var cur = _mapNodes[_curStage.y][_curStage.x];
+                if (cur.IsActive || !cur.SelectNextStage(pNextStage))
+                    return;
+                cur.SetActive(false);
+               foreach (var nextPos in cur) {
+                   _mapNodes[nextPos.y][nextPos.x].SetActive(false);
+               } 
+               
+            }
+            else {
+                foreach (var node in _mapNodes[0]) {
+                    node.SetActive(false);
+                }
             }
             
-            foreach (var nextNode in _mapNodes[pPos.y][pPos.x]) {
-                Debug.Log($"{nextNode}, {pPos}");
-                _mapNodes[nextNode.y][nextNode.x].SetActive();
+            _curStage = pNextStage;
+            _mapNodes[_curStage.y][_curStage.x].SetActive(true);
+        }
+        public void ClearStage() {
+            
+            _mapNodes[_curStage.y][_curStage.x].SetActive(false);
+            _mapNodes[_curStage.y][_curStage.x].SetActiveNextEdges(true);
+            foreach (var nextNode in _mapNodes[_curStage.y][_curStage.x]) {
+                _mapNodes[nextNode.y][nextNode.x].SetActive(true);
             }
         }
-
+        public void SetActive() =>
+            _mapPannel.SetActive(!_mapPannel.activeSelf);
+        
         private void GenerateMap() {
             
             foreach (var floor in _mapNodes) {
@@ -72,8 +91,6 @@ namespace MapGenerator {
                 GenerateEdges();
             }
         }
-       
-        
         private void GenerateRound(float pHeight) {
 
             _mapNodes.Add(new());
@@ -101,13 +118,10 @@ namespace MapGenerator {
 
             var idx = 0;
             foreach (var node in _mapNodes[^1]) {
-                //set type
                 var type = StageTypeFrequency.Random();
-                Debug.Log(type);
                 node.SetUp(type, new(idx++, _mapNodes.Count - 1));
             }
         } 
-        
         private int GetWidthSize() {
             var count = _stageWidthInfos.Sum(floor => floor.Frequency);
             var random = Random.Range(0, count);
@@ -128,7 +142,6 @@ namespace MapGenerator {
             var y = Random.Range(-maxSize.y, maxSize.y);
             return new(x, y);
         }
-
         private void GenerateEdges() {
             if (_mapNodes.Count <= 1)
                 return;
@@ -189,14 +202,12 @@ namespace MapGenerator {
                 }
             }
         }
-
         private void GenerateEdge(MapNode pStart, MapNode pEnd, int pEndIdx) {
             var edge = Instantiate(_edge, _map.transform);
 
-
             var delta = pEnd.transform.position - pStart.transform.position;
             edge.transform.position = pStart.transform.position;
-            pStart.Add(pEndIdx, edge.gameObject);
+            pStart.Add(pEndIdx, edge);
                  
             //Edge setting
             var size = edge.rectTransform.sizeDelta;
@@ -219,7 +230,7 @@ namespace MapGenerator {
             GenerateMap();
 
             foreach (var node in _mapNodes[0]) {
-                node.SetActive();
+                node.SetActive(true);
             }
         }
         

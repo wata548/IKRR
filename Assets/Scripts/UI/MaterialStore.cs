@@ -17,7 +17,8 @@ namespace UI {
                 .ToDictionary(mat => mat.name[2..], material => material);
         }
 
-        public static Material Get(string pMaterial) => 
-            _matchMaterials[pMaterial];
+        public static Material Get(string pMaterial) {
+            return _matchMaterials.GetValueOrDefault(pMaterial);
+        }
     }
 }

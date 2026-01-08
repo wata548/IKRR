@@ -53,7 +53,7 @@ Material:
     - _UIMaskSoftnessY: 1
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
-    - _Color1: {r: 0.32075465, g: 0.32075465, b: 0.32075465, a: 0}
+    - _Color1: {r: 0.43293875, g: 0.4382371, b: 0.4433962, a: 0}
     - _Color2: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

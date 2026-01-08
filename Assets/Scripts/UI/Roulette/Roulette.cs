@@ -1,17 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Extension;
 using Roulette;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Roulette {
     public class Roulette: MonoBehaviour {
+        private static readonly Vector3 ANIMATION_POWER = new(0, 4);
+        
         //==================================================||Fields
         [SerializeField] private Wheel _wheelPrefab;
         [SerializeField] private Button _lever;
         private RectTransform _rect;
         private readonly List<Wheel> _wheels = new();
+        private Tween _animation = null;
+        private Vector3 _origin;
         
         //==================================================||Properties
         public bool IsRoll {
@@ -24,8 +31,15 @@ namespace UI.Roulette {
             }
         }
 
-       //==================================================||Methods 
+        //==================================================||Methods 
         public void Roll() {
+            if (IsRoll)
+                return;
+            
+            ClearStatus();
+            _origin = transform.position;   
+            _animation = transform.DOShakePosition(1, ANIMATION_POWER, fadeOut:false).SetLoops(-1);
+            
             foreach (var wheel in _wheels) {
                 wheel.StartRoll();
             }
@@ -46,27 +60,64 @@ namespace UI.Roulette {
                 wheel.RectTransform.sizeDelta = wheelSize;
                 wheel.RectTransform.SetLocalPosition(Pivot.Down, pos);
                 wheel.RectTransform.ChangeVirtualPivot(Pivot.Down);
+                wheel.Init(i, RouletteManager.Height, RouletteManager.GetColumn(i), OnClick);
+            }
 
-                wheel.Init(i, RouletteManager.Height, RouletteManager.GetColumn(i));
+            return;
+
+            void OnClick(RouletteCell cell) {
+                if (IsRoll) {
+                    Debug.Log("Roulette is rolling");
+                    return;
+                }
+                var result = Use(cell.Column, cell.Row);
+                Debug.Log($"({cell.Column}, {cell.Row}): {result}");
             }
         }
 
         private void Stop() {
             if (!IsRoll)
                 return;
+            
             _wheels.First(wheel => wheel.IsRoll).StopRoll();
+            if (!IsRoll) {
+                _animation?.Kill();
+                transform.position = _origin;
+                Refresh();
+            }
+        }
+
+        private void ClearStatus() {
+            RouletteManager.ClearStatus();
+            SymbolStatusApply();
+        } 
+        private void Refresh() {
+            RouletteManager.Refresh();
+            SymbolStatusApply();
+        }
+        private void SymbolStatusApply() {
+            foreach (var wheel in _wheels) {
+                wheel.Refresh();
+            }
         }
         
-       //==================================================||Unity 
-       private void Start() {
-           //TODO: This code is just test code
-           RouletteManager.Init(Enumerable.Repeat(1001, 12));
+        private bool Use(int pColumn, int pRow) {
+            if (!RouletteManager.Use(pColumn, pRow, out var status))
+                return false;
+            _wheels[pColumn].Use(pRow, status);
+            return true;
+        }
+        
+        //==================================================||Unity 
+        private void Start() {
+            //TODO: This code is just test code
+            RouletteManager.Init(Enumerable.Repeat(1001, 12));
 
-           _lever.onClick.AddListener(Stop);
-           SetUp();
+            _lever.onClick.AddListener(Stop);
+            SetUp();
 
-           //TODO: This code is just test code
-           Roll();
-       }
+            //TODO: This code is just test code
+            Roll();
+        }
     }
 }

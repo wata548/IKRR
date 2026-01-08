@@ -10,7 +10,7 @@ namespace Data {
             _enemyBySerialNumber = pLoader.Load().ToDictionary();
         }
 
-        public EnemyData GetSymbolData(int pNumber) {
+        public EnemyData GetData(int pNumber) {
             if(_enemyBySerialNumber.TryGetValue(pNumber, out var data))
                 return data;
 

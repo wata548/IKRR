@@ -6,6 +6,7 @@ using Character.Skill;
 using Data;
 using Extension;
 using Extension.Test;
+using TMPro;
 using UnityEngine;
 
 namespace Test {

@@ -2,6 +2,6 @@
     public enum CellStatus {
         Usable,
         Used,
-        Impossible,
+        Unavailable,
     }
 }

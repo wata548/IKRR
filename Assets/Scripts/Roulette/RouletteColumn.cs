@@ -13,7 +13,6 @@ namespace Roulette {
         private class RouletteColumn {
             
             //==================================================||Fields 
-            public const int MAX_HEIGHT = 8;
             private CellInfo[] _column = new CellInfo[MAX_HEIGHT + 1];
             
             //==================================================||Methods 
@@ -45,18 +44,22 @@ namespace Roulette {
                         continue;
                     _column[i].Status = SymbolExecutor.IsUsable(pColumnIdx, i)
                         ? CellStatus.Usable
-                        : CellStatus.Impossible;
+                        : CellStatus.Unavailable;
+                }
+
+                for (int i = Height; i <= MAX_HEIGHT; i++) {
+                    _column[i].Status = CellStatus.Unavailable;
                 }
             }
             
             public int Roll(int pIn ) {
                 var last = _column[Height];
                 for (int i = 0; i < Height; i++) {
-                    _column[i + 1] = _column[i];
+                    _column[i] = _column[i + 1];
                 }
 
-                _column[0].Code = pIn;
-                _column[0].Status = CellStatus.Usable;
+                _column[Height].Code = pIn;
+                _column[Height].Status = CellStatus.Usable;
                 return last.Code;
             }
         }

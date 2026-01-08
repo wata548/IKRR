@@ -20,7 +20,7 @@ namespace UI.Roulette {
        public RectTransform RectTransform { get; private set; }
        
        //==================================================||Methods 
-        public void Init(int pIdx, int pHeight, IEnumerable<CellInfo> pData) {
+        public void Init(int pIdx, int pHeight, IEnumerable<CellInfo> pData, Action<RouletteCell> pOnClick) {
             
             if (pHeight == 0)
                 return;
@@ -45,6 +45,7 @@ namespace UI.Roulette {
 
             foreach (var (cell, info) in _cells.Zip(pData, (cell, info) => (cell, info))) {
                 
+                cell.AddOnClickListener(() => pOnClick(cell));
                 cell.RectTransform.SetLocalPosition(Pivot.Down, pos);
                 cell.RectTransform.sizeDelta = Vector2.one * cellScale;
                 
@@ -54,6 +55,15 @@ namespace UI.Roulette {
             }
         }
 
+        public void Refresh() {
+            var row = -1;
+            foreach (var cell in _cells) {
+                row++;
+                var status = RouletteManager.GetStatus(_idx, row);
+                cell.SetStatus(status);
+            }
+        }
+        
         private void ShowNewCell() {
             var interval = 1f / (_cells.Count - 1);
             var temp = _cells[0];
@@ -97,16 +107,25 @@ namespace UI.Roulette {
             }
 
             var delta = 0.5f / (_cells.Count - 1) - pos;
+            var rowIdx = -1;
             foreach (var cell in _cells) {
+                rowIdx++;
+                
                 cell.RectTransform.DOLocalMoveY(cell.RectTransform.localPosition.y + cell.Parent.sizeDelta.y * delta, 0.8f)
                     .SetEase(Ease.OutElastic);
+                cell.SetIdx(_idx, rowIdx);
             }
         }
+        
+        public void Use(int pIdx, CellStatus pNextStatus) => 
+            _cells[pIdx].Use(pNextStatus);
 
        //==================================================||Unity 
         private void Update() {
-            if(IsRoll)
-                Move();
+            if (!IsRoll)
+                return;
+            
+            Move();
         }
 
         private void Awake() {

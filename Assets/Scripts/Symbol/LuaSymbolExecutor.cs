@@ -27,7 +27,7 @@ namespace Symbol {
         public bool IsUsable(int pColumn, int pRow) {
             SetUp();
             var targetItem = RouletteManager.Get(pColumn, pRow);
-            var condition = DataManager.SymbolDB.GetSymbolData(targetItem).ConditionCode;
+            var condition = DataManager.SymbolDB.GetData(targetItem).ConditionCode;
 
             var code = string.Format(_luaFuncFormat, nameof(IsUsable), condition);
             return _language.Invoke<bool>(code, nameof(IsUsable), new object[]{pColumn, pRow});
@@ -36,7 +36,7 @@ namespace Symbol {
         public int Evolution(int pColumn, int pRow) {
             SetUp();
             var targetItem = RouletteManager.Get(pColumn, pRow);
-            var evolveCondition = DataManager.SymbolDB.GetSymbolData(targetItem).EvolveCondition;
+            var evolveCondition = DataManager.SymbolDB.GetData(targetItem).EvolveCondition;
 
             var code = string.Format(_luaFuncFormat, nameof(Evolution), evolveCondition);
             var result = _language.Invoke<int>(code, nameof(Evolution), new object[]{pColumn, pRow});
@@ -47,7 +47,7 @@ namespace Symbol {
             SetUp();
             SetUp();
             var targetItem = RouletteManager.Get(pColumn, pRow);
-            var effectCode = DataManager.SymbolDB.GetSymbolData(targetItem).EffectCode;
+            var effectCode = DataManager.SymbolDB.GetData(targetItem).EffectCode;
 
             var code = string.Format(_luaFuncFormat, nameof(Execute), effectCode);
             var skillCode = _language.Invoke<string>(code, nameof(Execute));

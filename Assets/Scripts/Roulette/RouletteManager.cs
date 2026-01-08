@@ -10,6 +10,7 @@ namespace Roulette {
     public static partial class RouletteManager {
         
         //==================================================||Properties 
+        public const int MAX_HEIGHT = 8;
         public static int Width { get; private set; } = 5;
         public static int Height { get; private set; } = 3;
         public static int HandSize { get; private set; } = 25;
@@ -138,6 +139,16 @@ namespace Roulette {
             return _current[pColumn][pRow];
         }
 
+        public static bool Use(int pColumn, int pRow, out CellStatus status) {
+            status = GetStatus(pColumn, pRow);
+            if (status != CellStatus.Usable)
+                return false;
+            
+            _current[pColumn].UseSkill(pRow);
+            status = GetStatus(pColumn, pRow);
+            return true;
+        }
+
         public static bool Change(int pColumn, int pRow, int pNewItem) {
 
             var target = _current[pColumn][pRow];
@@ -168,6 +179,25 @@ namespace Roulette {
             if (isChanged)
                 Refresh();
             return changed;
+        }
+        
+        public static List<(int Column, int Row)> UsableBuff() {
+
+            var result = new List<(int, int)>();
+            for (int row = 0; row < Height; row++) {
+                for (int column = 0; column < Width; column++) {
+                    
+                    if(GetStatus(column, row) != CellStatus.Usable)
+                        continue;
+                    var targetType = DataManager.SymbolDB.GetData(Get(column, row)).Type;
+                    if(targetType != SymbolType.Buff)
+                        continue;
+                    
+                    result.Add((column, row));
+                }
+            }
+
+            return result;
         }
     }
 }
