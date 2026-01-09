@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Character.Skill;
 using Data;
 using Extension;
 using Symbol;
@@ -140,16 +141,16 @@ namespace Roulette {
             return _current[pColumn][pRow];
         }
 
-        public static bool Use(int pColumn, int pRow, out CellStatus status) {
-            status = GetStatus(pColumn, pRow);
-            if (status != CellStatus.Usable)
+        public static bool Use(int pColumn, int pRow, out CellStatus pStatus, out ISkill pSkill) {
+            pStatus = GetStatus(pColumn, pRow);
+            pSkill = null;
+            if (pStatus != CellStatus.Usable)
                 return false;
 
-            SymbolExecutor.GetSkill(pColumn, pRow)
-                ?.Execute(Positions.Player);
+            pSkill = SymbolExecutor.GetSkill(pColumn, pRow);
             
             _current[pColumn].UseSkill(pRow);
-            status = GetStatus(pColumn, pRow);
+            pStatus = GetStatus(pColumn, pRow);
             return true;
         }
 
@@ -191,8 +192,8 @@ namespace Roulette {
         public static Queue<(int Column, int Row)> UsableBuff() {
 
             var result = new Queue<(int, int)>();
-            for (int row = 0; row < Height; row++) {
-                for (int column = 0; column < Width; column++) {
+            for (int column = 0; column < Width; column++) {
+                for (int row = Height - 1; row >= 0; row--) {
                     
                     if(GetStatus(column, row) != CellStatus.Usable)
                         continue;

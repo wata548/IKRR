@@ -23,6 +23,9 @@ namespace UI.Roulette {
         public int Row { get; private set; }
         public int Column { get; private set; }
 
+        public void Click() =>
+            _useButton.onClick.Invoke();
+        
         public void AddOnClickListener(Action pAction) {
             _useButton.onClick.AddListener(() => pAction?.Invoke());
         }
