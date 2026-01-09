@@ -7,12 +7,18 @@ using Extension;
 using UnityEngine;
 
 namespace UI.Status {
-    public class StatusShowerManager: MonoSingleton<StatusShowerManager> {
-        protected override bool IsNarrowSingleton { get; } = true;
+    public class StatusShowerManager: MonoBehaviour {
 
         [SerializeField] private StatusShower _prefab;
         private readonly Dictionary<TargetStatus, StatusShower> _matchShower = new();
 
+        public void Clear() {
+            Data.Status.Clear();
+            foreach (var shower in _matchShower) {
+                shower.Value.RawRefresh();
+            }
+        }
+        
         public void Refresh(TargetStatus pStatus, Action pOnComplete) {
             var sequence = DOTween.Sequence();
             var tweens = pStatus
@@ -26,8 +32,7 @@ namespace UI.Status {
             sequence.OnComplete(() => pOnComplete?.Invoke());
         }
         
-        protected override void Awake() {
-            base.Awake();
+        protected void Awake() {
             
             var statuses = ((TargetStatus[])Enum.GetValues(typeof(TargetStatus))).Where(status => status.IsFlag());
             var interval = 1f / (statuses.Count() - 1);

@@ -1,6 +1,7 @@
 ﻿using System;
 using Character.Skill.Data;
 using Data;
+using UI;
 using UI.Status;
 
 namespace Character.Skill {
@@ -25,7 +26,7 @@ namespace Character.Skill {
                 _ => throw new ArgumentException($"{Symbol} isn't operator")
             };
             func.Invoke(TargetStat.Value, Rhs);
-            StatusShowerManager.Instance.Refresh(TargetStat.Value, End);                      
+            UIManager.Instance.Status.Refresh(TargetStat.Value, End);                      
         }
     }
 }

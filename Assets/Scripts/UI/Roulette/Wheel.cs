@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Data;
 using DG.Tweening;
 using Extension;
 using Roulette;
@@ -58,7 +59,11 @@ namespace UI.Roulette {
         public void Refresh() {
             var row = -1;
             foreach (var cell in _cells) {
+                
                 row++;
+                if (RouletteManager.Get(_idx, row) == DataManager.EMPTY_SYMBOL)
+                    continue;
+                
                 var status = RouletteManager.GetStatus(_idx, row);
                 cell.SetStatus(status);
             }

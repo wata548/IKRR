@@ -19,6 +19,9 @@ namespace FSM {
             };
 
         public void Change(State pState) {
+            if (State == pState)
+                return;
+            
             _strategy?.OnExit(this);
             _strategy = _matchStrategy[pState];
             _strategy.OnEnter(this);

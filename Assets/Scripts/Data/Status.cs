@@ -6,6 +6,10 @@ namespace Data {
 
         private static Dictionary<TargetStatus, int> _statusValue = new();
 
+        public static void Clear() {
+            SetValue(TargetStatus.All, 0);
+        }
+        
         public static int GetValue(TargetStatus pStatus) {
             if (!((int)pStatus).IsFlag())
                 return -1;

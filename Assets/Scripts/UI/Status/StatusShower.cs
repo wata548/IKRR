@@ -23,6 +23,11 @@ namespace UI.Status {
             Refresh();
         }
 
+        public void RawRefresh() {
+            _value = Data.Status.GetValue(_status);
+            _shower.text = _value.ToString();
+        }
+        
         public Tween Refresh() {
             if (_value == -1) {
                 _value = 0;

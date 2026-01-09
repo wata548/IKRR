@@ -21,10 +21,14 @@ namespace UI.Roulette {
         private readonly List<Wheel> _wheels = new();
         private Tween _animation = null;
         private Vector3 _origin;
-        private Queue<(int, int)> _buffBuffer = null;
+        
+        private readonly Queue<(int, int)> _animationBuffer = new();
         private ISkill _playingSkill = null;
+        private float _remainAnimationTerm = 0;
         
         //==================================================||Properties
+
+        [field: SerializeField] public float AnimationInterval { get; set; } = 0.1f;
         public bool IsRoll {
             get {
                 foreach (var wheel in _wheels) {
@@ -41,6 +45,8 @@ namespace UI.Roulette {
                 return;
             
             Fsm.Instance.Change(State.Rolling);
+            
+            UIManager.Instance.Status.Clear();
             ClearStatus();
             _origin = transform.position;   
             _animation = transform.DOShakePosition(1, ANIMATION_POWER, fadeOut:false).SetLoops(-1);
@@ -75,8 +81,10 @@ namespace UI.Roulette {
                     Debug.Log("Roulette is rolling");
                     return;
                 }
-                var result = Use(cell.Column, cell.Row, out _);
-                Debug.Log($"({cell.Column}, {cell.Row}): {result}");
+                
+                if (Fsm.Instance.State != State.PlayerTurn)
+                    return;
+                _animationBuffer.Enqueue((cell.Column, cell.Row));
             }
         }
 
@@ -91,7 +99,11 @@ namespace UI.Roulette {
                 _animation?.Kill();
                 transform.position = _origin;
                 Refresh();
-                _buffBuffer = RouletteManager.UsableBuff();
+                
+                var temp = RouletteManager.UsableBuff();
+                while (temp.Count > 0) {
+                    _animationBuffer.Enqueue(temp.Dequeue());
+                }
             }
         }
 
@@ -109,27 +121,45 @@ namespace UI.Roulette {
             }
         }
         
-        private bool Use(int pColumn, int pRow, out ISkill skill) {
+        private void PlayBuffSymbol() {
 
-            skill = null;
-            if (Fsm.Instance.State != State.PlayerTurn)
-                return false;
-            if (!RouletteManager.Use(pColumn, pRow, out var status, out skill))
-                return false;
+            if (_remainAnimationTerm > 0 && _playingSkill is {IsEnd: true}) {
+                _remainAnimationTerm -= Time.deltaTime;
+            }
             
+            if (Fsm.Instance.State is not (State.PlayerTurn or State.PlayAnimation))
+                return;
+            
+            if (_animationBuffer.Count == 0) {
+                Fsm.Instance.Change(State.PlayerTurn);
+                return;
+            }
+            
+            Fsm.Instance.Change(State.PlayAnimation);
+            
+            if (_playingSkill is { IsEnd: false })
+                return;
+
+            _remainAnimationTerm = AnimationInterval;
+            var (x, y) = _animationBuffer.Dequeue();
+            if (!RouletteManager.Use(x, y, out var status, out var skill)) {
+                return;
+            }
+
+            _wheels[x].Use(y, status);
+            _playingSkill = skill;
+            skill.OnEnd = Refresh;
             skill.Execute(Positions.Player);
-            _wheels[pColumn].Use(pRow, status);
-            return true;
         }
-        
         
         //==================================================||Unity 
         private void Start() {
             //TODO: This code is just test code
             var list = new List<int>();
-            list.AddRange(Enumerable.Repeat(1001, 12));
-            list.AddRange(Enumerable.Repeat(1004, 4));
-            list.AddRange(Enumerable.Repeat(1005, 4));
+            list.AddRange(Enumerable.Repeat(1001, 10));
+            list.AddRange(Enumerable.Repeat(1003, 9));
+            list.AddRange(Enumerable.Repeat(1004, 3));
+            list.AddRange(Enumerable.Repeat(1005, 3));
             RouletteManager.Init(list);
 
             _lever.onClick.AddListener(Stop);
@@ -140,22 +170,7 @@ namespace UI.Roulette {
         }
 
         private void Update() {
-            if (Fsm.Instance.State != State.PlayAnimation)
-                return;
-            if (_buffBuffer.Count == 0) {
-                Fsm.Instance.Change(State.PlayerTurn);
-                return;
-            }
-            
-            if (_playingSkill != null && !_playingSkill.IsEnd)
-                return;
-            
-            var (x, y) = _buffBuffer.Dequeue();
-            if (RouletteManager.Use(x, y, out var status, out var skill)) {
-                _wheels[x].Use(y, status);
-                _playingSkill = skill;
-                skill.Execute(Positions.Player);
-            }
+            PlayBuffSymbol();           
         }
     }
 }

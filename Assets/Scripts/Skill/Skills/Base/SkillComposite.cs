@@ -48,8 +48,13 @@ namespace Character.Skill {
                 }
             }
 
-            if(prevSkill != null)
+            if (prevSkill != null) {
                 prevSkill.OnEnd = OnEnd;
+                prevSkill.OnEnd += () => IsEnd = true;
+            }
+            else {
+                IsEnd = true;
+            }
         }
     }
 }

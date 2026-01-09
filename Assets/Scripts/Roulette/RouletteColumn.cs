@@ -54,7 +54,7 @@ namespace Roulette {
             
             public int Roll(int pIn ) {
                 var last = _column[Height];
-                for (int i = 0; i < Height; i++) {
+                for (int i = 0; i <= Height; i++) {
                     _column[i] = _column[i + 1];
                 }
 

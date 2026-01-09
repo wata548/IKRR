@@ -72,7 +72,7 @@ namespace Roulette {
             var idx = -1;
             foreach (var symbol in Hand.ToList().Shuffle()) {
                 idx++;
-                if (idx > Width * Height) {
+                if (idx > Width * (Height + 1)) {
                     _remainSymbol.Enqueue(symbol);
                     continue;
                 }

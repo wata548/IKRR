@@ -5,6 +5,7 @@ namespace Data {
     public static class DataManager {
 
         public const int ERROR_SYMBOL = -1;
+        public const int EMPTY_SYMBOL = 0;
         
         public static readonly IDB<int, SymbolData> SymbolDB = new SymbolDB();
         public static readonly IDB<int, EnemyData> EnemyDB = new EnemyDB();
