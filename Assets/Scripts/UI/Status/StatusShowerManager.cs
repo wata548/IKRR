@@ -65,7 +65,8 @@ namespace UI.Status {
 
         private void OnDrawGizmos() {
             Gizmos.color = Color.magenta;
-            Gizmos.DrawWireCube(transform.position, (transform as RectTransform)!.sizeDelta);
+            var size = (transform as RectTransform)!.rect.size * transform.lossyScale; 
+            Gizmos.DrawWireCube(transform.position, size);
         }
     }
 }

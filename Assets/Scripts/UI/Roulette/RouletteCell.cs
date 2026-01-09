@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using Extension;
 using Roulette;
 using UI.Symbol;
 using UnityEngine;
@@ -19,13 +20,9 @@ namespace UI.Roulette {
         [SerializeField] private Image _icon;
         [SerializeField] private Button _useButton;
         public RectTransform RectTransform { get; private set; }
-        public RectTransform Parent { get; private set; }
         public int Row { get; private set; }
         public int Column { get; private set; }
 
-        public void Click() =>
-            _useButton.onClick.Invoke();
-        
         public void AddOnClickListener(Action pAction) {
             _useButton.onClick.AddListener(() => pAction?.Invoke());
         }
@@ -56,7 +53,6 @@ namespace UI.Roulette {
 
         private void Awake() {
             RectTransform = GetComponent<RectTransform>();
-            Parent = transform.parent!.GetComponent<RectTransform>();
         }
     }
 }

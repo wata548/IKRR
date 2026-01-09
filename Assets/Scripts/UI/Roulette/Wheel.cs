@@ -74,8 +74,8 @@ namespace UI.Roulette {
             var temp = _cells[0];
             
             _cells.RemoveAt(0);
-            var pos = _cells[^1].RectTransform.GetLocalPosition(_cells[^1].Parent, Pivot.Down).y + interval;
-            temp.RectTransform.SetLocalPositionY(temp.Parent, PivotLocation.Down, pos);
+            var pos = _cells[^1].RectTransform.GetLocalPosition(RectTransform, Pivot.Down).y + interval;
+            temp.RectTransform.SetLocalPositionY(RectTransform, PivotLocation.Down, pos);
             _cells.Add(temp);
             
             var code = RouletteManager.Roll(_idx);
@@ -95,7 +95,7 @@ namespace UI.Roulette {
             }
 
             var nextPoint = -0.5f / (_cells.Count - 1);
-            while (_cells[0].RectTransform.GetLocalPosition(_cells[0].Parent, Pivot.Down).y < nextPoint) {
+            while (_cells[0].RectTransform.GetLocalPosition(RectTransform, Pivot.Down).y < nextPoint) {
                 ShowNewCell();
             }
         }
@@ -107,10 +107,10 @@ namespace UI.Roulette {
         public void StopRoll() {
             IsRoll = false;
             
-            var pos = _cells[0].RectTransform.GetLocalPosition(_cells[0].Parent, Pivot.Down).y;
+            var pos = _cells[0].RectTransform.GetLocalPosition(RectTransform, Pivot.Down).y;
             if (pos < 0) {
                 ShowNewCell();
-                pos = _cells[0].RectTransform.GetLocalPosition(_cells[0].Parent, Pivot.Down).y;
+                pos = _cells[0].RectTransform.GetLocalPosition(RectTransform, Pivot.Down).y;
             }
 
             var delta = 0.5f / (_cells.Count - 1) - pos;
@@ -118,7 +118,7 @@ namespace UI.Roulette {
             foreach (var cell in _cells) {
                 rowIdx++;
                 
-                cell.RectTransform.DOLocalMoveY(cell.RectTransform.localPosition.y + cell.Parent.sizeDelta.y * delta, 0.8f)
+                cell.RectTransform.DOLocalMoveY(cell.RectTransform.localPosition.y + RectTransform.sizeDelta.y * delta, 0.8f)
                     .SetEase(Ease.OutElastic);
                 cell.SetIdx(_idx, rowIdx);
             }

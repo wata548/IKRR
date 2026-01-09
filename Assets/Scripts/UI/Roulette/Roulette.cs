@@ -17,6 +17,7 @@ namespace UI.Roulette {
         //==================================================||Fields
         [SerializeField] private Wheel _wheelPrefab;
         [SerializeField] private Button _lever;
+        [SerializeField] private Image _volum;
         private RectTransform _rect;
         private readonly List<Wheel> _wheels = new();
         private Tween _animation = null;
@@ -73,6 +74,7 @@ namespace UI.Roulette {
                 wheel.RectTransform.ChangeVirtualPivot(new Pivot(PivotLocation.Down));
                 wheel.Init(i, RouletteManager.Height, RouletteManager.GetColumn(i), OnClick);
             }
+            _volum.transform.SetAsLastSibling();
 
             return;
 
