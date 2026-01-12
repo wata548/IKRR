@@ -57,15 +57,12 @@ namespace UI.Roulette {
         }
 
         public void Refresh() {
-            var row = -1;
-            foreach (var cell in _cells) {
-                
-                row++;
+            for (int row = 0; row < RouletteManager.Height; row++) {
                 if (RouletteManager.Get(_idx, row) == DataManager.EMPTY_SYMBOL)
                     continue;
-                
+                                
                 var status = RouletteManager.GetStatus(_idx, row);
-                cell.SetStatus(status);
+                _cells[row].SetStatus(status);
             }
         }
         
@@ -80,6 +77,10 @@ namespace UI.Roulette {
             
             var code = RouletteManager.Roll(_idx);
             temp.SetIcon(code);
+        }
+
+        public void Evolve(int pIdx, int pNewCode, Action pOnComplete, bool pPlayAnimation) {
+            _cells[pIdx].Evolve(pNewCode, pOnComplete, pPlayAnimation);
         }
         
         private void Move() {
@@ -123,9 +124,12 @@ namespace UI.Roulette {
                 cell.SetIdx(_idx, rowIdx);
             }
         }
+
+        public void SetStatus(int pIdx, CellStatus pStatus) =>
+            _cells[pIdx].SetStatus(pStatus);
         
-        public void Use(int pIdx, CellStatus pNextStatus) => 
-            _cells[pIdx].Use(pNextStatus);
+        public void Use(int pIdx) => 
+            _cells[pIdx].PlayAnimation();
 
        //==================================================||Unity 
         private void Update() {

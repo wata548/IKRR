@@ -23,7 +23,7 @@ namespace UI.Roulette {
         private Tween _animation = null;
         private Vector3 _origin;
         
-        private readonly Queue<(int, int)> _animationBuffer = new();
+        private readonly Queue<CellAnimationData> _animationBuffer = new();
         private ISkill _playingSkill = null;
         private float _remainAnimationTerm = 0;
         
@@ -72,21 +72,23 @@ namespace UI.Roulette {
                 wheel.RectTransform.sizeDelta = wheelSize;
                 wheel.RectTransform.SetLocalPosition(new Pivot(PivotLocation.Down), pos);
                 wheel.RectTransform.ChangeVirtualPivot(new Pivot(PivotLocation.Down));
-                wheel.Init(i, RouletteManager.Height, RouletteManager.GetColumn(i), OnClick);
+                wheel.Init(i, RouletteManager.Height, RouletteManager.GetColumn(i), OnCellClick);
             }
             _volum.transform.SetAsLastSibling();
 
             return;
 
-            void OnClick(RouletteCell cell) {
+            void OnCellClick(RouletteCell cell) {
                 if (IsRoll) {
                     Debug.Log("Roulette is rolling");
                     return;
                 }
-                
                 if (Fsm.Instance.State != State.PlayerTurn)
                     return;
-                _animationBuffer.Enqueue((cell.Column, cell.Row));
+                if (!RouletteManager.Use(cell.Column, cell.Row, out var status, out var skill))
+                    return;
+                
+                _animationBuffer.Enqueue(new(AnimationType.Use, cell.Column, cell.Row, skill, status));
             }
         }
 
@@ -97,12 +99,12 @@ namespace UI.Roulette {
             _wheels.First(wheel => wheel.IsRoll).StopRoll();
             if (!IsRoll) {
                 
-                Fsm.Instance.Change(State.PlayAnimation);
                 _animation?.Kill();
                 transform.position = _origin;
                 Refresh();
                 
-                var temp = RouletteManager.UsableBuff();
+                Fsm.Instance.Change(State.EvolveCheck);
+                var temp = RouletteManager.Evolve();
                 while (temp.Count > 0) {
                     _animationBuffer.Enqueue(temp.Dequeue());
                 }
@@ -113,45 +115,69 @@ namespace UI.Roulette {
             RouletteManager.ClearStatus();
             SymbolStatusApply();
         } 
+        
         private void Refresh() {
             RouletteManager.Refresh();
             SymbolStatusApply();
         }
+        
         private void SymbolStatusApply() {
             foreach (var wheel in _wheels) {
                 wheel.Refresh();
             }
         }
-        
-        private void PlayBuffSymbol() {
 
-            if (_remainAnimationTerm > 0 && _playingSkill is {IsEnd: true}) {
+        public void Evolve(int pColumn, int pRow, int pNewCode, Action pOnComplete, bool pPlayAnimation) {
+            _wheels[pColumn].Evolve(pRow, pNewCode, pOnComplete, pPlayAnimation);
+        }
+        
+        private void PlayAnimation() {
+            if (_playingSkill is { IsEnd: false })
+                return;
+            
+            if (_remainAnimationTerm > 0) {
                 _remainAnimationTerm -= Time.deltaTime;
             }
             
-            if (Fsm.Instance.State is not (State.PlayerTurn or State.PlayAnimation))
+            if (Fsm.Instance.State is not (State.PlayerTurn or State.PlayAnimation or State.EvolveCheck))
                 return;
             
             if (_animationBuffer.Count == 0) {
-                Fsm.Instance.Change(State.PlayerTurn);
-                return;
-            }
-            
-            Fsm.Instance.Change(State.PlayAnimation);
-            
-            if (_playingSkill is { IsEnd: false })
-                return;
 
+                switch (Fsm.Instance.State) {
+                    case State.PlayerTurn:
+                        return;
+                    case State.PlayAnimation:
+                        Fsm.Instance.Change(State.PlayerTurn);
+                        return;
+                    case State.EvolveCheck:
+                        var temp = RouletteManager.UsableBuff();
+                        while (temp.Count > 0) {
+                            _animationBuffer.Enqueue(temp.Dequeue());
+                        }
+                        Fsm.Instance.Change(State.PlayAnimation);
+                        break;
+                }
+            }
+            if(Fsm.Instance.State is State.PlayerTurn)
+                Fsm.Instance.Change(State.PlayAnimation);
+            
             _remainAnimationTerm = AnimationInterval;
-            var (x, y) = _animationBuffer.Dequeue();
-            if (!RouletteManager.Use(x, y, out var status, out var skill)) {
-                return;
+            var animationData = _animationBuffer.Dequeue();
+            
+
+            _playingSkill = animationData.Skill;
+            if (animationData.Type == AnimationType.Use) {
+                var (column, row, status) = 
+                    (animationData.Column, animationData.Row, animationData.Status);
+                
+                RouletteManager.SetStatus(column, row, status);
+                _wheels[column].Use(row);
+                _playingSkill.OnEnd += () => _wheels[column].SetStatus(row, status);
             }
 
-            _wheels[x].Use(y, status);
-            _playingSkill = skill;
-            skill.OnEnd = Refresh;
-            skill.Execute(Positions.Player);
+            _playingSkill.OnEnd += Refresh;
+            _playingSkill.Execute(Positions.Player);
         }
         
         //==================================================||Unity 
@@ -172,7 +198,7 @@ namespace UI.Roulette {
         }
 
         private void Update() {
-            PlayBuffSymbol();           
+            PlayAnimation();           
         }
     }
 }

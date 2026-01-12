@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _CurTime: 1.0015876
+    - _CurTime: 0.47
     - _Speed: 1
     - _StartTime: 0
     - _Stencil: 0
@@ -50,6 +50,7 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
+    - _Thickness: 0.08
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     - _thickness: 0.08

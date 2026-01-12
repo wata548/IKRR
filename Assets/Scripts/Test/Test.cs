@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using Character.Entity;
 using Character.Skill;
 using Data;
 using Extension;

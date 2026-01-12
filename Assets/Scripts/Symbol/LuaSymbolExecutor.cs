@@ -33,24 +33,24 @@ namespace Symbol {
             return _language.Invoke<bool>(code, nameof(IsUsable), new object[]{pColumn, pRow});
         }
 
-        public int Evolution(int pColumn, int pRow) {
-            SetUp();
+        public ISkill Evolution(int pColumn, int pRow) {
             var targetItem = RouletteManager.Get(pColumn, pRow);
-            var evolveCondition = DataManager.SymbolDB.GetData(targetItem).EvolveCondition;
-
-            var code = string.Format(_luaFuncFormat, nameof(Evolution), evolveCondition);
-            var result = _language.Invoke<int>(code, nameof(Evolution), new object[]{pColumn, pRow});
-            return result;
+            var context = DataManager.SymbolDB.GetData(targetItem).EvolveCondition;
+            return GetSkillOnLua(nameof(Evolution), context, pColumn, pRow);
         }
 
         public ISkill GetSkill(int pColumn, int pRow) {
-            SetUp();
             var targetItem = RouletteManager.Get(pColumn, pRow);
-            var effectCode = DataManager.SymbolDB.GetData(targetItem).EffectCode;
+            var context = DataManager.SymbolDB.GetData(targetItem).EffectCode;
+            return GetSkillOnLua(nameof(GetSkill), context, pColumn, pRow);
+        }
 
-            var code = string.Format(_luaFuncFormat, nameof(GetSkill), effectCode);
-            var skillCode = _language.Invoke<string>(code, nameof(GetSkill));
-            return SkillInterpreter.Interpret(skillCode);
+        private ISkill GetSkillOnLua(string pFuncName, string pContext, int pColumn, int pRow) {
+            SetUp();
+            
+            var code = string.Format(_luaFuncFormat, pFuncName, pContext);
+            var dsl = _language.Invoke<string>(code, pFuncName, new object[]{pColumn, pRow});
+            return SkillInterpreter.Interpret(dsl);
         }
     }
 }

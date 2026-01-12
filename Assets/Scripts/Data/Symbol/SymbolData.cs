@@ -6,6 +6,7 @@
         public string ConditionCode { get; protected set; }
         public string Description { get; protected set; }
         public SymbolRarity Rarity { get; protected set; }
+        public string EvolveDescription { get; protected set; }
         public string EvolveCondition { get; protected set; }
         public string EffectCode { get; protected set; }
         public SymbolType Type { get; protected set; }

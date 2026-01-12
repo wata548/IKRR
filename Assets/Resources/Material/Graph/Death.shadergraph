@@ -2916,10 +2916,10 @@
     "m_Guid": {
         "m_GuidSerialized": "cd8e902e-d239-4cc8-84a6-bf18977d418d"
     },
-    "m_Name": "thickness",
+    "m_Name": "Thickness",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "thickness",
-    "m_DefaultReferenceName": "_thickness",
+    "m_RefNameGeneratedByDisplayName": "Thickness",
+    "m_DefaultReferenceName": "_Thickness",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -4191,7 +4191,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "f90fe3ba67ec4e3ba46cc7c427d0b6fa",
     "m_Id": 0,
-    "m_DisplayName": "thickness",
+    "m_DisplayName": "Thickness",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

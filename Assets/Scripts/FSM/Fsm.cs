@@ -13,6 +13,7 @@ namespace FSM {
             new Dictionary<State, IStrategy>() {
                 { State.SelectStage, new TestStrategy(State.SelectStage) },
                 { State.Rolling, new TestStrategy(State.Rolling) },
+                { State.EvolveCheck, new TestStrategy(State.EvolveCheck) },
                 { State.PlayAnimation, new TestStrategy(State.PlayAnimation) },
                 { State.PlayerTurn, new TestStrategy(State.PlayerTurn) },
                 { State.EnemyTurn, new TestStrategy(State.EnemyTurn) },

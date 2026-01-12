@@ -34,8 +34,8 @@ namespace Roulette {
             public int this[int pIdx] => _column[pIdx].Code;
             public CellStatus GetStatus(int pIdx) => _column[pIdx].Status;
 
-            public void UseSkill(int pIdx) {
-                _column[pIdx].Status = CellStatus.Used;
+            public void SetStatus(int pIdx, CellStatus pStatus) {
+                _column[pIdx].Status = pStatus;
             } 
             
             public void RefreshStatus(int pColumnIdx) {
@@ -53,8 +53,8 @@ namespace Roulette {
             }
             
             public int Roll(int pIn ) {
-                var last = _column[Height];
-                for (int i = 0; i <= Height; i++) {
+                var last = _column[0];
+                for (int i = 0; i < Height; i++) {
                     _column[i] = _column[i + 1];
                 }
 

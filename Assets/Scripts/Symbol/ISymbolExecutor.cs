@@ -5,7 +5,7 @@ namespace Symbol {
 
         void Update();
         bool IsUsable(int pColumn, int pRow);
-        int Evolution(int pColumn, int pRow);
+        ISkill Evolution(int pColumn, int pRow);
         ISkill GetSkill(int pColumn, int pRow);
     }
 }

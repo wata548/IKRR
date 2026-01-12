@@ -72,7 +72,7 @@ namespace Roulette {
             var idx = -1;
             foreach (var symbol in Hand.ToList().Shuffle()) {
                 idx++;
-                if (idx > Width * (Height + 1)) {
+                if (idx >= Width * (Height + 1)) {
                     _remainSymbol.Enqueue(symbol);
                     continue;
                 }
@@ -141,6 +141,9 @@ namespace Roulette {
             return _current[pColumn][pRow];
         }
 
+        public static void SetStatus(int pColumn, int pRow, CellStatus pStatus) =>
+            _current[pColumn].SetStatus(pRow, pStatus);
+        
         public static bool Use(int pColumn, int pRow, out CellStatus pStatus, out ISkill pSkill) {
             pStatus = GetStatus(pColumn, pRow);
             pSkill = null;
@@ -149,8 +152,7 @@ namespace Roulette {
 
             pSkill = SymbolExecutor.GetSkill(pColumn, pRow);
             
-            _current[pColumn].UseSkill(pRow);
-            pStatus = GetStatus(pColumn, pRow);
+            pStatus = CellStatus.Used;
             return true;
         }
 
@@ -170,28 +172,21 @@ namespace Roulette {
             return true;
         }
 
-        public static List<EvolveInfo> Evolve() {
-            var isChanged = false;
-            var changed = new List<EvolveInfo>();
-            for (int row = 0; row < Height; row++) {
-                for (int column = 0; column < Width; column++) {
-                    var newCode = SymbolExecutor.Evolution(column, row);
-
-                    if (Change(column, row, newCode)) {
-                        isChanged = true;
-                        changed.Add(new(column, row, newCode));
-                    }
+        public static Queue<CellAnimationData> Evolve() {
+            var changed = new Queue<CellAnimationData>();
+            for (int column = 0; column < Width; column++) {
+                for (int row = Height - 1; row >= 0; row--) {
+                    var skill = SymbolExecutor.Evolution(column, row);
+                    if(skill != null)
+                        changed.Enqueue(new(AnimationType.Evolve, column, row, skill));
                 }
             }
-
-            if (isChanged)
-                Refresh();
             return changed;
         }
         
-        public static Queue<(int Column, int Row)> UsableBuff() {
+        public static Queue<CellAnimationData> UsableBuff() {
 
-            var result = new Queue<(int, int)>();
+            var result = new Queue<CellAnimationData>();
             for (int column = 0; column < Width; column++) {
                 for (int row = Height - 1; row >= 0; row--) {
                     
@@ -200,8 +195,10 @@ namespace Roulette {
                     var targetType = DataManager.SymbolDB.GetData(Get(column, row)).Type;
                     if(targetType != SymbolType.Buff)
                         continue;
-                    
-                    result.Enqueue((column, row));
+                    if (!Use(column, row, out var status, out var skill)) {
+                        continue;
+                    }
+                    result.Enqueue(new(AnimationType.Use, column, row, skill, status));
                 }
             }
 

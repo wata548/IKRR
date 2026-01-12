@@ -13,7 +13,7 @@ namespace Symbol {
         }
         
         public static bool IsUsable(int pColumn, int pRow) => _executor.IsUsable(pColumn, pRow);
-        public static int Evolution(int pColumn, int pRow) => _executor.Evolution(pColumn, pRow);
+        public static ISkill Evolution(int pColumn, int pRow) => _executor.Evolution(pColumn, pRow);
         public static ISkill GetSkill(int pColumn, int pRow) => _executor.GetSkill(pColumn, pRow);
     }
 }
