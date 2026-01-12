@@ -5,6 +5,7 @@ using Data;
 using Data.Map;
 using Extension;
 using Extension.Test;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -65,6 +66,7 @@ namespace MapGenerator {
             
             _curStage = pNextStage;
             _mapNodes[_curStage.y][_curStage.x].SetActive(true);
+            UIManager.Instance.Roulette.Roll();
         }
         public void ClearStage() {
             

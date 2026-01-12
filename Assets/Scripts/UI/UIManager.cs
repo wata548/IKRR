@@ -1,4 +1,5 @@
 ﻿using Extension;
+using UI.Character;
 using UI.SkillShower;
 using UI.Status;
 using UnityEngine;
@@ -9,5 +10,6 @@ namespace UI {
         [field: SerializeField] public StatusShowerManager Status { get; private set; }
         [field: SerializeField] public SkillShowerManager SkillShower { get; private set; }
         [field: SerializeField] public Roulette.Roulette Roulette { get; private set; }
+        [field: SerializeField] public EnemyUIManager Enemy { get; private set; }
     }
 }

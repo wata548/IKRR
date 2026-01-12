@@ -10,10 +10,14 @@ namespace Roulette {
     
     public static partial class RouletteManager {
         
+        //==================================================||Constants
+        private const int DEFAULT_WIDTH = 5; 
+        private const int DEFAULT_HEIGHT = 3;
+       
         //==================================================||Properties 
         public const int MAX_HEIGHT = 8;
-        public static int Width { get; private set; } = 5;
-        public static int Height { get; private set; } = 3;
+        public static int Width { get; private set; } = DEFAULT_WIDTH;
+        public static int Height { get; private set; } = DEFAULT_HEIGHT;
         public static int HandSize { get; private set; } = 25;
         public static IEnumerable<int> Hand => _hand.SelectMany(kvp => Enumerable.Repeat(kvp.Key, kvp.Value));
         public static IEnumerable<KeyValuePair<int, int>> HandDictionary => _hand;
@@ -27,6 +31,9 @@ namespace Roulette {
         
         public static void Init(IEnumerable<int> pInitHand) {
 
+            Width = DEFAULT_WIDTH;
+            Height = DEFAULT_HEIGHT;
+            
             if (_current.Count == 0) {
                 for (int i = 0; i < Width; i++) {
                     _current.Add(new());

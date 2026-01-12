@@ -182,19 +182,8 @@ namespace UI.Roulette {
         
         //==================================================||Unity 
         private void Start() {
-            //TODO: This code is just test code
-            var list = new List<int>();
-            list.AddRange(Enumerable.Repeat(1001, 10));
-            list.AddRange(Enumerable.Repeat(1003, 9));
-            list.AddRange(Enumerable.Repeat(1004, 3));
-            list.AddRange(Enumerable.Repeat(1005, 3));
-            RouletteManager.Init(list);
-
             _lever.onClick.AddListener(Stop);
             SetUp();
-
-            //TODO: This code is just test code
-            Roll();
         }
 
         private void Update() {

@@ -11,10 +11,16 @@ namespace Character.Skill {
         public Attack(string[] pData): base(pData){}
         protected override void Implement(Positions pCaster) {
             var targets = CharactersManager.GetEntity(pCaster, Target.Value);
-            
+            var idx = targets.Length;
             foreach (var target in targets) {
-                target.ReceiveDamage(Value.Value);
+                target.ReceiveDamage(Value.Value, CustomEnd);
                 Value.Next();
+            }
+
+            void CustomEnd() {
+                idx--;
+                if (idx == 0)
+                    End();
             }
         }
     }

@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections;
+using Character;
+using UnityEngine;
+using Data;
+using DG.Tweening;
+using UnityEngine.UI;
+
+namespace UI.Character {
+    public class EnemyUI: MonoBehaviour {
+
+        
+        //==================================================||Fields
+        [SerializeField] private HpBar _hpBar;
+        [SerializeField] private Image _shower;
+        
+        private Tween _idleAnimation;
+        private Vector3? _origin = null;
+        
+        //==================================================||Methods 
+        public void SetSize(EnemySize pSize) =>
+            transform.localScale = (float)pSize / 100f * Vector3.one;
+        
+        private void IdleAnimation() {
+            const float VERTICAL_MOVEMENT = 0.015f; 
+            const float STRETCH_RATIO = 1.03f; 
+            const float ANIMATION_SPEED = 0.8f; 
+            
+            var posY = _shower.rectTransform.sizeDelta.y * _shower.transform.localScale.y * VERTICAL_MOVEMENT
+                       + _shower.rectTransform.localPosition.y;
+            
+            _idleAnimation?.Kill();
+            _origin ??= _shower.transform.localPosition;
+            _shower.transform.localPosition = (Vector3)_origin;
+            _idleAnimation = DOTween.Sequence()
+                .Append(_shower.transform.DOLocalMoveY(posY, ANIMATION_SPEED))
+                .Join(_shower.transform.DOScaleY(STRETCH_RATIO, ANIMATION_SPEED))
+                .SetEase(Ease.OutSine)
+                .SetLoops(-1, LoopType.Yoyo);
+        }
+        
+        public virtual void OnReceiveDamage(IEntity pEntity, int pAmount, Action pOnComplete) {
+            _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
+                .OnComplete(() => pOnComplete?.Invoke());
+        }
+
+        public virtual void OnDeath(IEntity pEntity, int pAmount, Action pOnComplete) {
+            pOnComplete += () => gameObject.SetActive(false);
+            _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
+                .OnComplete(() => StartCoroutine(Death()));
+            IEnumerator Death() {
+                const float DEATH_ANIMATION = 1f;
+                var mat = _shower.material;
+                var deathMat = MaterialStore.Get("Death");
+                _shower.material = deathMat;
+                
+                var time = 0f;
+                while (time < DEATH_ANIMATION) {
+                    time += Time.deltaTime;
+                    deathMat.SetFloat("_CurTime", time/DEATH_ANIMATION); yield return null; }
+
+                _shower.material = mat;
+                pOnComplete?.Invoke();
+            }
+        }
+
+        public virtual void OnHeal(IEntity pEntity, int pAmount, Action pOnComplete) {
+            _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
+                .OnComplete(() => pOnComplete?.Invoke());
+        }
+        
+        
+        //==================================================||Unity 
+        protected virtual void Awake() {
+            IdleAnimation();
+        }
+    }
+}

@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Wata.UI.Map {
+namespace UI.Map {
     public class MapMouse: MonoBehaviour {
 
         private const float _power = -50;
