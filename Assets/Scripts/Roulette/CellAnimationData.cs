@@ -2,7 +2,7 @@
 
 namespace Roulette {
     public enum AnimationType {
-        Use, Evolve
+        Use, Evolve, Enemy
     }
     
     public struct CellAnimationData {

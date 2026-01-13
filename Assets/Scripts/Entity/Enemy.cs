@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Character.Skill;
 using Data;
 using UI;
+using UI.Character;
 
 namespace Character {
     public class Enemy : IEntity {
@@ -21,6 +22,8 @@ namespace Character {
         private List<(int Appearance, ISkill Skill)> _skillAppearance = new();
 
        //==================================================||Constructors 
+       public Enemy(Positions pPosition, int pCode): this(pPosition, DataManager.EnemyDB.GetData(pCode)){}
+       
         public Enemy(Positions pPosition, EnemyData pData) {
             Position = pPosition;
             Name = pData.Name;
@@ -31,10 +34,17 @@ namespace Character {
             IsAlive = true;
                         
             SetSkillSet(pData.SkillInfo);
+            var ui = UIManager.Instance.Entity.GetEnemyUI(pPosition);
+            ui.gameObject.SetActive(true);
+            ui.SetData(pData);
             CharactersManager.SetEntity(Position, this);
         }
         
        //==================================================||Methods 
+       public void OnAttack() {
+           UIManager.Instance.Entity.GetEnemyUI(Position).AttackAnimation();
+       }
+       
         private void SetSkillSet(string pSkillSet) {
                     
             _skillAppearance.Clear();
@@ -60,12 +70,14 @@ namespace Character {
             Hp = Math.Max(0, Hp - pAmount);
             if (Hp == 0) {
                 IsAlive = false;
-                UIManager.Instance.Enemy[Position]
+                
+                CharactersManager.OnDeathEnemy();
+                UIManager.Instance.Entity[Position]
                     .OnDeath(this, pAmount, pOnComplete);
                 return;
             }
             
-            UIManager.Instance.Enemy[Position]
+            UIManager.Instance.Entity[Position]
                 .OnReceiveDamage(this, pAmount, pOnComplete);
         }
 
@@ -77,7 +89,7 @@ namespace Character {
             
             Hp = Math.Min(MaxHp, Hp + pAmount);
             
-            UIManager.Instance.Enemy[Position]
+            UIManager.Instance.Entity[Position]
                 .OnHeal(this, pAmount, pOnComplete);
         }
 
@@ -88,7 +100,7 @@ namespace Character {
         
         public ISkill GetSkill() {
             
-            var point = UnityEngine.Random.Range(1, _skillAppearance[^1].Appearance);
+            var point = UnityEngine.Random.Range(1, _skillAppearance[^1].Appearance + 1);
             var start = 0;
             var end = _skillAppearance.Count - 1;
             while (start < end) {

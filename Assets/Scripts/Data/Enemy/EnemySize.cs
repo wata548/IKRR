@@ -1,7 +1,7 @@
 ﻿namespace Data {
     public enum EnemySize {
-        Small = 120, 
+        Small = 100, 
         Middle = 150,
-        Big = 180
+        Big = 200
     }
 }

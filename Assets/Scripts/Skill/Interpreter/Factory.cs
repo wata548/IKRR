@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Character.Skill {
@@ -15,7 +16,10 @@ namespace Character.Skill {
         private static Type GetSkillType(string pCommandLine, out string[] pParameters) {
             const string pattern = @"(?<Command>.*)\((?<Params>.*)\)";
             var match = Regex.Match(pCommandLine, pattern);
-            pParameters = match.Groups["Params"].Value.Split(',');
+            pParameters = match.Groups["Params"].Value
+                .Split(',')
+                .Select(param => param.Trim())
+                .ToArray();
             return Type.GetType($"Character.Skill.{match.Groups["Command"].Value}");
         }
     }

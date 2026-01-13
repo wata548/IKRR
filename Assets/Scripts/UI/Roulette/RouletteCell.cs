@@ -3,17 +3,14 @@ using System.Collections;
 using DG.Tweening;
 using Extension;
 using Roulette;
-using UI.Symbol;
+using UI.Icon;
 using UnityEngine;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 namespace UI.Roulette {
     public class RouletteCell: MonoBehaviour {
-
-
-        private const float ANIMATION_SCALE = 1.2f; 
-        private const float ANIMATION_DURATION = 0.5f; 
+        
         public const string CHANGE = "ChangeSymbol";
         public const string USABLE = "NULL";
         public const string USED = "GrayScale";
@@ -30,10 +27,12 @@ namespace UI.Roulette {
         }
 
         public void Evolve(int pNewCode, Action pOnComplete, bool pPlayAnimation) {
-            var material = _icon.material;
+
+            const float ANIMATION_DURATION = 0.5f;
+            
             var changeMat = MaterialStore.Get(CHANGE);
             _icon.material = changeMat;
-            var sprite = pNewCode.GetIcon();
+            var sprite = pNewCode.ToIcon();
             _icon.material.SetTexture("_After", sprite.texture);
             
             if(pPlayAnimation) PlayAnimation();
@@ -41,14 +40,15 @@ namespace UI.Roulette {
 
             IEnumerator ChangeAnimation() {
                 var time = 0f; 
-                while (time < 1) {
+                while (time < ANIMATION_DURATION) {
                     time += Time.deltaTime;
-                    changeMat.SetFloat("_CurTime", time);
+                    changeMat.SetFloat("_CurTime", time / ANIMATION_DURATION);
                     yield return null;
                 }
 
                 _icon.sprite = sprite;
-                _icon.material = material;
+                _icon.material = null;
+                SetStatus(RouletteManager.GetStatus(Column, Row));
                 pOnComplete?.Invoke();
             }
         }
@@ -58,12 +58,21 @@ namespace UI.Roulette {
             Row = pRow;
         }
 
-        public void PlayAnimation() {
-            _icon.transform.DOScale(ANIMATION_SCALE, ANIMATION_DURATION)
+        private Tween PlayAnimation() {
+            const float ANIMATION_SCALE = 1.2f; 
+            const float ANIMATION_DURATION = 0.45f;
+            return _icon.transform.DOScale(ANIMATION_SCALE, ANIMATION_DURATION)
                 .SetLoops(2, LoopType.Yoyo);
         }
         
+        public void PlayAnimation(CellStatus pStatus) {
+            PlayAnimation().OnComplete(() => SetStatus(pStatus));
+        }
+        
         public void SetStatus(CellStatus pStatus) {
+            if (_icon.material.name == $"M_{CHANGE}")
+                return;
+            
             _icon.material = MaterialStore.Get( pStatus switch {
                 CellStatus.Usable =>  USABLE,
                 CellStatus.Unavailable => UNAVAILABLE,
@@ -73,7 +82,7 @@ namespace UI.Roulette {
         }
 
         public void SetIcon(int pCode) => 
-            _icon.sprite = pCode.GetIcon();
+            _icon.sprite = pCode.ToIcon();
 
         private void Awake() {
             RectTransform = GetComponent<RectTransform>();

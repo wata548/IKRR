@@ -85,10 +85,13 @@ namespace UI.Roulette {
         
         private void Move() {
 
+            if (Time.timeScale == 0)
+                return;
+            
             if (_cells.Count == 0)
                 return;
             
-            var speed = -_power * Time.deltaTime;
+            var speed = -_power * Time.deltaTime / Time.timeScale;
             foreach (var cell in _cells) {
                 var pos = cell.RectTransform.localPosition;
                 pos.y += speed;
@@ -119,17 +122,14 @@ namespace UI.Roulette {
             foreach (var cell in _cells) {
                 rowIdx++;
                 
-                cell.RectTransform.DOLocalMoveY(cell.RectTransform.localPosition.y + RectTransform.sizeDelta.y * delta, 0.8f)
+                cell.RectTransform.DOLocalMoveY(cell.RectTransform.localPosition.y + RectTransform.sizeDelta.y * delta, 0.8f * Time.timeScale)
                     .SetEase(Ease.OutElastic);
                 cell.SetIdx(_idx, rowIdx);
             }
         }
 
-        public void SetStatus(int pIdx, CellStatus pStatus) =>
-            _cells[pIdx].SetStatus(pStatus);
-        
-        public void Use(int pIdx) => 
-            _cells[pIdx].PlayAnimation();
+        public void Use(int pIdx, CellStatus pStatus) => 
+            _cells[pIdx].PlayAnimation(pStatus);
 
        //==================================================||Unity 
         private void Update() {

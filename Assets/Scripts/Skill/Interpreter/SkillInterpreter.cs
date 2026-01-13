@@ -26,7 +26,6 @@ namespace Character.Skill {
             var symbolBuffer = new Stack<OperatorToken>();
             var buffer = new StringBuilder();
 
-            pInput = pInput.RemoveWhiteSpace();
             var prev = ' ';
             foreach (var c in pInput) {
                 
@@ -68,6 +67,7 @@ namespace Character.Skill {
             //<=============| SubMethods |=============>\\
             void AddToken(string pContext) {
 
+                pContext = pContext.Trim();
                 if (string.IsNullOrEmpty(pContext))
                     return;
                 

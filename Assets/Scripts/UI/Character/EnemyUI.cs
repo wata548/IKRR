@@ -4,22 +4,42 @@ using Character;
 using UnityEngine;
 using Data;
 using DG.Tweening;
+using UI.Icon;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI.Character {
-    public class EnemyUI: MonoBehaviour {
-
-        
+    public class EnemyUI: EntityUI {
         //==================================================||Fields
         [SerializeField] private HpBar _hpBar;
         [SerializeField] private Image _shower;
+        [SerializeField] private Button _button;
+        [SerializeField] private Positions _position;
         
         private Tween _idleAnimation;
+        private Tween _attackAnimation;
         private Vector3? _origin = null;
         
         //==================================================||Methods 
-        public void SetSize(EnemySize pSize) =>
-            transform.localScale = (float)pSize / 100f * Vector3.one;
+        public void SetMaterial(string pMaterialName) {
+            _shower.material = MaterialStore.Get(pMaterialName);
+        }
+        
+        public void SetData(EnemyData pData) {
+            
+            _hpBar.Set(pData.MaxHp, pData.MaxHp);
+            _shower.sprite = pData.SerialNumber.ToIcon();
+            transform.localScale = (float)pData.Size / 100f * Vector3.one;
+        }
+
+        public virtual void AttackAnimation() {
+            _attackAnimation?.Kill();
+            _attackAnimation = DOTween.Sequence()
+                .Append(DOTween.Sequence()
+                    .Append(_shower.transform.DOLocalRotate(Vector3.forward * -20, 0.3f))
+                    .Append(_shower.transform.DOLocalRotate(Vector3.zero, 0.12f).SetEase(Ease.OutBack))
+                );
+        } 
         
         private void IdleAnimation() {
             const float VERTICAL_MOVEMENT = 0.015f; 
@@ -39,12 +59,12 @@ namespace UI.Character {
                 .SetLoops(-1, LoopType.Yoyo);
         }
         
-        public virtual void OnReceiveDamage(IEntity pEntity, int pAmount, Action pOnComplete) {
+        public override void OnReceiveDamage(IEntity pEntity, int pAmount, Action pOnComplete) {
             _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
                 .OnComplete(() => pOnComplete?.Invoke());
         }
 
-        public virtual void OnDeath(IEntity pEntity, int pAmount, Action pOnComplete) {
+        public override void OnDeath(IEntity pEntity, int pAmount, Action pOnComplete) {
             pOnComplete += () => gameObject.SetActive(false);
             _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
                 .OnComplete(() => StartCoroutine(Death()));
@@ -64,15 +84,24 @@ namespace UI.Character {
             }
         }
 
-        public virtual void OnHeal(IEntity pEntity, int pAmount, Action pOnComplete) {
+        public override void OnHeal(IEntity pEntity, int pAmount, Action pOnComplete) {
             _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
                 .OnComplete(() => pOnComplete?.Invoke());
         }
-        
+
+        private void OnClick() {
+            CharactersManager.TargetEnemy = _position;
+        }
         
         //==================================================||Unity 
-        protected virtual void Awake() {
+        
+        protected void OnBecameVisible() {
             IdleAnimation();
+        }
+
+        protected virtual void Awake() {
+            _button.onClick.AddListener(OnClick);
+            gameObject.SetActive(false);
         }
     }
 }

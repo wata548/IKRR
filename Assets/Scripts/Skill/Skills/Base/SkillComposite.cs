@@ -35,25 +35,34 @@ namespace Character.Skill {
 
             IsEnd = false;
             ISkill prevSkill = null;
+            ISkill startSkill = null;
             foreach (var skill in _containner) {
-                for (int i = 0; i < RepeatCount; i++) {
-                    
-                    if (prevSkill != null) {
-                        prevSkill.OnEnd = () => skill.Execute(pCaster);
-                    }
-                    else
-                        skill.Execute(pCaster);
 
-                    prevSkill = skill;
+                startSkill ??= skill;
+                if (prevSkill != null) {
+                    prevSkill.OnEnd = () => skill.Execute(pCaster);
                 }
+                else
+                    skill.Execute(pCaster);
+                prevSkill = skill;
             }
 
-            if (prevSkill != null) {
-                prevSkill.OnEnd = OnEnd;
-                prevSkill.OnEnd += () => IsEnd = true;
-            }
-            else {
+            if (prevSkill == null) {
                 IsEnd = true;
+                return;
+            }
+
+            prevSkill.OnEnd = Cycle;
+            return;
+
+            void Cycle() {
+                RepeatCount--;
+                if (RepeatCount == 0) {
+                    OnEnd?.Invoke();
+                    IsEnd = true;
+                    return;
+                }
+                startSkill.Execute(pCaster);
             }
         }
     }

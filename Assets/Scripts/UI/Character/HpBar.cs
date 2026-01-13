@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace UI.Character {
     public class HpBar: MonoBehaviour {
         
-        private const float ANIMATION_SPEED = 0.5f;
+        private const float ANIMATION_SPEED = 0.3f;
         [SerializeField] private Image _fill;
         [SerializeField] private TMP_Text _current;
         [SerializeField] private TMP_Text _max;

@@ -1,10 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Character;
+using FSM;
 using Roulette;
+using UI;
 using UnityEngine;
 
 namespace Data {
     public class GameManager: MonoBehaviour {
+
+        public static void SetEnemy() {
+            new Enemy(Positions.Middle, 2001);
+            new Enemy(Positions.Left, 2002);
+            new Enemy(Positions.Right, 2003);
+            Fsm.Instance.Change(State.Rolling);
+        }
         
         public static void StartGame() {
 
@@ -19,8 +30,21 @@ namespace Data {
             RouletteManager.Init(list);
         }
 
+        public void TurnEnd() {
+            Fsm.Instance.Change(State.EnemyTurn);
+        }
+
         private void Awake() {
             StartGame();
+        }
+
+        private void Update() {
+
+            if (!CharactersManager.IsFighting)
+                return;
+            
+            var target = CharactersManager.TargetUpdate();
+            UIManager.Instance.Entity.SetTarget(target);
         }
     }
 }

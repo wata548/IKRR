@@ -6,10 +6,12 @@ using UnityEngine;
 
 namespace UI {
     public class UIManager: MonoSingleton<UIManager> {
+        
         protected override bool IsNarrowSingleton { get; } = true;
+        [field: SerializeField] public MapGenerator.MapGenerator Map { get; private set; }
         [field: SerializeField] public StatusShowerManager Status { get; private set; }
         [field: SerializeField] public SkillShowerManager SkillShower { get; private set; }
         [field: SerializeField] public Roulette.Roulette Roulette { get; private set; }
-        [field: SerializeField] public EnemyUIManager Enemy { get; private set; }
+        [field: SerializeField] public EntityUIManager Entity { get; private set; }
     }
 }

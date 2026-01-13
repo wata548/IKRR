@@ -46,6 +46,9 @@ namespace MapGenerator {
         private List<StageWidth> _stageWidthInfos;
         private Vector2Int _curStage = -Vector2Int.one;
         
+       //==================================================||Properties 
+       public int Height { get; private set; }
+        
         //==================================================||Methods 
         public void SelectStage(Vector2Int pNextStage) {
             if (_curStage.y != -1) {
@@ -59,6 +62,8 @@ namespace MapGenerator {
                
             }
             else {
+                if (pNextStage.y != 0)
+                    return;
                 foreach (var node in _mapNodes[0]) {
                     node.SetActive(false);
                 }
@@ -66,9 +71,14 @@ namespace MapGenerator {
             
             _curStage = pNextStage;
             _mapNodes[_curStage.y][_curStage.x].SetActive(true);
-            UIManager.Instance.Roulette.Roll();
+            OnSelect();
+
+            void OnSelect() {
+                GameManager.SetEnemy();
+            }
         }
         public void ClearStage() {
+            Height++;
             
             _mapNodes[_curStage.y][_curStage.x].SetActive(false);
             _mapNodes[_curStage.y][_curStage.x].SetActiveNextEdges(true);
@@ -76,7 +86,10 @@ namespace MapGenerator {
                 _mapNodes[nextNode.y][nextNode.x].SetActive(true);
             }
         }
-        public void SetActive() =>
+        
+        public void SetActive(bool pActive) =>  
+            _mapPannel.SetActive(pActive);
+        public void SetActiveBySwitch() =>
             _mapPannel.SetActive(!_mapPannel.activeSelf);
         
         private void GenerateMap() {
@@ -98,6 +111,9 @@ namespace MapGenerator {
             _mapNodes.Add(new());
             
             var width = GetWidthSize() + 1;
+            if (_mapNodes.Count >= 2 && _mapNodes[^2].Count == width - 1)
+                width++;
+            
             var interval = 1f / width;
 
             var mapRect = _map.transform as RectTransform;
@@ -158,7 +174,7 @@ namespace MapGenerator {
                 var idx2 = 0;
                 foreach (var otherNode in isAfter ? _mapNodes[^2] : _mapNodes[^1]) {
 
-                    var curDistance = (node.transform.position - otherNode.transform.position).magnitude;
+                    var curDistance = (node.transform.localPosition - otherNode.transform.localPosition).magnitude;
                     if (distance >= curDistance) {
                         target = idx2;
                         distance = curDistance;
@@ -207,8 +223,8 @@ namespace MapGenerator {
         private void GenerateEdge(MapNode pStart, MapNode pEnd, int pEndIdx) {
             var edge = Instantiate(_edge, _map.transform);
 
-            var delta = pEnd.transform.position - pStart.transform.position;
-            edge.transform.position = pStart.transform.position;
+            var delta = pEnd.transform.localPosition - pStart.transform.localPosition;
+            edge.transform.localPosition = pStart.transform.localPosition;
             pStart.Add(pEndIdx, edge);
                  
             //Edge setting
@@ -225,8 +241,8 @@ namespace MapGenerator {
 
         private void Awake() {
             _stageWidthInfos = _stageWidthFrequency.Load().ToList();
-            
-            TestSetUp();
+            var temp = _stageTypeFrequency.Load();
+            StageTypeFrequency.LoadData(temp);
         
             MapNode.Init(this);
             GenerateMap();
@@ -237,17 +253,10 @@ namespace MapGenerator {
         }
         
         #region Test
-
-        private void TestSetUp() {
-            var temp = _stageTypeFrequency.Load();
-            StageTypeFrequency.LoadData(temp);
-        }
-
         [TestMethod(pRuntimeOnly: true)]
         private void Generate() {
             GenerateMap();
         }
-        
         #endregion
     }
 }

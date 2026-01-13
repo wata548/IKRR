@@ -5,14 +5,14 @@ namespace FSM.StateStrategy {
         public State State { get; }
         public TestStrategy(State pState) => State = pState;
         
-        public void OnEnter(Fsm pMachine) {
+        public void OnEnter() {
             Debug.Log($"Enter {State} state");
         }
 
-        public void Update(Fsm pMachine) {
+        public void Update() {
         }
 
-        public void OnExit(Fsm pMachine) {
+        public void OnExit() {
             Debug.Log($"Exit {State} state");
         }
     }

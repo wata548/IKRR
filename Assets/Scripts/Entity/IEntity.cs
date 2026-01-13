@@ -8,6 +8,7 @@ namespace Character {
         public int Hp { get; }
         public bool IsAlive { get; }
 
+        public void OnAttack();
         public void ReceiveDamage(int pAmount, Action pOnComplete);
         public void Heal(int pAmount, Action pOnComplete);
         public void Kill();

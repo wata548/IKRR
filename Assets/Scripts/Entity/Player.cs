@@ -1,6 +1,7 @@
 ﻿using System;
 using Data;
 using Extension.Scene;
+using UI;
 
 namespace Character {
     public class Player: IEntity {
@@ -12,13 +13,14 @@ namespace Character {
         public Positions Position { get; }
         //==================================================||Constructor
         public Player() {
-            MaxHp = 10;
+            MaxHp = 911;
             Hp = MaxHp;
             IsAlive = true;
             Position = Positions.Player;
         }
         
         //==================================================||Methods 
+        public void OnAttack() {}
         public void ReceiveDamage(int pAmount, Action pOnComplete) {
             if (!IsAlive) {
                 pOnComplete!.Invoke();
@@ -28,11 +30,15 @@ namespace Character {
             Hp = Math.Max(0, Hp - pAmount);
             if (Hp == 0) {
                 IsAlive = false;
-                OnDeath();
+             
+                UIManager.Instance.Entity[Positions.Player].
+                    OnDeath(this, pAmount, pOnComplete);
+                
                 return;
             }
-                        
-            OnReceiveDamage(pAmount, pOnComplete);
+             
+            UIManager.Instance.Entity[Positions.Player].
+                OnReceiveDamage(this, pAmount, pOnComplete);
         }
 
         public void Heal(int pAmount, Action pOnComplete) {
@@ -42,23 +48,14 @@ namespace Character {
             }
             
             Hp = Math.Min(MaxHp, Hp + pAmount);
-            OnHeal(pAmount, pOnComplete);
+             
+            UIManager.Instance.Entity[Positions.Player].
+                OnHeal(this, pAmount, pOnComplete);
         }
 
         public void Kill() {
-            OnDeath();
-        }
-
-        private void OnDeath() {
             SceneManager.LoadScene(Scene.GameOver);
         }
 
-        private void OnReceiveDamage(int pAmount, Action pOnComplete) {
-            
-        }
-        
-        private void OnHeal(int pAmount, Action pOnComplete) {
-            
-        }
     }
 }
