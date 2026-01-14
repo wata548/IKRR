@@ -3,8 +3,10 @@ using Character.Skill.Data;
 using Data;
 using UI;
 using UI.Status;
+using UnityEngine.Scripting;
 
 namespace Character.Skill {
+    [Preserve]
     public class StatusChange: SkillBase {
         
         [SkillParameter]

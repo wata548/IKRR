@@ -41,8 +41,14 @@ namespace MapGenerator {
         
         //==================================================||Fields 
         private List<List<MapNode>> _mapNodes = new();
+#if UNITY_EDITOR
         private IDataLoader<StageWidth> _stageWidthFrequency = new SpreadSheetStageWidthLoader();
         private IDataLoader<Stage, int> _stageTypeFrequency = new SpreadSheetStageFrequencyLoader();
+#else
+        private IDataLoader<StageWidth> _stageWidthFrequency = new CSVStageWidthLoader();
+        private IDataLoader<Stage, int> _stageTypeFrequency = new CSVFrequencyLoader();
+#endif
+        
         private List<StageWidth> _stageWidthInfos;
         private Vector2Int _curStage = -Vector2Int.one;
         

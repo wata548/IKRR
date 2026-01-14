@@ -1,9 +1,11 @@
 using Character.Skill.Data;
 using Data;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace Character.Skill {
     
+    [Preserve]
     public class Attack: SharedSkillBase {
 
         [SkillParameter]

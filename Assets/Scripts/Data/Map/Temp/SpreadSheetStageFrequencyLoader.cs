@@ -1,10 +1,12 @@
-﻿#if UNITY_EDITOR
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using CSVData;
 using Data.Map;
+using UnityEngine;
 
 namespace Data {
+#if UNITY_EDITOR
 
     public class SpreadSheetStageFrequencyLoader: IDataLoader<Stage, int> {
         private readonly string _apiKey = "AIzaSyD9TQEfDm8OY3DtfdvZayoZi96QHLl_SA0";
@@ -17,5 +19,16 @@ namespace Data {
                 .Select(data => new KeyValuePair<Stage, int>(data.Type, data.Frequency));
         }
     }
-}
+#else
+    public class CSVFrequencyLoader: IDataLoader<Stage, int> {
+        private readonly string _sheet = "StageType.csv";
+            
+        public IEnumerable<KeyValuePair<Stage, int>> Load() {
+            var context = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "Datas", _sheet));
+            var targetType = typeof(StageType);
+            return ((List<StageType>)CSV.DeserializeToList(targetType, CSV.Parse(context)))
+                .Select(data => new KeyValuePair<Stage, int>(data.Type, data.Frequency));
+        }
+    }
 #endif
+}

@@ -1,8 +1,9 @@
 ﻿using Character.Skill.Data;
 using Data;
+using UnityEngine.Scripting;
 
 namespace Character.Skill {
-   
+    [Preserve]  
     public class Heal: SharedSkillBase {
 
         [SkillParameter]

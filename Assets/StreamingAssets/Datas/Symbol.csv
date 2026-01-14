@@ -1,0 +1,25 @@
+﻿SerialNumber,Name,ConditionCode,Condition,Description,Rarity,EvolveDescription,EvolveCondition,EffectCode,Type,Category
+Int32,String,String,String,String,Data.SymbolRarity,String,String,String,Data.SymbolType,Data.TargetStatus
+-1,Error,return false;,오류 발생,오류가 발생했습니다. ,Legendary,없다.,"return """";","return """";",Buff,Wisdom
+0,빈칸,return false;,없다.,아무 것도 없는 빈칸입니다.,Normal,없다.,"return """";","return """";",Buff,Strength
+1001,힘,return true;,없다.,힘을 1만큼 상승시킵니다.,Normal,좌우에 '힘'이 있을 때 '괴력'으로 진화한다.,"right = Roulette.Get(column+1, row);
+left = Roulette.Get(column-1, row);
+if(left == right and left == 1001) then
+  result = ""Evolve(""..column.."",""..row.."", 1012)"";
+  result = result..""+Change(""..(column-1).."",""..row.."", 0)"";
+  return  result;
+end
+return """";","return ""StatusChange(Strength, `+, 1)"";",Buff,Strength
+1002,치료술,return Status.GetValue(Stat.Wisdom) >= 1;,지혜 1 소모,현재 체력을 1만큼 회복합니다.,Normal,없다.,"return """";","return {Execute(""Heal(회복, 1, C)"";>>",Skill,Wisdom
+1003,휘두르기,return Status.GetValue(Stat.Strength) >= 1;,힘 1 이상,적에게 약간의 피해를 입힙니다.(3-5),Normal,없다.,"return """";","return ""Text(휘두르기)+Attack(3~5, Target)+StatusChange(Strength, `-, 1)""i",Skill,Strength
+1004,신속,return true;,없다.,민첩을 1만큼 상승시킵니다.,Normal,(테스트를 위해 등장 시 '괴력'으로 변화),"return string.format(""Evolve(%d, %d, 1012)"", column, row);","return ""StatusChange(Dexterity, `+, 1)"";",Buff,Dexterity
+1005,책,return true;,없다.,마력을 1만큼 상승시킵니다.,Normal,없다.,"return """";","return ""StatusChange(Wisdom, `+, 1)"";",Buff,Wisdom
+1006,섬광,return Status.GetValue(Stat.Wisdom) >= 3;,지혜 3 소모.,밝은 빛으로 상대에게 실명효과를 부여합니다.,Normal,없다.,"return """";","return """";",Skill,Wisdom
+1007,화염,return true;,없다.,"적에게 '화염'상태를 부여합니다. 
+(이 심볼 주위에 책이 있다면 제거시킵니다.)",Normal,없다.,"return """";","return """";",Buff,Wisdom
+1008,집중,return Status.GetValue(Stat.Dexterity) >= 2;,민첩 2 이상.,다음 공격이 무조건 치명타가 됩니다.,Normal,없다.,"return """";","return """";",Skill,Dexterity
+1009,분노,return true;,없다.,"힘을 3만큼 상승시킵니다. 
+오른쪽에 있는 심볼을 제거합니다.",Rare,없다.,"return """";","return {AddStrength(3), RemoveSymbol(Pos.x + 1, Pos.y)};",Buff,Strength
+1010,강타,return Status.GetValue(Stat.Strength) >= 2;,"힘 2 이상, 힘 1 소모",적에게 피해를 입힙니다.(6),Normal,없다.,"return """";","return {Execute(""Attack(강타, 6, T)"" AddStrength(-1)};;;",Skill,Strength
+1011,3연타,return Status.GetValue(Stat.Strength) >= 3;,힘 3 이상,적에게 세 번 피해를 입힙니다.(1-3),Normal,없다.,"return """";","return { Execute(""Attack(3연타, 1-3, T) * 3"";tt",Skill,Strength
+1012,괴력,return true;,없다.,힘을 2만큼 상승시킵니다.(테스트를 위해 사용 후 바로 힘으로 퇴화합니다.),Rare,없다.,"return """";","return ""StatusChange(Strength, `+, 2)+Change(""..column.."",""..row.."", 1001, false)"";",Buff,Strength

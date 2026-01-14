@@ -10,10 +10,16 @@ namespace Data {
         public static readonly IDB<int, SymbolData> SymbolDB = new SymbolDB();
         public static readonly IDB<int, EnemyData> EnemyDB = new EnemyDB();
 
+        
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void SetSymbolDB() {
+#if UNITY_EDITOR
             SymbolDB.LoadData(new SpreadSheetSymbolLoader());
             EnemyDB.LoadData(new SpreadSheetEnemyLoader());
+#else
+            SymbolDB.LoadData(new CSVSymbolLoader());
+            EnemyDB.LoadData(new CSVEnemyLoader());
+#endif
         } 
     }
 }

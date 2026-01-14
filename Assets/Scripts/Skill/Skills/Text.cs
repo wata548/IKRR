@@ -1,7 +1,9 @@
 ﻿using Data;
 using UI;
+using UnityEngine.Scripting;
 
 namespace Character.Skill {
+    [Preserve]
     public class Text: SkillBase {
         
         [SkillParameter]
