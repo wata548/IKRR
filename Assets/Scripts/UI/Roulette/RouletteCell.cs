@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections;
+using Data;
 using DG.Tweening;
 using Extension;
 using Roulette;
 using UI.Icon;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 namespace UI.Roulette {
-    public class RouletteCell: MonoBehaviour {
+    public class RouletteCell: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         
         public const string CHANGE = "ChangeSymbol";
         public const string USABLE = "NULL";
@@ -21,6 +24,7 @@ namespace UI.Roulette {
         public RectTransform RectTransform { get; private set; }
         public int Row { get; private set; }
         public int Column { get; private set; }
+        private int _code = 0;
 
         public void AddOnClickListener(Action pAction) {
             _useButton.onClick.AddListener(() => pAction?.Invoke());
@@ -32,7 +36,8 @@ namespace UI.Roulette {
             
             var changeMat = MaterialStore.Get(CHANGE);
             _icon.material = changeMat;
-            var sprite = pNewCode.ToIcon();
+            _code = pNewCode;
+            var sprite = pNewCode.GetIcon();
             _icon.material.SetTexture("_After", sprite.texture);
             
             if(pPlayAnimation) PlayAnimation();
@@ -81,11 +86,22 @@ namespace UI.Roulette {
             });
         }
 
-        public void SetIcon(int pCode) => 
-            _icon.sprite = pCode.ToIcon();
+        public void SetIcon(int pCode) {
+            _code = pCode;
+            _icon.sprite = pCode.GetIcon();
+        }
 
         private void Awake() {
             RectTransform = GetComponent<RectTransform>();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData) {
+            var info = DataManager.SymbolDB.GetData(_code).GetInfo();
+            UIManager.Instance.InfoShower.Set(info);
+        }
+
+        public void OnPointerExit(PointerEventData eventData) {
+            UIManager.Instance.InfoShower.Hide();
         }
     }
 }

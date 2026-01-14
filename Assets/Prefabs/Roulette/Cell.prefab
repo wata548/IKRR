@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -86,7 +86,9 @@ GameObject:
   - component: {fileID: 1524745884529691351}
   - component: {fileID: 506394829931821184}
   - component: {fileID: 7483555181132718986}
+  - component: {fileID: 3456425531351708767}
   - component: {fileID: 1637601910421015750}
+  - component: {fileID: -5076110561875330309}
   m_Layer: 5
   m_Name: Cell
   m_TagString: Untagged
@@ -136,6 +138,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 9212170819065337027}
   _useButton: {fileID: 1637601910421015750}
+--- !u!114 &3456425531351708767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3963311311829454765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &1637601910421015750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +208,21 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 3456425531351708767}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-5076110561875330309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3963311311829454765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a403835b317a4e39b874851fb6a24fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applyAnimation: 1
+  _targetShower: {fileID: 3456425531351708767}

@@ -20,7 +20,7 @@ namespace UI.Icon {
                 );
         }
 
-        public static Sprite ToIcon(this int pCode) {
+        public static Sprite GetIcon(this int pCode) {
             if (_icons.TryGetValue(pCode, out var result))
                 return result;
             return _icons[-1];

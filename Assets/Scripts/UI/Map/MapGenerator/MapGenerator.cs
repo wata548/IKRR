@@ -55,11 +55,9 @@ namespace MapGenerator {
                 var cur = _mapNodes[_curStage.y][_curStage.x];
                 if (cur.IsActive || !cur.SelectNextStage(pNextStage))
                     return;
-                cur.SetActive(false);
                foreach (var nextPos in cur) {
                    _mapNodes[nextPos.y][nextPos.x].SetActive(false);
                } 
-               
             }
             else {
                 if (pNextStage.y != 0)
@@ -81,6 +79,8 @@ namespace MapGenerator {
             Height++;
             
             _mapNodes[_curStage.y][_curStage.x].SetActive(false);
+            _mapNodes[_curStage.y][_curStage.x].SetMaterialVisited();
+               
             _mapNodes[_curStage.y][_curStage.x].SetActiveNextEdges(true);
             foreach (var nextNode in _mapNodes[_curStage.y][_curStage.x]) {
                 _mapNodes[nextNode.y][nextNode.x].SetActive(true);
@@ -120,18 +120,18 @@ namespace MapGenerator {
             for (int i = 1; i < width; i++ ) {
                 var newIcon = Instantiate(_roundSymbol, _map.transform);
 
-                var rect = newIcon.transform as RectTransform;
+                var rect = (newIcon.transform as RectTransform)!;
                 
                 //set position
                 rect.SetLocalPositionX(mapRect, PivotLocation.Down, i * interval); 
                 rect.SetLocalPositionY(mapRect, PivotLocation.Middle, pHeight);
-                rect.AddPosition(RandomNoise(rect.sizeDelta));
+                rect.localPosition += RandomNoise(rect.sizeDelta);
                 
                 _mapNodes[^1].Add(newIcon);
             }
 
             _mapNodes[^1] = _mapNodes[^1]
-                .OrderBy(node => node.transform.position.x)
+                .OrderBy(node => node.transform.localPosition.x)
                 .ToList();
 
             var idx = 0;
@@ -153,7 +153,7 @@ namespace MapGenerator {
 
             throw new ArgumentOutOfRangeException();
         }
-        private Vector2 RandomNoise(Vector2 pSize) {
+        private Vector3 RandomNoise(Vector2 pSize) {
                     
             var maxSize = pSize * _randomNoise;
             var x = Random.Range(-maxSize.x, maxSize.x);

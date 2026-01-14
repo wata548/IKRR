@@ -28,7 +28,7 @@ namespace UI.Character {
         public void SetData(EnemyData pData) {
             
             _hpBar.Set(pData.MaxHp, pData.MaxHp);
-            _shower.sprite = pData.SerialNumber.ToIcon();
+            _shower.sprite = pData.SerialNumber.GetIcon();
             transform.localScale = (float)pData.Size / 100f * Vector3.one;
         }
 

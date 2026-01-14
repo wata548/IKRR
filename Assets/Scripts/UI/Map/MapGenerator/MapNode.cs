@@ -8,6 +8,7 @@ using DG.Tweening;
 using Extension;
 using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace MapGenerator {
@@ -16,7 +17,9 @@ namespace MapGenerator {
         //==================================================||Constant
         private const float animationCycle = 0.75f;
         private const float animationScale = 1.2f;
-       
+
+        [SerializeField] private MouseViewer _viewer;
+        
         //==================================================||Properties
         public Vector2Int Position { get; private set; }
         public Stage Stage { get; private set; }
@@ -25,7 +28,7 @@ namespace MapGenerator {
         public Vector2Int this[Index pIdx] => new (_edges[pIdx].NextNode, Position.y + 1);
        
         //==================================================||Serialize Field 
-        [SerializeField] private Image _backGround;
+        [SerializeField] private Image _icon;
        
         //==================================================||Fields 
         private static MapGenerator _generator = null;
@@ -33,7 +36,6 @@ namespace MapGenerator {
 
         [SerializeField] private Button _button;
         private List<(int NextNode, Image Edge)> _edges = new();
-        private Tween _animation = null;
         
         //==================================================||Methods 
 
@@ -45,14 +47,14 @@ namespace MapGenerator {
                 return false;
             return _edges.Any(data => data.NextNode == pTarget.x);
         }
+
+        public void SetMaterialVisited() => _icon.material = null;
         
         public void SetActive(bool pActive) {
             IsActive = pActive;
-            _animation?.Kill();
             transform.localScale = Vector3.one;
-            
-            if(pActive)
-                _animation = transform.DOBreathing(animationCycle, animationScale);
+            _viewer.enabled = pActive;
+            _icon.material = pActive ? null : MaterialStore.Get("GrayScale");
         }
 
         public bool SelectNextStage(Vector2Int pNextStage) {
@@ -83,7 +85,7 @@ namespace MapGenerator {
             FindIcons();
             
             Stage = pStage;
-            _backGround.sprite = mapIcons[pStage];
+            _icon.sprite = mapIcons[pStage];
 
             Position = pPosition;
         }
@@ -115,7 +117,6 @@ namespace MapGenerator {
         }
 
         private void OnDestroy() {
-            _animation?.Kill();
             _edges.ForEach(edge => Destroy(edge.Edge));
         }
     }
