@@ -11,6 +11,7 @@ using UnityEngine;
 namespace Font {
     public class CSVTranslateSetting: MonoBehaviour {
         [SerializeField] private FontSetting _fontSetting;
+        private bool _isInited = false;
 #if UNITY_EDITOR
         [SerializeField] private string _apiKey;
         [SerializeField] private string _path;
@@ -48,9 +49,12 @@ namespace Font {
 #endif
         
         private void Awake() {
+            if (_isInited)
+                return;
             
             _fontSetting.Init();
             Load();
+            _isInited = true;
         }
     }
 }

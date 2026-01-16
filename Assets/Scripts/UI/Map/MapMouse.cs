@@ -4,9 +4,9 @@ using UnityEngine;
 namespace UI.Map {
     public class MapMouse: MonoBehaviour {
 
-        private const float _power = -50;
+        private const float _power = -20;
         private const float _mapLower = -380f;
-        private const float _mapHigher = -2600f;
+        private const float _mapHigher = -3570f;
         private bool _isMobile = false;
         
         private void Awake() {

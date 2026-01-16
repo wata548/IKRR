@@ -34,6 +34,7 @@ namespace Character.Skill {
         public void Execute(Positions pCaster) {
 
             IsEnd = false;
+            var remainCnt = RepeatCount;
             ISkill prevSkill = null;
             ISkill startSkill = null;
             foreach (var skill in _containner) {
@@ -56,8 +57,8 @@ namespace Character.Skill {
             return;
 
             void Cycle() {
-                RepeatCount--;
-                if (RepeatCount == 0) {
+                remainCnt--;
+                if (remainCnt == 0) {
                     OnEnd?.Invoke();
                     IsEnd = true;
                     return;

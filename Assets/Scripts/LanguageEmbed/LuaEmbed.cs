@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using XLua;
 using Object = System.Object;
@@ -34,6 +35,10 @@ namespace LanguageEmbed {
                 }
 
                 return function.Call(pArgs);
+            }
+            catch(Exception error) {
+                var context = pCode;
+                throw new Exception($"{context} ---------------\n{error.Message}");
             }
             finally {
                 scriptEnv.Dispose();

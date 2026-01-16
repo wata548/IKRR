@@ -11,7 +11,7 @@ if(left == right and left == 1001) then
 end
 return """";","return ""StatusChange(Strength, `+, 1)"";",Buff,Strength
 1002,치료술,return Status.GetValue(Stat.Wisdom) >= 1;,지혜 1 소모,현재 체력을 1만큼 회복합니다.,Normal,없다.,"return """";","return {Execute(""Heal(회복, 1, C)"";>>",Skill,Wisdom
-1003,휘두르기,return Status.GetValue(Stat.Strength) >= 1;,힘 1 이상,적에게 약간의 피해를 입힙니다.(3-5),Normal,없다.,"return """";","return ""Text(휘두르기)+Attack(3~5, Target)+StatusChange(Strength, `-, 1)""i",Skill,Strength
+1003,휘두르기,return Status.GetValue(Stat.Strength) >= 1;,힘 1 이상,적에게 약간의 피해를 입힙니다.(3-5),Normal,없다.,"return """";","return ""Text(휘두르기)+Attack(3~5, Target)+StatusChange(Strength, `-, 1)"";",Skill,Strength
 1004,신속,return true;,없다.,민첩을 1만큼 상승시킵니다.,Normal,(테스트를 위해 등장 시 '괴력'으로 변화),"return string.format(""Evolve(%d, %d, 1012)"", column, row);","return ""StatusChange(Dexterity, `+, 1)"";",Buff,Dexterity
 1005,책,return true;,없다.,마력을 1만큼 상승시킵니다.,Normal,없다.,"return """";","return ""StatusChange(Wisdom, `+, 1)"";",Buff,Wisdom
 1006,섬광,return Status.GetValue(Stat.Wisdom) >= 3;,지혜 3 소모.,밝은 빛으로 상대에게 실명효과를 부여합니다.,Normal,없다.,"return """";","return """";",Skill,Wisdom
