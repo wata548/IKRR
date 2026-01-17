@@ -21,12 +21,12 @@ namespace Roulette {
         public static int HandSize { get; private set; } = 25;
         public static IEnumerable<int> Hand => _hand.SelectMany(kvp => Enumerable.Repeat(kvp.Key, kvp.Value));
         public static IEnumerable<KeyValuePair<int, int>> HandDictionary => _hand;
+        public static int LastUpdateFrame { get; private set; }= 0; 
         
         //==================================================||Fields 
         private static readonly Dictionary<int, int> _hand = new();
         private static readonly Queue<int> _remainSymbol = new();
         private static List<RouletteColumn> _current = new();
-        
         //==================================================||Methods 
         
         public static void Init(IEnumerable<int> pInitHand) {
