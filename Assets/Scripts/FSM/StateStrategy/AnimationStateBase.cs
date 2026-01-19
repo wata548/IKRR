@@ -31,7 +31,7 @@ namespace FSM {
         public override State NextState => State.BuffCheck;
         
         protected override void Enter() {
-            var temp = RouletteManager.Evolve();
+            var temp = RouletteManager.GetEvolveTargets();
             while (temp.Count > 0) {
                 AnimationBuffer.Enqueue(temp.Dequeue());
             }
@@ -42,7 +42,7 @@ namespace FSM {
         public override State NextState => State.PlayerTurn;
             
         protected override void Enter() {
-            var temp = RouletteManager.UsableBuff();
+            var temp = RouletteManager.GetUsableBuffs();
             while (temp.Count > 0) {
                 AnimationBuffer.Enqueue(temp.Dequeue());
             }

@@ -10,6 +10,11 @@ namespace UI {
         //==================================================||Fields 
         [SerializeField] private bool _applyAnimation = true;
         [SerializeField] private Image _targetShower;
+        
+        [Space, Header("Values")]
+        [SerializeField] private float _rotationMaximumH = 30f; 
+        [SerializeField] private float _rotationMaximumV = 30f; 
+                    
         private RectTransform _rect;
         private Vector3 _initialScale;
         private bool _isMouseOn = false;
@@ -23,8 +28,7 @@ namespace UI {
         }
         
         private void Update() {
-            const float ROTATION_MAXIMUM_H = 30f; 
-            const float ROTATION_MAXIMUM_V = 30f; 
+            
             if (!_isMouseOn) {
                 return;
             }
@@ -34,7 +38,7 @@ namespace UI {
             mouse = Camera.main!.ScreenToWorldPoint(mouse);
                     
             var localPos = (mouse - transform.position) / (_rect.sizeDelta * _rect.lossyScale * 0.5f);
-            var rotation = Quaternion.Euler(ROTATION_MAXIMUM_V * localPos.y, -ROTATION_MAXIMUM_H * localPos.x, 0);
+            var rotation = Quaternion.Euler(_rotationMaximumV * localPos.y, -_rotationMaximumH * localPos.x, 0);
             _targetShower.transform.rotation = rotation;
         }
         

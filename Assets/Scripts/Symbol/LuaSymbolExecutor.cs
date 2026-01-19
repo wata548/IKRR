@@ -27,7 +27,7 @@ namespace Symbol {
         public bool IsUsable(int pColumn, int pRow) {
             SetUp();
             var targetItem = RouletteManager.Get(pColumn, pRow);
-            var condition = DataManager.SymbolDB.GetData(targetItem).ConditionCode;
+            var condition = DataManager.Symbol.GetData(targetItem).ConditionCode;
 
             var code = string.Format(_luaFuncFormat, nameof(IsUsable), condition);
             return _language.Invoke<bool>(code, nameof(IsUsable), new object[]{pColumn, pRow});
@@ -35,13 +35,13 @@ namespace Symbol {
 
         public ISkill Evolution(int pColumn, int pRow) {
             var targetItem = RouletteManager.Get(pColumn, pRow);
-            var context = DataManager.SymbolDB.GetData(targetItem).EvolveCondition;
+            var context = DataManager.Symbol.GetData(targetItem).EvolveCondition;
             return GetSkillOnLua(nameof(Evolution), context, pColumn, pRow);
         }
 
         public ISkill GetSkill(int pColumn, int pRow) {
             var targetItem = RouletteManager.Get(pColumn, pRow);
-            var context = DataManager.SymbolDB.GetData(targetItem).EffectCode;
+            var context = DataManager.Symbol.GetData(targetItem).EffectCode;
             return GetSkillOnLua(nameof(GetSkill), context, pColumn, pRow);
         }
 

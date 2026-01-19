@@ -16,9 +16,8 @@ namespace Data {
             (_apiKey, _path, _sheet) = (api, path, sheet);
         
         public IEnumerable<KeyValuePair<int, EnemyData>> Load() {
-            var targetType = typeof(CSVEnemyData);
-            return ((List<CSVEnemyData>)CSV.DeserializeToListBySpreadSheet(targetType, _path, _sheet, _apiKey))
-                .Select(enemy => new KeyValuePair<int, EnemyData>(enemy.SerialNumber, enemy));
+            var targetType = typeof(EnemyData);
+            return (Dictionary<int, EnemyData>)CSV.DeserializeToDictionaryBySpreadSheet(targetType, _path, _sheet, _apiKey, out _);
         }
     }
 }

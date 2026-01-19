@@ -7,8 +7,8 @@ namespace Data {
         Player  = 0b0000001,
         Caster  = 0b0000010,
         
-        Left    = 0b0000100, 
-        Middle  = 0b0001000,
+        Middle  = 0b0000100,
+        Left    = 0b0001000, 
         Right   = 0b0010000,
         AllEnemy= 0b0011100,
         

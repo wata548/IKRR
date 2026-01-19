@@ -96,7 +96,7 @@ namespace UI.Roulette {
         }
 
         public void OnPointerEnter(PointerEventData eventData) {
-            var info = DataManager.SymbolDB.GetData(_code).GetInfo();
+            var info = DataManager.Symbol.GetData(_code).GetInfo();
             UIManager.Instance.InfoShower.Set(info);
         }
 

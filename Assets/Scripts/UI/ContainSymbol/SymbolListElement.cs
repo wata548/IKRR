@@ -30,7 +30,7 @@ namespace UI.ContainSymbol {
             if (!_isDataSetted)
                 return;
             
-            var data = DataManager.SymbolDB.GetData(_data).GetInfo();
+            var data = DataManager.Symbol.GetData(_data).GetInfo();
             UIManager.Instance.InfoShower.Set(data);
         }
 

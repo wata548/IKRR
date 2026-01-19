@@ -103,6 +103,7 @@ namespace Roulette {
 
             _hand[pSymbol] -= pAmount;
             _hand[0] += pAmount;
+            LastUpdateFrame = Time.frameCount;
             ResetRoulette();
         }
 
@@ -115,6 +116,7 @@ namespace Roulette {
             _hand[_current[pColumn][pRow]]--;
             _hand[0]++;
             _current[pColumn].Set(pRow, 0);
+            LastUpdateFrame = Time.frameCount;
         }
         
         public static bool TryAdd(int pSymbol, int pAmount = 1) {
@@ -124,6 +126,7 @@ namespace Roulette {
             _hand[0] -= pAmount;
             _hand[pSymbol] += pAmount;
             ResetRoulette();
+            LastUpdateFrame = Time.frameCount;
             return true;
         }
 
@@ -176,10 +179,11 @@ namespace Roulette {
             if(!_hand.TryAdd(pNewItem, 1))
                 _hand[pNewItem]++;
             _current[pColumn].Set(pRow, pNewItem);
+            LastUpdateFrame = Time.frameCount;
             return true;
         }
 
-        public static Queue<CellAnimationData> Evolve() {
+        public static Queue<CellAnimationData> GetEvolveTargets() {
             var changed = new Queue<CellAnimationData>();
             for (int column = 0; column < Width; column++) {
                 for (int row = Height - 1; row >= 0; row--) {
@@ -191,7 +195,7 @@ namespace Roulette {
             return changed;
         }
         
-        public static Queue<CellAnimationData> UsableBuff() {
+        public static Queue<CellAnimationData> GetUsableBuffs() {
 
             var result = new Queue<CellAnimationData>();
             for (int column = 0; column < Width; column++) {
@@ -199,7 +203,7 @@ namespace Roulette {
                     
                     if(GetStatus(column, row) != CellStatus.Usable)
                         continue;
-                    var targetType = DataManager.SymbolDB.GetData(Get(column, row)).Type;
+                    var targetType = DataManager.Symbol.GetData(Get(column, row)).Type;
                     if(targetType != SymbolType.Buff)
                         continue;
                     if (!Use(column, row, out var status, out var skill)) {

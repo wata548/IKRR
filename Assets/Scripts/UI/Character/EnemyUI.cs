@@ -5,11 +5,12 @@ using UnityEngine;
 using Data;
 using DG.Tweening;
 using UI.Icon;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI.Character {
-    public class EnemyUI: EntityUI {
+    public class EnemyUI: EntityUI, IPointerEnterHandler, IPointerExitHandler {
         //==================================================||Fields
         [SerializeField] private HpBar _hpBar;
         [SerializeField] private Image _shower;
@@ -102,6 +103,15 @@ namespace UI.Character {
         protected virtual void Awake() {
             _button.onClick.AddListener(OnClick);
             gameObject.SetActive(false);
+        }
+        public void OnPointerEnter(PointerEventData eventData) {
+            var code = (CharactersManager.GetEntity(_position, _position)[0] as Enemy)!.SerialNumber;
+            var data = DataManager.Enemy.GetData(code);
+            UIManager.Instance.InfoShower.Set(data.GetInfo());
+        }
+        
+        public void OnPointerExit(PointerEventData eventData) {
+            UIManager.Instance.InfoShower.Hide();
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using Character;
 using Data;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace UI.Character {
     public class EntityUIManager: MonoBehaviour {
@@ -13,12 +15,15 @@ namespace UI.Character {
             public EntityUI UI;
         }
 
+        //==================================================||Fields 
         [SerializeField] private List<MatchPositionEnemyUI> _matchList;
         private Dictionary<Positions, EntityUI> _uis;
         private Positions _target = Positions.None;
 
+        //==================================================||Properties 
         public EntityUI this[Positions pPosition] => _uis[pPosition];
 
+       //==================================================||Methods 
         public EnemyUI GetEnemyUI(Positions pPosition) {
             if (pPosition == Positions.Player)
                 throw new ArgumentException("Player isn't enemy");
@@ -39,6 +44,7 @@ namespace UI.Character {
             _target = pTarget;
         }
         
+       //==================================================||Unity 
         private void Awake() {
             _uis = _matchList.ToDictionary(match => match.Position, match => match.UI);
         }

@@ -19,7 +19,7 @@ namespace Test {
 
         private void Search() {
             var targetSymbol = int.Parse(_input.text);
-            var data = DataManager.SymbolDB.GetData(targetSymbol);
+            var data = DataManager.Symbol.GetData(targetSymbol);
             if (data == null) {
                 _name.text = "Error";
                 _description.text = $"{targetSymbol} isn't exist";

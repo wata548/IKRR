@@ -10,10 +10,17 @@ using UnityEngine;
 namespace Data {
     public class GameManager: MonoBehaviour {
 
+        private static int _curChapter = 0;
+        
         public static void SetEnemy() {
-            new Enemy(Positions.Middle, 2001);
-            new Enemy(Positions.Left, 2002);
-            new Enemy(Positions.Right, 2003);
+            var position = Positions.Middle;
+            var enemies = DataManager.GetStageEnemy(_curChapter);
+            foreach (var enemy in enemies) {
+                
+                var newEnemy = new Enemy(position, enemy);
+                CharactersManager.SetEntity(position, newEnemy);
+                position = (Positions)((int)position << 1);
+            }
             Fsm.Instance.Change(State.Rolling);
         }
         
@@ -31,7 +38,8 @@ namespace Data {
         }
 
         public void TurnEnd() {
-            Fsm.Instance.Change(State.EnemyTurn);
+            if(Fsm.Instance.State == State.PlayerTurn)
+                Fsm.Instance.Change(State.EnemyTurn);
         }
 
         private void Awake() {

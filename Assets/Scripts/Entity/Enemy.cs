@@ -14,19 +14,20 @@ namespace Character {
         
         //==================================================||Properties 
         public Positions Position { get; private set; }
+        public int SerialNumber { get; private set; }
         public EnemySize Size { get; private set; } 
-        public string Name{ get; private set; }
         public int MaxHp { get; private set; }
         public int Hp { get; private set; }
         public bool IsAlive { get; private set; }
         private List<(int Appearance, ISkill Skill)> _skillAppearance = new();
 
-       //==================================================||Constructors 
-       public Enemy(Positions pPosition, int pCode): this(pPosition, DataManager.EnemyDB.GetData(pCode)){}
+        //==================================================||Constructors 
+        public Enemy(Positions pPosition, int pCode): this(pPosition, DataManager.Enemy.GetData(pCode)){}
+        
        
         public Enemy(Positions pPosition, EnemyData pData) {
+            SerialNumber = pData.SerialNumber;
             Position = pPosition;
-            Name = pData.Name;
             Size = pData.Size;
                         
             MaxHp = pData.MaxHp;
@@ -37,13 +38,12 @@ namespace Character {
             var ui = UIManager.Instance.Entity.GetEnemyUI(pPosition);
             ui.gameObject.SetActive(true);
             ui.SetData(pData);
-            CharactersManager.SetEntity(Position, this);
         }
         
-       //==================================================||Methods 
-       public void OnAttack() {
-           UIManager.Instance.Entity.GetEnemyUI(Position).AttackAnimation();
-       }
+        //==================================================||Methods 
+        public void OnAttack() {
+            UIManager.Instance.Entity.GetEnemyUI(Position).AttackAnimation();
+        }
        
         private void SetSkillSet(string pSkillSet) {
                     

@@ -54,8 +54,8 @@ namespace UI {
             if (Input.mouseScrollDelta.y != 0) {
                 _options[_idx].SetActive(false);
                 _idx += Input.mouseScrollDelta.y > 0 ? -1 : 1;
-                if (_idx == -1) _idx = _options.Count - 1;
-                if (_idx == _options.Count) _idx = 0;
+                if (_idx == -1) _idx = _curOptions.Count - 1;
+                if (_idx == _curOptions.Count) _idx = 0;
                 _options[_idx].SetActive(true);
                 _context.text = _curOptions[_idx].Item2;
             }
