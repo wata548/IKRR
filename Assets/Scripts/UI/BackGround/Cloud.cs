@@ -13,7 +13,7 @@ namespace UI.BackGround {
 
         private void Move(Image pTarget) {
             var pos = pTarget.transform.localPosition;
-            pos.x -= _speed * Time.deltaTime;
+            pos.x -= _speed * Time.deltaTime / Time.timeScale;
             pTarget.transform.localPosition = pos;
         }
         
@@ -29,7 +29,7 @@ namespace UI.BackGround {
             Move(_cloud2);
             if (_cloud1.transform.localPosition.x < -_rect.sizeDelta.x) {
                 var pos = _cloud2.transform.localPosition;
-                pos.x += _rect.sizeDelta.x / Time.timeScale;
+                pos.x += _rect.sizeDelta.x;
                 _cloud1.transform.localPosition = pos;
                 (_cloud1, _cloud2) = (_cloud2, _cloud1);
             }

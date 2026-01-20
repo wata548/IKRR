@@ -1265,10 +1265,10 @@
     "m_Guid": {
         "m_GuidSerialized": "5a6f2ae1-e477-4acd-a060-1835cbe320c4"
     },
-    "m_Name": "BlinkFastness",
+    "m_Name": "Speed",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "BlinkFastness",
-    "m_DefaultReferenceName": "_BlinkFastness",
+    "m_RefNameGeneratedByDisplayName": "Speed",
+    "m_DefaultReferenceName": "_Speed",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1278,7 +1278,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 2.0,
+    "m_Value": 1.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -2435,7 +2435,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "c4a67404c0514d15800f4e3c0bb2ab53",
     "m_Id": 0,
-    "m_DisplayName": "BlinkFastness",
+    "m_DisplayName": "Speed",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

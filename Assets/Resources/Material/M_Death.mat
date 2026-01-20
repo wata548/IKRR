@@ -43,7 +43,8 @@ Material:
     m_Floats:
     - _ColorMask: 15
     - _CurTime: 1.003316
-    - _Speed: 1
+    - _NeedTime: 1
+    - _Speed: 0
     - _StartTime: 0
     - _Stencil: 0
     - _StencilComp: 8

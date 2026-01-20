@@ -49,8 +49,11 @@ namespace Data {
         }
 
         //==================================================||Unity 
-        private void Start() {
+        private void Awake() {
             StartGame();
+        }
+
+        private void Start() {
             UIManager.Instance.Map.GenerateMap(Seed);
         }
 
@@ -61,6 +64,11 @@ namespace Data {
             
             var target = CharactersManager.TargetUpdate();
             UIManager.Instance.Entity.SetTarget(target);
+        }
+
+        private void OnApplicationQuit() {
+            Time.timeScale = 1;
+            MaterialStore.Update();
         }
     }
 }

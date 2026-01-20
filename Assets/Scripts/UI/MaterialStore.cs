@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Extension.StaticUpdate;
 using UnityEngine;
 
 namespace UI {
     public static class MaterialStore {
         private static Dictionary<string, Material> _matchMaterials = new();
-
+        private static float _lastTimeScale = 1; 
+        
         [RuntimeInitializeOnLoadMethod]
         private static void Init() {
             if (_matchMaterials.Count != 0) {
@@ -17,6 +20,19 @@ namespace UI {
                 .ToDictionary(mat => mat.name[2..], material => material);
         }
 
+        [StaticUpdate]
+        public static void Update() {
+            if (Mathf.Approximately(_lastTimeScale, Time.timeScale))
+                return;
+
+            var cur = Time.timeScale;
+            foreach (var (_, mat) in _matchMaterials) {
+                var value = _lastTimeScale * mat.GetFloat("_Speed") / cur;
+                mat.SetFloat("_Speed", value);
+            }
+            _lastTimeScale = cur;
+        }
+        
         public static Material Get(string pMaterial) {
             return _matchMaterials.GetValueOrDefault(pMaterial);
         }

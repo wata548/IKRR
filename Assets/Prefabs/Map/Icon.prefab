@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -145,13 +145,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431044996389706944}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a403835b317a4e39b874851fb6a24fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _applyAnimation: 1
+  _applyAnimation: 0
   _targetShower: {fileID: 5913230298668380972}
+  _rotationMaximumH: 30
+  _rotationMaximumV: 30
 --- !u!1 &8557227494238489111
 GameObject:
   m_ObjectHideFlags: 0

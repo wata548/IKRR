@@ -754,10 +754,10 @@
     "m_Guid": {
         "m_GuidSerialized": "e14cd0a4-f362-4645-ad79-15038281f0f6"
     },
-    "m_Name": "Speed",
+    "m_Name": "NeedTime",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Speed",
-    "m_DefaultReferenceName": "_Speed",
+    "m_RefNameGeneratedByDisplayName": "NeedTime",
+    "m_DefaultReferenceName": "_NeedTime",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1880,7 +1880,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "61b27e68085e47ab9f558256e29f5d4f",
     "m_Id": 0,
-    "m_DisplayName": "Speed",
+    "m_DisplayName": "NeedTime",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
