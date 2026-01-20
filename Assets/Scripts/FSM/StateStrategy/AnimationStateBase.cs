@@ -33,7 +33,9 @@ namespace FSM {
         protected override void Enter() {
             var temp = RouletteManager.GetEvolveTargets();
             while (temp.Count > 0) {
-                AnimationBuffer.Enqueue(temp.Dequeue());
+                var data = temp.Dequeue();
+                if(data.Skill != null)
+                    AnimationBuffer.Enqueue(data);
             }
         }
     }
@@ -44,7 +46,9 @@ namespace FSM {
         protected override void Enter() {
             var temp = RouletteManager.GetUsableBuffs();
             while (temp.Count > 0) {
-                AnimationBuffer.Enqueue(temp.Dequeue());
+                var data = temp.Dequeue();
+                if(data.Skill != null)
+                    AnimationBuffer.Enqueue(data);
             }
         }
     }

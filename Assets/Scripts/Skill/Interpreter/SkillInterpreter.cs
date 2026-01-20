@@ -44,7 +44,11 @@ namespace Character.Skill {
                     
                     default:
                         if (prev != '`' && CalculatePriority.TryGetValue(c, out var priority)) {
-                            AddToken(buffer.ToString());
+                            var context = buffer.ToString();
+                            if(string.IsNullOrWhiteSpace(context))
+                                continue;
+                            
+                            AddToken(context);
                             buffer.Clear();
                             AddSymbol(c);
                         }

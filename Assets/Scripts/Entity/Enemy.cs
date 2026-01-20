@@ -18,6 +18,7 @@ namespace Character {
         public EnemySize Size { get; private set; } 
         public int MaxHp { get; private set; }
         public int Hp { get; private set; }
+        public int Exp { get; private set; }
         public bool IsAlive { get; private set; }
         private List<(int Appearance, ISkill Skill)> _skillAppearance = new();
 
@@ -30,6 +31,7 @@ namespace Character {
             Position = pPosition;
             Size = pData.Size;
                         
+            Exp = pData.Exp;
             MaxHp = pData.MaxHp;
             Hp = MaxHp;
             IsAlive = true;

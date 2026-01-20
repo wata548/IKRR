@@ -5,6 +5,8 @@
         Epic,
         Unique,
         Legendary,
+        Evolution,
+        Etc
     }
     
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Extension;
@@ -41,10 +42,10 @@ namespace Data.Map {
             FixPrefix();
         }
 
-        public static Stage Random() => Random(new Stage[] { });
-        public static Stage Random(params Stage[] pExclude) {
+        public static Stage Random(Random pRandom) => Random(pRandom, new Stage[] { });
+        public static Stage Random(Random pRandom, params Stage[] pExclude) {
 
-            var random = 1 + UnityEngine.Random.Range(0, _prefix[^1].Frequency);
+            var random = 1 + pRandom.Next() % _prefix[^1].Frequency;
 
             int start = 0;
             int end = _prefix.Count - 1;

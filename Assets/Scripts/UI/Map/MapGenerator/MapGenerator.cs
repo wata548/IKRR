@@ -4,11 +4,10 @@ using System.Linq;
 using Data;
 using Data.Map;
 using Extension;
-using Extension.Test;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
+using Random = System.Random;
 
 namespace MapGenerator {
     
@@ -51,7 +50,8 @@ namespace MapGenerator {
         
         private List<StageWidth> _stageWidthInfos;
         private Vector2Int _curStage = -Vector2Int.one;
-        
+
+        private Random _random;
        //==================================================||Properties 
        public int Height { get; private set; }
         
@@ -98,7 +98,9 @@ namespace MapGenerator {
         public void SetActiveBySwitch() =>
             _mapPannel.SetActive(!_mapPannel.activeSelf);
         
-        private void GenerateMap() {
+        public void GenerateMap(int pSeed) {
+
+            _random = new(pSeed);
             
             foreach (var floor in _mapNodes) {
                 floor.ForEach(node => Destroy(node.gameObject));
@@ -110,6 +112,10 @@ namespace MapGenerator {
             for (int i = 0; i < _roundCount; i++) {
                 GenerateRound(interval * (i + 1));
                 GenerateEdges();
+            }
+            
+            foreach (var node in _mapNodes[0]) {
+                node.SetActive(true);
             }
         }
         private void GenerateRound(float pHeight) {
@@ -142,13 +148,13 @@ namespace MapGenerator {
 
             var idx = 0;
             foreach (var node in _mapNodes[^1]) {
-                var type = StageTypeFrequency.Random();
+                var type = StageTypeFrequency.Random(_random);
                 node.SetUp(type, new(idx++, _mapNodes.Count - 1));
             }
         } 
         private int GetWidthSize() {
             var count = _stageWidthInfos.Sum(floor => floor.Frequency);
-            var random = Random.Range(0, count);
+            var random = _random.Next() % count;
 
             var idx = 0;
             foreach (var floor in _stageWidthInfos) {
@@ -162,8 +168,8 @@ namespace MapGenerator {
         private Vector3 RandomNoise(Vector2 pSize) {
                     
             var maxSize = pSize * _randomNoise;
-            var x = Random.Range(-maxSize.x, maxSize.x);
-            var y = Random.Range(-maxSize.y, maxSize.y);
+            var x = _random.Range(-maxSize.x, maxSize.x);
+            var y = _random.Range(-maxSize.y, maxSize.y);
             return new(x, y);
         }
         private void GenerateEdges() {
@@ -251,18 +257,6 @@ namespace MapGenerator {
             StageTypeFrequency.LoadData(temp);
         
             MapNode.Init(this);
-            GenerateMap();
-
-            foreach (var node in _mapNodes[0]) {
-                node.SetActive(true);
-            }
         }
-        
-        #region Test
-        [TestMethod(pRuntimeOnly: true)]
-        private void Generate() {
-            GenerateMap();
-        }
-        #endregion
     }
 }

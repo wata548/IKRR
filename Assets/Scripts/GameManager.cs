@@ -10,8 +10,13 @@ using UnityEngine;
 namespace Data {
     public class GameManager: MonoBehaviour {
 
+        //==================================================||Fields 
         private static int _curChapter = 0;
         
+        //==================================================||Properties 
+        public static int Seed { get; private set; } = 987654321;
+        
+        //==================================================||Methods 
         public static void SetEnemy() {
             var position = Positions.Middle;
             var enemies = DataManager.GetStageEnemy(_curChapter);
@@ -30,10 +35,11 @@ namespace Data {
             CharactersManager.Init();
             
             var list = new List<int>();
-            list.AddRange(Enumerable.Repeat(1001, 10));
-            list.AddRange(Enumerable.Repeat(1003, 9));
-            list.AddRange(Enumerable.Repeat(1004, 3));
-            list.AddRange(Enumerable.Repeat(1005, 3));
+            list.AddRange(Enumerable.Repeat(1001, 7));
+            list.AddRange(Enumerable.Repeat(1003, 5));
+            list.AddRange(Enumerable.Repeat(1004, 1));
+            list.AddRange(Enumerable.Repeat(1005, 5));
+            list.AddRange(Enumerable.Repeat(1007, 7));
             RouletteManager.Init(list);
         }
 
@@ -42,8 +48,10 @@ namespace Data {
                 Fsm.Instance.Change(State.EnemyTurn);
         }
 
-        private void Awake() {
+        //==================================================||Unity 
+        private void Start() {
             StartGame();
+            UIManager.Instance.Map.GenerateMap(Seed);
         }
 
         private void Update() {

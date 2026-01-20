@@ -29,7 +29,7 @@ namespace UI.BackGround {
             Move(_cloud2);
             if (_cloud1.transform.localPosition.x < -_rect.sizeDelta.x) {
                 var pos = _cloud2.transform.localPosition;
-                pos.x += _rect.sizeDelta.x;
+                pos.x += _rect.sizeDelta.x / Time.timeScale;
                 _cloud1.transform.localPosition = pos;
                 (_cloud1, _cloud2) = (_cloud2, _cloud1);
             }

@@ -60,7 +60,7 @@ namespace UI.Roulette {
             for (int row = 0; row < RouletteManager.Height; row++) {
                 if (RouletteManager.Get(_idx, row) == DataManager.EMPTY_SYMBOL)
                     continue;
-                                
+                var temp = RouletteManager.Get(_idx, row);
                 var status = RouletteManager.GetStatus(_idx, row);
                 _cells[row].SetStatus(status);
             }

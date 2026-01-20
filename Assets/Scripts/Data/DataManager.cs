@@ -8,7 +8,7 @@ namespace Data {
         public const int ERROR_SYMBOL = -1;
         public const int EMPTY_SYMBOL = 0;
         
-        public static readonly IDB<int, SymbolData> Symbol = new SymbolDB();
+        public static readonly ISymbolDB Symbol = new SymbolDB();
         public static readonly IDB<int, EnemyData> Enemy = new EnemyDB();
         private static readonly IDB<int, List<List<int>>> _enemyAppearance = new EnemyAppearanceDB();
         

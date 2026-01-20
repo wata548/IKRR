@@ -79,6 +79,8 @@ namespace UI.Roulette {
                     return;
                 if (!RouletteManager.Use(cell.Column, cell.Row, out var status, out var skill))
                     return;
+                if (skill == null)
+                    return;
                 
                 AnimationStateBase.AnimationBuffer
                     .Enqueue(new(AnimationType.Use, cell.Column, cell.Row, skill, status));

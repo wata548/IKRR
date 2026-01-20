@@ -53,7 +53,8 @@ namespace UI.Roulette {
 
                 _icon.sprite = sprite;
                 _icon.material = null;
-                SetStatus(RouletteManager.GetStatus(Column, Row));
+                if(pNewCode != DataManager.EMPTY_SYMBOL)
+                    SetStatus(RouletteManager.GetStatus(Column, Row));
                 pOnComplete?.Invoke();
             }
         }
