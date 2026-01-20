@@ -28,6 +28,11 @@ namespace Roulette {
         private static readonly Queue<int> _remainSymbol = new();
         private static List<RouletteColumn> _current = new();
         //==================================================||Methods 
+
+        public static void AddHandSize(int pAmount) {
+            HandSize += pAmount;
+            _hand[DataManager.EMPTY_SYMBOL] += pAmount;
+        }
         
         public static void Init(IEnumerable<int> pInitHand) {
 

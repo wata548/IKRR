@@ -51,6 +51,7 @@ namespace Data {
         //==================================================||Unity 
         private void Awake() {
             StartGame();
+            PlayerData.Init();
         }
 
         private void Start() {

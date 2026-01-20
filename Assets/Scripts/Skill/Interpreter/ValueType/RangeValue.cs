@@ -37,13 +37,13 @@ namespace Character.Skill.Data {
                 Min = int.Parse(match.Groups["Min"].Value);
                 Max = int.Parse(match.Groups["Max"].Value);    
             }
-            Value = (int)Random.Range(Min, Max);
+            Value = Random.Range(Min, Max);
         }
 
         //==================================================||Methods
 
         public int Next() {
-            return Value = (int)Random.Range(Min, Max);
+            return Value = Random.Range(Min, Max);
         }
         public static RangeValue Parse(string value) => new(value);
 

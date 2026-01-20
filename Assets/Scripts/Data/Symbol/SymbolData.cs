@@ -11,7 +11,8 @@
         public string EvolveCondition { get; protected set; }
         public string EffectCode { get; protected set; }
         public SymbolType Type { get; protected set; }
-        public TargetStatus Category { get; protected set; }
+        public TargetStatus StatCategory { get; protected set; }
+        public SymbolCategory Category { get; protected set; }
 
         public Info GetInfo() {
             return new Info(

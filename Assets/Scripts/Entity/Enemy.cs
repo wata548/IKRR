@@ -19,6 +19,7 @@ namespace Character {
         public int MaxHp { get; private set; }
         public int Hp { get; private set; }
         public int Exp { get; private set; }
+        public int DropMoney { get; private set; }
         public bool IsAlive { get; private set; }
         private List<(int Appearance, ISkill Skill)> _skillAppearance = new();
 
@@ -30,8 +31,10 @@ namespace Character {
             SerialNumber = pData.SerialNumber;
             Position = pPosition;
             Size = pData.Size;
-                        
+
+            DropMoney = pData.DropMoney.Value;
             Exp = pData.Exp;
+            
             MaxHp = pData.MaxHp;
             Hp = MaxHp;
             IsAlive = true;
@@ -62,6 +65,11 @@ namespace Character {
                 _skillAppearance.Add((appearance, skill));
             }
         }
+
+        private void OnDeath() {
+            PlayerData.GetExp(Exp);
+            PlayerData.GetMoney(DropMoney);
+        }
         
         public void ReceiveDamage(int pAmount, Action pOnComplete) {
             if (!IsAlive) {
@@ -73,6 +81,7 @@ namespace Character {
             if (Hp == 0) {
                 IsAlive = false;
                 
+                OnDeath();
                 CharactersManager.OnDeathEnemy();
                 UIManager.Instance.Entity[Position]
                     .OnDeath(this, pAmount, pOnComplete);
