@@ -29,9 +29,14 @@ namespace Roulette {
         private static List<RouletteColumn> _current = new();
         //==================================================||Methods 
 
-        public static void AddHandSize(int pAmount) {
+        public static void AddHandSize(int pAmount, int pTarget = DataManager.EMPTY_SYMBOL) {
             HandSize += pAmount;
-            _hand[DataManager.EMPTY_SYMBOL] += pAmount;
+            if(!_hand.TryAdd(pTarget, pAmount))
+                _hand[pTarget] += pAmount;
+            foreach(var element in Enumerable.Repeat(pTarget, pAmount))
+                _remainSymbol.Enqueue(element);
+            
+            LastUpdateFrame = Time.frameCount;
         }
         
         public static void Init(IEnumerable<int> pInitHand) {

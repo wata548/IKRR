@@ -4,9 +4,18 @@ using UnityEngine;
 using Extension;
 
 namespace Data {
+    public record SymbolQueryArgs(
+        SymbolRarity Rarity = SymbolRarity.Etc,
+        SymbolCategory Category = SymbolCategory.None,
+        TargetStatus Status = TargetStatus.None,
+        SymbolType Type = SymbolType.None
+    );
+    
     public interface ISymbolDB : IDB<int, SymbolData> {
         public int GetRandom(SymbolRarity pRarity);
-        public List<int> Query(SymbolRarity pRarity, SymbolCategory pCategory, TargetStatus pStatus, SymbolType pType);
+        
+        public List<int> Query(SymbolQueryArgs pArgs);
+        public List<int> SubQuery(List<int> pTarget, SymbolQueryArgs pArgs);
     }
     
     public class SymbolDB: ISymbolDB {
@@ -35,16 +44,29 @@ namespace Data {
             return null;
         }
 
-        public List<int> Query(SymbolRarity pRarity, SymbolCategory pCategory, TargetStatus pStatus, SymbolType pType) =>
-            _rarityDictionary[pRarity]
-                .Select(code => _symbolBySerialNumber[code])
+        public List<int> Query(SymbolQueryArgs pArgs) =>
+            _symbolBySerialNumber
+                .Select(kvp => kvp.Value)
                 .Where(symbol =>
-                    symbol.Type == pType
-                    && symbol.Category == pCategory
-                    && symbol.StatCategory == pStatus
+                        symbol.Rarity != SymbolRarity.Etc
+                        && (pArgs.Rarity == SymbolRarity.Etc || symbol.Rarity == pArgs.Rarity)
+                        && (pArgs.Type == SymbolType.None || symbol.Type == pArgs.Type)
+                        && (pArgs.Category == SymbolCategory.None || symbol.Category.HasFlag(pArgs.Category))
+                        && (pArgs.Status == TargetStatus.None || symbol.StatCategory.HasFlag(pArgs.Status))
                 ).Select(symbol => symbol.SerialNumber)
                 .ToList();
-        
+
+        public List<int> SubQuery(List<int> pTarget, SymbolQueryArgs pArgs) =>
+            pTarget
+                .Select(code => _symbolBySerialNumber[code])
+                .Where(symbol =>
+                    (pArgs.Rarity == SymbolRarity.Etc || symbol.Rarity == pArgs.Rarity)
+                    && (pArgs.Type == SymbolType.None || symbol.Type == pArgs.Type)
+                    && (pArgs.Category == SymbolCategory.None || symbol.Category.HasFlag(pArgs.Category))
+                    && (pArgs.Status == TargetStatus.None || symbol.StatCategory.HasFlag(pArgs.Status))
+                ).Select(symbol => symbol.SerialNumber)
+                .ToList();
+
         public int GetRandom(SymbolRarity pRarity) {
             
             var target = _rarityDictionary[pRarity];

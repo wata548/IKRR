@@ -6,26 +6,30 @@ using DG.Tweening;
 using Extension;
 using Roulette;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace UI.Roulette {
     public class Wheel: MonoBehaviour {
 
        //==================================================||Fields 
-        [SerializeField] private RouletteCell _cellPrefab;
-        [SerializeField] private float _power;
-        private readonly List<RouletteCell> _cells = new();
+        [SerializeField] protected RouletteCell _cellPrefab;
+        [SerializeField] protected float _power;
+        [SerializeField] protected float _powerDelta = 300;
+        protected readonly List<RouletteCell> _cells = new();
         public bool IsRoll { get; private set; } = false;
         private int _idx;
+        private Action _onStop;
         
        //==================================================||Properties
        public RectTransform RectTransform { get; private set; }
        
        //==================================================||Methods 
-        public void Init(int pIdx, int pHeight, IEnumerable<CellInfo> pData, Action<RouletteCell> pOnClick) {
+        public virtual void Init(int pIdx, int pHeight, IEnumerable<CellInfo> pData, Action<RouletteCell> pOnClick = null, Action pOnStop = null) {
             
             if (pHeight == 0)
                 return;
-            
+
+            _onStop = pOnStop;
             _idx = pIdx;
             while (_cells.Count != pHeight + 1) {
                 if (_cells.Count > pHeight + 1) {
@@ -46,7 +50,7 @@ namespace UI.Roulette {
 
             foreach (var (cell, info) in _cells.Zip(pData, (cell, info) => (cell, info))) {
                 
-                cell.AddOnClickListener(() => pOnClick(cell));
+                cell.AddOnClickListener(() => pOnClick?.Invoke(cell));
                 cell.RectTransform.SetLocalPosition(Pivot.Down, pos);
                 cell.RectTransform.sizeDelta = Vector2.one * cellScale;
                 
@@ -66,7 +70,7 @@ namespace UI.Roulette {
             }
         }
         
-        private void ShowNewCell() {
+        protected virtual void ShowNewCell() {
             var interval = 1f / (_cells.Count - 1);
             var temp = _cells[0];
             
@@ -96,6 +100,10 @@ namespace UI.Roulette {
                 var pos = cell.RectTransform.localPosition;
                 pos.y += speed;
                 cell.RectTransform.localPosition = pos;
+                
+                //add symbols 3d style
+                //var localPos = cell.RectTransform.GetLocalPosition(RectTransform, Pivot.Middle).y;
+                //cell.transform.rotation = Quaternion.Euler(new(localPos * 35 * 2, 0, 0));
             }
 
             var nextPoint = -0.5f / (_cells.Count - 1);
@@ -104,11 +112,11 @@ namespace UI.Roulette {
             }
         }
 
-        public void StartRoll() {
+        public virtual void StartRoll() {
             IsRoll = true;
         }
         
-        public void StopRoll() {
+        public virtual void StopRoll() {
             IsRoll = false;
             
             var pos = _cells[0].RectTransform.GetLocalPosition(RectTransform, Pivot.Down).y;
@@ -123,7 +131,8 @@ namespace UI.Roulette {
                 rowIdx++;
                 
                 cell.RectTransform.DOLocalMoveY(cell.RectTransform.localPosition.y + RectTransform.sizeDelta.y * delta, 0.8f * Time.timeScale)
-                    .SetEase(Ease.OutElastic);
+                    .SetEase(Ease.OutElastic)
+                    .OnComplete(() => _onStop?.Invoke());
                 cell.SetIdx(_idx, rowIdx);
             }
         }
@@ -141,6 +150,7 @@ namespace UI.Roulette {
 
         private void Awake() {
             RectTransform = GetComponent<RectTransform>();
+            _power += Random.Range(0, _powerDelta);
         }
         
     }
