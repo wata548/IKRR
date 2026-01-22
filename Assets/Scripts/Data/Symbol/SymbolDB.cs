@@ -11,38 +11,9 @@ namespace Data {
         SymbolType Type = SymbolType.None
     );
     
-    public interface ISymbolDB : IDB<int, SymbolData> {
-        public int GetRandom(SymbolRarity pRarity);
-        
-        public List<int> Query(SymbolQueryArgs pArgs);
-        public List<int> SubQuery(List<int> pTarget, SymbolQueryArgs pArgs);
-    }
-    
-    public class SymbolDB: ISymbolDB {
+    public class SymbolDB: DictionaryBaseDB<SymbolData>, IQueryDB<int, SymbolData, SymbolQueryArgs> {
 
         private IReadOnlyDictionary<int, SymbolData> _symbolBySerialNumber = null;
-        private IReadOnlyDictionary<SymbolRarity, List<int>> _rarityDictionary = null;
-        
-        public void LoadData(IDataLoader<int, SymbolData> pLoader) {
-            _symbolBySerialNumber = pLoader.Load().ToDictionary();
-            _rarityDictionary = _symbolBySerialNumber
-                .GroupBy(kvp => kvp.Value.Rarity)
-                .Select(group => 
-                    new KeyValuePair<SymbolRarity, List<int>>(
-                        group.Key, 
-                        group.Select(kvp => kvp.Value.SerialNumber)
-                            .ToList()
-                    )
-                ).ToDictionary();
-        }
-        
-        public SymbolData GetData(int pNumber) {
-            if(_symbolBySerialNumber.TryGetValue(pNumber, out var data))
-                return data;
-
-            Debug.LogError($"This {pNumber}Number isn't symbol number. check again.");
-            return null;
-        }
 
         public List<int> Query(SymbolQueryArgs pArgs) =>
             _symbolBySerialNumber
@@ -66,12 +37,5 @@ namespace Data {
                     && (pArgs.Status == TargetStatus.None || symbol.StatCategory.HasFlag(pArgs.Status))
                 ).Select(symbol => symbol.SerialNumber)
                 .ToList();
-
-        public int GetRandom(SymbolRarity pRarity) {
-            
-            var target = _rarityDictionary[pRarity];
-            var idx = Random.Range(0, target.Count);
-            return target[idx];
-        }
     }
 }

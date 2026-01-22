@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 22b06e8c7f19d4c49831d46c24702bd5
+guid: 626c82797060bfc4699222260b4bbca1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9037665595888714396
-    second: MemoBoard_0
+      213: -5116004941896417110
+    second: 3002_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MemoBoard_0
+      name: 3002_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 80
-        height: 100
+        x: 3
+        y: 2
+        width: 26
+        height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 46db84e2603c39280800000000000000
-      internalID: -9037665595888714396
+      spriteID: aa00f117c9c4009b0800000000000000
+      internalID: -5116004941896417110
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 404a2387b8e90b749ad3db60f98b2999
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      MemoBoard_0: -9037665595888714396
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

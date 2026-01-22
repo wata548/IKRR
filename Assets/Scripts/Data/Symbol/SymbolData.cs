@@ -18,12 +18,13 @@ namespace Data {
 
         public Info GetInfo() {
 
-            var descs = new List<(string, string, object[])> {
-                ("조건", Condition, null),
-                ("정보", Description, null),
-            };
+            var descs = new List<(string, string, object[])>();
+            if(!string.IsNullOrWhiteSpace(Condition))
+                descs.Add(("조건", Condition, null));
+
+            descs.Add(("정보", Description, null));
             
-            if (!string.IsNullOrEmpty(EvolveDescription))
+            if (!string.IsNullOrWhiteSpace(EvolveDescription))
                 descs.Add((
                     "진화",
                     UseInfo.Get(SerialNumber) 

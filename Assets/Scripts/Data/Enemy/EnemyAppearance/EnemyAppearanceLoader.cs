@@ -25,6 +25,7 @@ namespace Data.EnemyAppearance {
                 );
         }
     }
+#endif
     public class CSVEnemyAppearanceLoader: IDataLoader<int, List<List<int>>> {
         private readonly string _sheet = "StageEnemy.csv";
         public IEnumerable<KeyValuePair<int, List<List<int>>>> Load() {
@@ -43,5 +44,4 @@ namespace Data.EnemyAppearance {
                 );
         }
     }
-#endif
 }
