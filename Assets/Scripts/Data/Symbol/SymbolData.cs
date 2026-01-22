@@ -1,4 +1,6 @@
-﻿namespace Data {
+﻿using System.Collections.Generic;
+
+namespace Data {
        
     public class SymbolData{
         public int SerialNumber { get; protected set; } 
@@ -15,15 +17,22 @@
         public SymbolCategory Category { get; protected set; }
 
         public Info GetInfo() {
-            return new Info(
-                SerialNumber,
-                Name,
-                new() {
-                    ("사용 조건:", Condition),
-                    ("설명:", Description),
-                    ("진화 정보:", UseInfo.Get(SerialNumber) ? EvolveDescription : "???")
-                }
-            );
+
+            var descs = new List<(string, string, object[])> {
+                ("조건", Condition, null),
+                ("정보", Description, null),
+            };
+            
+            if (!string.IsNullOrEmpty(EvolveDescription))
+                descs.Add((
+                    "진화",
+                    UseInfo.Get(SerialNumber) 
+                        ? EvolveDescription 
+                        : "???",
+                    null)
+                );
+            
+            return new Info(Name, descs);
         } 
     }
 }

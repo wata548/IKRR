@@ -12,8 +12,8 @@ namespace Data {
         public string SkillInfo { get; protected set; }
 
         public Info GetInfo() =>
-            new Info(SerialNumber, Name, new() {
-                ( "특징", Desc )
+            new Info(Name, new() {
+                ( "특징", Desc, null )
             });
     }
 }

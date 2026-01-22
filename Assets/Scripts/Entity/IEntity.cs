@@ -9,8 +9,8 @@ namespace Character {
         public bool IsAlive { get; }
 
         public void OnAttack();
-        public void ReceiveDamage(int pAmount, Action pOnComplete);
-        public void Heal(int pAmount, Action pOnComplete);
+        public void ReceiveDamage(int pAmount, Action pOnComplete = null);
+        public void Heal(int pAmount, Action pOnComplete = null);
         public void Kill();
     }
 }

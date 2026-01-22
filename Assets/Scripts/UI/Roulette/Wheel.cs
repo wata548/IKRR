@@ -114,6 +114,9 @@ namespace UI.Roulette {
 
         public virtual void StartRoll() {
             IsRoll = true;
+            foreach (var cell in _cells) {
+                cell.IsRoll = true;
+            }
         }
         
         public virtual void StopRoll() {
@@ -132,7 +135,12 @@ namespace UI.Roulette {
                 
                 cell.RectTransform.DOLocalMoveY(cell.RectTransform.localPosition.y + RectTransform.sizeDelta.y * delta, 0.8f * Time.timeScale)
                     .SetEase(Ease.OutElastic)
-                    .OnComplete(() => _onStop?.Invoke());
+                    .OnComplete(() => {
+                        _onStop?.Invoke();
+                        foreach (var cell in _cells) {
+                            cell.IsRoll = false;
+                        }
+                    });
                 cell.SetIdx(_idx, rowIdx);
             }
         }

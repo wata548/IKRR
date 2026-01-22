@@ -24,6 +24,7 @@ namespace UI.Roulette {
         public RectTransform RectTransform { get; private set; }
         public int Row { get; private set; }
         public int Column { get; private set; }
+        public bool IsRoll { get; set; } = false;
         private int _code = 0;
 
         public void AddOnClickListener(Action pAction) {
@@ -97,11 +98,15 @@ namespace UI.Roulette {
         }
 
         public void OnPointerEnter(PointerEventData eventData) {
+            if (IsRoll)
+                return;
             var info = DataManager.Symbol.GetData(_code).GetInfo();
             UIManager.Instance.InfoShower.Set(info);
         }
 
         public void OnPointerExit(PointerEventData eventData) {
+            if (IsRoll)
+                return;
             UIManager.Instance.InfoShower.Hide();
         }
     }

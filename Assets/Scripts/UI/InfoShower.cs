@@ -12,20 +12,19 @@ namespace UI {
     public class InfoShower: MonoBehaviour {
 
         [SerializeField] private GameObject _board;
-        [SerializeField] private Image _image;
         [SerializeField] private TMP_LangText _name;
-        [SerializeField] private TMP_LangText _context;
+        [SerializeField] private TMP_LangFormatText _context;
         [SerializeField] private List<InfoShowerOption> _options;
-        private List<(string, string)> _curOptions;
+        private List<(string Category, string Context, object[] Params)> _curOptions;
         private int _idx;
         
         public void Set(Info pInfo) {
             _board.SetActive(true);
-            _image.sprite = pInfo.SerialNumber.GetIcon();
             _name.text = pInfo.Name;
             _curOptions = pInfo.Contexts;
             _idx = 0;
-            _context.text = pInfo.Contexts[0].Item2;
+            _context.text = _curOptions[0].Context;
+            _context.Apply(_curOptions[0].Params);
 
             for (int i = 0; i < _options.Count; i++) {
                 if (pInfo.Contexts.Count > i) {
@@ -57,7 +56,8 @@ namespace UI {
                 if (_idx == -1) _idx = _curOptions.Count - 1;
                 if (_idx == _curOptions.Count) _idx = 0;
                 _options[_idx].SetActive(true);
-                _context.text = _curOptions[_idx].Item2;
+                _context.text = _curOptions[_idx].Context;
+                _context.Apply(_curOptions[0].Params);
             }
                 
         }

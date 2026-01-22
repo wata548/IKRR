@@ -2,6 +2,7 @@
 using Data;
 using Extension;
 using UI.Character;
+using UI.LevelUpReward;
 using UI.SkillShower;
 using UI.Status;
 using UnityEngine;
@@ -16,6 +17,5 @@ namespace UI {
         [field: SerializeField] public Roulette.Roulette Roulette { get; private set; }
         [field: SerializeField] public EntityUIManager Entity { get; private set; }
         [field: SerializeField] public InfoShower InfoShower { get; private set; }
-        
     }
 }

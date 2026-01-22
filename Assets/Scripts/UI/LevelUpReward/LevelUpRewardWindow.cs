@@ -30,9 +30,12 @@ namespace UI.LevelUpReward {
         private readonly List<Select> _statusSelect = new();
         private const string STATUS = "STATUS";
         private int _rouletteResult;
+        private bool _isActive = false;
+        private int _level = 1;
         
         //==================================================||Methods 
         public void TurnOn() {
+            _isActive = true;
             _pannel.SetActive(true);
             _optionSection.SetActive(true);
             var cnt = ((TargetStatus[])Enum.GetValues(typeof(TargetStatus)))
@@ -80,8 +83,10 @@ namespace UI.LevelUpReward {
             
             _add.gameObject.SetActive(pActive);
             _cancel.gameObject.SetActive(pActive);
-            if(!pActive)
+            if (!pActive) {
+                _isActive = false;
                 _pannel.SetActive(false);
+            }
         }
        //==================================================||Unity 
         private void Awake() {
@@ -91,7 +96,13 @@ namespace UI.LevelUpReward {
             _add.onClick.AddListener(() => SetActiveApplyButtons(false));
             _cancel.onClick.AddListener(() => RouletteManager.AddHandSize(1));
             _cancel.onClick.AddListener(() => SetActiveApplyButtons(false));
-            TurnOn();
+        }
+
+        private void Update() {
+            if (!_isActive && _level != PlayerData.Level) {
+                _level++;
+                TurnOn();
+            }
         }
     }
 }

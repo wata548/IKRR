@@ -2,12 +2,11 @@
 
 namespace Data {
     public class Info {
-        public readonly int SerialNumber;
         public readonly string Name;
-        public readonly List<(string, string)> Contexts;
+        public readonly List<(string Category, string Format, object[] Params)> Contexts;
 
-        public Info(int pSerialNumber, string pName, List<(string, string)> pContext) =>
-            (SerialNumber, Name, Contexts) = (pSerialNumber, pName, pContext);
+        public Info(string pName, List<(string, string, object[])> pContext) =>
+            (Name, Contexts) = (pName, pContext);
     }
     
 }

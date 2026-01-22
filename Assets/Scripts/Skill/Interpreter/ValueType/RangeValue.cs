@@ -39,7 +39,10 @@ namespace Character.Skill.Data {
             }
             Value = Random.Range(Min, Max);
         }
-
+        
+        //==================================================||Operation 
+        public static RangeValue operator +(RangeValue lhs, RangeValue rhs) =>
+            new(lhs.Min + rhs.Min, lhs.Max + rhs.Max);
         //==================================================||Methods
 
         public int Next() {
