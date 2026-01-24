@@ -18,6 +18,8 @@ namespace Data {
         
         //==================================================||Methods 
         public static void SetEnemy() {
+            Fsm.Instance.StartBattle();
+            
             var position = Positions.Middle;
             var enemies = DataManager.GetStageEnemy(_curChapter);
             foreach (var enemy in enemies) {

@@ -6,6 +6,7 @@
         EvolveCheck,
         BuffCheck,
         PlayAnimation,
+        EffectAnimation,
         PlayerTurn,
         EnemyTurn,
     }

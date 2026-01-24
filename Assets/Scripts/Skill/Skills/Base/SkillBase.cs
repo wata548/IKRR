@@ -16,6 +16,7 @@ namespace Character.Skill {
         public Action OnEnd { get; set; } = null;
 
         //==================================================||Constructors 
+        protected SkillBase(){}
         protected SkillBase(string[] pData) {
             const BindingFlags flags = 
                 BindingFlags.Instance 
@@ -25,6 +26,7 @@ namespace Character.Skill {
             var targetType = GetType();
             var properties = targetType.GetProperties(flags)
                 .Where(property => property.IsDefined(typeof(SkillParameterAttribute)))
+                .OrderBy(property => property.GetCustomAttribute<SkillParameterAttribute>()!.Priority)
                 .ToList();
 
             for (int i = 0; i < pData.Length; i++) {

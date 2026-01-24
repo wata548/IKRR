@@ -3,6 +3,6 @@
         void OnEnter();
         void Update();
         void OnExit();
-        
+        void EndBattle();
     }
 }

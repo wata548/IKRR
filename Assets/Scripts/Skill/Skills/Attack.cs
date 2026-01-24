@@ -10,14 +10,24 @@ namespace Character.Skill {
 
         [SkillParameter]
         public override RangeValue Value { get; protected set; }
+
+        [SkillParameter(100)]
+        public AttackType Type { get; protected set; } = AttackType.Default;
+
+
+        public Attack(RangeValue pValue, TargetValue pPositions, AttackType pType):base() =>
+            (Value, Target, Type) = (pValue, pPositions, pType);
         
         public Attack(string[] pData): base(pData){}
         protected override void Implement(Positions pCaster) {
+            var caster = CharactersManager.GetEntity(pCaster);
             var targets = CharactersManager.GetEntity(pCaster, Target.Value);
-            Debug.Log(pCaster);
+            
             var idx = targets.Length;
             foreach (var target in targets) {
-                target.ReceiveDamage(Value.Value, CustomEnd);
+
+                var amount = caster.AttackDamageCalc(Value.Value, target);
+                target.ReceiveDamage(amount, target, pType: Type, pOnComplete: CustomEnd);
                 Value.Next();
             }
 
@@ -26,6 +36,7 @@ namespace Character.Skill {
                 if (idx == 0)
                     End();
             }
+            
         }
     }
 }

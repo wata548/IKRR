@@ -6,5 +6,6 @@ namespace Character.Skill {
         [SkillParameter]
         public TargetValue Target { get; protected set; } = new();
         protected SharedSkillBase(string[] pData): base(pData){}
+        protected SharedSkillBase(): base(){}
     }
 }

@@ -6,7 +6,6 @@ using Data;
 using DG.Tweening;
 using UI.Icon;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI.Character {
@@ -60,7 +59,7 @@ namespace UI.Character {
                 .SetLoops(-1, LoopType.Yoyo);
         }
         
-        public override void OnReceiveDamage(IEntity pEntity, int pAmount, Action pOnComplete) {
+        public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
             _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
                 .OnComplete(() => pOnComplete?.Invoke());
         }
@@ -105,7 +104,7 @@ namespace UI.Character {
             gameObject.SetActive(false);
         }
         public void OnPointerEnter(PointerEventData eventData) {
-            var code = (CharactersManager.GetEntity(_position, _position)[0] as Enemy)!.SerialNumber;
+            var code = (CharactersManager.GetEntity(_position) as Enemy)!.SerialNumber;
             var data = DataManager.Enemy.GetData(code);
             UIManager.Instance.InfoShower.Set(data.GetInfo());
         }

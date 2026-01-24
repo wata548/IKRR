@@ -7,11 +7,11 @@ using Extension;
 using Roulette;
 
 namespace Data {
-    public struct EnemyAnimation {
+    public struct EntityAnimation {
         public readonly Positions Caster;
         public readonly ISkill Skill;
 
-        public EnemyAnimation(Positions pCaster, ISkill pSkill) =>
+        public EntityAnimation(Positions pCaster, ISkill pSkill) =>
             (Caster, Skill) = (pCaster, pSkill);
     }
     
@@ -25,8 +25,8 @@ namespace Data {
         public static Positions TargetEnemy { get; set; } = Positions.Middle;
         
         //==================================================||Methods 
-        public static Queue<EnemyAnimation> GetEnemySkills() {
-            var skills = new Queue<EnemyAnimation>();
+        public static Queue<EntityAnimation> GetEnemySkills() {
+            var skills = new Queue<EntityAnimation>();
             foreach (var position in Positions.AllEnemy.Split()) {
                 if(!_entities.TryGetValue(position, out var target) || !target.IsAlive)
                     continue;
@@ -39,17 +39,21 @@ namespace Data {
         
         public static void Init() {
             TargetEnemy = Positions.Middle;
-            Player = new Player();
+            Player = new Player(1000);
             if (!_entities.TryAdd(Positions.Player, Player))
                 _entities[Positions.Player] = Player;
         }
 
-        public static void OnDeathEnemy() =>
+        public static void OnDeathEnemy(Positions pPosition) {
+            
+            Player.OnKill(_entities[pPosition]);
+            
             IsFighting = Positions.AllEnemy.Split().Any(enemy => {
                 if (!_entities.TryGetValue(enemy, out var target))
                     return false;
                 return target.IsAlive;
             }); 
+        }
         
         public static void SetEntity(Positions pPoint, IEntity pEntity) {
             IsFighting = true;
@@ -71,6 +75,8 @@ namespace Data {
 
             throw new NullReferenceException("Alive enemy isn't exist");
         }
+
+        public static IEntity GetEntity(Positions pTarget) => _entities[pTarget];
         
         public static IEntity[] GetEntity(Positions pCaster, Positions pPosition) {
             if (pPosition.HasFlag(Positions.Caster)) {
@@ -87,6 +93,20 @@ namespace Data {
                 .Select(position => _entities.GetValueOrDefault(position))
                 .Where(entity => entity!= null)
                 .ToArray();
+        }
+
+        public static void OnTurnStart(bool pIsPlayer) {
+            var positions = pIsPlayer ? Positions.Player : Positions.AllEnemy;
+            foreach (var entity in GetEntity(Positions.None, positions)) {
+                entity.OnTurnStart();
+            }
+        }
+
+        public static void OnTurnEnd(bool pIsPlayer) {
+            var positions = pIsPlayer ? Positions.Player : Positions.AllEnemy;
+            foreach (var entity in GetEntity(Positions.None, positions)) {
+                entity.OnTurnEnd();
+            }
         }
 
     }

@@ -17,7 +17,7 @@ namespace UI.Character {
         private int _money = 0;
         
        //==================================================||Methods 
-        public override void OnReceiveDamage(IEntity pEntity, int pAmount, Action pOnComplete) {
+        public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
             _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
                 .OnComplete(() => pOnComplete?.Invoke());
         }

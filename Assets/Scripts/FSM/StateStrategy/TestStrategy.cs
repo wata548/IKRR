@@ -15,5 +15,7 @@ namespace FSM.StateStrategy {
         public void OnExit() {
             Debug.Log($"Exit {State} state");
         }
+
+        public void EndBattle() { }
     }
 }

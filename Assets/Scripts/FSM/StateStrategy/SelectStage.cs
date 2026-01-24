@@ -12,5 +12,7 @@ namespace FSM.StateStrategy {
         public void OnExit() {
             UIManager.Instance.Map.SetActive(false);
         }
+
+        public void EndBattle() {}
     }
 }

@@ -6,5 +6,6 @@ namespace Character.Skill {
         [SkillParameter]
         public abstract RangeValue Value { get; protected set; }
         protected PlayerTargetSkillBase(string[] pData): base(pData){}
+        protected PlayerTargetSkillBase(): base(){}
     }
 }

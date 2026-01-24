@@ -8,8 +8,8 @@ namespace Data {
         public abstract int Code { get; }
         public virtual object[] Infos => new object[] { Duration };
         
-        public virtual int OnReceiveDamage(int pAmount, IEntity pTarget) => pAmount;
-        public virtual int OnSendDamage(int pAmount, IEntity pTarget) => pAmount;
+        public virtual int OnReceiveDamage(int pAmount, IEntity pTarget, IEntity pOpponent) => pAmount;
+        public virtual int OnSendDamage(int pAmount, IEntity pTarget, IEntity pOpponent) => pAmount;
         public virtual int OnHeal(int pAmount, IEntity pTarget) => pAmount;
         public virtual void OnRouletteStop(IEntity pTarget){}
         public virtual void OnTurnStart(IEntity pTarget){}
@@ -17,8 +17,8 @@ namespace Data {
         public virtual void OnTurnEnd(IEntity pTarget) =>
             Duration--;
         
-        public virtual void OnRefresh(IEntity pTarget){}
         public virtual void OnSkillUse(IEntity pTarget){}
+        public virtual void OnKill(IEntity pTarget){}
 
         public Info GetInfo() {
             var data = DataManager.Effect.GetData(Code);

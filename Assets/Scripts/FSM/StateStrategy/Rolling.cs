@@ -1,8 +1,15 @@
-﻿using UI;
+﻿using Data;
+using UI;
 
 namespace FSM.StateStrategy {
     public class Rolling: IStrategy {
+        
         public void OnEnter() {
+            if (UIManager.Instance.Roulette.IsRoll)
+                return;
+
+            Fsm.Instance.NextTurn();
+            CharactersManager.OnTurnStart(true);
             UIManager.Instance.Roulette.Roll();
         }
 
@@ -11,5 +18,7 @@ namespace FSM.StateStrategy {
 
         public void OnExit() {
         }
+
+        public void EndBattle() { }
     }
 }
