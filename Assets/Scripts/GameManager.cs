@@ -58,6 +58,7 @@ namespace Data {
 
         private void Start() {
             UIManager.Instance.Map.GenerateMap(Seed);
+            CharactersManager.Player.AddEffect(new Burn(new(30)));
         }
 
         private void Update() {

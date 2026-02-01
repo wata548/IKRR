@@ -54,13 +54,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _Speed: 5
+    - _Speed: 4
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _Thickness: 0.02
+    - _TimeScale: 1
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     m_Colors:

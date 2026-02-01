@@ -18,7 +18,7 @@ namespace Data {
 
         public Info GetInfo() {
 
-            var descs = new List<(string, string, object[])>();
+            var descs = new List<(string, string, Dictionary<string, object>)>();
             if(!string.IsNullOrWhiteSpace(Condition))
                 descs.Add(("조건", Condition, null));
 

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Character;
 using Character.Skill;
 using Character.Skill.Data;
@@ -34,10 +35,13 @@ namespace Data {
             var attack = new Attack(new(pAmount), new(pOpponent.Position), AttackType.Needle);
             EffectAnimationState.Add(new(pTarget.Position, attack));
             pOpponent.ReceiveDamage(pAmount, pOpponent, false, AttackType.Needle);
-            
+            Update();
             return pAmount;
         }
 
-        public override object[] Infos => new object[] { Duration, Limit };
+        public override Dictionary<string, object> Infos => new() {
+            {"Duration", Duration}, 
+            {"Amount", Limit}
+        };
     }
 }

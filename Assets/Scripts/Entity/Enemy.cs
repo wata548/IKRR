@@ -138,6 +138,15 @@ namespace Character {
             return skill;
         }
 
+        public void AddEffect(EffectBase pEffect) {
+            var effect = Effects.FirstOrDefault(effect => effect.Code == pEffect.Code);
+            if (effect != null) {
+                Effects.Remove(effect);
+                pEffect += effect;
+            }
+            Effects.Add(pEffect);
+        }
+
         #region ApplyEffect
         public int AttackDamageCalc(int pAmount, IEntity pTarget) =>
             Effects.Aggregate(pAmount, (amount, effect) => effect.OnSendDamage(amount, this, pTarget));

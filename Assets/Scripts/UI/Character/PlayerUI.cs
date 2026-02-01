@@ -42,7 +42,8 @@ namespace UI.Character {
         }
         
        //==================================================||Unity 
-        private void Update() {
+        protected override void Update() {
+            base.Update();
             ExpAndMoneyUpdate();
         }
     }

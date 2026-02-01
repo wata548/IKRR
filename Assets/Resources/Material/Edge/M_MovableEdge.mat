@@ -44,12 +44,13 @@ Material:
     - _BlinkFastness: 4
     - _ColorMask: 15
     - _Density: 6
-    - _Speed: 0.007999999
+    - _Speed: 1
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
+    - _TimeScale: 1
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     m_Colors:

@@ -27,8 +27,7 @@ namespace UI {
 
             var cur = Time.timeScale;
             foreach (var (_, mat) in _matchMaterials) {
-                var value = _lastTimeScale * mat.GetFloat("_Speed") / cur;
-                mat.SetFloat("_Speed", value);
+                mat.SetFloat("_TimeScale", cur);
             }
             _lastTimeScale = cur;
         }

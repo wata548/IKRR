@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Character;
 using Character.Skill;
 using Character.Skill.Data;
@@ -11,11 +12,14 @@ namespace Data {
         public Burn(RangeValue pDuration) : base(pDuration) {}
 
         public override void OnTurnStart(IEntity pTarget) {
-            var attack = new Attack(new(Duration), new(pTarget.Position), AttackType.Burn);
+            var attack = new Attack(new(Duration * 2), new(pTarget.Position), AttackType.Burn);
             EffectAnimationState.Add(new(pTarget.Position, attack));
         }
 
-        public override object[] Infos =>
-            new object[] { Duration, Duration * 2 };
+        public override Dictionary<string, object> Infos =>
+            new() {
+                {"Duration", Duration},
+                {"Amount", Duration * 2}
+            };
     }
 }

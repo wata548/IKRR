@@ -17,52 +17,20 @@ namespace Character {
         public Positions Position => Positions.Player;
         //==================================================||Constructor
         public Player(int pMaxHp) {
-            Effects.Add(new Burn(new(100)));
             MaxHp = pMaxHp;
             Hp = MaxHp;
             IsAlive = true;
         }
         
         //==================================================||Methods 
-        #region ApplyEffect
-        public int AttackDamageCalc(int pAmount, IEntity pTarget) =>
-            Effects.Aggregate(pAmount, (amount, effect) => effect.OnSendDamage(amount, this, pTarget));
-        
-        public void OnTurnEnd() {
-            foreach (var effect in Effects) {
-                effect.OnTurnEnd(this);
+        public void AddEffect(EffectBase pEffect) {
+            var effect = Effects.FirstOrDefault(effect => effect.Code == pEffect.Code);
+            if (effect != null) {
+                Effects.Remove(effect);
+                pEffect += effect;
             }
-            Effects = Effects.Where(effect => effect.Duration > 0).ToList();
-        
+            Effects.Add(pEffect);
         }
-        
-        public void OnTurnStart() {
-            foreach (var effect in Effects) {
-                effect.OnTurnStart(this);
-            }
-        }
-                
-        public void OnSkillUse() {
-            foreach (var effect in Effects) {
-                effect.OnSkillUse(this);
-            }
-        }
-        
-        public void OnKill(IEntity pTarget) {
-            foreach (var effect in Effects) {
-                effect.OnKill(pTarget);
-            }
-        }
-                
-        public void OnRouletteStop() {
-            foreach (var effect in Effects) {
-                effect.OnRouletteStop(this);
-            }
-        }
-
-        
-        #endregion
-
         public void OnAttack() {
             
         }
@@ -104,6 +72,43 @@ namespace Character {
         public void KillSelf() {
             SceneManager.LoadScene(Scene.GameOver);
         }
+        #region ApplyEffect
+        public int AttackDamageCalc(int pAmount, IEntity pTarget) =>
+            Effects.Aggregate(pAmount, (amount, effect) => effect.OnSendDamage(amount, this, pTarget));
+        
+        public void OnTurnEnd() {
+            foreach (var effect in Effects) {
+                effect.OnTurnEnd(this);
+            }
+            Effects = Effects.Where(effect => effect.Duration > 0).ToList();
+        
+        }
+        
+        public void OnTurnStart() {
+            foreach (var effect in Effects) {
+                effect.OnTurnStart(this);
+            }
+        }
+                
+        public void OnSkillUse() {
+            foreach (var effect in Effects) {
+                effect.OnSkillUse(this);
+            }
+        }
+        
+        public void OnKill(IEntity pTarget) {
+            foreach (var effect in Effects) {
+                effect.OnKill(pTarget);
+            }
+        }
+                
+        public void OnRouletteStop() {
+            foreach (var effect in Effects) {
+                effect.OnRouletteStop(this);
+            }
+        }
 
+        
+        #endregion
     }
 }

@@ -13,9 +13,9 @@ namespace UI {
 
         [SerializeField] private GameObject _board;
         [SerializeField] private TMP_LangText _name;
-        [SerializeField] private TMP_LangFormatText _context;
+        [SerializeField] private TMP_LangFormatExtendedText _context;
         [SerializeField] private List<InfoShowerOption> _options;
-        private List<(string Category, string Context, object[] Params)> _curOptions;
+        private List<(string Category, string Context, Dictionary<string, object> Params)> _curOptions;
         private int _idx;
         
         public void Set(Info pInfo) {

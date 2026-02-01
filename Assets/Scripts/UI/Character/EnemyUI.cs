@@ -14,8 +14,6 @@ namespace UI.Character {
         [SerializeField] private HpBar _hpBar;
         [SerializeField] private Image _shower;
         [SerializeField] private Button _button;
-        [SerializeField] private Positions _position;
-        
         private Tween _idleAnimation;
         private Tween _attackAnimation;
         private Vector3? _origin = null;

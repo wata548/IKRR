@@ -78,7 +78,7 @@ namespace Data {
 
         public static IEntity GetEntity(Positions pTarget) => _entities[pTarget];
         
-        public static IEntity[] GetEntity(Positions pCaster, Positions pPosition) {
+        public static IEntity[] GetEntities(Positions pCaster, Positions pPosition) {
             if (pPosition.HasFlag(Positions.Caster)) {
                 pPosition ^= Positions.Caster;
                 pPosition |= pCaster;
@@ -97,14 +97,14 @@ namespace Data {
 
         public static void OnTurnStart(bool pIsPlayer) {
             var positions = pIsPlayer ? Positions.Player : Positions.AllEnemy;
-            foreach (var entity in GetEntity(Positions.None, positions)) {
+            foreach (var entity in GetEntities(Positions.None, positions)) {
                 entity.OnTurnStart();
             }
         }
 
         public static void OnTurnEnd(bool pIsPlayer) {
             var positions = pIsPlayer ? Positions.Player : Positions.AllEnemy;
-            foreach (var entity in GetEntity(Positions.None, positions)) {
+            foreach (var entity in GetEntities(Positions.None, positions)) {
                 entity.OnTurnEnd();
             }
         }

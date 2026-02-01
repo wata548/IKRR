@@ -7,7 +7,7 @@ namespace Character.Skill.Data {
     public struct RangeValue {
         
        //==================================================||Constants 
-        const string PATTERN = @"(?<Min>\d+)\s*\~\s*(?<Max>\d+)";
+        const string PATTERN = @"(?<Min>\d+)\s*[\~\-]\s*(?<Max>\d+)";
         
         //==================================================||Fields 
         public readonly int Min;
