@@ -7,7 +7,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Extension.Effect {
-    public class EffectShower: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+    
+    public class EffectShower: ShowInfo  {
 
         [SerializeField] private Image _shower;
         [SerializeField] private TMP_Text _counter;
@@ -19,12 +20,7 @@ namespace Extension.Effect {
             _data = pData;
         }
 
-        public void OnPointerEnter(PointerEventData eventData) {
-            UIManager.Instance.InfoShower.Set(_data.GetInfo());
-        }
-
-        public void OnPointerExit(PointerEventData eventData) {
-            UIManager.Instance.InfoShower.Hide();
-        }
+        protected override Info Info() =>
+            _data.GetInfo();
     }
 }

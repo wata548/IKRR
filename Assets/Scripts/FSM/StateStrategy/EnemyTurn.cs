@@ -48,8 +48,6 @@ namespace FSM.StateStrategy {
             _playingSkill.Execute(animationData.Caster);
         }
 
-        public void OnExit() {
-            CharactersManager.OnTurnEnd(false);
-        }
+        public void OnExit() { }
     }
 }

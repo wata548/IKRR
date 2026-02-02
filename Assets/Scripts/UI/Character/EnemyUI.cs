@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI.Character {
-    public class EnemyUI: EntityUI, IPointerEnterHandler, IPointerExitHandler {
+    public class EnemyUI: EntityUI {
         //==================================================||Fields
         [SerializeField] private HpBar _hpBar;
         [SerializeField] private Image _shower;
@@ -101,14 +101,10 @@ namespace UI.Character {
             _button.onClick.AddListener(OnClick);
             gameObject.SetActive(false);
         }
-        public void OnPointerEnter(PointerEventData eventData) {
+
+        protected override Info Info() {
             var code = (CharactersManager.GetEntity(_position) as Enemy)!.SerialNumber;
-            var data = DataManager.Enemy.GetData(code);
-            UIManager.Instance.InfoShower.Set(data.GetInfo());
-        }
-        
-        public void OnPointerExit(PointerEventData eventData) {
-            UIManager.Instance.InfoShower.Hide();
+            return DataManager.Enemy.GetData(code).GetInfo();
         }
     }
 }

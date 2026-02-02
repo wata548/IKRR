@@ -12,7 +12,7 @@ using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 namespace UI.Roulette {
-    public class RouletteCell: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+    public class RouletteCell: ShowInfo {
         
         public const string CHANGE = "ChangeSymbol";
         public const string USABLE = "NULL";
@@ -97,17 +97,7 @@ namespace UI.Roulette {
             RectTransform = GetComponent<RectTransform>();
         }
 
-        public void OnPointerEnter(PointerEventData eventData) {
-            if (IsRoll)
-                return;
-            var info = DataManager.Symbol.GetData(_code).GetInfo();
-            UIManager.Instance.InfoShower.Set(info);
-        }
-
-        public void OnPointerExit(PointerEventData eventData) {
-            if (IsRoll)
-                return;
-            UIManager.Instance.InfoShower.Hide();
-        }
+        protected override Info Info() =>
+            !IsRoll ? DataManager.Symbol.GetData(_code).GetInfo() : null;
     }
 }

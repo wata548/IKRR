@@ -11,6 +11,7 @@ using UnityEngine.UI;
 namespace UI {
     public class InfoShower: MonoBehaviour {
 
+       //==================================================||Fields 
         [SerializeField] private GameObject _board;
         [SerializeField] private TMP_LangText _name;
         [SerializeField] private TMP_LangFormatExtendedText _context;
@@ -18,6 +19,10 @@ namespace UI {
         private List<(string Category, string Context, Dictionary<string, object> Params)> _curOptions;
         private int _idx;
         
+        //==================================================||Properties
+        public bool IsActive => _board.activeSelf;
+        
+        //==================================================||Methods 
         public void Set(Info pInfo) {
             _board.SetActive(true);
             _name.text = pInfo.Name;

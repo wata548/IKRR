@@ -6,7 +6,7 @@ using Data;
 using Extension.Effect;
 
 namespace UI.Character {
-    public abstract class EntityUI: MonoBehaviour {
+    public abstract class EntityUI: ShowInfo {
 
         [SerializeField] private EffectBox _effectBox;
         [SerializeField] protected Positions _position;
@@ -29,6 +29,7 @@ namespace UI.Character {
         }
 
         protected virtual void Update() {
+            base.Update();
             var entity = CharactersManager.GetEntity(_position);
             if (entity is {IsAlive: false})
                 return;

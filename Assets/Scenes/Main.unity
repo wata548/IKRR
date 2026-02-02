@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tableSize: {x: 5, y: 5}
-  _padding: {x: 0, y: 0}
+  _padding: {x: 0.05, y: 0}
   _prefab: {fileID: 63250366284473147, guid: 66239e2554225a643bd397be69076906, type: 3}
 --- !u!1 &87899821
 GameObject:
@@ -1495,7 +1495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tableSize: {x: 5, y: 5}
-  _padding: {x: 0, y: 0}
+  _padding: {x: 0.05, y: 0}
   _prefab: {fileID: 63250366284473147, guid: 66239e2554225a643bd397be69076906, type: 3}
 --- !u!1 &228885926
 GameObject:
@@ -3351,6 +3351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputField: {fileID: 645486105}
   _button: {fileID: 1530691919}
+  _defaultScale: 5
 --- !u!114 &645486105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11077,7 +11078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tableSize: {x: 5, y: 5}
-  _padding: {x: 0, y: 0}
+  _padding: {x: 0.05, y: 0}
   _prefab: {fileID: 63250366284473147, guid: 66239e2554225a643bd397be69076906, type: 3}
 --- !u!1 &2049722036
 GameObject:
