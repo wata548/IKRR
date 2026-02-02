@@ -522,16 +522,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fontSetting: {fileID: 11400000, guid: e71411480e23a1f47996453b4987ba8f, type: 2}
   _apiKey: AIzaSyD9TQEfDm8OY3DtfdvZayoZi96QHLl_SA0
-  _path: 1Dq18pC6_x2gOk0Vfc-HkwyfAMEFPzJO7ETpO0Mp0uPQ
+  _path: 1SuglC23QW-DD4pIAWioJG04knTjuR0PAWVBaI4WgC60
   _sheets:
   - Symbol
   - Condition
-  - Effect
+  - SymbolEffect
   - UI
   - Evolve
   - Enemy
+  - EnemyDesc
   - EnemySkill
   - Tips
+  - Effect
+  - EffectDesc
 --- !u!4 &751891225
 Transform:
   m_ObjectHideFlags: 0

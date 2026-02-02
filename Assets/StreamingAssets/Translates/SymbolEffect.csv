@@ -1,0 +1,35 @@
+"Korean","Japanese","English","Chinese","German","French","Russian"
+"오류가 발생했습니다. ","エラーが発生しました。 ","An error occurred.","发生错误。","Es ist ein Fehler aufgetreten.","Une erreur s'est produite.","Произошла ошибка."
+"아무 것도 없는 빈칸입니다.","何もない空白です。","It's a blank space with nothing in it.","这是一个空白区域，里面什么也没有。","Es ist ein leerer Raum, in dem nichts ist.","C'est un espace vide, sans rien dedans.","Это пустое пространство, в котором ничего нет."
+"힘을 1만큼 상승시킵니다.","力を1だけ上げます。","Increases strength by 1.","力量增加1。","Erhöht die Festigkeit um 1.","Augmente la force de 1.","Увеличивает силу на 1."
+"현재 체력을 1만큼 회복합니다.","現在の体力を1だけ回復します。","Restores 1 stamina to current health.","恢复1点体力值至当前生命值。","Stellt 1 Ausdauerpunkt wieder her.","Restaure 1 point d'endurance à la santé actuelle.","Восстанавливает 1 единицу выносливости к текущему уровню здоровья."
+"적에게 약간의 피해를 입힙니다.(3-5)","敵に若干のダメージを与えます。 （3-5）","Deals some damage to enemies (3-5)","对敌人造成少量伤害（3-5）","Fügt Feinden etwas Schaden zu (3-5).","Inflige des dégâts aux ennemis (3-5)","Наносит некоторый урон врагам (3-5)"
+"민첩을 1만큼 상승시킵니다.","アジャイルを1だけ上げます。","Increases agility by 1.","敏捷性提升1点。","Erhöht die Beweglichkeit um 1.","Augmente l'agilité de 1.","Повышает ловкость на 1."
+"마력을 1만큼 상승시킵니다.","魔力を1だけ上昇させます。","Increases magic power by 1.","魔法威力增加1点。","Erhöht die magische Kraft um 1.","Augmente la puissance magique de 1.","Увеличивает силу магии на 1."
+"밝은 빛으로 상대에게 실명효과를 부여합니다.","明るい光で相手に失明効果を付与します。","Inflicts blindness on the opponent with bright light.","用强光使对手失明。","Verursacht beim Gegner Blindheit durch helles Licht.","Provoque la cécité chez l'adversaire grâce à une lumière aveuglante.","Ослепляет противника ярким светом."
+"적에게 '화염'상태를 부여합니다. 
+(이 심볼 주위에 종이가 있다면 제거시킵니다.)","敵に「炎」状態を与える。 
+（このシンボルの周りに紙がある場合は削除します。）","Inflicts the enemy with the 'Fire' status. 
+(Remove any paper surrounding this symbol.)","使敌人陷入“火”状态。
+
+（移除此符号周围的任何纸张。）","Belegt den Gegner mit dem Status „Feuer“.
+
+(Entfernen Sie jegliches Papier um dieses Symbol herum.)","Inflige l'état « Feu » à l'ennemi.
+
+(Retirez tout papier entourant ce symbole.)","Накладывает на противника эффект «Огонь».
+
+(Уберите всю бумагу, окружающую этот символ.)"
+"다음 공격이 무조건 치명타가 됩니다.","次の攻撃が無条件クリティカルになります。","Your next attack will always be a critical hit.","你的下一次攻击必定是暴击。","Dein nächster Angriff wird garantiert ein kritischer Treffer sein.","Votre prochaine attaque sera toujours un coup critique.","Ваша следующая атака всегда будет решающим ударом."
+"힘을 3만큼 상승시킵니다. 
+오른쪽에 있는 심볼을 제거합니다.","力を3だけ上昇させます。 
+右側のシンボルを削除します。","Increases strength by 3. 
+Remove the symbol on the right.","力量提升3点。
+
+移除右侧的符号。","Erhöht die Stärke um 3. Entferne das Symbol rechts.","Augmente la force de 3.
+
+Retirez le symbole de droite.","Увеличивает силу на 3.
+Удалите символ справа."
+"적에게 피해를 입힙니다.(6)","敵にダメージを与える(6)","Deals damage to enemies. (6)","对敌人造成伤害。（6）","Fügt Feinden Schaden zu. (6)","Inflige des dégâts aux ennemis. (6)","Наносит урон врагам. (6)"
+"적에게 세 번 피해를 입힙니다.(1-3)","敵に3回ダメージを与える。 (1-3)","Deals damage to an enemy three times (1-3)","对敌人造成三次伤害（1-3）","Fügt einem Gegner dreimal Schaden zu (1-3).","Inflige des dégâts à un ennemi trois fois (1-3)","Наносит урон противнику три раза (1-3)"
+"힘을 2만큼 상승시킵니다.","力を2だけ上昇させます。","Increases strength by 2.","力量增加2。","Erhöht die Festigkeit um 2.","Augmente la force de 2.","Увеличивает силу на 2."
+"소유하고 있는 빈칸의 개수만큼의 피해를 입힙니다.","所有している空白の個数分のダメージを与えます。","Deals damage equal to the number of blank spaces you own.","造成的伤害等于你拥有的空白格数量。","Verursacht Schaden in Höhe der Anzahl der leeren Felder, die du besitzt.","Inflige des dégâts égaux au nombre d'espaces vides que vous possédez.","Наносит урон, равный количеству пустых клеток, которыми вы владеете."

@@ -23,7 +23,7 @@ namespace Font {
         }
 
         private void Load() {
-            var pack = new CSVPack(Language.Korean);
+            var pack = new ColumnCSVPack(Language.Korean);
             foreach (var sheet in _sheets) {
                 var data = SpreadSheet.LoadData(_path, sheet, _apiKey);
                 pack.Add(data);
@@ -35,7 +35,7 @@ namespace Font {
 #else
         private void Load() {
             
-            var pack = new CSVPack(Language.Korean);
+            var pack = new ColumnCSVPack(Language.Korean);
             var path = Path.Combine(Application.streamingAssetsPath, "Translates");
             var files = Directory.GetFiles(path).Where(file => file.EndsWith(".csv"));
             foreach (var file in files) {

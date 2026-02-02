@@ -1,0 +1,5 @@
+"SerialNumber","Name","Desc"
+"Int32","String","String"
+"3001","그을림","{Duration}턴, 지속 시간 x 2({Amount})만큼 데미지를 받습니다."
+"3002","실명","{Duration}턴, 30%의 확률로 공격이 빗나갑니다."
+"3003","가시","{Duration}턴, {Amount}만큼의 데미지를 반사합니다."
