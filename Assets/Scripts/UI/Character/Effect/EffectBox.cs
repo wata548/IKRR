@@ -12,6 +12,13 @@ namespace Extension.Effect {
         [SerializeField] private EffectShower _prefab;
         private List<EffectShower> _elements = new();
         private RectTransform _rect;
+
+        public void Clear() {
+            foreach (var element in _elements) {
+                Destroy(element.gameObject);
+            }
+            _elements.Clear();
+        }
         
         public void Refresh(List<EffectBase> pEffect) {
             _rect.Place(_elements, new(_padding, pEffect.Count,_tableSize, _prefab, null));

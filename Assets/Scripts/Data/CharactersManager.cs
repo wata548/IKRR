@@ -55,11 +55,11 @@ namespace Data {
             }); 
         }
         
-        public static void SetEntity(Positions pPoint, IEntity pEntity) {
+        public static void SetEntity(Positions pPosition, IEntity pEntity) {
             IsFighting = true;
             
-            if (!_entities.TryAdd(pPoint, pEntity))
-                _entities[pPoint] = pEntity;
+            if (!_entities.TryAdd(pPosition, pEntity))
+                _entities[pPosition] = pEntity;
         }
 
         public static Positions TargetUpdate() {

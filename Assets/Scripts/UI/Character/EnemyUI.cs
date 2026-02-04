@@ -23,8 +23,10 @@ namespace UI.Character {
             _shower.material = MaterialStore.Get(pMaterialName);
         }
         
-        public void SetData(EnemyData pData) {
+        public void SetData(Enemy pData) {
+            gameObject.SetActive(true);
             
+            RefreshEffectBox(true);
             _hpBar.Set(pData.MaxHp, pData.MaxHp);
             _shower.sprite = pData.SerialNumber.GetIcon();
             transform.localScale = (float)pData.Size / 100f * Vector3.one;

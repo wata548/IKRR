@@ -5,7 +5,7 @@ namespace FSM.StateStrategy {
         public State State { get; }
         public TestStrategy(State pState) => State = pState;
         
-        public void OnEnter() {
+        public void OnEnter(State pPrev) {
             Debug.Log($"Enter {State} state");
         }
 

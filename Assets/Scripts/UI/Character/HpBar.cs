@@ -37,6 +37,7 @@ namespace UI.Character {
         }
 
         public override void Set(int pMax, int pCurrent) {
+            base.Set(pMax, pCurrent);
             _max.text = pMax.ToString();
             _current.text = pCurrent.ToString();
         } 

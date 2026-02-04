@@ -9,13 +9,13 @@ namespace FSM {
 
         public int Turn { get; private set; } = 0;
         public State State { get; private set; }
-        public State PrevState { get; private set; }
         private IStrategy _strategy;
 
         private static readonly IReadOnlyDictionary<State, IStrategy> _matchStrategy =
             new Dictionary<State, IStrategy>() {
                 { State.SelectStage, new SelectStage() },
                 { State.Rolling, new Rolling() },
+                { State.Reward, new RewardState() },
                     
                 { State.EvolveCheck, new EvolveCheckState() },
                 { State.BuffCheck, new BuffCheckState() },
@@ -40,11 +40,11 @@ namespace FSM {
             if (State == pState)
                 return;
 
-            PrevState = State;
+            var prev = State;
             State = pState;
             _strategy?.OnExit();
             _strategy = _matchStrategy[pState];
-            _strategy.OnEnter();
+            _strategy.OnEnter(prev);
         }
 
         protected void Start() {
@@ -53,7 +53,7 @@ namespace FSM {
 
         protected override void Update() {
 
-            if (State != State.EffectAnimation && EffectAnimationState.AnimationBuffer.Count > 0) {
+            if (State is not (State.Reward or State.EffectAnimation) && EffectAnimationState.AnimationBuffer.Count > 0) {
                 Change(State.EffectAnimation);
             }
             

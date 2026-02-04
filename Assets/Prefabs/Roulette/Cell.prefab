@@ -225,6 +225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _applyAnimation: 1
-  _targetShower: {fileID: 3456425531351708767}
-  _rotationMaximumH: 30
-  _rotationMaximumV: 30
+  _targetShower: {fileID: 9212170819065337027}
+  _rotationMaximumH: 20
+  _rotationMaximumV: 20

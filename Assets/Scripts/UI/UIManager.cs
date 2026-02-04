@@ -17,5 +17,6 @@ namespace UI {
         [field: SerializeField] public Roulette.Roulette Roulette { get; private set; }
         [field: SerializeField] public EntityUIManager Entity { get; private set; }
         [field: SerializeField] public InfoShower InfoShower { get; private set; }
+        [field: SerializeField] public LevelUpRewardWindow LevelUp { get; private set; }
     }
 }

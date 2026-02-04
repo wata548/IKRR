@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Character;
 using Data;
 using DG.Tweening;
@@ -42,7 +43,18 @@ namespace UI.Character {
         }
         
        //==================================================||Unity 
-       protected override Info Info() => null;
+       protected override Info Info() => new(
+           "플레이어",
+           new() {( 
+                   "정보", 
+                   "Level: {Level}\nExp: {CurExp}/{MaxExp}",
+                   new Dictionary<string, object> {
+                       {"Level", PlayerData.Level},
+                       {"CurExp", PlayerData.CurExp},
+                       {"MaxExp", PlayerData.NeedExp},
+                   }
+           )}
+       );
 
        protected override void Update() {
             base.Update();

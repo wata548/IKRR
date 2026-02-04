@@ -16,7 +16,7 @@ namespace FSM.StateStrategy {
 
         public void EndBattle() => _lastTurn = -1;
         
-        public void OnEnter() {
+        public void OnEnter(State pPrev) {
             if (Fsm.Instance.Turn == _lastTurn)
                 return;
 
@@ -29,6 +29,10 @@ namespace FSM.StateStrategy {
         public void Update() {
             if (_playingSkill is { IsEnd: false })
                 return;
+            if (UIManager.Instance.LevelUp.NeedUpdate) {
+                Fsm.Instance.Change(State.Reward);
+                return;
+            }
             
             if (_animationBuffer.Count == 0) {
                 Fsm.Instance.Change(State.Rolling);

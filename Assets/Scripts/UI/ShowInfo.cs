@@ -13,7 +13,7 @@ namespace UI {
                 return;
             
             _onMouse = true;
-            UIManager.Instance.InfoShower.Set(info);
+            UIManager.Instance.InfoShower.SetInfo(info);
         }
 
         public void OnPointerExit(PointerEventData eventData) {
@@ -26,7 +26,7 @@ namespace UI {
 
         protected void Update() {
             if (_onMouse && !UIManager.Instance.InfoShower.IsActive) {
-                UIManager.Instance.InfoShower.Set(Info());
+                UIManager.Instance.InfoShower.SetInfo(Info());
             }
         }
     }

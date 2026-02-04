@@ -16,12 +16,21 @@ namespace UI.Character {
         public abstract void OnDeath(IEntity pEntity, int pAmount, Action pOnComplete);
         public abstract void OnHeal(IEntity pEntity, int pAmount, Action pOnComplete);
 
-        private void RefreshEffectBox(IEntity pEntity) {
-            var effects = pEntity.Effects;
-            if (effects == null || effects.Count == 0)
+        protected void RefreshEffectBox(bool pForce = false) {
+            var entity = CharactersManager.GetEntity(_position);
+            if (entity is {IsAlive: false})
                 return;
+            
+            var effects = entity.Effects;
+            if (effects == null)
+                return;
+            if (effects.Count == 0) {
+                _effectBox.Clear();
+                return;
+            }
+            
             var targetFrame = effects.Max(effect => effect.LastUpdateFrame);
-            if (targetFrame == _lastEffectUpdate)
+            if (!pForce && targetFrame == _lastEffectUpdate)
                 return;
             
             _lastEffectUpdate = targetFrame;
@@ -30,10 +39,8 @@ namespace UI.Character {
 
         protected virtual void Update() {
             base.Update();
-            var entity = CharactersManager.GetEntity(_position);
-            if (entity is {IsAlive: false})
-                return;
-            RefreshEffectBox(entity);
+            
+            RefreshEffectBox();
         }
     }
 }

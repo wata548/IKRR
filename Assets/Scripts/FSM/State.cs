@@ -2,6 +2,8 @@
     public enum State {
         Error,
         SelectStage,
+        Reward,
+        
         Rolling,
         EvolveCheck,
         BuffCheck,

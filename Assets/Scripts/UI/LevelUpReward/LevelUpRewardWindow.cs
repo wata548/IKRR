@@ -6,15 +6,14 @@ using Extension;
 using Roulette;
 using UI.Roulette;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace UI.LevelUpReward {
     public class LevelUpRewardWindow: MonoBehaviour {
 
-       //==================================================||Fields 
-       [SerializeField] private GameObject _pannel;
+        //==================================================||Fields 
+        [SerializeField] private GameObject _pannel;
        
         [Header("Option Select")]
         [SerializeField] private RectTransform _statusSelectZone;
@@ -30,17 +29,25 @@ namespace UI.LevelUpReward {
         private readonly List<Select> _statusSelect = new();
         private const string STATUS = "STATUS";
         private int _rouletteResult;
-        private bool _isActive = false;
         private int _level = 1;
         
+       //==================================================||Properties 
+        public bool IsActive { get; private set; } = false;
+
+        public bool NeedUpdate => _level != PlayerData.Level;
         //==================================================||Methods 
-        public void TurnOn() {
-            _isActive = true;
+        public bool TurnOn() {
+            if (IsActive || !NeedUpdate)
+                return false;
+            
+            _level++;
+            IsActive = true;
             _pannel.SetActive(true);
             _optionSection.SetActive(true);
             var cnt = ((TargetStatus[])Enum.GetValues(typeof(TargetStatus)))
                 .Count(status => status.IsFlag());
             _statusSelectZone.Place(_statusSelect, new(Vector2.zero, cnt, new(3, 0), _select, OnStatusGenerate));
+            return true;
         }
 
         private void OnStatusGenerate(Select pObj, int pIdx) {
@@ -83,10 +90,12 @@ namespace UI.LevelUpReward {
             
             _add.gameObject.SetActive(pActive);
             _cancel.gameObject.SetActive(pActive);
-            if (!pActive) {
-                _isActive = false;
-                _pannel.SetActive(false);
-            }
+            _fakeWheel.gameObject.SetActive(pActive);
+            IsActive = pActive;
+            
+            if (!TurnOn())
+                _pannel.SetActive(pActive);
+            
         }
        //==================================================||Unity 
         private void Awake() {
@@ -96,13 +105,6 @@ namespace UI.LevelUpReward {
             _add.onClick.AddListener(() => SetActiveApplyButtons(false));
             _cancel.onClick.AddListener(() => RouletteManager.AddHandSize(1));
             _cancel.onClick.AddListener(() => SetActiveApplyButtons(false));
-        }
-
-        private void Update() {
-            if (!_isActive && _level != PlayerData.Level) {
-                _level++;
-                TurnOn();
-            }
         }
     }
 }

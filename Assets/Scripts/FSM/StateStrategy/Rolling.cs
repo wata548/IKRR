@@ -4,7 +4,15 @@ using UI;
 namespace FSM.StateStrategy {
     public class Rolling: IStrategy {
         
-        public void OnEnter() {
+        public void OnEnter(State pPrev) {
+
+            if (!CharactersManager.IsFighting) {
+                Fsm.Instance.Change(State.SelectStage);
+                UIManager.Instance.Map.ClearStage();
+                return;
+            }
+                
+            
             if (UIManager.Instance.Roulette.IsRoll)
                 return;
 

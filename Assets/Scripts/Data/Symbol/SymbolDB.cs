@@ -13,10 +13,8 @@ namespace Data {
     
     public class SymbolDB: DictionaryBaseDB<SymbolData>, IQueryDB<int, SymbolData, SymbolQueryArgs> {
 
-        private IReadOnlyDictionary<int, SymbolData> _symbolBySerialNumber = null;
-
         public List<int> Query(SymbolQueryArgs pArgs) =>
-            _symbolBySerialNumber
+            _matchToSerialNumber
                 .Select(kvp => kvp.Value)
                 .Where(symbol =>
                         symbol.Rarity != SymbolRarity.Etc
@@ -29,7 +27,7 @@ namespace Data {
 
         public List<int> SubQuery(List<int> pTarget, SymbolQueryArgs pArgs) =>
             pTarget
-                .Select(code => _symbolBySerialNumber[code])
+                .Select(code => _matchToSerialNumber[code])
                 .Where(symbol =>
                     (pArgs.Rarity == SymbolRarity.Etc || symbol.Rarity == pArgs.Rarity)
                     && (pArgs.Type == SymbolType.None || symbol.Type == pArgs.Type)

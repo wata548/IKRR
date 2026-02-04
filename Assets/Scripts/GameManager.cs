@@ -26,6 +26,10 @@ namespace Data {
                 
                 var newEnemy = new Enemy(position, enemy);
                 CharactersManager.SetEntity(position, newEnemy);
+                
+                var ui = UIManager.Instance.Entity.GetEnemyUI(position);
+                ui.SetData(newEnemy);
+                
                 position = (Positions)((int)position << 1);
             }
             Fsm.Instance.Change(State.Rolling);

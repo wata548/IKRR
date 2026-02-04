@@ -18,7 +18,6 @@ namespace MapGenerator {
         private const float animationCycle = 0.75f;
         private const float animationScale = 1.2f;
 
-        [SerializeField] private MouseViewer _viewer;
         
         //==================================================||Properties
         public Vector2Int Position { get; private set; }
@@ -29,12 +28,13 @@ namespace MapGenerator {
        
         //==================================================||Serialize Field 
         [SerializeField] private Image _icon;
+        [SerializeField] private Button _button;
        
         //==================================================||Fields 
         private static MapGenerator _generator = null;
         private static Dictionary<Stage, Sprite> mapIcons = null;
 
-        [SerializeField] private Button _button;
+        private Tween _animation;
         private List<(int NextNode, Image Edge)> _edges = new();
         
         //==================================================||Methods 
@@ -53,8 +53,11 @@ namespace MapGenerator {
         public void SetActive(bool pActive) {
             IsActive = pActive;
             transform.localScale = Vector3.one;
-            _viewer.enabled = pActive;
             _icon.material = pActive ? null : MaterialStore.Get("GrayScale");
+            
+            _animation?.Kill();
+            if(pActive)
+                _animation = transform.DOBreathing(animationCycle, animationScale);
         }
 
         public bool SelectNextStage(Vector2Int pNextStage) {
@@ -117,6 +120,7 @@ namespace MapGenerator {
         }
 
         private void OnDestroy() {
+            _animation?.Kill();
             _edges.ForEach(edge => Destroy(edge.Edge));
         }
     }

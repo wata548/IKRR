@@ -42,9 +42,6 @@ namespace Character {
             IsAlive = true;
                         
             SetSkillSet(pData.SkillInfo);
-            var ui = UIManager.Instance.Entity.GetEnemyUI(pPosition);
-            ui.gameObject.SetActive(true);
-            ui.SetData(pData);
         }
         
         //==================================================||Methods 

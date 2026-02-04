@@ -63,7 +63,7 @@ namespace FSM {
         
         //==================================================||Methods 
         public void EndBattle() => _lastTurn = -1;
-        public void OnEnter() {
+        public void OnEnter(State pPrev) {
             if (Fsm.Instance.Turn == _lastTurn)
                 return;
             
@@ -80,6 +80,11 @@ namespace FSM {
             
             if (_playingSkill is { IsEnd: false })
                 return;
+
+            if (UIManager.Instance.LevelUp.NeedUpdate) {
+                Fsm.Instance.Change(State.Reward);
+                return;
+            }
             
             if (AnimationBuffer.Count == 0) {
                 Fsm.Instance.Change(NextState);
@@ -89,7 +94,6 @@ namespace FSM {
                 _remainAnimationTerm -= Time.deltaTime;
                 return;
             }
-            
             
             _remainAnimationTerm = AnimationInterval;
             var animationData = AnimationBuffer.Dequeue();
