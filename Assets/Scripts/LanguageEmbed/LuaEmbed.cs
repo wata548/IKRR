@@ -15,7 +15,10 @@ namespace LanguageEmbed {
             
             foreach (var setting in pGlobalSetting)
                 _env.Global.Set(setting.Name, setting.Obj);
-        } 
+        }
+
+        public void Invoke(string pCode, string pFunctionName, object[] pArgs) =>
+            InvokeRaw(pCode, pFunctionName, pArgs);
         
         private Object[] InvokeRaw(string pCode, string pFunctionName, object[] pArgs) {
 

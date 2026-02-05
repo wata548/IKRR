@@ -1,15 +1,35 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Character.Skill;
 using Data;
+using Data.Event;
 using Extension;
 using Extension.Test;
-using TMPro;
 using UnityEngine;
 
 namespace Test {
     public static class Test {
+
+        [TestMethod]
+        public static void Match(string pContext) {
+            const string PATTERN = @"@(?<Label>\d+):(?<Context>[^@]*)";
+            var matches = Regex.Split(pContext, PATTERN);
+        }
+        
+        [TestMethod]
+        public static void EventScript(string pContext) {
+            var a = new SingleScript(pContext);
+            Debug.Log(a);
+        }
+        
+        [TestMethod]
+        public static void EventButton(string pContext) {
+            var a = new Data.Event.Button(pContext);
+            Debug.Log($"{a.Option}: {a.FuncContext}");
+        } 
+        
         [TestMethod]
         public static void Flag() {
             var target = Positions.AllEnemy;

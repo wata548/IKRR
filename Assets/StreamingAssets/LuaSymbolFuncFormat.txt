@@ -1,0 +1,8 @@
+function {0}(column, row) 
+    Field = CS.Character.CharactersManager;
+    Symbol = CS.Data.DataManager.Symbol;
+    Roulette = CS.Roulette.RouletteManager;
+    Status = CS.Data.Status;
+    Stat = CS.Data.TargetStatus;
+    {1}
+end

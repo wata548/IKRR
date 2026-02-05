@@ -2,6 +2,7 @@
 using Data;
 using Extension;
 using UI.Character;
+using UI.Event;
 using UI.LevelUpReward;
 using UI.SkillShower;
 using UI.Status;
@@ -19,5 +20,6 @@ namespace UI {
         [field: SerializeField] public InfoShower InfoShower { get; private set; }
         [field: SerializeField] public LevelUpRewardWindow LevelUp { get; private set; }
         [field: SerializeField] public TurnShower TurnShower { get; private set; }
+        [field: SerializeField] public EventShower Event { get; private set; }
     }
 }

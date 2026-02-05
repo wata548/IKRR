@@ -9,7 +9,8 @@ namespace Symbol {
     public class LuaSymbolExecutor: ISymbolExecutor {
 
         private ILanguageEmbed _language = null;
-        private string _luaFuncFormat = null;
+        private string _symbolFuncFormat = null;
+        private string _eventFuncFormat = null;
 
         public LuaSymbolExecutor() {
             _language = new LuaEmbed(new() {
@@ -21,15 +22,23 @@ namespace Symbol {
             _language.Update();
         }
 
-        private void SetUp() =>
-            _luaFuncFormat ??= File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "LuaFuncFormat.txt"));
+        public void Invoke(string pContext) {
+            SetUp();
+            var code = string.Format(_eventFuncFormat, "Invoke", pContext);
+            _language.Invoke(code, "Invoke");
+        }
+
+        private void SetUp() {
+            _symbolFuncFormat ??= File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "LuaSymbolFuncFormat.txt"));
+            _eventFuncFormat ??= File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "LuaEventFuncFormat.txt"));
+        }
         
         public bool IsUsable(int pColumn, int pRow) {
             SetUp();
             var targetItem = RouletteManager.Get(pColumn, pRow);
             var condition = DataManager.Symbol.GetData(targetItem).ConditionCode;
 
-            var code = string.Format(_luaFuncFormat, nameof(IsUsable), condition);
+            var code = string.Format(_symbolFuncFormat, nameof(IsUsable), condition);
             return _language.Invoke<bool>(code, nameof(IsUsable), new object[]{pColumn, pRow});
         }
 
@@ -48,7 +57,7 @@ namespace Symbol {
         private ISkill GetSkillOnLua(string pFuncName, string pContext, int pColumn, int pRow) {
             SetUp();
             
-            var code = string.Format(_luaFuncFormat, pFuncName, pContext);
+            var code = string.Format(_symbolFuncFormat, pFuncName, pContext);
             var dsl = _language.Invoke<string>(code, pFuncName, new object[]{pColumn, pRow});
             return SkillInterpreter.Interpret(dsl);
         }
