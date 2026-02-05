@@ -33,9 +33,11 @@ namespace Data {
             var data = DataManager.Effect.GetData(Code);
             return new Info(data.Name, new List<(string, string, Dictionary<string, object>)> {("정보", data.Desc, Infos)});
         }
-        
-        protected EffectBase(RangeValue pDuration) =>
+
+        protected EffectBase(RangeValue pDuration) {
             Duration = pDuration.Value;
+            Update();
+        }
 
         protected virtual EffectBase AddOperation(EffectBase rhs) {
             Duration += rhs.Duration;

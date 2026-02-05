@@ -175,6 +175,36 @@ namespace Extension {
             rect.localPosition = rect.localPosition.ToVec2() + result;
         }
 
+        public static Vector2 GetLocalPositionY(this RectTransform rect, PivotLocation pivot = PivotLocation.Middle, float position = 0f) {
+                          
+            var parentScale = rect.parent!.GetComponent<RectTransform>().sizeDelta;
+            var result = rect.localPosition;
+                          
+            result.y = pivot switch {
+                PivotLocation.Down => (position - 0.5f) * parentScale.y,
+                PivotLocation.Middle => position * parentScale.y,
+                PivotLocation.Up => (position + 0.5f) * parentScale.y,
+                _ => 0,
+            };
+               
+            return result;
+        }
+               
+        public static Vector2 GetLocalPositionX(this RectTransform rect, PivotLocation pivot = PivotLocation.Middle, float position = 0f) {
+                          
+            var parentScale = rect.parent!.GetComponent<RectTransform>().sizeDelta;
+            var result = rect.localPosition;
+                          
+            result.x = pivot switch {
+                PivotLocation.Down => (position - 0.5f) * parentScale.x,
+                PivotLocation.Middle => position * parentScale.x,
+                PivotLocation.Up => (position + 0.5f) * parentScale.x,
+                _ => 0,
+            };
+               
+            return result;
+        }
+        
         public static void AddLocalPosition(this RectTransform rect, RectTransform parent, Vector2 ratio) =>
             SetLocalPosition(rect, parent, Pivot.Middle,GetLocalPosition(rect, parent, Pivot.Middle) + ratio);
 

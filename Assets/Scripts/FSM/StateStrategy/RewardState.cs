@@ -13,7 +13,7 @@ namespace FSM.StateStrategy {
         public void Update() {
 
             if (!UIManager.Instance.LevelUp.IsActive)
-                Fsm.Instance.Change(_prevState);
+                Fsm.Instance.Change(_prevState, true);
         }
 
         public void OnExit() {}

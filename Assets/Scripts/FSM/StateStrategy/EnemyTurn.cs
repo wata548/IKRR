@@ -43,9 +43,14 @@ namespace FSM.StateStrategy {
                 return;
             }
             
-            _remainAnimationTerm = AnimationInterval;
             var animationData = _animationBuffer.Dequeue();
-
+            while (!CharactersManager.GetEntity(animationData.Caster).IsAlive) {
+                if (_animationBuffer.Count == 0)
+                    return;
+                animationData = _animationBuffer.Dequeue();
+            }
+            
+            _remainAnimationTerm = AnimationInterval;
             CharactersManager.GetEntity(animationData.Caster).OnSkillUse();
             UIManager.Instance.Entity.GetEnemyUI(animationData.Caster).AttackAnimation();
             _playingSkill = animationData.Skill;

@@ -34,7 +34,7 @@ namespace FSM {
             }
             
             if (AnimationBuffer.Count == 0) {
-                Fsm.Instance.Change(_prev);
+                Fsm.Instance.Change(_prev, true);
                 return;
             }
             if (_remainAnimationTerm > 0) {

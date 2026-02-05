@@ -87,7 +87,7 @@ namespace FSM {
             }
             
             if (AnimationBuffer.Count == 0) {
-                Fsm.Instance.Change(NextState);
+                Fsm.Instance.Change(NextState, true);
                 return;
             }
             if (_remainAnimationTerm > 0) {

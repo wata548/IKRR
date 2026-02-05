@@ -7,6 +7,7 @@ using Data.Map;
 using DG.Tweening;
 using Extension;
 using UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -52,12 +53,12 @@ namespace MapGenerator {
         
         public void SetActive(bool pActive) {
             IsActive = pActive;
-            transform.localScale = Vector3.one;
+            _icon.transform.localScale = Vector3.one;
             _icon.material = pActive ? null : MaterialStore.Get("GrayScale");
             
             _animation?.Kill();
             if(pActive)
-                _animation = transform.DOBreathing(animationCycle, animationScale);
+                _animation = _icon.transform.DOBreathing(animationCycle, animationScale);
         }
 
         public bool SelectNextStage(Vector2Int pNextStage) {
@@ -112,13 +113,12 @@ namespace MapGenerator {
 
         IEnumerator IEnumerable.GetEnumerator() =>
             GetEnumerator();
+
+        public void OnClick() {
+            _generator.SelectStage(Position);           
+        }
         
         //==================================================||Unity
-
-        private void Awake() {
-            _button.onClick.AddListener(() => _generator.SelectStage(Position));           
-        }
-
         private void OnDestroy() {
             _animation?.Kill();
             _edges.ForEach(edge => Destroy(edge.Edge));

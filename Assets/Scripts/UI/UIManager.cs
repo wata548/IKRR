@@ -18,5 +18,6 @@ namespace UI {
         [field: SerializeField] public EntityUIManager Entity { get; private set; }
         [field: SerializeField] public InfoShower InfoShower { get; private set; }
         [field: SerializeField] public LevelUpRewardWindow LevelUp { get; private set; }
+        [field: SerializeField] public TurnShower TurnShower { get; private set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using Extension;
 using FSM.StateStrategy;
+using UI;
 using UnityEngine.Serialization;
 
 namespace FSM {
@@ -36,15 +38,31 @@ namespace FSM {
         public void NextTurn() =>
             Turn++;
         
-        public void Change(State pState) {
+        public void Change(State pState, bool pSkipAnimation = false) {
             if (State == pState)
                 return;
 
             var prev = State;
             State = pState;
             _strategy?.OnExit();
-            _strategy = _matchStrategy[pState];
-            _strategy.OnEnter(prev);
+            if (pSkipAnimation) {
+                EnterEvent();       
+                return;
+            }
+
+            var animation = UIManager.Instance.TurnShower.StartAnimation(State);
+            if (animation == null) {
+                EnterEvent();
+                return;
+            }
+
+            _strategy = null;
+            animation.OnComplete(EnterEvent);
+
+            void EnterEvent() {
+                _strategy = _matchStrategy[pState];
+                _strategy.OnEnter(prev);
+            }
         }
 
         protected void Start() {
