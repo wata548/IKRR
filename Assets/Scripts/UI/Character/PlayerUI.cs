@@ -14,8 +14,10 @@ namespace UI.Character {
         [SerializeField] private HpBar _hpBar;
         [SerializeField] private SlideBar _exp;
         [SerializeField] private TMP_Text _moneyShower;
+        [SerializeField] private InfoSO _info;
         private int _lastUpdate = -1;
         private int _money = 0;
+        private Dictionary<string, object> _infoParams = new();
         
        //==================================================||Methods 
         public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
@@ -43,18 +45,16 @@ namespace UI.Character {
         }
         
        //==================================================||Unity 
-       protected override Info Info() => new(
-           "플레이어",
-           new() {( 
-                   "정보", 
-                   "Level: {Level}\nExp: {CurExp}/{MaxExp}",
-                   new Dictionary<string, object> {
-                       {"Level", PlayerData.Level},
-                       {"CurExp", PlayerData.CurExp},
-                       {"MaxExp", PlayerData.NeedExp},
-                   }
-           )}
-       );
+       protected override Info Info() {
+           var info = _info.GetInfo();
+
+           _infoParams["Level"] = PlayerData.Level;
+           _infoParams["MaxExp"] = PlayerData.NeedExp;
+           _infoParams["CurExp"] = PlayerData.CurExp;
+
+           info.Params ??= _infoParams;
+           return info;
+       }
 
        protected override void Update() {
             base.Update();

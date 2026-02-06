@@ -18,19 +18,19 @@ namespace Data {
 
         public Info GetInfo() {
 
-            var descs = new List<(string, string, Dictionary<string, object>)>();
+            var descs = new List<InfoDetail>();
             if(!string.IsNullOrWhiteSpace(Condition))
-                descs.Add(("조건", Condition, null));
+                descs.Add(new("조건", Condition));
 
-            descs.Add(("정보", Description, null));
+            descs.Add(new("정보", Description));
             
             if (!string.IsNullOrWhiteSpace(EvolveDescription))
-                descs.Add((
+                descs.Add(new(
                     "진화",
                     UseInfo.Get(SerialNumber) 
                         ? EvolveDescription 
-                        : "???",
-                    null)
+                        : "???"
+                    )
                 );
             
             return new Info(Name, descs);

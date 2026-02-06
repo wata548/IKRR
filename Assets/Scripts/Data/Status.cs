@@ -23,8 +23,7 @@ namespace Data {
             if (!((int)pStatus).IsFlag())
                 return;
             
-            if (!_statusValue.TryAdd(pStatus, pValue))
-                _statusValue[pStatus] = pValue;
+            _statusValue[pStatus] = pValue;
         }
         
         public static void SetValue(TargetStatus pStatus, int pAmount) {

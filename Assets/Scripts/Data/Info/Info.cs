@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Serialization;
+
+namespace Data {
+    public class Info {
+        public readonly string Name;
+        public readonly List<InfoDetail> Contexts;
+        public Dictionary<string, object> Params { get; set; } = null;
+        public Info(string pName, List<InfoDetail> pContext, Dictionary<string, object> pParams = null) =>
+            (Name, Contexts, Params) = (pName, pContext, pParams);
+    }
+
+    [Serializable]
+    public struct InfoDetail {
+        public string Category;
+        [FormerlySerializedAs("Format")] public string Context;
+
+        public InfoDetail(string pCategory, string pFormat) =>
+            (Category, Context) = (pCategory, pFormat);
+    }
+}

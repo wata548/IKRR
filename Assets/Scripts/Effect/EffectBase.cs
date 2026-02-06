@@ -31,7 +31,7 @@ namespace Data {
 
         public Info GetInfo() {
             var data = DataManager.Effect.GetData(Code);
-            return new Info(data.Name, new List<(string, string, Dictionary<string, object>)> {("정보", data.Desc, Infos)});
+            return new Info(data.Name, new(){new("정보", data.Desc)}, Infos);
         }
 
         protected EffectBase(RangeValue pDuration) {

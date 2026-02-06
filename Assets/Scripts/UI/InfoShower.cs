@@ -16,7 +16,7 @@ namespace UI {
         [SerializeField] private TMP_LangText _name;
         [SerializeField] private TMP_LangFormatExtendedText _context;
         [SerializeField] private List<InfoShowerOption> _options;
-        private List<(string Category, string Context, Dictionary<string, object> Params)> _curOptions;
+        private List<InfoDetail> _curOptions;
         private int _idx;
         private Info _info;
 
@@ -38,11 +38,11 @@ namespace UI {
             _curOptions = _info.Contexts;
             _idx = 0;
             _context.text = _curOptions[0].Context;
-            _context.Apply(_curOptions[0].Params);
+            _context.Apply(_info.Params);
 
             for (int i = 0; i < _options.Count; i++) {
                 if (_info.Contexts.Count > i) {
-                    _options[i].Set(_info.Contexts[i].Item1);
+                    _options[i].Set(_info.Contexts[i].Category);
                     _options[i].SetActive(i == 0);
                     continue;
                 }
@@ -85,7 +85,7 @@ namespace UI {
             if (_idx == _curOptions.Count) _idx = 0;
             _options[_idx].SetActive(true);
             _context.text = _curOptions[_idx].Context;
-            _context.Apply(_curOptions[0].Params);
+            _context.Apply(_info.Params);
         }
         
        //==================================================||Unity 
