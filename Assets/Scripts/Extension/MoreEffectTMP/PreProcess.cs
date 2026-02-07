@@ -22,8 +22,8 @@ namespace Extension {
             var tagStack = new Stack<TagPoint>();
             var curTag = "";
             var idx = -1;
-            var fixPoints = new Queue<FixPoint>();
             var tempTagPoint = new List<TagPoint>();
+            _fixPoints.Clear();
             
             var prev = new TMP_CharacterInfo();
             var canTag = true;
@@ -50,7 +50,7 @@ namespace Extension {
                 if (tagStartPosition != null && prev.character == TAG_CLOSE) {
                     if (canTag) {
                         var (start, pos) = tagStartPosition;
-                        fixPoints.Enqueue(new(start, idx, pos));
+                        _fixPoints.Add(new(start, idx, pos));
                         tagStartPosition = null;
                     }
                     else {
@@ -70,7 +70,7 @@ namespace Extension {
             if (tagStartPosition != null && prev.character == TAG_CLOSE) {
                 if (canTag) {
                     var (start, pos) = tagStartPosition;
-                    fixPoints.Enqueue(new(start, idx + 1, pos));
+                    _fixPoints.Add(new(start, idx + 1, pos));
                 }
                 tagStartPosition = null;
             }
@@ -82,7 +82,7 @@ namespace Extension {
             }
             
             _tagPoints = tempTagPoint.OrderBy(point => point.Start).ToList();
-            RemoveTagAndDivideRow(fixPoints);
+            RemoveTagAndDivideRow();
 
             bool IsTag() {
                 if (curTag.Length == 0)
@@ -123,10 +123,11 @@ namespace Extension {
             }
         }
 
-        private void RemoveTagAndDivideRow(Queue<FixPoint> pFixPoints) {
+        private void RemoveTagAndDivideRow() {
             const float DEFAULT_UNITY_ROW_INTERVAL = 0.45f;   
             var pTextInfo = _text.textInfo;
             var idx = -1;
+            var fixPointIdx = 0;
             var fix = Vector3.zero;
             var width = (transform as RectTransform)!.sizeDelta.x;
             var startPos = 0f;
@@ -153,17 +154,17 @@ namespace Extension {
             
                 var vertices = pTextInfo.meshInfo[charInfo.materialReferenceIndex].vertices;
             
-                var remainSingleTag = pFixPoints.Count > 0;
+                var remainSingleTag = _fixPoints.Count > fixPointIdx;
                 var peek = new FixPoint(0, 0, Vector3.zero);
                 if (remainSingleTag) {
-                    peek = pFixPoints.Peek();
+                    peek = _fixPoints[fixPointIdx];
                     if (idx >= peek.End) {
-                        pFixPoints.Dequeue();
+                        fixPointIdx++;
                         fix.x += peek.Pos.x - vertices[charInfo.vertexIndex].x;
                         
-                        remainSingleTag = pFixPoints.Count > 0;
+                        remainSingleTag = _fixPoints.Count > fixPointIdx;
                         if(remainSingleTag)
-                            peek = pFixPoints.Peek();
+                            peek = _fixPoints[fixPointIdx];
                     }    
                 }
 

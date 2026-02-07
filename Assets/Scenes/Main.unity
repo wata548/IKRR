@@ -6268,7 +6268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem Ipsum
+  m_text: sdfsdf
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 114bca8c49d82c942a43437be6bf9a5c, type: 2}
   m_sharedMaterial: {fileID: 6497014074798880340, guid: 114bca8c49d82c942a43437be6bf9a5c, type: 2}
@@ -6516,7 +6516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pannel: {fileID: 2091459065}
   _title: {fileID: 968390724}
-  _context: {fileID: 1927066580}
+  _context: {fileID: 1927066581}
   _img: {fileID: 1209875522}
   _button: {fileID: 1023846856}
   _container: {fileID: 141719641}
@@ -6955,7 +6955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1023846854
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6963,7 +6963,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023846853}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.1736482, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11593,6 +11593,7 @@ GameObject:
   - component: {fileID: 1927066578}
   - component: {fileID: 1927066579}
   - component: {fileID: 1927066580}
+  - component: {fileID: 1927066581}
   m_Layer: 5
   m_Name: Context
   m_TagString: Untagged
@@ -11617,7 +11618,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 860, y: -75}
-  m_SizeDelta: {x: 690, y: 450}
+  m_SizeDelta: {x: 666, y: 450}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1927066579
 CanvasRenderer:
@@ -11703,7 +11704,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 1
+  m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -11729,6 +11730,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1927066581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927066577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bf7f08eb8b4dad84348c175f8848aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rowInterval: 0.3
 --- !u!1 &1937920115
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,7 +29,8 @@ namespace Extension {
         private enum TMP_EffectType {
             Error = 0,
             Flow,
-            Shake
+            Shake,
+            Rotate
         }
     }
 }

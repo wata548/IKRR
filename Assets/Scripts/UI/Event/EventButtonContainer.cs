@@ -2,6 +2,7 @@
 using Data.Event;
 using Extension;
 using UnityEngine;
+using UnityEngine.InputSystem.Composites;
 
 namespace UI.Event {
     public class EventButtonContainer: MonoBehaviour {
@@ -17,8 +18,13 @@ namespace UI.Event {
                 buttons.Length,
                 _tableSize,
                 _prefab,
-                (button, idx) => button.SetData(buttons[idx])
+                null
             ));
+            var idx = -1;
+            foreach (var button in _buttons) {
+                idx ++;
+                button.SetData(buttons[idx]);
+            }
         }
 
         public void Clear() {

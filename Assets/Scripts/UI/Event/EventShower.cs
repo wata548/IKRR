@@ -2,6 +2,7 @@
 using Symbol;
 using Data.Event;
 using DG.Tweening;
+using Extension;
 using Extension.Test;
 using TMPro;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace UI.Event {
 
         [SerializeField] private GameObject _pannel;
         [SerializeField] private TMP_Text _title;
-        [SerializeField] private TMP_Text _context;
+        [SerializeField] private MoreEffectTMP _context;
         [SerializeField] private Image _img;
         [SerializeField] private Button _button;
         [SerializeField] private EventButtonContainer _container;
@@ -40,23 +41,30 @@ namespace UI.Event {
             } 
         }
 
+            const float INTERVAL = 0.1f;
         public void SetScript(SingleScript pScript) {
             const float DURATION = 1.8f;
-            _context.text = "";
+            _context.TMP.text = "";
             if (pScript is not { TargetImage: null })
                 _img.sprite = pScript.TargetImage;
-            _context.DOText(pScript.Context, DURATION * Time.timeScale)
-                .OnComplete(() => _container.SetData(pScript));
+            var animation = _context.Typing(
+                pScript.Context,
+                INTERVAL,
+                () => _container.SetData(pScript),
+                () => !_pannel.activeSelf
+            );
+            ExRoutine.StartRoutine(animation);
         }
 
-        public Tween Typing() {
-            const float DURATION = 0.8f;
-            const float INTERVAL = 0.3f;
-            
-            var context = _context.text + '\n' + EventButton.LastClickButton;
-            return DOTween.Sequence()
-                .Append(_context.DOText(context, DURATION * Time.timeScale))
-                .AppendInterval(INTERVAL * Time.timeScale);
+        public void Typing(Action pOnComplete) {
+
+            var animation = _context.Typing(
+                '\n' + EventButton.LastClickButton,
+                INTERVAL,
+                pOnComplete,
+                () => !_pannel.activeSelf
+            );
+            ExRoutine.StartRoutine(animation);
         }
 
         private void ShowButton() {
@@ -75,8 +83,7 @@ namespace UI.Event {
         
         public void Goto(int pLabel) {
             _container.Clear();
-            Typing()
-                .OnComplete(() => SetScript(_curEvent.Goto(pLabel)));
+            Typing(() => SetScript(_curEvent.Goto(pLabel)));
         }
 
         private void Awake() {
