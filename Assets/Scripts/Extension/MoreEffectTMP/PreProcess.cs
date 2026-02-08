@@ -27,7 +27,7 @@ namespace Extension {
             
             var prev = new TMP_CharacterInfo();
             var canTag = true;
-            foreach (var charInfo in textInfo.characterInfo) {
+            foreach (var charInfo in textInfo.characterInfo.Take(textInfo.characterCount)) {
                 idx++;
                 
                 if(!charInfo.isVisible)
@@ -125,7 +125,7 @@ namespace Extension {
 
         private void RemoveTagAndDivideRow() {
             const float DEFAULT_UNITY_ROW_INTERVAL = 0.45f;   
-            var pTextInfo = _text.textInfo;
+            var textInfo = _text.textInfo;
             var idx = -1;
             var fixPointIdx = 0;
             var fix = Vector3.zero;
@@ -136,11 +136,11 @@ namespace Extension {
             var singleNewLineCnt = 0;
             var line = 0;
             var pad = 0f;
-            foreach (var charInfo in pTextInfo.characterInfo) {
+            foreach (var charInfo in textInfo.characterInfo.Take(textInfo.characterCount)) {
                 idx++;
 
                 if (idx == 0) {
-                    startPos = pTextInfo.meshInfo[charInfo.materialReferenceIndex].vertices[charInfo.vertexIndex].x;
+                    startPos = textInfo.meshInfo[charInfo.materialReferenceIndex].vertices[charInfo.vertexIndex].x;
                 }
 
                 if (!charInfo.isVisible) {
@@ -152,7 +152,7 @@ namespace Extension {
                     continue;
                 }
             
-                var vertices = pTextInfo.meshInfo[charInfo.materialReferenceIndex].vertices;
+                var vertices = textInfo.meshInfo[charInfo.materialReferenceIndex].vertices;
             
                 var remainSingleTag = _fixPoints.Count > fixPointIdx;
                 var peek = new FixPoint(0, 0, Vector3.zero);

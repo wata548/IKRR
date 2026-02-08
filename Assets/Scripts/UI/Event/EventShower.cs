@@ -41,15 +41,16 @@ namespace UI.Event {
             } 
         }
 
-            const float INTERVAL = 0.1f;
+        const float INTERVAL = 0.05f;
+        const float SELECT_SHOW_TERM = 0.5f;
         public void SetScript(SingleScript pScript) {
-            const float DURATION = 1.8f;
             _context.TMP.text = "";
             if (pScript is not { TargetImage: null })
                 _img.sprite = pScript.TargetImage;
             var animation = _context.Typing(
                 pScript.Context,
-                INTERVAL,
+                INTERVAL * Time.timeScale,
+                0,
                 () => _container.SetData(pScript),
                 () => !_pannel.activeSelf
             );
@@ -60,7 +61,8 @@ namespace UI.Event {
 
             var animation = _context.Typing(
                 '\n' + EventButton.LastClickButton,
-                INTERVAL,
+                INTERVAL * Time.timeScale,
+                SELECT_SHOW_TERM * Time.timeScale,
                 pOnComplete,
                 () => !_pannel.activeSelf
             );
@@ -74,6 +76,7 @@ namespace UI.Event {
         public void Close() {
             _img.sprite = null;
 
+            _container.Clear();
             _animation.Kill();
             _button.gameObject.SetActive(false);
             

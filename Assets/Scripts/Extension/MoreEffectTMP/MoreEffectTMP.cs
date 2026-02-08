@@ -21,7 +21,7 @@ namespace Extension {
         private float _timer = 0;
         private string _prevValue = "";
 
-        public IEnumerator Typing(string context, float interval, Action callback = null,
+        public IEnumerator Typing(string context, float interval, float pCallBackTerm, Action callback = null,
             Func<bool> breakCondition = null) {
 
             var cur = _text.text;
@@ -29,12 +29,13 @@ namespace Extension {
             
             //GetFixPoints
             _text.text += context;
+            var length = _text.text.Length;
             Update();
             var fixPoints = _fixPoints.ToList();
             
             var idx = -1;
             var fixPointIdx = 0;
-            foreach (var charInfo in _text.textInfo.characterInfo.Skip(originCnt)) {
+            foreach (var charInfo in _text.textInfo.characterInfo.Take(_text.textInfo.characterCount).Skip(originCnt)) {
                 if (breakCondition?.Invoke() ?? false) {
                     _text.text = context;
                     callback?.Invoke();
@@ -55,6 +56,7 @@ namespace Extension {
                 yield return new WaitForSeconds(interval);
             }
 
+            yield return new WaitForSeconds(pCallBackTerm);
             callback?.Invoke();
         }
 
@@ -104,7 +106,7 @@ namespace Extension {
         private void Update() {
             if (_text.text != _prevValue) {
                 _prevValue = _text.text;
-                _text.ForceMeshUpdate();
+                _text.ForceMeshUpdate(true);
                 Setting();
             }
             
