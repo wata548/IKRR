@@ -7,7 +7,7 @@ namespace Data.Event {
         public readonly string FuncContext;
 
         public Button(string pContext) {
-            const string PATTERN = @"(?<Option>.*)\[\{(?<Func>.*)\}\]";
+            const string PATTERN = @"(?<Option>(?:.|\n)*)\[\{(?<Func>(?:.|\n)*)\}\]";
             var match = Regex.Match(pContext, PATTERN).Groups;
             Option = match["Option"].Value;
             FuncContext = match["Func"].Value;

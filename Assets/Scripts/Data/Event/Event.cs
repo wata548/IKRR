@@ -23,5 +23,10 @@ namespace Data.Event {
 
         public static Event Parse(string pContext) =>
             new Event(pContext);
+
+
+#if UNITY_EDITOR
+        public IEnumerable<SingleScript> Scripts => _event.Select(kvp => kvp.Value);
+#endif
     }
 }

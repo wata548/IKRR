@@ -528,6 +528,7 @@ MonoBehaviour:
   - Condition
   - SymbolEffect
   - UI
+  - UIWord
   - Evolve
   - Enemy
   - EnemyDesc
@@ -535,6 +536,7 @@ MonoBehaviour:
   - Tips
   - Effect
   - EffectDesc
+  - Event
 --- !u!4 &751891225
 Transform:
   m_ObjectHideFlags: 0

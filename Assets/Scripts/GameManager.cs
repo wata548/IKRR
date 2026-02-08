@@ -63,6 +63,9 @@ namespace Data {
         private void Start() {
             UIManager.Instance.Map.GenerateMap(Seed);
             CharactersManager.Player.AddEffect(new Burn(new(30)));
+            
+            var eventData = DataManager.GetEvent(_curChapter);
+            UIManager.Instance.Event.SetEvent(eventData.Name, eventData.Event);
         }
 
         private void Update() {

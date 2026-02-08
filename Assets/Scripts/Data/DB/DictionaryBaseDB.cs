@@ -17,5 +17,9 @@ namespace Data {
             Debug.LogError($"This {pNumber}Number isn't symbol number. checkAgain");
             return null;
         }
+        
+#if UNITY_EDITOR
+        public IReadOnlyDictionary<int, T> GetData() => _matchToSerialNumber;
+#endif
     }
 }

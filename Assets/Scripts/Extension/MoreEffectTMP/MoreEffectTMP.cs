@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Lang;
 using TMPro;
 using UnityEngine;
 
@@ -9,8 +10,6 @@ namespace Extension {
     [RequireComponent(typeof(TMP_Text))]
     public partial class MoreEffectTMP: MonoBehaviour {
 
-        public TMP_Text TMP => _text;
-        
         //==================================================||Fields 
         private const float X_MOVE_RANGE = 0.08f;
         [SerializeField] private float _rowInterval = 0.3f;
@@ -21,14 +20,16 @@ namespace Extension {
         private float _timer = 0;
         private string _prevValue = "";
 
-        public IEnumerator Typing(string context, float interval, float pCallBackTerm, Action callback = null,
-            Func<bool> breakCondition = null) {
+        public IEnumerator Typing(string pContext, float pInterval, float pCallBackTerm, Action pCallback = null,
+            Func<bool> pBreakCondition = null) {
 
+            pContext = pContext.ApplyLang();
+            
             var cur = _text.text;
             var originCnt = cur.Length;
             
             //GetFixPoints
-            _text.text += context;
+            _text.text += pContext;
             var length = _text.text.Length;
             Update();
             var fixPoints = _fixPoints.ToList();
@@ -36,9 +37,9 @@ namespace Extension {
             var idx = -1;
             var fixPointIdx = 0;
             foreach (var charInfo in _text.textInfo.characterInfo.Take(_text.textInfo.characterCount).Skip(originCnt)) {
-                if (breakCondition?.Invoke() ?? false) {
-                    _text.text = context;
-                    callback?.Invoke();
+                if (pBreakCondition?.Invoke() ?? false) {
+                    _text.text = pContext;
+                    pCallback?.Invoke();
                     yield break;
                 }
                 
@@ -53,11 +54,11 @@ namespace Extension {
 
                 _text.text = cur;
                 Update();
-                yield return new WaitForSeconds(interval);
+                yield return new WaitForSeconds(pInterval);
             }
 
             yield return new WaitForSeconds(pCallBackTerm);
-            callback?.Invoke();
+            pCallback?.Invoke();
         }
 
         private void Apply() {
@@ -68,18 +69,18 @@ namespace Extension {
             var prevTime = _timer;
             _timer += Time.deltaTime / Time.timeScale;
             
-            var pTextInfo = _text.textInfo;
+            var textInfo = _text.textInfo;
             var idx = _tagPoints[0].Start;
 
-            var charInfos = pTextInfo.characterInfo;
+            var charInfos = textInfo.characterInfo;
             foreach (var tag in _tagPoints) {
-                for (; idx <= tag.End; idx++) {
+                for (; idx <= tag.End && idx < textInfo.characterCount; idx++) {
                     var charInfo = charInfos[idx];
 
                     if (!charInfo.isVisible)
                         continue;
                         
-                    var vertices = pTextInfo.meshInfo[charInfo.materialReferenceIndex].vertices;
+                    var vertices = textInfo.meshInfo[charInfo.materialReferenceIndex].vertices;
                     var func = _changePosFunc[tag.Type];
                     var prevPos = Vector3.zero;
                     var prevRotation = Vector3.zero;
@@ -102,6 +103,8 @@ namespace Extension {
             TMPUpdate();
         }
 
+        public void SetText(string pContext) => _text.text = pContext.ApplyLang();
+        
        //==================================================||Unity 
         private void Update() {
             if (_text.text != _prevValue) {

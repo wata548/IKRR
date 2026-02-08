@@ -5,6 +5,9 @@
     function Close(...)
         return CS.UI.UIManager.Instance.Event:Close(...);
     end
+    function Clear(...)
+        return CS.UI.UIManager.Instance.Event:Clear(...);
+    end
     Field = CS.Character.CharactersManager;
     Symbol = CS.Data.DataManager.Symbol;
     Roulette = CS.Roulette.RouletteManager;

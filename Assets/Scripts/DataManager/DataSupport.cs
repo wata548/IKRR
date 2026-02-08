@@ -3,14 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using CSVData;
 using CSVData.Extensions;
 using Lang;
-using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
 
@@ -33,6 +29,8 @@ namespace Data.supportFont {
         };
         static readonly string[] TRANSLATE_ITEMS = new [] {
             "UI",
+            "UIWord",
+            "Event",
             "EnemySkill",
             "Tips",
             "EffectDesc",
@@ -44,6 +42,29 @@ namespace Data.supportFont {
             "Condition",
             "Symbol",
         };
+
+        [MenuItem("DataManager/GetEventText")]
+        private static void GetEventText() {
+            var db = new DictionaryBaseDB<List<EventData>>();
+            db.LoadData(new SSGroupLoader<EventData, EventData>(
+                    "Event",
+                    data => data.Chapter
+            ));
+            var result = new StringBuilder();
+            result.Append("<noparse>");
+            foreach (var chapter in db.GetData()) {
+                foreach (var @event in chapter.Value) {
+                    result.AppendLine($@"""{@event.Name}""");
+                    foreach (var script in @event.Event.Scripts) {
+                        result.AppendLine($@"""{script.Context}""");
+                        foreach (var button in script.Buttons) {
+                            result.AppendLine($@"""{button.Option}""");
+                        }
+                    }
+                }
+            }
+            Debug.Log(result.ToString());
+        }
         
         [MenuItem("DataManager/SaveSpreadSheetToCSV")]
         private static void SaveSpreadSheetToCSV() {

@@ -44,7 +44,7 @@ namespace UI.Event {
         const float INTERVAL = 0.05f;
         const float SELECT_SHOW_TERM = 0.5f;
         public void SetScript(SingleScript pScript) {
-            _context.TMP.text = "";
+            _context.SetText("");
             if (pScript is not { TargetImage: null })
                 _img.sprite = pScript.TargetImage;
             var animation = _context.Typing(
@@ -72,16 +72,20 @@ namespace UI.Event {
         private void ShowButton() {
             _pannel.SetActive(!_pannel.activeSelf);
         }
-        
+
         public void Close() {
             _img.sprite = null;
 
             _container.Clear();
             _animation.Kill();
             _button.gameObject.SetActive(false);
-            
-            UIManager.Instance.Map.ClearStage();
             _pannel.SetActive(false);
+        }
+        
+        public void Clear() {
+            Close();
+            UIManager.Instance.Map.ClearStage();
+            UIManager.Instance.Map.SetActive(true);
         }
         
         public void Goto(int pLabel) {
