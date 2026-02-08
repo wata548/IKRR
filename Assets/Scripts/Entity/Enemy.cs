@@ -42,6 +42,8 @@ namespace Character {
             IsAlive = true;
                         
             SetSkillSet(pData.SkillInfo);
+            
+            
         }
         
         //==================================================||Methods 

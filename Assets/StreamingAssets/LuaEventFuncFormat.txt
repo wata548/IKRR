@@ -8,10 +8,12 @@
     function Clear(...)
         return CS.UI.UIManager.Instance.Event:Clear(...);
     end
-    Field = CS.Character.CharactersManager;
+    Field = CS.Data.CharactersManager;
     Symbol = CS.Data.DataManager.Symbol;
     Roulette = CS.Roulette.RouletteManager;
     Status = CS.Data.Status;
     Stat = CS.Data.TargetStatus;
+    Pos = CS.Data.Positions;
+    Game = CS.Data.GameManager;
     {1}
 end

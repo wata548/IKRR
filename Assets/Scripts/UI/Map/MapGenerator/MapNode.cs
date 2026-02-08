@@ -6,13 +6,10 @@ using System.Text.RegularExpressions;
 using Data.Map;
 using DG.Tweening;
 using Extension;
-using UI;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace MapGenerator {
+namespace UI.Map {
     public class MapNode: MonoBehaviour, IEnumerable<Vector2Int> {
 
         //==================================================||Constant
@@ -22,7 +19,7 @@ namespace MapGenerator {
         
         //==================================================||Properties
         public Vector2Int Position { get; private set; }
-        public Stage Stage { get; private set; }
+        public Stage Type { get; private set; }
         public bool IsActive { get; private set; } = false;
 
         public Vector2Int this[Index pIdx] => new (_edges[pIdx].NextNode, Position.y + 1);
@@ -32,7 +29,7 @@ namespace MapGenerator {
         [SerializeField] private Button _button;
        
         //==================================================||Fields 
-        private static MapGenerator _generator = null;
+        private static Map _map = null;
         private static Dictionary<Stage, Sprite> mapIcons = null;
 
         private Tween _animation;
@@ -40,8 +37,8 @@ namespace MapGenerator {
         
         //==================================================||Methods 
 
-        public static void Init(MapGenerator pGenerator) =>
-            _generator = pGenerator;
+        public static void Init(Map pGenerator) =>
+            _map = pGenerator;
 
         private bool IsConnected(Vector2Int pTarget) {
             if (pTarget.y != Position.y + 1)
@@ -67,14 +64,14 @@ namespace MapGenerator {
             
             SetActiveNextEdges(false);
             var target = _edges.First(edge => edge.NextNode == pNextStage.x).Edge;
-            target.material = MaterialStore.Get(MapGenerator.MOVED_MGTERIAL);
+            target.material = MaterialStore.Get(Map.MOVED_MGTERIAL);
             return true;
         }
 
         public void SetActiveNextEdges(bool pActive) {
             var material = pActive
-                ? MapGenerator.MOVABLE_MATERIAL
-                : MapGenerator.NOT_MOVABLE_MATERIAL;
+                ? Map.MOVABLE_MATERIAL
+                : Map.NOT_MOVABLE_MATERIAL;
             
             _edges.ForEach(edge => {
                 edge.Edge.material = MaterialStore.Get(material);
@@ -88,7 +85,7 @@ namespace MapGenerator {
 
             FindIcons();
             
-            Stage = pStage;
+            Type = pStage;
             _icon.sprite = mapIcons[pStage];
 
             Position = pPosition;
@@ -115,7 +112,7 @@ namespace MapGenerator {
             GetEnumerator();
 
         public void OnClick() {
-            _generator.SelectStage(Position);           
+            _map.SelectStage(Position);           
         }
         
         //==================================================||Unity

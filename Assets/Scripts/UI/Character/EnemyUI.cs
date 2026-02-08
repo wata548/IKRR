@@ -17,7 +17,6 @@ namespace UI.Character {
         private Tween _idleAnimation;
         private Tween _attackAnimation;
         private Vector3? _origin = null;
-        
         //==================================================||Methods 
         public void SetMaterial(string pMaterialName) {
             _shower.material = MaterialStore.Get(pMaterialName);
@@ -104,7 +103,7 @@ namespace UI.Character {
             gameObject.SetActive(false);
         }
 
-        protected override Info Info() {
+       protected override Info Info() {
             var code = (CharactersManager.GetEntity(_position) as Enemy)!.SerialNumber;
             return DataManager.Enemy.GetData(code).GetInfo();
         }

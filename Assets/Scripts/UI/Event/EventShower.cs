@@ -83,9 +83,9 @@ namespace UI.Event {
         }
         
         public void Clear() {
-            Close();
             UIManager.Instance.Map.ClearStage();
             UIManager.Instance.Map.SetActive(true);
+            Close();
         }
         
         public void Goto(int pLabel) {

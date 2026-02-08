@@ -17,22 +17,26 @@ namespace Data {
         public static int Seed { get; private set; } = 987654321;
         
         //==================================================||Methods 
-        public static void SetEnemy() {
+        public static void StartBattle() {
             Fsm.Instance.StartBattle();
-            
+            Fsm.Instance.Change(State.Rolling);
+        }
+        
+        public static void SetEnemy() {
             var position = Positions.Middle;
             var enemies = DataManager.GetStageEnemy(_curChapter);
-            foreach (var enemy in enemies) {
+            foreach (var enemyCode in enemies) {
                 
-                var newEnemy = new Enemy(position, enemy);
-                CharactersManager.SetEntity(position, newEnemy);
-                
-                var ui = UIManager.Instance.Entity.GetEnemyUI(position);
-                ui.SetData(newEnemy);
-                
+                CharactersManager.SetEnemy(enemyCode, position);
                 position = (Positions)((int)position << 1);
             }
-            Fsm.Instance.Change(State.Rolling);
+            StartBattle();
+        }
+
+        public static void SetEvent() {
+            var eventData = DataManager.GetEvent(_curChapter);
+            UIManager.Instance.Event.SetEvent(eventData.Name, eventData.Event);    
+            UIManager.Instance.Map.SetActive(false);
         }
         
         public static void StartGame() {
@@ -49,7 +53,12 @@ namespace Data {
             RouletteManager.Init(list);
         }
 
-        public void TurnEnd() {
+        private static void TargetUpdate() {
+            var target = CharactersManager.TargetUpdate();
+            UIManager.Instance.Entity.SetTarget(target);    
+        }
+        
+        public static void TurnEnd() {
             if(Fsm.Instance.State == State.PlayerTurn)
                 Fsm.Instance.Change(State.EnemyTurn);
         }
@@ -62,19 +71,14 @@ namespace Data {
 
         private void Start() {
             UIManager.Instance.Map.GenerateMap(Seed);
+            //TestCode
             CharactersManager.Player.AddEffect(new Burn(new(30)));
-            
-            var eventData = DataManager.GetEvent(_curChapter);
-            UIManager.Instance.Event.SetEvent(eventData.Name, eventData.Event);
         }
 
         private void Update() {
-
             if (!CharactersManager.IsFighting)
                 return;
-            
-            var target = CharactersManager.TargetUpdate();
-            UIManager.Instance.Entity.SetTarget(target);
+            TargetUpdate();
         }
 
         private void OnApplicationQuit() {

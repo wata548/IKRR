@@ -1,6 +1,4 @@
-﻿using System;
-using Data;
-using Extension;
+﻿using Extension;
 using UI.Character;
 using UI.Event;
 using UI.LevelUpReward;
@@ -12,7 +10,7 @@ namespace UI {
     public class UIManager: MonoSingleton<UIManager> {
         
         protected override bool IsNarrowSingleton { get; } = true;
-        [field: SerializeField] public MapGenerator.MapGenerator Map { get; private set; }
+        [field: SerializeField] public Map.Map Map { get; private set; }
         [field: SerializeField] public StatusShowerManager Status { get; private set; }
         [field: SerializeField] public SkillShowerManager SkillShower { get; private set; }
         [field: SerializeField] public Roulette.Roulette Roulette { get; private set; }

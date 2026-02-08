@@ -1,4 +1,5 @@
 ﻿using System;
+using XLua;
 
 namespace Data {
     [Flags, Serializable]

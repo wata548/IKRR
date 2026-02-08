@@ -4,7 +4,7 @@ using System.Linq;
 using Character;
 using Character.Skill;
 using Extension;
-using Roulette;
+using UI;
 
 namespace Data {
     public struct EntityAnimation {
@@ -55,10 +55,13 @@ namespace Data {
             }); 
         }
         
-        public static void SetEntity(Positions pPosition, IEntity pEntity) {
+        public static void SetEnemy(int pEnemy, Positions pPosition) {
             IsFighting = true;
-            
-            _entities[pPosition] = pEntity;
+
+            var enemy = new Enemy(pPosition, pEnemy);
+            _entities[pPosition] = enemy;
+            var ui = UIManager.Instance.Entity.GetEnemyUI(pPosition);
+            ui.SetData(enemy);
         }
 
         public static Positions TargetUpdate() {
