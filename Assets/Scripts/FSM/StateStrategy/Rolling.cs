@@ -8,7 +8,7 @@ namespace FSM.StateStrategy {
 
             if (!CharactersManager.IsFighting) {
                 Fsm.Instance.Change(State.SelectStage);
-                UIManager.Instance.Map.ClearStage();
+                UIManager.Instance.Map.ClearStage(true);
                 return;
             }
                 

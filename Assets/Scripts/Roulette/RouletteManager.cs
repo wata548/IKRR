@@ -13,12 +13,13 @@ namespace Roulette {
         //==================================================||Constants
         private const int DEFAULT_WIDTH = 5; 
         private const int DEFAULT_HEIGHT = 3;
+        private const int DEFAULT_HAND_SIZE = 25;
        
         //==================================================||Properties 
         public const int MAX_HEIGHT = 8;
         public static int Width { get; private set; } = DEFAULT_WIDTH;
         public static int Height { get; private set; } = DEFAULT_HEIGHT;
-        public static int HandSize { get; private set; } = 25;
+        public static int HandSize { get; private set; } = DEFAULT_HAND_SIZE;
         public static IEnumerable<int> Hand => _hand.SelectMany(kvp => Enumerable.Repeat(kvp.Key, kvp.Value));
         public static IEnumerable<KeyValuePair<int, int>> HandDictionary => _hand;
         public static int LastUpdateFrame { get; private set; }= 0; 
@@ -38,11 +39,16 @@ namespace Roulette {
             
             LastUpdateFrame = Time.frameCount;
         }
-        
-        public static void Init(IEnumerable<int> pInitHand) {
 
-            Width = DEFAULT_WIDTH;
-            Height = DEFAULT_HEIGHT;
+        public static void Init(IEnumerable<int> pInitHand) {
+            Init(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_HAND_SIZE, pInitHand);
+        }
+        
+        public static void Init(int pWidth, int pHeight, int pHandSize, IEnumerable<int> pInitHand) {
+
+            Width = pWidth;
+            Height = pHeight;
+            HandSize = pHandSize;
             
             if (_current.Count == 0) {
                 for (int i = 0; i < Width; i++) {

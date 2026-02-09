@@ -18,14 +18,15 @@ namespace Extension {
             var prefabSize = (pArgs.Prefab.transform as RectTransform)!.sizeDelta;
             
             var prefabRatio = prefabSize / pRect.sizeDelta;
-            var interval =  (Vector2.one - prefabRatio) / (pArgs.TableSize- Vector2.one);
+            var interval =  (Vector2.one - prefabRatio - pArgs.Padding) / (pArgs.TableSize- Vector2.one);
             if (pArgs.TableSize.x <= 1)
                 interval.x = 0;
             if (pArgs.TableSize.y <= 1)
                 interval.y = 0;
             var initPos = pArgs.Padding / 2;
             initPos.x += prefabRatio.x / 2f;
-            initPos.y -= prefabRatio.y / 2f;
+            initPos.y += prefabRatio.y / 2f;
+            initPos.y *= -1;
 
             if (pArgs.TableSize.x <= 1)
                 initPos.x = (1f - prefabRatio.x) / 2f;

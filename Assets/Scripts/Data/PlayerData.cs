@@ -10,10 +10,10 @@ namespace Data {
         public static int CurExp { get; private set; } = 0;
         public static int LastUpdate { get; private set; } = 0;
         
-        public static void Init() {
-            Money = 0;
-            Level = 1;
-            CurExp = 0;
+        public static void Init(int pMoney = 0, int pLevel = 1, int pExp = 0) {
+            Money = pMoney;
+            Level = pLevel;
+            CurExp = pExp;
             NeedExp = GetNeedExp();
         }
 

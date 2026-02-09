@@ -3336,7 +3336,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 219}
-  m_SizeDelta: {x: 900, y: 70}
+  m_SizeDelta: {x: 1500, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &569290014
 MonoBehaviour:
@@ -5658,7 +5658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _symbolPrefab: {fileID: 4730631682796704976, guid: f2211d7883d66b04cac9b356b23e1daa, type: 3}
   _tableSize: {x: 3, y: 5}
-  _padding: {x: 0.01, y: 0}
+  _padding: {x: 0.1, y: 0}
 --- !u!1 &872999871
 GameObject:
   m_ObjectHideFlags: 0

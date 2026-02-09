@@ -8,7 +8,6 @@ using UnityEngine.Serialization;
 namespace FSM {
     public class Fsm: MonoSingleton<Fsm> {
         protected override bool IsNarrowSingleton { get; } = true;
-
         public int Turn { get; private set; } = 0;
         public State State { get; private set; }
         private IStrategy _strategy;
@@ -26,7 +25,6 @@ namespace FSM {
                 { State.PlayerTurn, new PlayerTurnState() },
                 { State.EnemyTurn, new EnemyTurn() },
             };
-
         public void StartBattle() =>
             Turn = 0;
 

@@ -22,6 +22,7 @@ namespace UI.Character {
 
         //==================================================||Properties 
         public EntityUI this[Positions pPosition] => _uis[pPosition];
+        public PlayerUI Player => _uis[Positions.Player] as PlayerUI;
 
        //==================================================||Methods 
         public EnemyUI GetEnemyUI(Positions pPosition) {

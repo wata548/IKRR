@@ -7,16 +7,17 @@ using Extension;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
+using SaveFile = Data.SaveFile;
 
 namespace UI.Map {
     
     public partial class Map: MonoBehaviour {
 
-       //==================================================||Constant
-       private const int topIntval = 2;
-       public const string NOT_MOVABLE_MATERIAL = "NotMovableEdge";
-       public const string MOVABLE_MATERIAL = "MovableEdge";
-       public const string MOVED_MGTERIAL = "MovedEdge";
+        //==================================================||Constant
+        private const int topIntval = 2;
+        public const string NOT_MOVABLE_MATERIAL = "NotMovableEdge";
+        public const string MOVABLE_MATERIAL = "MovableEdge";
+        public const string MOVED_MGTERIAL = "MovedEdge";
         
         //==================================================||SerializeFields 
         [Space]
@@ -51,11 +52,14 @@ namespace UI.Map {
         private Vector2Int _curStage = -Vector2Int.one;
 
         private Random _random;
-       //==================================================||Properties 
-       public int Height { get; private set; }
+        
+        //==================================================||Properties 
+        public int Height { get; private set; }
+        public static List<Vector2Int> ClearStages { get; set; } = new();
         
         //==================================================||Methods 
-        public void ClearStage() {
+        public void ClearChapter() => ClearStages.Clear();
+        public void ClearStage(bool pSave) {
             Height++;
             
             _mapNodes[_curStage.y][_curStage.x].SetActive(false);
@@ -65,16 +69,35 @@ namespace UI.Map {
             foreach (var nextNode in _mapNodes[_curStage.y][_curStage.x]) {
                 _mapNodes[nextNode.y][nextNode.x].SetActive(true);
             }
+
+            if (pSave) {
+                ClearStages.Add(_curStage);
+                var save = SaveFile.Save();
+                save.Save();
+            }
         }
         
         public void SetActive(bool pActive) =>  
             _mapPannel.SetActive(pActive);
         public void SetActiveBySwitch() =>
             _mapPannel.SetActive(!_mapPannel.activeSelf);
-        
-        public void GenerateMap(int pSeed) {
 
-            _random = new(pSeed);
+        private void Load() {
+            if (ClearStages.Count == 0) {
+                foreach (var node in _mapNodes[0]) {
+                    node.SetActive(true);
+                }
+                return;
+            }
+
+            foreach (var stage in ClearStages) {
+                SelectStage(stage, true);
+                ClearStage(false);
+            }
+        }
+        
+        public void GenerateMap(int pSeed, int pChapter) {
+            _random = new(pSeed + pChapter);
             
             foreach (var floor in _mapNodes) {
                 floor.ForEach(node => Destroy(node.gameObject));
@@ -87,10 +110,8 @@ namespace UI.Map {
                 GenerateRound(interval * (i + 1));
                 GenerateEdges();
             }
-            
-            foreach (var node in _mapNodes[0]) {
-                node.SetActive(true);
-            }
+
+            Load();
         }
         private void GenerateRound(float pHeight) {
 

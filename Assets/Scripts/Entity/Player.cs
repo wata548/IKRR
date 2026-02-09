@@ -6,6 +6,21 @@ using Extension.Scene;
 using UI;
 
 namespace Character {
+    public class JsonPlayerData {
+        public int MaxHp { get; set; }
+        public int Hp { get; set; }
+        public bool IsAlive { get; set; }
+        public List<EffectBase> Effects { get; set; } = new();
+        
+        public JsonPlayerData(){}
+        public JsonPlayerData(Player pPlayer) {
+            Hp = pPlayer.Hp;
+            MaxHp = pPlayer.MaxHp;
+            IsAlive = pPlayer.IsAlive;
+            Effects = pPlayer.Effects;
+        }
+    }
+    
     public class Player: IEntity {
         
         //==================================================||Properties 
@@ -16,6 +31,15 @@ namespace Character {
 
         public Positions Position => Positions.Player;
         //==================================================||Constructor
+        public Player(){}
+
+        public Player(JsonPlayerData pData) {
+            MaxHp = pData.MaxHp;
+            Hp = pData.Hp;
+            Effects = pData.Effects;
+            IsAlive = pData.IsAlive;
+        }
+        
         public Player(int pMaxHp) {
             MaxHp = pMaxHp;
             Hp = MaxHp;

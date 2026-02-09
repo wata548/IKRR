@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Character;
 using Data;
 using Extension;
 using Roulette;
@@ -99,6 +100,7 @@ namespace UI.LevelUpReward {
         }
        //==================================================||Unity 
         private void Awake() {
+            _level = PlayerData.Level;
             _confirmButton.onClick.AddListener(ConfirmOption);
             
             _add.onClick.AddListener(() => RouletteManager.AddHandSize(1, _rouletteResult));

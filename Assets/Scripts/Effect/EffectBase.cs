@@ -1,17 +1,22 @@
 ﻿using System.Collections.Generic;
 using Character;
 using Character.Skill.Data;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Data {
     public abstract class EffectBase {
         public int Duration { get; protected set; }
-        public int LastUpdateFrame { get; private set; } = -1;
         public abstract int Code { get; }
+        
+        [JsonIgnore]
+        public int LastUpdateFrame { get; private set; } = -1;
+        [JsonIgnore]
         public virtual Dictionary<string, object> Infos => new() {
             {"Duration", Duration}
         };
 
+        [JsonIgnore]
         public virtual int ShowCount => Duration;
 
         protected void Update() => LastUpdateFrame = Time.frameCount;

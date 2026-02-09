@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI.Map {
     public partial class Map: MonoBehaviour {
-        public void SelectStage(Vector2Int pNextStage) {
+        public void SelectStage(Vector2Int pNextStage, bool pLoad = false) {
             if (_curStage.y != -1) {
                 var cur = _mapNodes[_curStage.y][_curStage.x];
                 if (cur.IsActive || !cur.SelectNextStage(pNextStage))
@@ -24,7 +24,8 @@ namespace UI.Map {
             _curStage = pNextStage;
             var targetNode = _mapNodes[_curStage.y][_curStage.x];
             targetNode.SetActive(true);
-            OnSelect(targetNode.Type);
+            if(!pLoad)
+                OnSelect(targetNode.Type);
         }
         
         private void OnSelect(Stage pType) {

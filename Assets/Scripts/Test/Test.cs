@@ -7,11 +7,24 @@ using Data;
 using Data.Event;
 using Extension;
 using Extension.Test;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Test {
     public static class Test {
-
+        [TestMethod]
+        public static void SaveTest() {
+            new SaveFile().Save();
+        }
+        [TestMethod]
+        public static void Parse(Positions pPos) {
+            var target = CharactersManager.GetEntity(pPos);
+            var setting = new JsonSerializerSettings();
+            setting.TypeNameHandling = TypeNameHandling.All;
+            var json = JsonConvert.SerializeObject(target, Formatting.None, setting);
+            Debug.Log(json);
+        }
+        
         [TestMethod]
         public static void Match(string pContext) {
             const string PATTERN = @"@(?<Label>\d+):(?<Context>[^@]*)";

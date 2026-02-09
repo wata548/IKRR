@@ -1,5 +1,6 @@
 ﻿using Data;
 using FSM.StateStrategy;
+using UI;
 
 namespace FSM {
     public class PlayerTurnState : IStrategy {
@@ -8,6 +9,7 @@ namespace FSM {
         public void Update() {
             if (!CharactersManager.IsFighting) {
                 Fsm.Instance.Change(State.SelectStage);
+                UIManager.Instance.Map.ClearStage(true);
                 return;
             }
             

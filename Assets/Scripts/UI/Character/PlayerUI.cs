@@ -20,6 +20,10 @@ namespace UI.Character {
         private Dictionary<string, object> _infoParams = new();
         
        //==================================================||Methods 
+       public void Refresh(IEntity pEntity) {
+           _hpBar.Set(pEntity.MaxHp, pEntity.Hp);
+       }
+       
         public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
             _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
                 .OnComplete(() => pOnComplete?.Invoke());

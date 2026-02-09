@@ -1,22 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Character;
-using FSM;
-using Roulette;
+﻿using FSM;
 using UI;
 using UnityEngine;
+using Random = System.Random;
 
 namespace Data {
     public class GameManager: MonoBehaviour {
-
-        //==================================================||Fields 
-        private static int _curChapter = 0;
         
+        //==================================================||Fields 
+        private static bool _isInit = false;
         //==================================================||Properties 
         public static int Seed { get; private set; } = 987654321;
+        public static int Chapter{ get; private set; } = 0;
         
         //==================================================||Methods 
+        public static void Init() {
+            var random = new Random();
+            Init(random.Next(int.MinValue, int.MaxValue), 0);
+        } 
+        
+        public static void Init(int pSeed, int pChapter) {
+            Seed = pSeed;
+            Chapter = pChapter;
+            _isInit = true;
+        }
+        
         public static void StartBattle() {
             Fsm.Instance.StartBattle();
             Fsm.Instance.Change(State.Rolling);
@@ -24,7 +31,7 @@ namespace Data {
         
         public static void SetEnemy() {
             var position = Positions.Middle;
-            var enemies = DataManager.GetStageEnemy(_curChapter);
+            var enemies = DataManager.GetStageEnemy(Chapter);
             foreach (var enemyCode in enemies) {
                 
                 CharactersManager.SetEnemy(enemyCode, position);
@@ -34,25 +41,11 @@ namespace Data {
         }
 
         public static void SetEvent() {
-            var eventData = DataManager.GetEvent(_curChapter);
+            var eventData = DataManager.GetEvent(Chapter);
             UIManager.Instance.Event.SetEvent(eventData.Name, eventData.Event);    
             UIManager.Instance.Map.SetActive(false);
         }
         
-        public static void StartGame() {
-
-            Status.Clear();
-            CharactersManager.Init();
-            
-            var list = new List<int>();
-            list.AddRange(Enumerable.Repeat(1001, 7));
-            list.AddRange(Enumerable.Repeat(1003, 5));
-            list.AddRange(Enumerable.Repeat(1004, 1));
-            list.AddRange(Enumerable.Repeat(1005, 5));
-            list.AddRange(Enumerable.Repeat(1007, 7));
-            RouletteManager.Init(list);
-        }
-
         private static void TargetUpdate() {
             var target = CharactersManager.TargetUpdate();
             UIManager.Instance.Entity.SetTarget(target);    
@@ -65,12 +58,19 @@ namespace Data {
 
         //==================================================||Unity 
         private void Awake() {
-            StartGame();
-            PlayerData.Init();
+            if (!_isInit) {
+                SaveFile.Start();
+                Debug.Log("Skip title scene");
+            }
+
+            _isInit = false;
+            Status.Clear();
         }
 
         private void Start() {
-            UIManager.Instance.Map.GenerateMap(Seed);
+            UIManager.Instance.Map.GenerateMap(Seed, Chapter);
+            var player = CharactersManager.Player;
+            UIManager.Instance.Entity.Player.Refresh(player);
             //TestCode
             CharactersManager.Player.AddEffect(new Burn(new(30)));
         }

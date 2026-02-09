@@ -19,8 +19,8 @@ namespace Data {
         
         //==================================================||Fields 
         private static Dictionary<Positions, IEntity> _entities = new();
-        public static Player Player = null;
-        public static bool IsFighting = false;
+        public static Player Player { get; private set; } = null;
+        public static bool IsFighting { get; private set; } = false;
         //==================================================||Properties 
         public static Positions TargetEnemy { get; set; } = Positions.Middle;
         
@@ -37,11 +37,10 @@ namespace Data {
             return skills;
         }
         
-        public static void Init() {
+        public static void Init(Player pPlayer = null) {
             TargetEnemy = Positions.Middle;
-            Player = new Player(1000);
-            if (!_entities.TryAdd(Positions.Player, Player))
-                _entities[Positions.Player] = Player;
+            Player = pPlayer ?? new Player(1000);
+            _entities[Positions.Player] = Player;
         }
 
         public static void OnDeathEnemy(Positions pPosition) {
