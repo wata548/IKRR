@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace Data {
     public interface ILevelUpAppearanceDB {
-        public SymbolRarity GetRarity();
+        public Rarity GetRarity();
     }
 
     public class LevelUpAppearanceDB : ILevelUpAppearanceDB {
@@ -16,7 +16,7 @@ namespace Data {
             _datas = pLoader.Load().ToList();
         }
         
-        public SymbolRarity GetRarity() {
+        public Rarity GetRarity() {
             var target = Random.Range(0f, 1f);
             return _datas.First(data => data.Appearance >= target).Rarity;
         }

@@ -5,7 +5,7 @@ using Extension;
 
 namespace Data {
     public record SymbolQueryArgs(
-        SymbolRarity Rarity = SymbolRarity.Etc,
+        Rarity Rarity = Rarity.Etc,
         SymbolCategory Category = SymbolCategory.None,
         TargetStatus Status = TargetStatus.None,
         SymbolType Type = SymbolType.None
@@ -17,8 +17,8 @@ namespace Data {
             _matchToSerialNumber
                 .Select(kvp => kvp.Value)
                 .Where(symbol =>
-                        symbol.Rarity != SymbolRarity.Etc
-                        && (pArgs.Rarity == SymbolRarity.Etc || symbol.Rarity == pArgs.Rarity)
+                        symbol.Rarity != Rarity.Etc
+                        && (pArgs.Rarity == Rarity.Etc || symbol.Rarity == pArgs.Rarity)
                         && (pArgs.Type == SymbolType.None || symbol.Type == pArgs.Type)
                         && (pArgs.Category == SymbolCategory.None || symbol.Category.HasFlag(pArgs.Category))
                         && (pArgs.Status == TargetStatus.None || symbol.StatCategory.HasFlag(pArgs.Status))
@@ -29,7 +29,7 @@ namespace Data {
             pTarget
                 .Select(code => _matchToSerialNumber[code])
                 .Where(symbol =>
-                    (pArgs.Rarity == SymbolRarity.Etc || symbol.Rarity == pArgs.Rarity)
+                    (pArgs.Rarity == Rarity.Etc || symbol.Rarity == pArgs.Rarity)
                     && (pArgs.Type == SymbolType.None || symbol.Type == pArgs.Type)
                     && (pArgs.Category == SymbolCategory.None || symbol.Category.HasFlag(pArgs.Category))
                     && (pArgs.Status == TargetStatus.None || symbol.StatCategory.HasFlag(pArgs.Status))

@@ -12,7 +12,7 @@ namespace UI {
     public class InfoShower: MonoBehaviour {
 
        //==================================================||Fields 
-        [SerializeField] private GameObject _board;
+        [SerializeField] private Image _board;
         [SerializeField] private TMP_LangText _name;
         [SerializeField] private TMP_LangFormatExtendedText _context;
         [SerializeField] private List<InfoShowerOption> _options;
@@ -22,7 +22,7 @@ namespace UI {
 
         private const KeyCode ACTIVE_KEY = KeyCode.Mouse1;
         //==================================================||Properties
-        public bool IsActive => _board.activeSelf;
+        public bool IsActive => _board.gameObject.activeSelf;
         
         //==================================================||Methods 
         public void SetInfo(Info pInfo) {
@@ -33,7 +33,13 @@ namespace UI {
         }
         
         private void SetData() {
-            _board.SetActive(true);
+            const string PATH = "InfoShower/InfoShower_{0}";
+            
+            _board.gameObject.SetActive(true);
+            var rarity = _info.Rarity == Rarity.Evolution 
+                ? Rarity.Etc 
+                : _info.Rarity;
+            _board.sprite = Resources.Load<Sprite>(string.Format(PATH, rarity));
             _name.text = _info.Name;
             _curOptions = _info.Contexts;
             _idx = 0;
@@ -54,7 +60,7 @@ namespace UI {
 
         public void Hide() {
             _info = null;
-            _board.SetActive(false);
+            _board.gameObject.SetActive(false);
         }
 
         private void PositionUpdate() {
@@ -93,11 +99,11 @@ namespace UI {
             if(_info != null && Input.GetKeyDown(ACTIVE_KEY))
                 SetData();
             
-            if (!_board.activeSelf)
+            if (!_board.gameObject.activeSelf)
                 return;
             
             if(Input.GetKeyUp(ACTIVE_KEY))
-                _board.SetActive(false);
+                _board.gameObject.SetActive(false);
 
             PositionUpdate();
             if (Input.mouseScrollDelta.y != 0) {

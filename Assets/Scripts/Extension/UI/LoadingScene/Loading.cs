@@ -43,7 +43,7 @@ namespace Extension.Scene {
 
         private void Update() {
             var progress = SceneManager.Progress;
-            _progressDetail.text = $"{progress:N0}%";
+            _progressDetail.text = $"{progress * 100f:N0}%";
             _progress.fillAmount = progress;
         }
     }

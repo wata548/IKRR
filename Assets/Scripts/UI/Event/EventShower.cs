@@ -21,6 +21,8 @@ namespace UI.Event {
 
         private Tween _animation;
         private Data.Event.Event _curEvent;
+        const float INTERVAL = 0.03f;
+        const float SELECT_SHOW_TERM = 0.5f;
 
         [TestMethod]
         public void SetEvent(string pTitle, Data.Event.Event pEvent) {
@@ -40,9 +42,7 @@ namespace UI.Event {
                     .SetLoops(-1, LoopType.Yoyo);
             } 
         }
-
-        const float INTERVAL = 0.05f;
-        const float SELECT_SHOW_TERM = 0.5f;
+        
         public void SetScript(SingleScript pScript) {
             _context.SetText("");
             if (pScript is not { TargetImage: null })
