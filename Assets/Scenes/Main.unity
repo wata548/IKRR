@@ -11851,6 +11851,15 @@ MonoBehaviour:
   _roundCount: 10
   _roundSymbol: {fileID: 7925018694991941056, guid: 70ce7536796417247b37204475e63055, type: 3}
   _edge: {fileID: 5759426602111166229, guid: 72684a9b6433e9944a391c84ffb6d5ff, type: 3}
+  _infos:
+  - <Key>k__BackingField: 0
+    <Value>k__BackingField: {fileID: 11400000, guid: 8f8f1efad087aae4fbe3298e6ce78cd4, type: 2}
+  - <Key>k__BackingField: 1
+    <Value>k__BackingField: {fileID: 11400000, guid: 9598f082c2c13014e99d49c92f22b02f, type: 2}
+  - <Key>k__BackingField: 2
+    <Value>k__BackingField: {fileID: 11400000, guid: d266a9b16f77c4f488aea4dfe9828dbc, type: 2}
+  - <Key>k__BackingField: 3
+    <Value>k__BackingField: {fileID: 11400000, guid: 25fadbb456b92684ea93248ef0a3de47, type: 2}
 --- !u!1 &1559562218
 GameObject:
   m_ObjectHideFlags: 0

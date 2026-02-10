@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Data;
 using Data.Map;
 using DG.Tweening;
 using Extension;
@@ -10,7 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Map {
-    public class MapNode: MonoBehaviour, IEnumerable<Vector2Int> {
+    public class MapNode: ShowInfo, IEnumerable<Vector2Int> {
 
         //==================================================||Constant
         private const float animationCycle = 0.75f;
@@ -96,8 +97,7 @@ namespace UI.Map {
                 .LoadAll<Sprite>("StageIcons")
                 .ToDictionary(
                     sprite => {
-                        var name = Regex.Match(sprite.name, @"(.+)_\d").Groups[1].Value;
-                        var stage = Enum.Parse(typeof(Stage), name);
+                        var stage = Enum.Parse(typeof(Stage), sprite.name);
                         return (Stage)stage;
                     },
                     sprite => sprite
@@ -120,5 +120,7 @@ namespace UI.Map {
             _animation?.Kill();
             _edges.ForEach(edge => Destroy(edge.Edge));
         }
+
+        protected override Info Info() => _map.MatchInfo[Type];
     }
 }

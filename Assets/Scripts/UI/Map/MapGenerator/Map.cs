@@ -37,6 +37,10 @@ namespace UI.Map {
         [Space] 
         [Header("Prefabs")] 
         [SerializeField] private Image _edge;
+
+        [Space] 
+        [Header("Node Info")] 
+        [SerializeField] private List<SerializableKVP<Stage, InfoSO>> _infos;
         
         //==================================================||Fields 
         private List<List<MapNode>> _mapNodes = new();
@@ -56,7 +60,8 @@ namespace UI.Map {
         //==================================================||Properties 
         public int Height { get; private set; }
         public static List<Vector2Int> ClearStages { get; set; } = new();
-        
+        public IReadOnlyDictionary<Stage, InfoSO> MatchInfo;
+            
         //==================================================||Methods 
         public void ClearChapter() => ClearStages.Clear();
         public void ClearStage(bool pSave) {
@@ -240,6 +245,8 @@ namespace UI.Map {
         //==================================================||Unity
 
         private void Awake() {
+            MatchInfo = _infos.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            
             _stageWidthInfos = _stageWidthFrequency.Load().ToList();
             var temp = _stageTypeFrequency.Load();
             StageTypeFrequency.LoadData(temp);
