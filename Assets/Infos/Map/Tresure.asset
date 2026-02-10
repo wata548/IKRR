@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8cb8d3d530e534e8678df0857717e2, type: 3}
+  m_Name: Tresure
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: "\uBCF4\uBB3C"
+  <Details>k__BackingField:
+  - Category: "\uC124\uBA85"
+    Context: "\uBB34\uC5B8\uAC00 \uB3C5\uD2B9\uD55C \uC77C\uC774 \uC77C\uC5B4\uB0A9\uB2C8\uB2E4."
