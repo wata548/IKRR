@@ -64,10 +64,10 @@ namespace UI.Character {
         }
 
         public override void OnDeath(IEntity pEntity, int pAmount, Action pOnComplete) {
-            pOnComplete += () => gameObject.SetActive(false);
             _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
                 .OnComplete(() => StartCoroutine(Death()));
             IEnumerator Death() {
+                pOnComplete?.Invoke(); 
                 const float DEATH_ANIMATION = 1f;
                 var mat = _shower.material;
                 var deathMat = MaterialStore.Get("Death");
@@ -79,7 +79,7 @@ namespace UI.Character {
                     deathMat.SetFloat("_CurTime", time/DEATH_ANIMATION); yield return null; }
 
                 _shower.material = mat;
-                pOnComplete?.Invoke();
+                gameObject.SetActive(false);
             }
         }
 

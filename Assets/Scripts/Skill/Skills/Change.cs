@@ -15,8 +15,10 @@ namespace Character.Skill {
         public Change(string[] pData) : base(pData) {}
 
         protected override void Implement(Positions pCaster) {
-            if (!RouletteManager.Change(Column, Row, Code))
+            if (!RouletteManager.Change(Column, Row, Code)) {
                 End();
+                return;
+            }
             UIManager.Instance.Roulette.Evolve(Column, Row, Code, End, PlayAnimation);
         }
     }

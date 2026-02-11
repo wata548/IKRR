@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Data;
 using Symbol;
 
 namespace Roulette {
@@ -18,7 +19,7 @@ namespace Roulette {
             //==================================================||Methods 
             public static explicit  operator CellInfo[](RouletteColumn pTarget) =>
                 pTarget._column;
-            public void ClearStatus() {
+            public void InitStatus() {
                 for (int i = 0; i < _column.Length; i++)
                     _column[i].Status = CellStatus.Usable;
             }
@@ -30,7 +31,20 @@ namespace Roulette {
                 }
             }
 
-            public void Set(int pIdx, int pValue) => _column[pIdx].Code = pValue;
+            public void Set(int pIdx, int pValue) {
+                _column[pIdx].Code = pValue;
+            }
+            
+            public void SetAndCheckStatus(int pColumnIdx, int pIdx, int pValue) {
+                _column[pIdx].Code = pValue;
+                
+                if (pValue == DataManager.EMPTY_SYMBOL)
+                    return;
+                _column[pIdx].Status = SymbolExecutor.IsUsable(pColumnIdx, pIdx)
+                    ? CellStatus.Usable
+                    : CellStatus.Unavailable;
+            }
+
             public int this[int pIdx] => _column[pIdx].Code;
             public CellStatus GetStatus(int pIdx) => _column[pIdx].Status;
 

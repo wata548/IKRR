@@ -3,6 +3,7 @@ using Character.Skill;
 using Data;
 using FSM.StateStrategy;
 using Roulette;
+using Skill.Skills;
 using UI;
 using UnityEngine;
 
@@ -39,8 +40,10 @@ namespace FSM {
             var temp = RouletteManager.GetUsableBuffs();
             while (temp.Count > 0) {
                 var data = temp.Dequeue();
-                if(data.Skill != null)
-                    AnimationBuffer.Enqueue(data);
+                if (data.Skill == null) {
+                    data = new(data.Type, data.Column, data.Row, new EmptySkill(), data.Status);
+                }
+                AnimationBuffer.Enqueue(data);
             }
             CharactersManager.Player.OnRouletteStop();
         }
@@ -58,7 +61,7 @@ namespace FSM {
         
         //==================================================||Properties 
         public abstract State NextState { get; }
-        public static float AnimationInterval { get; set; } = 0.4f;
+        public static float AnimationInterval { get; set; } = 0.05f;
         
         
         //==================================================||Methods 

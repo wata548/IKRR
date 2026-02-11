@@ -6,15 +6,18 @@ using DG.Tweening;
 using Extension;
 using Roulette;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace UI.Roulette {
+    [RequireComponent(typeof(Image))]
     public class Wheel: MonoBehaviour {
 
        //==================================================||Fields 
         [SerializeField] protected RouletteCell _cellPrefab;
         [SerializeField] protected float _power;
         [SerializeField] protected float _powerDelta = 300;
+        private Image _board; 
         protected readonly List<RouletteCell> _cells = new();
         public bool IsRoll { get; private set; } = false;
         private int _idx;
@@ -62,12 +65,20 @@ namespace UI.Roulette {
 
         public void Refresh() {
             for (int row = 0; row < RouletteManager.Height; row++) {
-                if (RouletteManager.Get(_idx, row) == DataManager.EMPTY_SYMBOL)
+                if (RouletteManager.Get(_idx, row) == DataManager.EMPTY_SYMBOL) {
+                    _cells[row].Empty();
                     continue;
-                var temp = RouletteManager.Get(_idx, row);
+                }
                 var status = RouletteManager.GetStatus(_idx, row);
                 _cells[row].SetStatus(status);
             }
+        }
+
+        public void Refresh(int pIdx) {
+            if (RouletteManager.Get(_idx, pIdx) == DataManager.EMPTY_SYMBOL)
+                return;
+            var status = RouletteManager.GetStatus(_idx, pIdx);
+            _cells[pIdx].SetStatus(status);
         }
         
         protected virtual void ShowNewCell() {
@@ -148,6 +159,17 @@ namespace UI.Roulette {
         public void Use(int pIdx, CellStatus pStatus) => 
             _cells[pIdx].PlayAnimation(pStatus);
 
+        public void Focus(bool pActive) {
+            if (!pActive) {
+                _board.material = null;
+                return;
+            }
+
+            var mat = MaterialStore.Get("RatioOutline");
+            mat.SetVector("_SizeDelta", _board.rectTransform.sizeDelta);
+            _board.material = mat;
+        }
+        
        //==================================================||Unity 
         private void Update() {
             if (!IsRoll)
@@ -159,6 +181,7 @@ namespace UI.Roulette {
         private void Awake() {
             RectTransform = GetComponent<RectTransform>();
             _power += Random.Range(0, _powerDelta);
+            _board = GetComponent<Image>();
         }
         
     }

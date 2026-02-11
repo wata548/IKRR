@@ -21,11 +21,11 @@ namespace UI.SkillShower {
        //==================================================||Methods 
         public void Show(string pContext, Action pOnComplete) {
             _shower.text = pContext;
-            AppearAnimation().OnComplete(() => pOnComplete?.Invoke());
+            AppearAnimation(pOnComplete);
         }
 
         [TestMethod(pAllowFoldOut: false, pRuntimeOnly: true)]
-        private Tween AppearAnimation() {
+        private Tween AppearAnimation(Action pOnComplete) {
             const float AlphaAfter = 0.85f;
             const float IdleDuration = 1f;
             const float MoveTime = 0.5f;
@@ -46,6 +46,7 @@ namespace UI.SkillShower {
                 )
                 .Join(_border
                     .DOFade(AlphaAfter, FadeInTime)
+                    .OnComplete(() => pOnComplete?.Invoke())
                 )
                 .Join(_shower.Tmp
                     .DOFade(AlphaAfter, FadeInTime)

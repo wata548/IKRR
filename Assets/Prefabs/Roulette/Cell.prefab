@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a403835b317a4e39b874851fb6a24fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _applyAnimation: 1
+  _applyAnimation: 0
   _targetShower: {fileID: 9212170819065337027}
   _rotationMaximumH: 20
   _rotationMaximumV: 20

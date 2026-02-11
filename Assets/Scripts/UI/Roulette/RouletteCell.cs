@@ -75,6 +75,10 @@ namespace UI.Roulette {
         public void PlayAnimation(CellStatus pStatus) {
             PlayAnimation().OnComplete(() => SetStatus(pStatus));
         }
+
+        public void Empty() {
+            _icon.material = null;
+        }
         
         public void SetStatus(CellStatus pStatus) {
             if (_icon.material.name == $"M_{CHANGE}")

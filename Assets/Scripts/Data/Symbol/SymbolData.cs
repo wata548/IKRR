@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Lang;
 
 namespace Data {
        
@@ -15,17 +16,18 @@ namespace Data {
         public SymbolType Type { get; protected set; }
         public TargetStatus StatCategory { get; protected set; }
         public SymbolCategory Category { get; protected set; }
-
+        
         public Info GetInfo() {
 
-            var descs = new List<InfoDetail>();
+            var details = new List<InfoDetail>();
+            var desc = Rarity.ToKorean().ApplyLang() + 
+                       ", " + Type.ToKorean().ApplyLang() + 
+                       '\n'+ Description.ApplyLang();
+            details.Add(new("정보", desc));
             if(!string.IsNullOrWhiteSpace(Condition))
-                descs.Add(new("조건", Condition));
-
-            descs.Add(new("정보", Description));
-            
+                details.Add(new("조건", Condition));
             if (!string.IsNullOrWhiteSpace(EvolveDescription))
-                descs.Add(new(
+                details.Add(new(
                     "진화",
                     UseInfo.Get(SerialNumber) 
                         ? EvolveDescription 
@@ -33,7 +35,7 @@ namespace Data {
                     )
                 );
             
-            return new Info(Name, descs, null, Rarity);
+            return new Info(Name, details, null, Rarity);
         } 
     }
 }

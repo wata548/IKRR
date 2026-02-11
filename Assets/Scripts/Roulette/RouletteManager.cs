@@ -83,7 +83,7 @@ namespace Roulette {
         
         public static void ClearStatus() {
             foreach (var column in _current) {
-                column.ClearStatus();
+                column.InitStatus();
             }
         }
         
@@ -184,7 +184,7 @@ namespace Roulette {
 
         public static bool Change(int pColumn, int pRow, int pNewItem) {
 
-            if (pColumn < 0 || pColumn > Width || pRow < 0 || pRow > Height)
+            if (pColumn < 0 || pColumn >= Width || pRow < 0 || pRow >= Height)
                 return false;
             
             var target = _current[pColumn][pRow];
@@ -194,7 +194,7 @@ namespace Roulette {
             _hand[target]--;
             if(!_hand.TryAdd(pNewItem, 1))
                 _hand[pNewItem]++;
-            _current[pColumn].Set(pRow, pNewItem);
+            _current[pColumn].SetAndCheckStatus(pColumn, pRow, pNewItem);
             LastUpdateFrame = Time.frameCount;
             return true;
         }

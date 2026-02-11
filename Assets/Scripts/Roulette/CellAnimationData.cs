@@ -10,9 +10,11 @@ namespace Roulette {
         public readonly AnimationType Type;
         public readonly int Column;
         public readonly int Row;
-        public readonly ISkill Skill;
+        public ISkill Skill;
         public readonly CellStatus Status;
 
+        
+        
         public CellAnimationData(AnimationType pType, int pColumn, int pRow, ISkill pSkill, CellStatus pStatus = CellStatus.Usable) =>
             (Type, Column, Row, Skill, Status) = (pType, pColumn, pRow, pSkill, pStatus);
     } 

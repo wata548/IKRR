@@ -8,7 +8,7 @@ namespace UI.Character {
         
         [SerializeField] private Image _fill;
         protected Tween _animation;
-        protected const float ANIMATION_SPEED = 0.3f;
+        protected const float ANIMATION_SPEED = 0.15f;
         
         public virtual void Set(int pMax, int pCurrent) {
             _animation?.Kill();

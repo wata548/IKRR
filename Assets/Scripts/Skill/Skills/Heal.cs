@@ -3,15 +3,35 @@ using Data;
 using UnityEngine.Scripting;
 
 namespace Character.Skill {
-    [Preserve]  
+    
+    [Preserve]
     public class Heal: SharedSkillBase {
 
         [SkillParameter]
         public override RangeValue Value { get; protected set; }
+
+        public Heal(RangeValue pValue, TargetValue pPositions):base() =>
+            (Value, Target) = (pValue, pPositions);
         
         public Heal(string[] pData): base(pData){}
         protected override void Implement(Positions pCaster) {
-            throw new System.NotImplementedException();
+            var caster = CharactersManager.GetEntity(pCaster);
+            var targets = CharactersManager.GetEntities(pCaster, Target.Value);
+            
+            var idx = targets.Length;
+            foreach (var target in targets) {
+
+                var amount = caster.AttackDamageCalc(Value.Value, target);
+                target.Heal(amount, pOnComplete: CustomEnd);
+                Value.Next();
+            }
+
+            void CustomEnd() {
+                idx--;
+                if (idx == 0)
+                    End();
+            }
+            
         }
     }
 }

@@ -44,6 +44,7 @@ namespace UI.Roulette {
             _origin = transform.position;   
             _animation = transform.DOShakePosition(1, ANIMATION_POWER, fadeOut:false).SetLoops(-1);
             
+            _wheels[0].Focus(true);
             foreach (var wheel in _wheels) {
                 wheel.StartRoll();
             }
@@ -91,7 +92,10 @@ namespace UI.Roulette {
             if (!IsRoll || Fsm.Instance.State != State.Rolling)
                 return;
             
-            _wheels.First(wheel => wheel.IsRoll).StopRoll();
+            var wheel = _wheels.First(wheel => wheel.IsRoll);
+            wheel.StopRoll();
+            wheel.Focus(false);
+            
             if (!IsRoll) {
                 
                 _animation?.Kill();
@@ -99,6 +103,10 @@ namespace UI.Roulette {
                 Refresh();
                 
                 Fsm.Instance.Change(State.EvolveCheck);
+            }
+            else {
+                wheel = _wheels.First(wheel => wheel.IsRoll);
+                wheel.Focus(true);
             }
         }
 
