@@ -21,8 +21,7 @@ namespace Character.Skill {
             var idx = targets.Length;
             foreach (var target in targets) {
 
-                var amount = caster.AttackDamageCalc(Value.Value, target);
-                target.Heal(amount, pOnComplete: CustomEnd);
+                target.Heal(Value.Value, pOnComplete: CustomEnd);
                 Value.Next();
             }
 

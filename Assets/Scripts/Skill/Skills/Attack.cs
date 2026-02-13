@@ -12,7 +12,7 @@ namespace Character.Skill {
         public override RangeValue Value { get; protected set; }
 
         [SkillParameter(100)]
-        public AttackType Type { get; protected set; } = AttackType.Default;
+        public AttackType Type { get; protected set; } = AttackType.Swing;
 
 
         public Attack(RangeValue pValue, TargetValue pPositions, AttackType pType):base() =>
@@ -26,7 +26,7 @@ namespace Character.Skill {
             var idx = targets.Length;
             foreach (var target in targets) {
 
-                var amount = caster.AttackDamageCalc(Value.Value, target);
+                var amount = caster.AttackDamageCalc(Value.Value,  Type, target);
                 target.ReceiveDamage(amount, target, pType: Type, pOnComplete: CustomEnd);
                 Value.Next();
             }

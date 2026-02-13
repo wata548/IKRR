@@ -4,5 +4,6 @@ function {0}(column, row)
     Roulette = CS.Roulette.RouletteManager;
     Status = CS.Data.Status;
     Stat = CS.Data.TargetStatus;
+    Category = CS.Data.SymbolCategory;
     {1}
 end

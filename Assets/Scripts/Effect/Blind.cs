@@ -7,10 +7,13 @@ namespace Data {
         public Blind(RangeValue pDuration) : base(pDuration) {}
         public override int Code => 3002;
 
-        public override int OnSendDamage(int pAmount, IEntity pTarget, IEntity pOpponent) {
+        public override int OnSendDamage(int pAmount, AttackType pType, IEntity pTarget, IEntity pOpponent) {
             var value = Random.Range(0f, 1f);
-            Update();
-            return pAmount * (value > 0.3f ? 1 : 0);
+            var isMissed = value <= 0.3f;
+            if(isMissed)
+                Debug.Log("Miss!!");
+
+            return pAmount * (isMissed ? 0 : 1);
         }
     }
 }

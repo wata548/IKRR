@@ -11,6 +11,7 @@ namespace UI.Character {
         [SerializeField] private EffectBox _effectBox;
         [SerializeField] protected Positions _position;
         private int _lastEffectUpdate = 0;
+        private int _lastEffectCnt = 0;
         
         public abstract void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete);
         public abstract void OnDeath(IEntity pEntity, int pAmount, Action pOnComplete);
@@ -28,7 +29,9 @@ namespace UI.Character {
                 _effectBox.Clear();
                 return;
             }
-            
+
+            pForce |= _lastEffectCnt != effects.Count;
+            _lastEffectCnt = effects.Count;
             var targetFrame = effects.Max(effect => effect.LastUpdateFrame);
             if (!pForce && targetFrame == _lastEffectUpdate)
                 return;

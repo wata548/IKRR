@@ -55,6 +55,7 @@ namespace Character {
             }
             Effects.Add(pEffect);
         }
+
         public void OnAttack() {
             
         }
@@ -97,21 +98,29 @@ namespace Character {
             SceneManager.LoadScene(Scene.GameOver);
         }
         #region ApplyEffect
-        public int AttackDamageCalc(int pAmount, IEntity pTarget) =>
-            Effects.Aggregate(pAmount, (amount, effect) => effect.OnSendDamage(amount, this, pTarget));
+
+        private void UpdateEffect() =>
+            Effects = Effects.Where(effect => effect.Duration > 0).ToList();
+
+        public int AttackDamageCalc(int pAmount, AttackType pType, IEntity pTarget) {
+            
+            var value = Effects.Aggregate(pAmount, (amount, effect) => effect.OnSendDamage(amount, pType, this, pTarget));
+            UpdateEffect();
+            return value;
+        }
         
         public void OnTurnEnd() {
             foreach (var effect in Effects) {
                 effect.OnTurnEnd(this);
             }
-            Effects = Effects.Where(effect => effect.Duration > 0).ToList();
-        
+            UpdateEffect();
         }
         
         public void OnTurnStart() {
             foreach (var effect in Effects) {
                 effect.OnTurnStart(this);
             }
+            UpdateEffect();
         }
                 
         public void OnSkillUse() {
@@ -124,12 +133,14 @@ namespace Character {
             foreach (var effect in Effects) {
                 effect.OnKill(pTarget);
             }
+            UpdateEffect();
         }
                 
         public void OnRouletteStop() {
             foreach (var effect in Effects) {
                 effect.OnRouletteStop(this);
             }
+            UpdateEffect();
         }
 
         

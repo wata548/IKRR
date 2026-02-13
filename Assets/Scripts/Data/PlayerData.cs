@@ -31,7 +31,6 @@ namespace Data {
             CurExp -= NeedExp;
             Level++;
             NeedExp = GetNeedExp();
-            RouletteManager.AddHandSize(1);
             GetExp(0);
         }
 

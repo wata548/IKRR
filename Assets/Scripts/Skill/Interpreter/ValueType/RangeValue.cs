@@ -23,7 +23,7 @@ namespace Character.Skill.Data {
         public RangeValue(int pMinValue, int pMaxvalue) {
             
             (Min, Max) = (pMinValue, pMaxvalue);
-            Value = Random.Range(Min, Max);
+            Value = Random.Range(Min, Max + 1);
         }
 
         public RangeValue(string pValue) {
@@ -37,7 +37,7 @@ namespace Character.Skill.Data {
                 Min = int.Parse(match.Groups["Min"].Value);
                 Max = int.Parse(match.Groups["Max"].Value);    
             }
-            Value = Random.Range(Min, Max);
+            Value = Random.Range(Min, Max + 1);
         }
         
         //==================================================||Operation 
@@ -46,7 +46,7 @@ namespace Character.Skill.Data {
         //==================================================||Methods
 
         public int Next() {
-            return Value = Random.Range(Min, Max);
+            return Value = Random.Range(Min, Max + 1);
         }
         public static RangeValue Parse(string value) => new(value);
 

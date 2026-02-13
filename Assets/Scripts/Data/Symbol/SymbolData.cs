@@ -16,6 +16,9 @@ namespace Data {
         public SymbolType Type { get; protected set; }
         public TargetStatus StatCategory { get; protected set; }
         public SymbolCategory Category { get; protected set; }
+
+        public bool ContainCategory(SymbolCategory pCategory) =>
+            (Category | pCategory) != SymbolCategory.None;
         
         public Info GetInfo() {
 

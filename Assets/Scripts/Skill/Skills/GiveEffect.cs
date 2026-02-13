@@ -23,7 +23,7 @@ namespace Character.Skill {
 
             var match = Regex.Match(Effect, PATTERN);
             var effectType = Type.GetType("Data." + match.Groups["Skill"].Value)!;
-            var rawArgs = match.Groups["Args"].Value.Split();
+            var rawArgs = match.Groups["Args"].Value.Split('|');
             var constructor = effectType.GetConstructors()
                 .First(constructor => constructor.GetParameters().Length == rawArgs.Length);
             var args = rawArgs.Zip(constructor.GetParameters(),

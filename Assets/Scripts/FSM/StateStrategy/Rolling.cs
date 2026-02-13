@@ -17,9 +17,9 @@ namespace FSM.StateStrategy {
                 return;
 
             Fsm.Instance.NextTurn();
+            UIManager.Instance.Roulette.Roll();
             CharactersManager.OnTurnEnd(false);
             CharactersManager.OnTurnStart(true);
-            UIManager.Instance.Roulette.Roll();
         }
 
         public void Update() {
