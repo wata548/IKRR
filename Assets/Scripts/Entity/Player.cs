@@ -129,9 +129,9 @@ namespace Character {
             }
         }
         
-        public void OnKill(IEntity pTarget) {
+        public void OnKill(IEntity pDead) {
             foreach (var effect in Effects) {
-                effect.OnKill(pTarget);
+                effect.OnKill(pDead);
             }
             UpdateEffect();
         }

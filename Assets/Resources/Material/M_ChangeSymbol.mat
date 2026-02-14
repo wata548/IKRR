@@ -46,7 +46,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _CurTime: 1.019118
+    - _CurTime: 1.021653
     - _NeedTime: 1
     - _Speed: 0
     - _Stencil: 0

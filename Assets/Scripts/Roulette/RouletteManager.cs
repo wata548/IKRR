@@ -23,6 +23,7 @@ namespace Roulette {
         public static IEnumerable<int> Hand => _hand.SelectMany(kvp => Enumerable.Repeat(kvp.Key, kvp.Value));
         public static IEnumerable<KeyValuePair<int, int>> HandDictionary => _hand;
         public static int LastUpdateFrame { get; private set; }= 0; 
+        public static int UseSymbolCnt { get; private set; } = 0;
         
         //==================================================||Fields 
         private static readonly Dictionary<int, int> _hand = new();
@@ -40,6 +41,13 @@ namespace Roulette {
             LastUpdateFrame = Time.frameCount;
         }
 
+        public static void OnTurnStart() {
+            UseSymbolCnt = 0;
+        }
+
+        public static void OnSkillSymbolUse() =>
+            UseSymbolCnt++;
+        
         public static void Init(IEnumerable<int> pInitHand) {
             Init(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_HAND_SIZE, pInitHand);
         }
@@ -87,7 +95,7 @@ namespace Roulette {
             }
         }
         
-        public static void ResetRoulette() {
+        private static void ResetRoulette() {
             _remainSymbol.Clear();
             foreach (var column in  _current)
                 column.Clear();

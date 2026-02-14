@@ -5,7 +5,8 @@ using UI;
 
 namespace Data {
     public class Concentration: EffectBase {
-        public Concentration(RangeValue pDuration, RangeValue pAmount) : base(pDuration) {
+        public Concentration(RangeValue pAmount) {
+            Duration = 2;
             _amount = pAmount.Value;
         }
         public override int Code => 3006;

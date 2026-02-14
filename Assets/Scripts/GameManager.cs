@@ -40,11 +40,26 @@ namespace Data {
             StartBattle();
         }
 
-        public static void SetEvent() {
+        public static void SetBoss() {
+            var position = Positions.Middle;
+            var enemies = DataManager.GetStageEnemy(Chapter + 100);
+            foreach (var enemyCode in enemies) {
+                        
+                CharactersManager.SetEnemy(enemyCode, position);
+                position = (Positions)((int)position << 1);
+            }
+            StartBattle();
+        }
+        
+         public static void SetEvent() {
             var eventData = DataManager.GetEvent(Chapter);
             UIManager.Instance.Event.SetEvent(eventData.Name, eventData.Event);    
-            UIManager.Instance.Map.SetActive(false);
         }
+         
+         public static void SetTresure() {
+             var eventData = DataManager.GetEvent(Chapter + 100);
+             UIManager.Instance.Event.SetEvent(eventData.Name, eventData.Event);    
+         }
         
         private static void TargetUpdate() {
             var target = CharactersManager.TargetUpdate();

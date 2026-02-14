@@ -2,12 +2,9 @@
 using System.Collections;
 using Data;
 using DG.Tweening;
-using Extension;
 using Roulette;
 using UI.Icon;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 

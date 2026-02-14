@@ -82,7 +82,8 @@ namespace UI.Roulette {
                     return;
                 if (skill == null)
                     return;
-                
+
+                RouletteManager.OnSkillSymbolUse();
                 AnimationStateBase.AnimationBuffer
                     .Enqueue(new(AnimationType.Use, cell.Column, cell.Row, skill, status));
             }

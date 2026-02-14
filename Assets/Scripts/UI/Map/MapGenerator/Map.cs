@@ -14,7 +14,8 @@ namespace UI.Map {
     public partial class Map: MonoBehaviour {
 
         //==================================================||Constant
-        private const int topIntval = 2;
+        private const int TOP_INTERVAL = 2;
+        private const float BOSS_ROOM_SIZE = 4;
         public const string NOT_MOVABLE_MATERIAL = "NotMovableEdge";
         public const string MOVABLE_MATERIAL = "MovableEdge";
         public const string MOVED_MGTERIAL = "MovedEdge";
@@ -102,6 +103,8 @@ namespace UI.Map {
         }
         
         public void GenerateMap(int pSeed, int pChapter) {
+            
+            var mapRect = _map.transform as RectTransform;
             _random = new(pSeed + pChapter);
             
             foreach (var floor in _mapNodes) {
@@ -110,15 +113,47 @@ namespace UI.Map {
             }
             _mapNodes.Clear();
 
-            var interval = 1f / (_roundCount + 1 + topIntval);
+            var interval = 1f / (_roundCount + 1.5f + TOP_INTERVAL);
             for (int i = 0; i < _roundCount; i++) {
-                GenerateRound(interval * (i + 1));
+                GenerateRound(mapRect, interval * (i + 1.5f), i != 0);
                 GenerateEdges();
             }
-
+            GenerateBossRoom(mapRect, interval);
+            GenerateEdges();
+                            
+            var roundIdx = 0;
+            foreach (var round in _mapNodes) {
+                var idx = 0;
+                foreach (var node in round) {
+                    var type = roundIdx switch {
+                        0 => Stage.Battle,
+                        _ when roundIdx == _mapNodes.Count - 2 => Stage.Rest,
+                        _ when roundIdx == _mapNodes.Count - 1 => Stage.Boss,
+                        _ => StageTypeFrequency.Random(_random)
+                    };
+                    
+                    node.SetUp(type, new(idx++, roundIdx));
+                }
+                roundIdx++;
+            }
             Load();
         }
-        private void GenerateRound(float pHeight) {
+
+        private void GenerateBossRoom(RectTransform pMap, float pInterval) {
+            var newIcon = Instantiate(_roundSymbol, _map.transform);
+            _mapNodes.Add(new(){newIcon});
+                        
+            var rect = (newIcon.transform as RectTransform)!;
+            rect.localScale *= BOSS_ROOM_SIZE;
+            //set position
+            rect.SetLocalPositionX(pMap, PivotLocation.Down, 0.5f); 
+            rect.SetLocalPositionY(pMap, PivotLocation.Middle, pInterval * (_roundCount + 0.5f + TOP_INTERVAL / 2));
+            foreach (var node in _mapNodes[^2]) {
+                GenerateEdge(node, newIcon, 0);
+            }
+        }
+        
+        private void GenerateRound(RectTransform pMapRect, float pHeight, bool pApplyNoise) {
 
             _mapNodes.Add(new());
             
@@ -128,16 +163,16 @@ namespace UI.Map {
             
             var interval = 1f / width;
 
-            var mapRect = _map.transform as RectTransform;
             for (int i = 1; i < width; i++ ) {
                 var newIcon = Instantiate(_roundSymbol, _map.transform);
 
                 var rect = (newIcon.transform as RectTransform)!;
                 
                 //set position
-                rect.SetLocalPositionX(mapRect, PivotLocation.Down, i * interval); 
-                rect.SetLocalPositionY(mapRect, PivotLocation.Middle, pHeight);
-                rect.localPosition += RandomNoise(rect.sizeDelta);
+                rect.SetLocalPositionX(pMapRect, PivotLocation.Down, i * interval); 
+                rect.SetLocalPositionY(pMapRect, PivotLocation.Middle, pHeight);
+                if(pApplyNoise)
+                    rect.localPosition += RandomNoise(rect.sizeDelta);
                 
                 _mapNodes[^1].Add(newIcon);
             }
@@ -145,12 +180,6 @@ namespace UI.Map {
             _mapNodes[^1] = _mapNodes[^1]
                 .OrderBy(node => node.transform.localPosition.x)
                 .ToList();
-
-            var idx = 0;
-            foreach (var node in _mapNodes[^1]) {
-                var type = StageTypeFrequency.Random(_random);
-                node.SetUp(type, new(idx++, _mapNodes.Count - 1));
-            }
         } 
         private int GetWidthSize() {
             var count = _stageWidthInfos.Sum(floor => floor.Frequency);

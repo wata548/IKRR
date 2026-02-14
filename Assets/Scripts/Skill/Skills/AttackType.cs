@@ -4,6 +4,7 @@
         Magic,
         Body,
         Crush,
+        Money,
         Shuriken,
         Needle,
         Burn,

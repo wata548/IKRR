@@ -31,17 +31,19 @@ namespace Data {
             Duration--;
             Update();
         }
-        
         public virtual void OnSkillUse(IEntity pTarget){}
-        public virtual void OnKill(IEntity pTarget){}
+        public virtual void OnKill(IEntity pDead){}
 
         public Info GetInfo() {
             var data = DataManager.Effect.GetData(Code);
             return new Info(data.Name, new(){new("정보", data.Desc)}, Infos);
         }
 
+        protected EffectBase(){}
+        
         protected EffectBase(RangeValue pDuration) {
             Duration = pDuration.Value;
+            pDuration.Next();
             Update();
         }
 

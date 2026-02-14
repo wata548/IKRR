@@ -2,6 +2,7 @@
 using DG.Tweening;
 using Extension;
 using FSM.StateStrategy;
+using Roulette;
 using UI;
 using UnityEngine.Serialization;
 
@@ -33,8 +34,10 @@ namespace FSM {
                 strategy.EndBattle();
         }
 
-        public void NextTurn() =>
+        public void NextTurn() {
             Turn++;
+            RouletteManager.OnTurnStart();
+        }
         
         public void Change(State pState, bool pSkipAnimation = false) {
             if (State == pState)

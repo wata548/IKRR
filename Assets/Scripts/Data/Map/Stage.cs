@@ -4,6 +4,8 @@ namespace Data.Map {
         Battle,
         Tresure,
         Event,
-        Rest
+        Rest,
+        Shop,
+        Boss
     }
 }

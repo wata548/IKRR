@@ -24,11 +24,14 @@ namespace Character.Skill {
             var match = Regex.Match(Effect, PATTERN);
             var effectType = Type.GetType("Data." + match.Groups["Skill"].Value)!;
             var rawArgs = match.Groups["Args"].Value.Split('|');
+            if (rawArgs.Length == 1 && string.IsNullOrWhiteSpace(rawArgs[0]))
+                rawArgs = null;
+            
             var constructor = effectType.GetConstructors()
-                .First(constructor => constructor.GetParameters().Length == rawArgs.Length);
-            var args = rawArgs.Zip(constructor.GetParameters(),
+                .First(constructor => constructor.GetParameters().Length == (rawArgs?.Length ?? 0));
+            var args = rawArgs?.Zip(constructor.GetParameters(),
                 (value, type) => CSharpExtension.Parse(type.ParameterType, value)
-            ).ToArray();
+            ).ToArray() ?? new object[]{};
             
             foreach (var target in CharactersManager.GetEntities(pCaster, Target.Value)) {
                 var effect = constructor!.Invoke(args) as EffectBase;

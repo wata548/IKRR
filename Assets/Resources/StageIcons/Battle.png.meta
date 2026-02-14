@@ -48,7 +48,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Battle_0
+      name: 1002_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8ee3535a3057ca530800000000000000
-      internalID: 3867594838521495272
+      spriteID: 745f8b3b9c3ed86d0800000000000000
+      internalID: -2986480522433596089
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 229b8b2aa0b8450469f20fef40d4e0ea
+    spriteID: 7c9bc11ec9173144795efffff9fd145f
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Battle_0: 3867594838521495272
+      1002_0: -2986480522433596089
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

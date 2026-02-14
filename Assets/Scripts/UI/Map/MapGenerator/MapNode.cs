@@ -38,6 +38,8 @@ namespace UI.Map {
         
         //==================================================||Methods 
 
+        public void SetType(Stage pStage) => Type = pStage;
+        
         public static void Init(Map pGenerator) =>
             _map = pGenerator;
 

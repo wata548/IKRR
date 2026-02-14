@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using System;
+using Data;
 using Data.Map;
 using UnityEngine;
 
@@ -26,20 +27,20 @@ namespace UI.Map {
             targetNode.SetActive(true);
             if(!pLoad)
                 OnSelect(targetNode.Type);
+            
+            SetActive(false);
         }
         
         private void OnSelect(Stage pType) {
-            switch (pType) {
-                case Stage.Battle:
-                    GameManager.SetEnemy();
-                    break;
-                case Stage.Event:
-                    GameManager.SetEvent();
-                    break;
-                default:
-                    GameManager.SetEnemy();
-                    break;
-            }
+            Action func = pType switch {
+                Stage.Battle => GameManager.SetEnemy,
+                Stage.Boss => GameManager.SetBoss,
+                Stage.Event => GameManager.SetEvent,
+                Stage.Tresure => GameManager.SetTresure,
+                Stage.Rest => () => UIManager.Instance.Rest.Show(true),
+                Stage.Shop => GameManager.SetEnemy
+            };
+            func.Invoke();
         }
     }
 }

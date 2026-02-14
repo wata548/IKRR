@@ -11,6 +11,7 @@ namespace UI {
         
         protected override bool IsNarrowSingleton { get; } = true;
         [field: SerializeField] public Map.Map Map { get; private set; }
+        [field: SerializeField] public Rest.Rest Rest { get; private set; }
         [field: SerializeField] public StatusShowerManager Status { get; private set; }
         [field: SerializeField] public SkillShowerManager SkillShower { get; private set; }
         [field: SerializeField] public Roulette.Roulette Roulette { get; private set; }
