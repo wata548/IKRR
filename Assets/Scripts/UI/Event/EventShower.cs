@@ -84,7 +84,6 @@ namespace UI.Event {
         
         public void Clear() {
             UIManager.Instance.Map.ClearStage(true);
-            UIManager.Instance.Map.SetActive(true);
             Close();
         }
         

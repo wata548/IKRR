@@ -17,13 +17,13 @@ namespace UI.Rest {
         public void Show(bool pActive) {
 
             if (pActive) {
-                Fade(() => _pannel.gameObject.SetActive(true));
+                Fade(() => _pannel.gameObject.SetActive(true), null);
             }
             else
                 _pannel.gameObject.SetActive(false);
         }
 
-        private void Fade(Action pOnComplete) {
+        private void Fade(Action pOnAppear, Action pOnComplete) {
             _fader.gameObject.SetActive(true);
             const float FADE_IN = 0.3f;
             const float FADE_INTERVAL = 0.7f;
@@ -32,10 +32,11 @@ namespace UI.Rest {
             DOTween.Sequence()
                 .Append(_fader.DOFade(1, FADE_IN * Time.timeScale))
                 .AppendInterval(FADE_INTERVAL * Time.timeScale)
-                .AppendCallback(() => pOnComplete?.Invoke())
+                .AppendCallback(() => pOnAppear?.Invoke())
                 .Append(_fader.DOFade(0, FADE_OUT * Time.timeScale))
                 .OnComplete(() => {
                     _fader.gameObject.SetActive(false);
+                    pOnComplete?.Invoke();
                 });
         }
 
@@ -45,10 +46,9 @@ namespace UI.Rest {
             var player = CharactersManager.Player;
             var amount = Mathf.FloorToInt(player.MaxHp * HEAL_RATIO);
             player.Heal(amount, null);
-            Fade(() => {
-                UIManager.Instance.Map.ClearStage(true);
-                Show(false);
-            });
+            Fade(() => Show(false),
+                () => UIManager.Instance.Map.ClearStage(true)
+            );
         }
 
        //==================================================||Unity 

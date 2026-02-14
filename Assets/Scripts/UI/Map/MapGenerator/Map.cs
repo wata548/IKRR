@@ -80,6 +80,7 @@ namespace UI.Map {
                 ClearStages.Add(_curStage);
                 var save = SaveFile.Save();
                 save.Save();
+                SetActive(true);
             }
         }
         
