@@ -78,14 +78,8 @@ namespace UI.Roulette {
                 }
                 if (Fsm.Instance.State != State.PlayerTurn)
                     return;
-                if (!RouletteManager.Use(cell.Column, cell.Row, out var status, out var skill))
-                    return;
-                if (skill == null)
-                    return;
-
-                RouletteManager.OnSkillSymbolUse();
                 AnimationStateBase.AnimationBuffer
-                    .Enqueue(new(AnimationType.Use, cell.Column, cell.Row, skill, status));
+                    .Enqueue(new(AnimationType.Use, cell.Column, cell.Row));
             }
         }
 

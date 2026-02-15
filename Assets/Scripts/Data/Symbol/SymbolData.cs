@@ -18,7 +18,7 @@ namespace Data {
         public SymbolCategory Category { get; protected set; }
 
         public bool ContainCategory(SymbolCategory pCategory) =>
-            (Category | pCategory) != SymbolCategory.None;
+            (Category & pCategory) == pCategory;
         
         public Info GetInfo() {
 

@@ -31,6 +31,10 @@ namespace UI.Character {
             transform.localScale = (float)pData.Size / 100f * Vector3.one;
         }
 
+        public override void OnMaxHpChange(IEntity pEntity, int pDelta) {
+            _hpBar.SetWithAnimation(pEntity.MaxHp, pEntity.Hp);
+        }
+
         public virtual void AttackAnimation() {
             _attackAnimation?.Kill();
             _attackAnimation = DOTween.Sequence()

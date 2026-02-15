@@ -24,6 +24,10 @@ namespace UI.Character {
            _hpBar.Set(pEntity.MaxHp, pEntity.Hp);
        }
        
+       public override void OnMaxHpChange(IEntity pEntity, int pDelta) {
+           _hpBar.SetWithAnimation(pEntity.MaxHp, pEntity.Hp);
+       }
+       
         public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
             _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
                 .OnComplete(() => pOnComplete?.Invoke());

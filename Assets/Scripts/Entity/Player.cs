@@ -4,6 +4,7 @@ using System.Linq;
 using Data;
 using Extension.Scene;
 using UI;
+using UnityEngine;
 
 namespace Character {
     public class JsonPlayerData {
@@ -58,6 +59,12 @@ namespace Character {
 
         public void OnAttack() {
             
+        }
+        
+        public void ChangeMaxHp(int pDelta) {
+            MaxHp += pDelta;
+            Hp = Mathf.Min(MaxHp, Hp);
+            UIManager.Instance.Entity.GetEnemyUI(Position).OnMaxHpChange(this, pDelta);
         }
         
         public void ReceiveDamage(int pAmount,IEntity pOpponent, bool pApplyEffect, AttackType pType, Action pOnComplete) {

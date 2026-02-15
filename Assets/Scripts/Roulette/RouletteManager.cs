@@ -21,6 +21,7 @@ namespace Roulette {
         public static int Height { get; private set; } = DEFAULT_HEIGHT;
         public static int HandSize { get; private set; } = DEFAULT_HAND_SIZE;
         public static IEnumerable<int> Hand => _hand.SelectMany(kvp => Enumerable.Repeat(kvp.Key, kvp.Value));
+        public static IEnumerable<int> HandKind => _hand.Select(kvp => kvp.Key);
         public static IEnumerable<KeyValuePair<int, int>> HandDictionary => _hand;
         public static int LastUpdateFrame { get; private set; }= 0; 
         public static int UseSymbolCnt { get; private set; } = 0;
@@ -187,6 +188,7 @@ namespace Roulette {
             pSkill = SymbolExecutor.GetSkill(pColumn, pRow);
             
             pStatus = CellStatus.Used;
+            
             return true;
         }
 
@@ -211,9 +213,10 @@ namespace Roulette {
             var changed = new Queue<CellAnimationData>();
             for (int column = 0; column < Width; column++) {
                 for (int row = Height - 1; row >= 0; row--) {
-                    var skill = SymbolExecutor.Evolution(column, row);
-                    if(skill != null)
-                        changed.Enqueue(new(AnimationType.Evolve, column, row, skill));
+                    var code = Get(column, row);
+                    if(string.IsNullOrWhiteSpace(DataManager.Symbol.GetData(code).EvolveCondition))
+                        continue;
+                    changed.Enqueue(new(AnimationType.Evolve, column, row));
                 }
             }
             return changed;
@@ -230,10 +233,8 @@ namespace Roulette {
                     var targetType = DataManager.Symbol.GetData(Get(column, row)).Type;
                     if(targetType != SymbolType.Buff)
                         continue;
-                    if (!Use(column, row, out var status, out var skill)) {
-                        continue;
-                    }
-                    result.Enqueue(new(AnimationType.Use, column, row, skill, status));
+                    
+                    result.Enqueue(new(AnimationType.Buff, column, row));
                 }
             }
 

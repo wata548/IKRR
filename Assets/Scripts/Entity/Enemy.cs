@@ -6,6 +6,7 @@ using Character.Skill;
 using Data;
 using UI;
 using UI.Character;
+using UnityEngine;
 
 namespace Character {
     public class Enemy : IEntity {
@@ -47,6 +48,13 @@ namespace Character {
         }
         
         //==================================================||Methods 
+
+        public void ChangeMaxHp(int pDelta) {
+            MaxHp += pDelta;
+            Hp = Mathf.Min(MaxHp, Hp);
+            UIManager.Instance.Entity.GetEnemyUI(Position).OnMaxHpChange(this, pDelta);
+        }
+        
         public void OnAttack() {
             UIManager.Instance.Entity.GetEnemyUI(Position).AttackAnimation();
         }

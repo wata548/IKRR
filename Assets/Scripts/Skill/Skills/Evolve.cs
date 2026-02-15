@@ -9,6 +9,6 @@ namespace Character.Skill {
         protected override void Implement(Positions pCaster) {
             UseInfo.Evolve(RouletteManager.Get(Column, Row));
             base.Implement(pCaster);
-        }
     }
+        }
 }

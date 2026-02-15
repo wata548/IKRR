@@ -40,6 +40,9 @@ namespace Roulette {
                 
                 if (pValue == DataManager.EMPTY_SYMBOL)
                     return;
+                if (_column[pIdx].Status == CellStatus.Used)
+                    return;
+                
                 _column[pIdx].Status = SymbolExecutor.IsUsable(pColumnIdx, pIdx)
                     ? CellStatus.Usable
                     : CellStatus.Unavailable;

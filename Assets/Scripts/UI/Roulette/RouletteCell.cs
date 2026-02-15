@@ -52,7 +52,7 @@ namespace UI.Roulette {
                 _icon.sprite = sprite;
                 _icon.material = null;
                 if(pNewCode != DataManager.EMPTY_SYMBOL)
-                    SetStatus(RouletteManager.GetStatus(Column, Row));
+                    SetStatus(RouletteManager.GetStatus(Column, Row), true);
                 pOnComplete?.Invoke();
             }
         }
@@ -77,8 +77,8 @@ namespace UI.Roulette {
             _icon.material = null;
         }
         
-        public void SetStatus(CellStatus pStatus) {
-            if (_icon.material.name == $"M_{CHANGE}")
+        public void SetStatus(CellStatus pStatus, bool pForce = false) {
+            if (!pForce && _icon.material.name == $"M_{CHANGE}")
                 return;
             
             _icon.material = MaterialStore.Get( pStatus switch {

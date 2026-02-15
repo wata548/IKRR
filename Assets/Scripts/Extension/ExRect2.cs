@@ -9,12 +9,24 @@ namespace Extension {
         in int Amount,
         in Vector2Int TableSize,
         in T Prefab,
-        in Action<T, int> OnGenerate
+        in Action<T, int> OnGenerate,
+        in Action<T, int> Foreach = null
     );
     public static class ExRect2 {
 
         public static void Place<T>(this RectTransform pRect, List<T> pContainer, PlaceArgs<T> pArgs) where T: MonoBehaviour {
 
+            while (pContainer.Count != pArgs.Amount) {
+                if (pContainer.Count < pArgs.Amount) {
+                    var newElement = Object.Instantiate(pArgs.Prefab, pRect);
+                    pArgs.OnGenerate?.Invoke(newElement, pContainer.Count);
+                    pContainer.Add(newElement);
+                }else{
+                    Object.Destroy(pContainer[^1].gameObject);
+                    pContainer.RemoveAt(pContainer.Count - 1);
+                }
+            }
+            
             var prefabSize = (pArgs.Prefab.transform as RectTransform)!.sizeDelta;
             
             var prefabRatio = prefabSize / pRect.sizeDelta;
@@ -34,25 +46,19 @@ namespace Extension {
                 initPos.y -= (1f - prefabRatio.y) / 2f;
             
             var pivot = new Pivot(PivotLocation.Down, PivotLocation.Up);
-            
-            while (pContainer.Count != pArgs.Amount) {
-                if (pContainer.Count < pArgs.Amount) {
-                    var pos = initPos;
-                    pos.y -= (pContainer.Count / pArgs.TableSize.x) * interval.y;
-                    pos.x += pContainer.Count % pArgs.TableSize.x * interval.x;
-            
-                    var symbol = Object.Instantiate(pArgs.Prefab, pRect);
-                    pArgs.OnGenerate?.Invoke(symbol, pContainer.Count);
-                    
-                    var symbolRect = (symbol.transform as RectTransform)!;
-                    symbolRect.SetLocalPosition(pRect, pivot, pos);
-                    pContainer.Add(symbol);
-                }else{
-                    Object.Destroy(pContainer[^1].gameObject);
-                    pContainer.RemoveAt(pContainer.Count - 1);
-                }
-            }
 
+            var idx = 0;
+            foreach (var element in pContainer) {
+                var pos = initPos;
+                pos.y -= (idx / pArgs.TableSize.x) * interval.y;
+                pos.x += idx % pArgs.TableSize.x * interval.x;
+                            
+                pArgs.Foreach?.Invoke(element, idx);
+                                    
+                var elementRect = (element.transform as RectTransform)!;
+                elementRect.SetLocalPosition(pRect, pivot, pos);
+                idx++;
+            }
         }
     }
 }

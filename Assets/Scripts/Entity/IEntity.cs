@@ -12,6 +12,7 @@ namespace Character {
         public int Hp { get; }
         public bool IsAlive { get; }
 
+        public void ChangeMaxHp(int pDelta);
         public void AddEffect(EffectBase pEffect);
         public int AttackDamageCalc(int pAmount, AttackType pType, IEntity pTarget);
         public void OnAttack();

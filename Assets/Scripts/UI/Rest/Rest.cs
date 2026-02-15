@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Data;
 using DG.Tweening;
+using Roulette;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +15,7 @@ namespace UI.Rest {
         [SerializeField] private Button _knowledge;
         [SerializeField] private RectTransform _pannel;
         [SerializeField] private Image _fader;
+        private IEnumerable<int> _knowledgeCandidates;
 
        //==================================================||Methods 
         public void Show(bool pActive) {
@@ -21,6 +25,17 @@ namespace UI.Rest {
             }
             else
                 _pannel.gameObject.SetActive(false);
+        }
+
+        private void EvolveCondition() {
+            _knowledgeCandidates = RouletteManager.HandKind
+                .Where(code => {
+                    var data = DataManager.Symbol.GetData(code);
+                    if (string.IsNullOrWhiteSpace(data.EvolveCondition))
+                        return false;
+                   return !UseInfo.Get(code); 
+                });
+            _knowledge.interactable = _knowledgeCandidates.Any();
         }
 
         private void Fade(Action pOnAppear, Action pOnComplete) {

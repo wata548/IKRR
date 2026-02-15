@@ -4,6 +4,7 @@ using Data;
 using FSM.StateStrategy;
 using Roulette;
 using Skill.Skills;
+using Symbol;
 using UI;
 using UnityEngine;
 
@@ -25,8 +26,7 @@ namespace FSM {
             var temp = RouletteManager.GetEvolveTargets();
             while (temp.Count > 0) {
                 var data = temp.Dequeue();
-                if(data.Skill != null)
-                    AnimationBuffer.Enqueue(data);
+                AnimationBuffer.Enqueue(data);
             }
         }
     }
@@ -40,9 +40,6 @@ namespace FSM {
             var temp = RouletteManager.GetUsableBuffs();
             while (temp.Count > 0) {
                 var data = temp.Dequeue();
-                if (data.Skill == null) {
-                    data = new(data.Type, data.Column, data.Row, new EmptySkill(), data.Status);
-                }
                 AnimationBuffer.Enqueue(data);
             }
             CharactersManager.Player.OnRouletteStop();
@@ -98,19 +95,45 @@ namespace FSM {
                 return;
             }
             
-            _remainAnimationTerm = AnimationInterval;
             var animationData = AnimationBuffer.Dequeue();
+            var nextStatus = default(CellStatus);
+            if (animationData.Type == AnimationType.Evolve) {
+                while (true) {
+                    _playingSkill = SymbolExecutor.Evolution(animationData.Column, animationData.Row);
+                    if (_playingSkill != null)
+                        break;
+                    if (AnimationBuffer.Count == 0)
+                        return;
+                    animationData = AnimationBuffer.Dequeue();
+                }
+            }
+            else {
+                while (!RouletteManager.Use(animationData.Column, animationData.Row, out nextStatus, out _playingSkill)) {
+                    if (AnimationBuffer.Count == 0)
+                        return;
+                    animationData = AnimationBuffer.Dequeue();
+                }
+            }
             
-            _playingSkill = animationData.Skill;
             var roulette = UIManager.Instance.Roulette;
-            if (animationData.Type == AnimationType.Use) {
+            if (_playingSkill == null) {
+                if (animationData.Type is AnimationType.Buff)
+                    _playingSkill = new EmptySkill();
+                else
+                    return;
+            }
+            
+            if (animationData.Type is (AnimationType.Use or AnimationType.Buff)) {
                 var (column, row, status) = 
-                    (animationData.Column, animationData.Row, animationData.Status);
+                    (animationData.Column, animationData.Row, nextStatus);
                             
+                if(animationData.Type == AnimationType.Use)
+                    RouletteManager.OnSkillSymbolUse();
                 RouletteManager.SetStatus(column, row, status);
                 roulette.UseAnimation(column, row, status);
             }
             
+            _remainAnimationTerm = AnimationInterval;
             _playingSkill.OnEnd += roulette.Refresh;
             OnSkillUse();           
             _playingSkill.Execute(Positions.Player);

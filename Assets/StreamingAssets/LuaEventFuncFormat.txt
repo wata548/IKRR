@@ -15,5 +15,7 @@
     Stat = CS.Data.TargetStatus;
     Pos = CS.Data.Positions;
     Game = CS.Data.GameManager;
+    PlayerData = CS.Data.PlayerData;
+    Player = Field.
     {1}
 end

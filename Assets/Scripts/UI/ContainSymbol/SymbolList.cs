@@ -11,14 +11,19 @@ namespace UI.ContainSymbol {
         [SerializeField] private Vector2 _padding = new(0.1f, 0);
         private readonly List<SymbolListElement> _elements = new();
         private int _lastUpdate = -1;
+        private int _defaultTableHeight;
 
         private void UpdateState() {
             if (RouletteManager.LastUpdateFrame == _lastUpdate)
                 return;
             _lastUpdate = RouletteManager.LastUpdateFrame;
             
+            
             var dict = RouletteManager.HandDictionary.Where(kvp => kvp.Value > 0);
             var cnt = dict.Count();
+            var height = cnt / _tableSize.x + (cnt % _tableSize.x == 0 ? 0 : 1);
+            _tableSize.y = Mathf.Max(height, _defaultTableHeight);
+            
             var args = new PlaceArgs<SymbolListElement>(
                 _padding,
                 cnt,
@@ -32,7 +37,10 @@ namespace UI.ContainSymbol {
                 element.Set(code, amount);
             }
         }
-        
+
+        private void Awake() {
+            _defaultTableHeight = _tableSize.y;
+        }
         
         private void Update() {
             UpdateState();

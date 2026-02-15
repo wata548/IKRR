@@ -16,19 +16,20 @@ namespace Data.Event {
                 .Split('|')
                 .Select(arg => arg.Trim())
                 .ToList();
-            Context = args[^1];
-            args.RemoveAt(args.Count - 1);
-
-            if (args.Count == 0) {
-                Buttons = Array.Empty<Button>();
-                return;
-            }
             
             var imgCandidate = args.First();
             if (imgCandidate[0] == '#') {
                 args.RemoveAt(0);
                 TargetImage = Resources.Load<Sprite>(imgCandidate[1..]);
             }
+            Context = args[0];
+            args.RemoveAt(0);
+            
+            if (args.Count == 0) {
+                Buttons = Array.Empty<Button>();
+                return;
+            }
+                        
 
             Buttons = args.Select(arg => new Button(arg)).ToArray();
         }

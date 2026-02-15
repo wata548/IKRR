@@ -22,6 +22,16 @@ namespace Extension {
         
         public static void StartRoutine(IEnumerator pContent) {
             _routinePlayer.StartCoroutine(pContent);
-        } 
+        }
+
+        public static void Wait(float pTime, Action pAction) {
+            StartRoutine(WaitRoutine(pTime, pAction));
+            static IEnumerator WaitRoutine(float pTime, Action pAction) {
+                yield return new WaitForSeconds(pTime);
+                pAction?.Invoke();
+            }
+        }
+        
+        
     }
 }
