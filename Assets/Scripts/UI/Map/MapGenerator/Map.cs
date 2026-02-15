@@ -7,7 +7,6 @@ using Extension;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
-using SaveFile = Data.SaveFile;
 
 namespace UI.Map {
     
@@ -78,7 +77,7 @@ namespace UI.Map {
 
             if (pSave) {
                 ClearStages.Add(_curStage);
-                var save = SaveFile.Save();
+                var save = SaveSystem.Save();
                 save.Save();
                 SetActive(true);
             }

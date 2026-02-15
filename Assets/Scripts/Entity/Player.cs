@@ -64,7 +64,7 @@ namespace Character {
         public void ChangeMaxHp(int pDelta) {
             MaxHp += pDelta;
             Hp = Mathf.Min(MaxHp, Hp);
-            UIManager.Instance.Entity.GetEnemyUI(Position).OnMaxHpChange(this, pDelta);
+            UIManager.Instance.Entity.Player.OnMaxHpChange(this, pDelta);
         }
         
         public void ReceiveDamage(int pAmount,IEntity pOpponent, bool pApplyEffect, AttackType pType, Action pOnComplete) {

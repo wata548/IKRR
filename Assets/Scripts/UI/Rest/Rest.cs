@@ -4,23 +4,32 @@ using System.Linq;
 using Data;
 using DG.Tweening;
 using Roulette;
+using UI.Character;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Rest {
     public class Rest: MonoBehaviour {
         
+        const float HEAL_RATIO = 0.2f;
        //==================================================||Fields 
         [SerializeField] private Button _rest;
         [SerializeField] private Button _knowledge;
         [SerializeField] private RectTransform _pannel;
         [SerializeField] private Image _fader;
+        [SerializeField] private HpBar _bar;
+        [SerializeField] private Image _estimate;
         private IEnumerable<int> _knowledgeCandidates;
-
+        
        //==================================================||Methods 
         public void Show(bool pActive) {
 
             if (pActive) {
+                var player = CharactersManager.Player;
+                _bar.Set(player.MaxHp, player.Hp);
+                var estimate = Mathf.Min(player.MaxHp * HEAL_RATIO + player.Hp, player.MaxHp);
+                _bar.Set(player.MaxHp, player.Hp);
+                _estimate.fillAmount = estimate / player.MaxHp;
                 Fade(() => _pannel.gameObject.SetActive(true), null);
             }
             else
@@ -56,7 +65,6 @@ namespace UI.Rest {
         }
 
         private void RestFunc() {
-            const float HEAL_RATIO = 0.2f;
             
             var player = CharactersManager.Player;
             var amount = Mathf.FloorToInt(player.MaxHp * HEAL_RATIO);

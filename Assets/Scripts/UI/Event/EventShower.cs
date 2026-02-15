@@ -4,6 +4,8 @@ using Data.Event;
 using DG.Tweening;
 using Extension;
 using Extension.Test;
+using Font;
+using Lang;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +20,8 @@ namespace UI.Event {
         [SerializeField] private Image _img;
         [SerializeField] private Button _button;
         [SerializeField] private EventButtonContainer _container;
-
+        [SerializeField] private FontSetting _fontSetting;
+        
         private Tween _animation;
         private Data.Event.Event _curEvent;
         const float INTERVAL = 0.03f;
@@ -59,6 +62,7 @@ namespace UI.Event {
 
         public void Typing(Action pOnComplete) {
 
+            _context.Text.font = _fontSetting.Get(LanguageManager.LangPack);
             var animation = _context.Typing(
                 '\n' + EventButton.LastClickButton,
                 INTERVAL * Time.timeScale,

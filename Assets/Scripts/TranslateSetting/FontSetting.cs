@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Lang;
 using TMPro;
 using UnityEngine;
@@ -17,6 +18,13 @@ namespace Font {
         [SerializeField] 
         private List<LanguageFontMatch> _fonts;
 
+        private Dictionary<Language, TMP_FontAsset> _temp;
+
+        public TMP_FontAsset Get(Language pLang) {
+            _temp ??= _fonts.ToDictionary(p => p.Language, p => p.Font);
+            return _temp[pLang];
+        }
+        
         public void Init() {
             foreach (var match in _fonts) {
                 TMP_LangText.SetFont(match.Language, match.Font);

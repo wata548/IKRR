@@ -74,7 +74,7 @@ namespace Data {
         //==================================================||Unity 
         private void Awake() {
             if (!_isInit) {
-                SaveFile.Start();
+                SaveSystem.GameStart();
                 Debug.Log("Skip title scene");
             }
 
@@ -86,8 +86,6 @@ namespace Data {
             UIManager.Instance.Map.GenerateMap(Seed, Chapter);
             var player = CharactersManager.Player;
             UIManager.Instance.Entity.Player.Refresh(player);
-            //TestCode
-            CharactersManager.Player.AddEffect(new Burn(new(30)));
         }
 
         private void Update() {

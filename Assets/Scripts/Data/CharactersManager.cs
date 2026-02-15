@@ -37,9 +37,9 @@ namespace Data {
             return skills;
         }
         
-        public static void Init(Player pPlayer = null) {
+        public static void Init(Player pPlayer) {
             TargetEnemy = Positions.Middle;
-            Player = pPlayer ?? new Player(1000);
+            Player = pPlayer;
             _entities[Positions.Player] = Player;
         }
 

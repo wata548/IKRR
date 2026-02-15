@@ -29,6 +29,7 @@ namespace LanguageEmbed {
             meta.Dispose();
 
             try {
+                
                 _env.DoString(pCode);
                 var function = scriptEnv.Get<LuaFunction>(pFunctionName);
                 if (function == null) {

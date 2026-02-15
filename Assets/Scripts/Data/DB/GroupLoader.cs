@@ -59,8 +59,11 @@ namespace Data {
                 .Select(kvp => 
                     new KeyValuePair<int, List<TValue>>(
                         kvp.Key, 
-                        kvp.Select(kvp2 => _postProcessing(kvp2))
-                            .ToList()
+                        kvp.Select(kvp2 => {
+                            if (kvp2 is TValue value)
+                                return value;
+                            return _postProcessing(kvp2);
+                        }).ToList()
                     )
                 );
         }

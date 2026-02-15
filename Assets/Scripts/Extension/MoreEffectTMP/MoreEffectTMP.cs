@@ -20,6 +20,8 @@ namespace Extension {
         private float _timer = 0;
         private string _prevValue = "";
 
+        public TMP_Text Text => _text; 
+        
         public IEnumerator Typing(string pContext, float pInterval, float pCallBackTerm, Action pCallback = null,
             Func<bool> pBreakCondition = null) {
 

@@ -10,15 +10,19 @@ namespace UI.Title {
         [SerializeField] private Button _continue;
         [SerializeField] private Button _setting;
         [SerializeField] private Button _quit;
-
+        [SerializeField] private Tutorial.Tutorial _tutorial;
+        
         private void StartGame() {
-            SaveFile.Start();
+            _tutorial.TurnOn();
+            return;
+            
+            SaveSystem.GameStart();
             SceneManager.LoadScene(Scene.Main);
         }
 
         private void Continue() {
             var path = Path.Combine(Application.streamingAssetsPath, "Save.json");
-            SaveFile.Load(path);
+            SaveSystem.Load(path);
             SceneManager.LoadScene(Scene.Main);
         }
         

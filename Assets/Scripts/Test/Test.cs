@@ -14,7 +14,7 @@ namespace Test {
     public static class Test {
         [TestMethod]
         public static void SaveTest() {
-            new SaveFile().Save();
+            new SaveSystem().Save();
         }
         [TestMethod]
         public static void Parse(Positions pPos) {

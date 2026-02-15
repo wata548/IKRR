@@ -1,7 +1,7 @@
 "SerialNumber","Type","Category","StatCategory","Rarity","Name","ConditionCode","Condition","Description","EvolveDescription","EvolveCondition","EffectCode"
-"Int32","Data.SymbolType","Data.SymbolCategory","Data.TargetStatus","Data.SymbolRarity","String","String","String","String","String","String","String"
-"-1","Buff","None","Strength","Etc","Error","return false;","오류 발생","오류가 발생했습니다. ","","return """";","return """";"
-"0","Buff","None","Strength","Etc","빈칸","return false;","","아무 것도 없는 빈칸입니다.","","return """";","return """";"
+"Int32","Data.SymbolType","Data.SymbolCategory","Data.TargetStatus","Data.Rarity","String","String","String","String","String","String","String"
+"-1","Buff","None","Strength","Etc","Error","return false;","오류 발생","오류가 발생했습니다. ","","","return """";"
+"0","Buff","None","Strength","Etc","빈칸","return false;","","아무 것도 없는 빈칸입니다.","","","return """";"
 "1001","Buff","None","Strength","Normal","힘","return true;","","힘을 1만큼 상승시킵니다.","좌우에 '힘'이 있을 때 '괴력'으로 진화한다.","right = Roulette.Get(column+1, row);
 left = Roulette.Get(column-1, row);
 if(left == right and left == 1001) then
@@ -9,26 +9,160 @@ if(left == right and left == 1001) then
   return  result;
 end
 return """";","return ""StatusChange(Strength, `+, 1)"";"
-"1002","Skill","None","Wisdom","Normal","치료술","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 소모","현재 체력을 1만큼 회복합니다.","","return """";","return {Execute(""Heal(회복, 1, C)"")};"
-"1003","Skill","Sword","Strength","Normal","휘두르기","return Status.GetValue(Stat.Strength) >= 1;","힘 1 이상","적에게 약간의 피해를 입힙니다.(3-5)","","return """";","return ""Text(휘두르기)+Attack(3~5, Target)+StatusChange(Strength, `-, 1)"";"
-"1004","Buff","None","Dexterity","Normal","신속","return true;","","민첩을 1만큼 상승시킵니다.","","return """";","return ""StatusChange(Dexterity, `+, 1)"";"
-"1005","Buff","Paper","Wisdom","Normal","책","return true;","","마력을 1만큼 상승시킵니다.","","return """";","return ""StatusChange(Wisdom, `+, 1)"";"
-"1006","Skill","None","Wisdom","Normal","섬광","return Status.GetValue(Stat.Wisdom) >= 3;","지혜 3 소모.","밝은 빛으로 상대에게 실명효과를 부여합니다.","","return """";","return """";"
-"1007","Skill","Magic","Wisdom","Normal","화염","return true;","","적에게 '화염'상태를 부여합니다. 
-(이 심볼 주위에 종이가 있다면 제거시킵니다.)","","local result = """";
+"1002","Skill","None","Wisdom","Rare","치료술","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 소모","현재 체력을 3-5만큼 회복합니다.","","","return ""Text(회복)+Heal(3-5, Caster)"";"
+"1003","Skill","Sword","Strength","Normal","휘두르기","return Status.GetValue(Stat.Strength) >= 1;","힘 1 소모","적에게 약간의 피해를 입힙니다.(3-5)","","","return ""Text(휘두르기)+Attack(3~5, Target, Swing)+StatusChange(Strength, `-, 1)"";"
+"1004","Buff","None","Dexterity","Normal","신속","return true;","","민첩을 1만큼 상승시킵니다.","","","return ""StatusChange(Dexterity, `+, 1)"";"
+"1005","Buff","Paper","Wisdom","Normal","책","return true;","","마력을 1만큼 상승시킵니다.","","","return ""StatusChange(Wisdom, `+, 1)"";"
+"1006","Skill","None","Wisdom","Rare","섬광","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 소모.","밝은 빛으로 상대에게 실명효과를 부여합니다.","","","return ""Text(섬광)+GiveEffect(Target, Blind{1}) + StatusChange(Wisdom, `-, 1)"";"
+"1007","Skill","Magic","Wisdom","Epic","화염","return true;","","적에게 '화염'상태를 부여합니다. 
+(이 심볼 주위에 종이가 있다면 제거합니다.)","","local result = """";
 local format = ""+Change(%d, %d, 0)""
 local directionX = {0,0,-1,1};
 local directionY = {1,-1,0,0};
 for i = 1,4 do
-    if(Roulette.Get(column + directionX[i], row + directionY[i]) == 1005) then
+    code = Roulette.Get(column + directionX[i], row + directionY[i]) ;
+    if(Symbol:GetData(code):ContainCategory(Category.Paper)) then
        result = result..string.format(format, column + directionX[i], row + directionY[i]);
     end
 end
-return result;","return ""GiveEffect(Target, Burn{3-5})"";"
-"1008","Skill","Magic","Dexterity","Normal","집중","return Status.GetValue(Stat.Dexterity) >= 2;","민첩 2 이상.","다음 공격이 무조건 치명타가 됩니다.","","return """";","return """";"
-"1009","Buff","None","Strength","Rare","분노","return true;","","힘을 3만큼 상승시킵니다. 
-오른쪽에 있는 심볼을 제거합니다.","","return """";","return {AddStrength(3), RemoveSymbol(Pos.x + 1, Pos.y)};"
-"1010","Skill","None","Strength","Normal","강타","return Status.GetValue(Stat.Strength) >= 2;","힘 2 이상, 힘 1 소모","적에게 피해를 입힙니다.(6)","","return """";","return ""Text(강타)+Attack(6, Target)+StatusChange(Strength, `-, 1)"";"
-"1011","Skill","Sword","Strength","Normal","3연타","return Status.GetValue(Stat.Strength) >= 3;","힘 3 이상","적에게 세 번 피해를 입힙니다.(1-3)","","return """";","return ""Text(3연타)+Attack(1-3, Target)*3+StatusChange(Strength, `-, 1)"";"
-"1012","Buff","None","Strength","Evolution","괴력","return true;","","힘을 2만큼 상승시킵니다.","","return """";","return ""StatusChange(Strength, `+, 2)"";"
-"1013","Skill","Magic","Wisdom","Unique","여백의 미","return true;","","소유하고 있는 빈칸의 개수만큼의 피해를 입힙니다.","","return """";","return """";"
+return result;","return ""Text(화염)+GiveEffect(Target, Burn{1-2})"";"
+"1008","Skill","Magic","Dexterity","Normal","발차기","return Status.GetValue(Stat.Dexterity) >= 1;","민첩 1 소모.","적에게 약간의 피해를 입힙니다.(3-5)","","return """";","return ""Text(발차기)+Attack(3-5, Target, Body)+StatusChange(Dexterity, `-, 1)"";"
+"1009","Buff","None","Strength","Epic","분노","return true;","","힘을 3만큼 상승시킵니다. 
+오른쪽에 있는 심볼을 제거합니다.","왼쪽에 '분노'가 있으면 '광분'으로 진화합니다.","if(Roulette.Get(column+1, row)==1009) then
+    return  ""Evolve(""..column.."",""..row.."", 1018)"";
+end
+return """";","result = ""StatusChange(Strength, `+, 3)"";
+if(Roulette.Get(column-1, row)~=1018) then
+    result = result..""+Change(""..(column-1).."",""..row.."",0)"";
+end
+return result;"
+"1010","Skill","None","Strength","Rare","강타","return Status.GetValue(Stat.Strength) >= 2;","힘 2 이상, 힘 1 소모","적에게 피해를 입힙니다.(6)","","","return ""Text(강타)+Attack(6, Target, Swing)+StatusChange(Strength, `-, 1)"";"
+"1011","Skill","Sword","Strength","Rare","3연타","return Status.GetValue(Stat.Strength) >= 3;","힘 3 이상, 힘 1 소모","적에게 세 번 피해를 입힙니다.(1-3)","","","return ""Text(3연타)+Attack(1-3, Target, Swing)*3+StatusChange(Strength, `-, 1)"";"
+"1012","Buff","None","Strength","Evolution","괴력","return true;","","힘을 2만큼 상승시킵니다.","","","return ""StatusChange(Strength, `+, 2)"";"
+"1013","Skill","Magic","Wisdom","Unique","여백의 미","return true;","","현재 룰렛의 빈칸 개수만큼의 피해를 입힙니다.","","","cnt = 0;
+for i = 1,Roulette.Width do
+  for j = 1,Roulette.Height do  
+    if(Roulette.Get(i - 1,j - 1) == 0) then
+      cnt = cnt + 1;
+    end
+  end
+end
+return ""Text(여백의 미)+Attack(""..cnt.."",Target, Magic)"";"
+"1014","Skill","Magic","Wisdom","Normal","마력탄","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 소모","적에게 약간의 피해를 입힙니다.(3-5)","왼쪽에 '마력탄'이 있을 때 제거 후 '매직 미사일'로 진화한다.","if(Roulette.Get(column-1, row)==1014) then
+    return  ""Change(""..(column-1).."",""..row.."", 0) + Evolve(""..column.."",""..row.."", 1017)"";
+end
+return """";","return ""Text(마력탄)+Attack(3~5, Target, Magic)+StatusChange(Wisdom, `-, 1)"";"
+"1015","Buff","None","Dexterity","Rare","표창 주머니","return true;","","주위에 '표창'을 생성합니다.","표창을 생성해 현재 룰렛의 빈칸이 없다면 '갈고리 표창 주머니'로 진화합니다.","","local result = """";
+local format = ""+Change(%d, %d, 1016)""
+local directionX = {0,0,-1,1};
+local directionY = {1,-1,0,0};
+create = 0;
+for i = 1,4 do
+    if(Roulette.Get(column + directionX[i], row + directionY[i]) == 0) then
+      create = create + 1;
+       result = result..string.format(format, column + directionX[i], row + directionY[i]);
+    end
+end
+if(create > 0) then
+    cnt = 0;
+    for i = 1,Roulette.Width do
+      for j = 1,Roulette.Height do  
+        if(Roulette.Get(i - 1,j - 1) == 0) then
+          cnt = cnt + 1;
+        end
+      end
+    end
+   CS.UnityEngine.Debug.Log(cnt);
+    if(cnt == create) then
+        result = result..""+Evolve(""..column.."",""..row.."", 1036, false)"";
+    end
+end
+return result;"
+"1016","Skill","Shuriken","Dexterity","Etc","표창","return true;","","적에게 약간의 피해를 입힙니다.(2-3)
+사용 후 사라집니다.","","","return ""Text(표창)+Attack(2-3, Target, Shuriken)+Change(""..column.."",""..row.."", 0)"";"
+"1017","Skill","Magic","Wisdom","Evolution","매직 미사일","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 소모","적에게 약간의 피해를 입힙니다.(6-8)","","","return ""Text(매직 미사일)+Attack(6~8, Target)+StatusChange(Wisdom, `-, 1)"";"
+"1018","Buff","None","Strength","Evolution","광분","return true;","","현재 힘을 2배만큼 상승시킵니다. 
+양쪽에 있는 심볼을 제거합니다.","","","result = ""StatusChange(Strength, `*, 2)"";
+result = result..""+Change(""..(column+1).."",""..row.."",0)"";
+result = result..""+Change(""..(column-1).."",""..row.."",0)"";
+return result;"
+"1019","Skill","None","Strength","Etc","술병","return true;","","적에게 피해를 입힌다.(10)
+사용 후 깨져버린다.","양쪽 중 한 곳에 '화염'이 있으면 '화염병'으로 진화한다.","right = Roulette.Get(column+1, row);
+left = Roulette.Get(column-1, row);
+if(left ==1007 or right == 1007) then
+  result = ""Evolve(""..column.."",""..row.."", 1020)"";
+  return  result;
+end
+return """";","return ""Text(술병)+Attack(10, Target, Crush)+Change(""..column.."",""..row.."", 0)"";"
+"1020","Skill","None","Strength","Evolution","화염병","return true;","","모든 적에게 피해를 입힌다.(10)
+사용 후 깨져버린다.","","","return ""Text(화염병)+Attack(10, AllEnemy, Burn)+Change(""..column.."",""..row.."", 0)"";"
+"1021","Skill","Body","Dexterity","Rare","3연격","return Status.GetValue(Stat.Dexterity) >= 2;","민첩 2 소모","적에게 세 번 피해를 입힙니다.(2-3)","","","return ""Text(3연격)+Attack(2-3, Target, Body)*3+StatusChange(Dexterity, `-, 2)"";"
+"1022","Skill","None","Dexterity","Rare","동전 던지기","return true;","","50%의 확률로 적에게 피해를 입힙니다.(8)
+단 50%의 확률로 데미지가 플레이어에게 들어옵니다.","","","target = math.random(2) == 1 and ""Caster"" or ""Target"";
+return ""Text(동전 던지기) + Attack(8,""..target.."", Magic)"";"
+"1023","Skill","Sword","Strength","Rare","찌르기","return Status.GetValue(Stat.Strength) >= 1;","힘 1 소모","적에게 약간의 피해를 입힙니다.(3-4)
+단 가운데 열일 경우 추가의 데미지를 입힙니다.(4)","","","damage = ""3-4"";
+width = Roulette.Width;
+odd = width % 2 == 1;
+if(odd and column ==  math.floor(width / 2)) then
+    damage = ""7-8""
+end
+if(not odd and (column == width / 2 or column == width / 2 - 1)) then
+    damage = ""7-8""
+end
+return ""Text(찌르기)+Attack(""..damage.."", Target, Swing)"";"
+"1024","Skill","Magic","Wisdom","Normal","마력 분출","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 이상","모든 지혜를 소모하고 소모한 지혜의 1.5배의 데미지를 가한다.","10이상의 마력을 사용 시 마력 폭발로 진화한다.","","wisdom = Status.GetValue(Stat.Wisdom)
+damage = math.floor(wisdom * 1.5)
+result = ""Text(마력 분출)+StatusChange(Wisdom, `-,""..wisdom.."")+Attack(""..damage.."", Target, Magic)"";
+if(wisdom >= 10) then 
+    result = result..""+Evolve(""..column.."",""..row.."", 1025, false)""
+end
+return result"
+"1025","Skill","Magic","Wisdom","Evolution","마력 폭발","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 이상","모든 지혜를 소모하고 적 전체에게 소모한 지혜만큼의 데미지를 가한다.","","","wisdom = Status.GetValue(Stat.Wisdom)
+return ""Text(마력 폭발)+StatusChange(Wisdom, `-,""..wisdom.."")+Attack(""..wisdom.."", AllEnemy, Magic)"";
+"
+"1026","Skill","Sword","Strength","Rare","발도술","return Roulette.UseSymbolCnt == 0 and Status.GetValue(Stat.Strength) >= 2;","턴 시작 후 처음으로만 사용 가능
+힘 2 소모","턴에 처음으로 밖에 사용할 수 없는 기술.
+모든 적에게 데미지(5)를 입힌다.","","","return ""Text(발도술)+Attack(5, AllEnemy, Swing)+StatusChange(Strength, `-,2)"";"
+"1027","Buff","Magic","Dexterity","Rare","닌자의 축복","return Status.GetValue(Stat.Dexterity) >= 3;","민첩 3 이상","닌자의 축복(수리검의 데미지 1 상승)을 본인에게 건다.","","","return ""Text(닌자의 축복)+GiveEffect(Player, NinjasBless{1})"";"
+"1028","Skill","Magic","Wisdom","Normal","정신 집중","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 소모","다음 턴 지혜를 추가로 3획득한다.","","","return ""Text(정신 집중)+GiveEffect(Player, Concentration{3}) + StatusChange(Wisdom, `-, 1)"";"
+"1029","Skill","Magic","Wisdom","Rare","신성 영역","local directionX = {0,0,-1,1};
+local directionY = {1,-1,0,0};
+for i = 1,4 do
+    temp = Roulette.Get(column + directionX[i], row + directionY[i]);
+    if(temp ~= 0 and temp ~= -1) then
+       return false;
+    end
+end
+return true;","주변의 아무 심볼이 없을 경우 사용 가능","모든 적에게 '화염'상태를 5-6턴간 부여합니다.
+사용 후 주위에 재를 생성한다.","","","result = ""Text(신성 영역)+GiveEffect(AllEnemy, Burn{5-6})"";
+local format = ""+Change(%d, %d, 1031)""
+local directionX = {0,0,-1,1};
+local directionY = {1,-1,0,0};
+for i = 1,4 do
+    result = result..string.format(format, column + directionX[i], row + directionY[i]);
+end
+return result;"
+"1030","Skill","None","Strength","Normal","동전 투척","return PlayerData.Money >= 10;","10G 소모","10G를 던져 4-6데미지를 입힌다.","","","PlayerData.GetMoney(-10);
+return ""Text(동전 투척) + Attack(4-6, Target, Money)"";"
+"1031","Skill","None","Wisdom","Etc","재","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 이상","아무 의미 없는 재다.
+지혜 1을 소모해 제거 가능하다.","","","return ""Change(""..column.."",""..row.."", 0)"";"
+"1032","Skill","None","Strength","Epic","현상금","return Status.GetValue(Stat.Wisdom) >= 1 and Status.GetValue(Stat.Strength) >= 1 and Status.GetValue(Stat.Dexterity) >= 1;","지혜 1 이상, 힘 1 이상, 민첩 1 이상","본인에게 '현상금' 효과를 부여한다.
+(현상금: 이번 턴 적을 공격한 횟수 * 2만큼의 돈을 획득한다.)","","","return ""Text(현상금) + GiveEffect(Player, Bounty{})"";"
+"1033","Skill","None","Strength","Epic","폭식","return Status.GetValue(Stat.Strength) >= 1;","힘 1 이상","본인에게 '폭식' 효과를 5턴간 부여한다.
+(폭식: 적을 쓰러뜨릴 때마다 체력을 5회복한다.)","","","return ""Text(폭식)+GiveEffect(Player, Eat{5})"";"
+"1034","Buff","None","Strength","Epic","다재다능","return true;","","모든 스탯을 2만큼 획득한다.","","","return ""StatusChange(Strength, `+, 2)+StatusChange(Wisdom, `+, 2)+StatusChange(Dexterity, `+, 2)"";"
+"1035","Skill","Shuriken","Dexterity","Etc","갈고리 표창","return true;","","적에게 약간의 피해를 두번 입힙니다.(2-3)
+사용 후 사라집니다.","","","return ""Text(갈고리 표창)+Attack(2-3, Target, Shuriken) * 2+Change(""..column.."",""..row.."", 0)"";"
+"1036","Buff","None","Dexterity","Evolution","갈고리 표창 주머니","return true;","","주위에 '갈고리 표창'을 생성합니다.","","","local result = """";
+local format = ""+Change(%d, %d, 1035)""
+local directionX = {0,0,-1,1};
+local directionY = {1,-1,0,0};
+for i = 1,4 do
+    if(Roulette.Get(column + directionX[i], row + directionY[i]) == 0) then
+       result = result..string.format(format, column + directionX[i], row + directionY[i]);
+    end
+end
+return result;"
+"1037","Skill","None","Strength","Normal","술집","return Roulette.Get(Column - 1, Row) == 0 and PlayerData.Money >= 4;","4G 소모, 왼쪽이 빈칸","4G를 소모하고 왼쪽에 술병을 생성한다.","","","PlayerData.GetMoney(-4);
+return ""Change(""..column - 1.."",""..row.."", 1019)"";"

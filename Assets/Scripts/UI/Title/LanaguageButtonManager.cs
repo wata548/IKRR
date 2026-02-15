@@ -16,7 +16,7 @@ namespace UI.Title {
         [SerializeField] private Button _button; 
         [SerializeField] private TMP_Text _languageShower;
         private float _lastClick = 0;
-        private const float OTHER_PLACE_CLICK_CHECK_TIME = 0.2f;
+        private const float OTHER_PLACE_CLICK_CHECK_TIME = 0.3f;
             
         private List<LanguageChanger> _container = new();
 

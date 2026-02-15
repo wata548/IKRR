@@ -30,7 +30,6 @@ namespace Symbol {
 
         private void SetUp() {
             _symbolFuncFormat ??= File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "LuaSymbolFuncFormat.txt"));
-            _eventFuncFormat ??= File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "LuaEventFuncFormat.txt"));
         }
         
         public bool IsUsable(int pColumn, int pRow) {

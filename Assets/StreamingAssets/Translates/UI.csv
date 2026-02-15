@@ -2,3 +2,30 @@
 "지도를 표시합니다.","地図を表示します。","Displays the map.","显示地图。","Zeigt die Karte an.","Affiche la carte.","Отображает карту."
 "설정창을 표시합니다.","設定ウィンドウを表示します。","Displays the settings window.","显示设置窗口。","Zeigt das Einstellungsfenster an.","Affiche la fenêtre des paramètres.","Отображает окно настроек."
 "이벤트 화면을 표시합니다.","イベント画面を表示します。","Displays the event screen.","显示事件屏幕。","Zeigt den Ereignisbildschirm an.","Affiche l'écran de l'événement.","Отображает экран события."
+"처음부터","最初から","From the beginning","从一开始","Von Anfang an","Dès le début","С самого начала"
+"이어하기","続く","Continue","继续","Weitermachen","Continuer","Продолжать"
+"종료하기","終了する","Exit","出口","Ausfahrt","Sortie","Выход"
+"메인 화면으로","メイン画面へ","To the main screen","返回主屏幕","Zum Hauptbildschirm","Retour à l'écran principal","На главный экран"
+"적과 전투한다.","敵と戦闘する。","Fight the enemy.","杀敌。","Bekämpfe den Feind.","Combattez l'ennemi.","Сражайтесь с врагом."
+"무언가 독특한 일이 일어납니다.","何かユニークなことが起こります。","Something unique happens.","发生了一件独特的事情。","Etwas Einzigartiges geschieht.","Il se passe quelque chose d'unique.","Происходит нечто уникальное."
+"보물이 있는 곳.","宝のあるところ。","Where the treasure is.","宝藏在哪里？","Wo der Schatz liegt.","Où se trouve le trésor.","Где находится сокровище."
+"체력의 30%만큼 회복한다.","体力の30％ほど回復する。","Recovers 30% of stamina.","恢复30%的体力。","Stellt 30 % der Ausdauer wieder her.","Récupère 30 % de l'endurance.","Восстанавливает 30% выносливости."
+"휴식하기 
+체력을 <color=green>20%</color>회복한다.","休憩 
+体力を<color=green>20%</color>回復する。","Rest 
+Restores <color=green>20%</color> of health.","休息
+恢复20%生命值。","Ruhe Stellt <color=green>20%</color> der Gesundheit wieder her.","Repos
+
+Restaure <color=green>20%</color> de la santé.","Отдых
+Восстанавливает <color=green>20%</color> здоровья."
+"연구하기
+심볼의 <color=red>진화 조건</color>을 알아낸다.","研究する
+シンボルの<color=red>進化条件</color>を調べる。","Research
+Find out the <color=red>evolutionary conditions</color> of a symbol.","研究
+
+找出符号的<color=red>演化条件</color>。","Recherche
+Ermittle die <color=red>evolutionären Bedingungen</color> eines Symbols.","Recherche
+
+Découvrez les <color=red>conditions évolutives</color> d'un symbole.","Исследование
+Узнайте об условиях эволюции символа."
+"평소와는 다른 강력한 적이 등장합니다.","いつもとは違う強力な敵が登場します。","A more powerful enemy than usual appears.","出现了一个比以往更强大的敌人。","Ein mächtigerer Feind als sonst erscheint.","Un ennemi plus puissant que d'habitude fait son apparition.","Появляется более сильный враг, чем обычно."

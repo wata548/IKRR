@@ -66,7 +66,8 @@ namespace UI.Roulette {
             const float ANIMATION_SCALE = 1.2f; 
             const float ANIMATION_DURATION = 0.45f;
             return _icon.transform.DOScale(ANIMATION_SCALE, ANIMATION_DURATION)
-                .SetLoops(2, LoopType.Yoyo);
+                .SetLoops(2, LoopType.Yoyo)
+                .OnComplete(() => _icon.transform.localScale = Vector3.one);
         }
         
         public void PlayAnimation(CellStatus pStatus) {

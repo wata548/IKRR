@@ -149,7 +149,8 @@ namespace Roulette {
                 return false;
             
             _hand[0] -= pAmount;
-            _hand[pSymbol] += pAmount;
+            if(!_hand.TryAdd(pSymbol, pAmount))
+                _hand[pSymbol] += pAmount;
             ResetRoulette();
             LastUpdateFrame = Time.frameCount;
             return true;

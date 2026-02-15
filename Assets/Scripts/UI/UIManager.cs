@@ -20,5 +20,6 @@ namespace UI {
         [field: SerializeField] public LevelUpRewardWindow LevelUp { get; private set; }
         [field: SerializeField] public TurnShower TurnShower { get; private set; }
         [field: SerializeField] public EventShower Event { get; private set; }
+        [field: SerializeField] public SymbolSelector.SymbolSelector Selector { get; private set; }
     }
 }
