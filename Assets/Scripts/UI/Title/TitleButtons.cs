@@ -21,13 +21,15 @@ namespace UI.Title {
         }
 
         private void Continue() {
-            var path = Path.Combine(Application.streamingAssetsPath, "Save.json");
+            var path = Path.Combine(Application.persistentDataPath, "Save.json");
             SaveSystem.Load(path);
             SceneManager.LoadScene(Scene.Main);
         }
         
         private void Awake() {
-            var savePath = Path.Combine(Application.streamingAssetsPath, "Save.json");
+            Test.Test.Paths();
+            
+            var savePath = Path.Combine(Application.persistentDataPath, "Save.json");
             if (string.IsNullOrWhiteSpace(File.ReadAllText(savePath))) {
                 _continue.interactable = false;
             }

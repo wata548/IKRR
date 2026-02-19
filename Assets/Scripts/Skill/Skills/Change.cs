@@ -11,11 +11,12 @@ namespace Character.Skill {
         [SkillParameter] public int Row { get; protected set; }
         [SkillParameter] public int Code { get; protected set; }
         [SkillParameter] public bool PlayAnimation { get; protected set; } = true;
+        protected virtual bool IsCreate => false;
         
         public Change(string[] pData) : base(pData) {}
 
         protected override void Implement(Positions pCaster) {
-            if (!RouletteManager.Change(Column, Row, Code)) {
+            if (!RouletteManager.Change(Column, Row, Code, IsCreate)) {
                 End();
                 return;
             }

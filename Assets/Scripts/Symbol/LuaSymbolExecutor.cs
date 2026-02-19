@@ -22,12 +22,6 @@ namespace Symbol {
             _language.Update();
         }
 
-        public void Invoke(string pContext) {
-            SetUp();
-            var code = string.Format(_eventFuncFormat, "Invoke", pContext);
-            _language.Invoke(code, "Invoke");
-        }
-
         private void SetUp() {
             _symbolFuncFormat ??= File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "LuaSymbolFuncFormat.txt"));
         }

@@ -43,7 +43,7 @@ namespace Data {
         public static void GameStart(string pJop = "Test") {
             UI.Map.Map.ClearStages.Clear();
 
-            var path = Path.Combine(Application.streamingAssetsPath, $"Start-{pJop}.txt");
+            var path = Path.Combine(Application.persistentDataPath, $"Start-{pJop}.txt");
             var data = File.ReadLines(path).Select(int.Parse).ToArray();
             RouletteManager.Init(data[2..]);
             PlayerData.Init(data[1]);
@@ -68,7 +68,7 @@ namespace Data {
             var setting = new JsonSerializerSettings();
             setting.TypeNameHandling = TypeNameHandling.All;
             var json = JsonConvert.SerializeObject(this, Formatting.None, setting);
-            var path = Path.Combine(Application.streamingAssetsPath, pPath);
+            var path = Path.Combine(Application.persistentDataPath, pPath);
             File.WriteAllText(path, json);
         }
     }

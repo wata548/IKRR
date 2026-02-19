@@ -34,7 +34,6 @@ namespace Data {
             GetExp(0);
         }
 
-        private static int GetNeedExp() => (int)Mathf.Ceil(0.914f * Level * Level + 7);
-
+        private static int GetNeedExp() => (int)Mathf.Ceil(0.914f * Mathf.Pow(Level, 1.4f) + 7); 
     }
 }

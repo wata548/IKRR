@@ -4,6 +4,7 @@ using Character.Skill;
 using Data;
 using Extension;
 using Symbol;
+using TMPro;
 using UnityEngine;
 
 namespace Roulette {
@@ -144,15 +145,26 @@ namespace Roulette {
             LastUpdateFrame = Time.frameCount;
         }
         
-        public static bool TryAdd(int pSymbol, int pAmount = 1) {
-            if (_hand[0] < pAmount)
+        public static bool TryAdd(int pSymbol, int pAmount, out int notAdded) {
+            if (_hand[0] < pAmount) {
+                if (_hand[0] == 0) {
+                    notAdded = pAmount;
+                    return false;
+                }
+
+                var temp = _hand[0];
+                if(!_hand.TryAdd(pSymbol, temp))
+                    _hand[pSymbol] += temp;
+                notAdded = pAmount - temp;
                 return false;
+            }
             
             _hand[0] -= pAmount;
             if(!_hand.TryAdd(pSymbol, pAmount))
                 _hand[pSymbol] += pAmount;
             ResetRoulette();
             LastUpdateFrame = Time.frameCount;
+            notAdded = 0;
             return true;
         }
 
@@ -193,7 +205,7 @@ namespace Roulette {
             return true;
         }
 
-        public static bool Change(int pColumn, int pRow, int pNewItem) {
+        public static bool Change(int pColumn, int pRow, int pNewItem, bool pCreate) {
 
             if (pColumn < 0 || pColumn >= Width || pRow < 0 || pRow >= Height)
                 return false;
@@ -205,7 +217,7 @@ namespace Roulette {
             _hand[target]--;
             if(!_hand.TryAdd(pNewItem, 1))
                 _hand[pNewItem]++;
-            _current[pColumn].SetAndCheckStatus(pColumn, pRow, pNewItem);
+            _current[pColumn].SetAndCheckStatus(pColumn, pRow, pNewItem, pCreate);
             LastUpdateFrame = Time.frameCount;
             return true;
         }

@@ -35,12 +35,12 @@ namespace Roulette {
                 _column[pIdx].Code = pValue;
             }
             
-            public void SetAndCheckStatus(int pColumnIdx, int pIdx, int pValue) {
+            public void SetAndCheckStatus(int pColumnIdx, int pIdx, int pValue, bool pForce = false) {
                 _column[pIdx].Code = pValue;
                 
                 if (pValue == DataManager.EMPTY_SYMBOL)
                     return;
-                if (_column[pIdx].Status == CellStatus.Used)
+                if (!pForce && _column[pIdx].Status == CellStatus.Used)
                     return;
                 
                 _column[pIdx].Status = SymbolExecutor.IsUsable(pColumnIdx, pIdx)

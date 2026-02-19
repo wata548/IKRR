@@ -12,6 +12,13 @@ using UnityEngine;
 
 namespace Test {
     public static class Test {
+
+        [TestMethod]
+        public static void Paths() {
+            Debug.Log($"Data: {Application.dataPath}"); 
+            Debug.Log($"Persistent: {Application.persistentDataPath}"); 
+        }
+        
         [TestMethod]
         public static void SaveTest() {
             new SaveSystem().Save();

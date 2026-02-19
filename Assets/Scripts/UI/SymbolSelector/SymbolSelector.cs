@@ -6,11 +6,11 @@ namespace UI.SymbolSelector {
     public class SymbolSelector: MonoBehaviour {
         private Queue<int> _addItems = new();
         
-        public void Add(int pCode) {
-            if (RouletteManager.TryAdd(pCode))
+        public void Add(int pCode, int pAmount = 1) {
+            if (RouletteManager.TryAdd(pCode,  pAmount, out var need))
                 return;
-            _addItems.Enqueue(pCode);
-            Debug.Log("sdf");
+            for(int i = 0; i < need; i++)
+                _addItems.Enqueue(pCode);
         }
     }
 }

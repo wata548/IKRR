@@ -306,6 +306,15 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.unity.visualeffectgraph": {
+      "version": "17.0.4",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.shadergraph": "17.0.4",
+        "com.unity.render-pipelines.core": "17.0.4"
+      }
+    },
     "com.unity.visualscripting": {
       "version": "1.9.6",
       "depth": 0,
@@ -324,7 +333,7 @@
         "com.unity.textmeshpro": "3.0.6",
         "com.unity.nuget.newtonsoft-json": "2.0.0"
       },
-      "hash": "3b0726f6b4bfc461ce406f07de84647c11b6a2e2"
+      "hash": "3fab5ee027248e465a6354ffdf4c44624a9edaa2"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
