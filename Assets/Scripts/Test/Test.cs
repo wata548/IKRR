@@ -14,6 +14,11 @@ namespace Test {
     public static class Test {
 
         [TestMethod]
+        public static void GetJobs() {
+            Debug.Log(string.Join(',', DataManager.Job.Keys));
+        }
+        
+        [TestMethod]
         public static void Paths() {
             Debug.Log($"Data: {Application.dataPath}"); 
             Debug.Log($"Persistent: {Application.persistentDataPath}"); 

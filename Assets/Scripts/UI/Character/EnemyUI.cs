@@ -17,6 +17,8 @@ namespace UI.Character {
         private Tween _idleAnimation;
         private Tween _attackAnimation;
         private Vector3? _origin = null;
+
+        private EnemySize _size;
         //==================================================||Methods 
         public void SetMaterial(string pMaterialName) {
             _shower.material = MaterialStore.Get(pMaterialName);
@@ -24,6 +26,7 @@ namespace UI.Character {
         
         public void SetData(Enemy pData) {
             gameObject.SetActive(true);
+            _size = pData.Size;
             
             RefreshEffectBox(true);
             _hpBar.Set(pData.MaxHp, pData.MaxHp);
@@ -61,13 +64,29 @@ namespace UI.Character {
                 .SetEase(Ease.OutSine)
                 .SetLoops(-1, LoopType.Yoyo);
         }
+
+        private void PlayVfx(AttackType pType) {
+            var vfx = VFXManager.Get(pType.ToString());
+            if (vfx is null)
+                return;
+            
+            var height = (transform as RectTransform)!.rect.height * transform.lossyScale.y / 2f;
+            var pos = transform.position;
+            pos.y += height;
+            vfx.transform.position = pos;
+            vfx.ApplySize(_size);
+            vfx.Play();
+        }
         
         public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
+            
+            PlayVfx(pType);   
             _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
                 .OnComplete(() => pOnComplete?.Invoke());
         }
 
-        public override void OnDeath(IEntity pEntity, int pAmount, Action pOnComplete) {
+        public override void OnDeath(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
+            PlayVfx(pType);   
             _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
                 .OnComplete(() => StartCoroutine(Death()));
             IEnumerator Death() {

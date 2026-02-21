@@ -4,6 +4,7 @@ namespace Data {
     public interface IDB<TKey, TValue> {
         public void LoadData(IDataLoader<TKey, TValue> pLoader);
         public TValue GetData(TKey pNumber);
+        public IEnumerable<TKey> Keys { get; }
     }
     
     public interface IQueryDB<TKey, TValue, TQueryArgs> : IDB<TKey, TValue> {

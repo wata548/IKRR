@@ -86,6 +86,7 @@ namespace UI.Roulette {
                 CellStatus.Usable =>  USABLE,
                 CellStatus.Unavailable => UNAVAILABLE,
                 CellStatus.Used => USED,
+                CellStatus.ForceUnavailable => UNAVAILABLE,
                 _ => throw new ArgumentException()
             });
         }

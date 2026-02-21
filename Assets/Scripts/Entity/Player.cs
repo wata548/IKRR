@@ -55,6 +55,7 @@ namespace Character {
                 pEffect += effect;
             }
             Effects.Add(pEffect);
+            pEffect.OnAdded(this);
         }
 
         public void OnAttack() {
@@ -80,7 +81,7 @@ namespace Character {
                 IsAlive = false;
              
                 UIManager.Instance.Entity[Position].
-                    OnDeath(this, pAmount, pOnComplete);
+                    OnDeath(this, pAmount, pType, pOnComplete);
                 
                 return;
             }
@@ -88,7 +89,7 @@ namespace Character {
             UIManager.Instance.Entity[Position].
                 OnReceiveDamage(this, pAmount, pType, pOnComplete);
         }
-
+        
         public void Heal(int pAmount, Action pOnComplete) {
             if (!IsAlive) {
                 pOnComplete!.Invoke();
@@ -105,10 +106,16 @@ namespace Character {
             SceneManager.LoadScene(Scene.GameOver);
         }
         #region ApplyEffect
-
         private void UpdateEffect() =>
             Effects = Effects.Where(effect => effect.Duration > 0).ToList();
-
+        
+        public void OnBattleStart() {
+            foreach (var effect in Effects) {
+                effect.OnBattleStart(this);
+            }
+            UpdateEffect();
+        }
+        
         public int AttackDamageCalc(int pAmount, AttackType pType, IEntity pTarget) {
             
             var value = Effects.Aggregate(pAmount, (amount, effect) => effect.OnSendDamage(amount, pType, this, pTarget));

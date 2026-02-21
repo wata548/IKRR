@@ -33,7 +33,7 @@ namespace UI.Character {
                 .OnComplete(() => pOnComplete?.Invoke());
         }
 
-        public override void OnDeath(IEntity pEntity, int pAmount, Action pOnComplete) {
+        public override void OnDeath(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
             SceneManager.LoadScene(Scene.GameOver);
         }
 

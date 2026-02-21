@@ -9,8 +9,13 @@ namespace Data {
         public static int NeedExp { get; private set; }
         public static int CurExp { get; private set; } = 0;
         public static int LastUpdate { get; private set; } = 0;
+        public static JobData Job { get; private set; }
+
+        public static void Init(JobData pJob) =>
+            Init(pJob, pJob.Money, 1, 0);
         
-        public static void Init(int pMoney = 0, int pLevel = 1, int pExp = 0) {
+        public static void Init(JobData pJob, int pMoney, int pLevel, int pExp) {
+            Job = pJob;
             Money = pMoney;
             Level = pLevel;
             CurExp = pExp;

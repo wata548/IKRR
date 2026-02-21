@@ -8,7 +8,7 @@ namespace UI.Icon {
 
         private static IReadOnlyDictionary<int, Sprite> _icons;
         private const string PATH = "IKRR_Icons/{0}";
-        private static readonly string[] TARGET_PATHS = { "Enemy", "Symbol", "Effect"};
+        private static readonly string[] TARGET_PATHS = { "Enemy", "Symbol", "Effect", "Job"};
         
         [RuntimeInitializeOnLoadMethod]
         private static void Init() {

@@ -1,19 +1,20 @@
 "Korean","Japanese","English","Chinese","German","French","Russian"
 "농부와의 만남","農家との出会い","Meeting with the Farmer","与农民会面","Treffen mit dem Landwirt","Rencontre avec l'agriculteur","Встреча с фермером"
-"당신은 길을 가던 중 자신의 작물을 팔러 떠나는 농부와 마주쳤습니다.\n농부는 자신의 농작물을 지키기 위해 동행을 요청합니다.","あなたは途中で自分の作物を売りに出て行く農家に直面しました。","As you walk along, you come across a farmer leaving to sell his crops.\nThe farmer asks you to accompany him to protect his crops.","你一路走着，遇到一位农民正要出门去卖他的庄稼。\n农民请你陪他一起去保护他的庄稼。","Während du so dahingehst, begegnest du einem Bauern, der gerade aufbricht, um seine Ernte zu verkaufen.\nDer Bauer bittet dich, ihn zu begleiten, um seine Ernte zu schützen.","Au cours de votre promenade, vous croisez un agriculteur qui part vendre sa récolte. L'agriculteur vous demande de l'accompagner pour protéger ses récoltes.","По пути вы встречаете фермера, который уходит продавать свой урожай. Фермер просит вас пойти с ним, чтобы защитить его посевы."
+"당신은 길을 가던 중 자신의 작물을 팔러 떠나는 농부와 마주쳤습니다.\n농부는 자신의 농작물을 지키기 위해 동행을 요청합니다.","あなたは途中で自分の作物を売りに出て行く農家に直面しました。","As you walk along, you come across a farmer leaving to sell his crops.\nThe farmer asks you to accompany him to protect his crops.","你一路走着，遇到一位农民正要出门去卖他的庄稼。\n农民请你陪他一起去保护他的庄稼。","Während du so dahingehst, begegnest du einem Bauern, der gerade seine Ernte verkaufen will.\nDer Bauer bittet dich, ihn zu begleiten, um seine Ernte zu schützen.","Au cours de votre promenade, vous croisez un agriculteur qui part vendre sa récolte. L'agriculteur vous demande de l'accompagner pour protéger ses récoltes.","По пути вы встречаете фермера, который уходит продавать свой урожай. Фермер просит вас пойти с ним, чтобы защитить его посевы."
 "동행한다.\n(<color=green>50G 획득</color> <color=red>단, 50%의 확률로 슬라임무리와 만난다.</color>)","同行する。\n(<color=green>50G獲得</color> <color=red>ただし、50%の確率でスライム群れと出会う。</color>)","Accompanying.\n(<color=green>50G obtained</color> <color=red>However, there is a 50% chance of encountering a group of slimes.</color>)","伴随。\n（<color=green>获得50G</color> <color=red>但是，有50%的几率会遇到一群史莱姆。</color>）","Begleitet.\n(<color=green>50G erhalten</color> <color=red>Es besteht jedoch eine 50%ige Chance, auf eine Gruppe Schleime zu treffen.</color>)","Accompagnement.\n(<color=green>50G obtenus</color> <color=red>Cependant, il y a 50 % de chances de rencontrer un groupe de slimes.</color>)","Сопутствующее.\n(<color=green>Получено 50G</color> <color=red>Однако существует 50% вероятность встретить группу слизней.</color>)"
 "그대로 지나친다.","そのまま通り過ぎる。","Just pass it by.","直接略过就好。","Geh einfach vorbei.","Passez votre chemin.","Просто пройдите мимо."
-"이런!, 우연히도 슬라임 무리와 마주쳤습니다.","こんな！、偶然にもスライムの群れに遭遇しました。","Oh no!, I just happened to run into a bunch of slimes.","糟糕！我竟然碰巧遇到了一群史莱姆。","Oh nein! Ich bin gerade zufällig auf eine Horde Schleime gestoßen.","Oh non ! Je viens de tomber nez à nez avec un tas de slimes.","О нет! Я случайно наткнулся на кучу слизней."
+"이런!, 우연히도 슬라임 무리와 마주쳤습니다.","こんな！、偶然にもスライム群れに遭遇しました。","Oh no!, I just happened to run into a bunch of slimes.","糟糕！我竟然碰巧遇到了一群史莱姆。","Oh nein! Ich bin gerade zufällig auf eine Horde Schleime gestoßen.","Oh non ! Je viens de tomber nez à nez avec un tas de slimes.","О нет! Я случайно наткнулся на кучу слизней."
 "전투한다.","戦闘する。","Fight.","斗争。","Kämpfen.","Lutte.","Драться."
 "다행히도 당신은 아무것과도 마주치지 않았습니다.","幸いなことに、あなたは何にも遭遇しませんでした。","Fortunately, you didn't encounter anything.","幸好你没有遇到任何问题。","Zum Glück ist Ihnen nichts begegnet.","Heureusement, vous n'avez rien rencontré.","К счастью, вы ни с чем не столкнулись."
 "앞으로 나아간다.","先に進む。","Moving forward.","继续前进。","Vorwärts.","Pour aller de l'avant.","Двигаемся дальше."
-"마법사의 유혹","魔法使いの誘惑","The Magician's Temptation","魔术师的诱惑","Die Versuchung des Magiers","La tentation du magicien","Искушение мага"
+"마법사의 유혹","魔法使いの誘惑","The Wizard's Temptation","巫师的诱惑","Die Versuchung des Zauberers","La tentation du magicien","Искушение волшебника"
 "당신이 모험을 계속하던 중 마법사가 눈 앞에 나타나 제안을 합니다. ""나에게 피를 줘... 네, 네 피를 준다면 엄청난 보상을 약속하지.""(<color=red>최대 체력 - 10</color>)","あなたが冒険を続けている間、ウィザードが目の前に現れ、提案をします。 「私に血を与える…はい、あなたの血を与えるならば、莫大な報酬を約束しない」（<color=red>最大体力 - 10</color>）","As you continue your adventure, a wizard appears before you and makes you an offer: ""Give me your blood... Yes, your blood, and I promise you a great reward."" (<color=red>Maximum Health - 10</color>)","在你的冒险旅程中，一位巫师出现在你面前，向你提出条件：“把你的血给我……没错，就是你的血，我保证给你丰厚的回报。”（<color=red>最大生命值 - 10</color>）","Während du dein Abenteuer fortsetzt, erscheint ein Zauberer vor dir und unterbreitet dir ein Angebot: „Gib mir dein Blut … Ja, dein Blut, und ich verspreche dir eine große Belohnung.“ (Maximale Gesundheit: 10)","Au fil de votre aventure, un magicien apparaît devant vous et vous fait une proposition : « Donnez-moi votre sang… Oui, votre sang, et je vous promets une grande récompense. » (<color=red>Santé maximale - 10</color>)","По мере продолжения вашего приключения перед вами появляется волшебник и делает вам предложение: «Отдайте мне свою кровь... Да, свою кровь, и я обещаю вам великую награду». (<color=red>Максимальное здоровье - 10</color>)"
 "<color=green>다재다능</color>을 획득한다.
 (모든 스탯을 <color=red>+2</color>시켜준다.)
 ","<color=green>多様性</color>を獲得する。
 （すべてのステータスを<color=red>+2</color>してください。）
 ","<color=green>Versatility</color> is gained.
+
 (All stats are increased by <color=red>+2</color>.)
 ","获得多才多艺属性。
 
@@ -25,7 +26,7 @@
 
 ","<color=green>Polyvalence</color> est gagnée.
 
-(Toutes les statistiques sont augmentées de <color=red>+2</color>.)
+(Toutes les statistiques augmentent de <color=red>+2</color>.)
 
 ","Приобретается <color=green>Универсальность</color>.
 
@@ -38,5 +39,5 @@
 "그대로 떠난다.","そのまま去る。","Just leave.","走吧。","Geh einfach.","Partez.","Просто уходи."
 "당신은 약간의 아쉬움을 남긴채 그자리에서 빠져나왔습니다.","あなたは少し物足りなさを残したままその場から抜け出しました。","You left the place with a little regret.","你带着一丝遗憾离开了那里。","Du verließest den Ort mit einem leichten Bedauern.","Vous avez quitté les lieux avec un petit regret.","Вы покинули это место с некоторым сожалением."
 "닫기","閉じる","close","关闭","schließen","fermer","закрывать"
-"마녀는 만면에 환한 미소를 띈채 바람과 같이 사라졌습니다. 아플 지 몰라도 성공적인 거래였습니다.","魔女は満面に明るい笑顔を浮かべ、風のように消えた。病気かもしれませんが、成功した取引でした。","The witch vanished like the wind, a bright smile on her face. It was a successful transaction, even if it was painful.","女巫像风一样消失了，脸上带着灿烂的笑容。这是一笔成功的交易，尽管过程很痛苦。","Die Hexe verschwand wie der Wind, ein strahlendes Lächeln auf den Lippen. Es war ein erfolgreiches Geschäft gewesen, auch wenn es schmerzhaft war.","La sorcière disparut comme le vent, un large sourire aux lèvres. L'affaire avait été conclue avec succès, même si elle avait été douloureuse.","Ведьма исчезла, словно ветер, с лучезарной улыбкой на лице. Сделка прошла успешно, пусть и болезненно."
+"마녀는 만면에 환한 미소를 띈채 바람과 같이 사라졌습니다. 아플 지 몰라도 성공적인 거래였습니다.","魔女は満面に明るい笑顔を浮かべ、風のように消えた。痛いかもしれませんが、成功した取引でした。","The witch vanished like the wind, a bright smile on her face. It was a successful transaction, even if it was painful.","女巫像风一样消失了，脸上带着灿烂的笑容。这是一笔成功的交易，尽管过程很痛苦。","Die Hexe verschwand wie der Wind, ein strahlendes Lächeln auf den Lippen. Es war ein erfolgreiches Geschäft gewesen, auch wenn es schmerzhaft war.","La sorcière disparut comme le vent, un large sourire aux lèvres. L'affaire avait été conclue avec succès, même si elle avait été douloureuse.","Ведьма исчезла, словно ветер, с лучезарной улыбкой на лице. Сделка прошла успешно, пусть и болезненно."
 "닫기","閉じる","close","关闭","schließen","fermer","закрывать"

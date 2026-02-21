@@ -16,7 +16,8 @@ namespace Extension.Effect {
         
         public void Set(EffectBase pData) {
             _shower.sprite = pData.Code.GetIcon();
-            _counter.text = pData.ShowCount.ToString();
+            var cnt = pData.ShowCount;
+            _counter.text = cnt < 0 ? "" : cnt.ToString();
             _data = pData;
         }
 

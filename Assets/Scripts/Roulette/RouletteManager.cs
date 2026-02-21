@@ -189,8 +189,11 @@ namespace Roulette {
             return _current[pColumn][pRow];
         }
 
-        public static void SetStatus(int pColumn, int pRow, CellStatus pStatus) =>
+        public static void SetStatus(int pColumn, int pRow, CellStatus pStatus) {
+            if (pColumn < 0 || pColumn >= Width || pRow < 0 || pRow >= Height)
+                return;
             _current[pColumn].SetStatus(pRow, pStatus);
+        }
         
         public static bool Use(int pColumn, int pRow, out CellStatus pStatus, out ISkill pSkill) {
             pStatus = GetStatus(pColumn, pRow);

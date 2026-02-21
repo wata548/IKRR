@@ -1,7 +1,7 @@
 "SerialNumber","Type","Category","StatCategory","Rarity","Name","ConditionCode","Condition","Description","EvolveDescription","EvolveCondition","EffectCode"
 "Int32","Data.SymbolType","Data.SymbolCategory","Data.TargetStatus","Data.Rarity","String","String","String","String","String","String","String"
-"-1","Buff","None","Strength","Etc","Error","return false;","오류 발생","오류가 발생했습니다. ","","","return """";"
-"0","Buff","None","Strength","Etc","빈칸","return false;","","아무 것도 없는 빈칸입니다.","","","return """";"
+"-1","Buff","None","None","Etc","Error","return false;","오류 발생","오류가 발생했습니다. ","","","return """";"
+"0","Buff","None","None","Etc","빈칸","return false;","","아무 것도 없는 빈칸입니다.","","","return """";"
 "1001","Buff","None","Strength","Normal","힘","return true;","","힘을 1만큼 상승시킵니다.","좌우에 '힘'이 있을 때 '괴력'으로 진화한다.","right = Roulette.Get(column+1, row);
 left = Roulette.Get(column-1, row);
 if(left == right and left == 1001) then
@@ -86,7 +86,7 @@ return result;"
 result = result..""+Change(""..(column+1).."",""..row.."",0)"";
 result = result..""+Change(""..(column-1).."",""..row.."",0)"";
 return result;"
-"1019","Skill","None","Strength","Etc","술병","return true;","","적에게 피해를 입힌다.(10)
+"1019","Skill","None","None","Etc","술병","return true;","","적에게 피해를 입힌다.(10)
 사용 후 깨져버린다.","양쪽 중 한 곳에 '화염'이 있으면 '화염병'으로 진화한다.","right = Roulette.Get(column+1, row);
 left = Roulette.Get(column-1, row);
 if(left ==1007 or right == 1007) then
@@ -94,10 +94,10 @@ if(left ==1007 or right == 1007) then
   return  result;
 end
 return """";","return ""Text(술병)+Attack(10, Target, Crush)+Change(""..column.."",""..row.."", 0)"";"
-"1020","Skill","None","Strength","Evolution","화염병","return true;","","모든 적에게 피해를 입힌다.(10)
+"1020","Skill","None","None","Evolution","화염병","return true;","","모든 적에게 피해를 입힌다.(10)
 사용 후 깨져버린다.","","","return ""Text(화염병)+Attack(10, AllEnemy, Burn)+Change(""..column.."",""..row.."", 0)"";"
 "1021","Skill","Body","Dexterity","Rare","3연격","return Status.GetValue(Stat.Dexterity) >= 2;","민첩 2 소모","적에게 세 번 피해를 입힙니다.(2-3)","","","return ""Text(3연격)+Attack(2-3, Target, Body)*3+StatusChange(Dexterity, `-, 2)"";"
-"1022","Skill","None","Dexterity","Rare","동전 던지기","return true;","","50%의 확률로 적에게 피해를 입힙니다.(8)
+"1022","Skill","None","None","Rare","동전 던지기","return true;","","50%의 확률로 적에게 피해를 입힙니다.(8)
 단 50%의 확률로 데미지가 플레이어에게 들어옵니다.","","","target = math.random(2) == 1 and ""Caster"" or ""Target"";
 return ""Text(동전 던지기) + Attack(8,""..target.."", Magic)"";"
 "1023","Skill","Sword","Strength","Rare","찌르기","return Status.GetValue(Stat.Strength) >= 1;","힘 1 소모","적에게 약간의 피해를 입힙니다.(3-4)
@@ -134,24 +134,24 @@ for i = 1,4 do
        return false;
     end
 end
-return true;","주변의 아무 심볼이 없을 경우 사용 가능","모든 적에게 '화염'상태를 5-6턴간 부여합니다.
-사용 후 주위에 재를 생성한다.","","","result = ""Text(신성 영역)+GiveEffect(AllEnemy, Burn{5-6})"";
-local format = ""+Change(%d, %d, 1031)""
+return true;","주변에 아무 심볼이 없을 경우 사용 가능","모든 적에게 '화염'상태를 3-4턴간 부여합니다.
+사용 후 주위에 재를 생성한다.","","","result = ""Text(신성 영역)+GiveEffect(AllEnemy, Burn{3-4})"";
+local format = ""+Create(%d, %d, 1031)""
 local directionX = {0,0,-1,1};
 local directionY = {1,-1,0,0};
 for i = 1,4 do
     result = result..string.format(format, column + directionX[i], row + directionY[i]);
 end
 return result;"
-"1030","Skill","None","Strength","Normal","동전 투척","return PlayerData.Money >= 10;","10G 소모","10G를 던져 4-6데미지를 입힌다.","","","PlayerData.GetMoney(-10);
+"1030","Skill","None","None","Normal","동전 투척","return PlayerData.Money >= 10;","10G 소모","10G를 던져 4-6데미지를 입힌다.","","","PlayerData.GetMoney(-10);
 return ""Text(동전 투척) + Attack(4-6, Target, Money)"";"
-"1031","Skill","None","Wisdom","Etc","재","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 이상","아무 의미 없는 재다.
+"1031","Skill","None","None","Etc","재","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 이상","아무 의미 없는 재다.
 지혜 1을 소모해 제거 가능하다.","","","return ""Change(""..column.."",""..row.."", 0)"";"
-"1032","Skill","None","Strength","Epic","현상금","return Status.GetValue(Stat.Wisdom) >= 1 and Status.GetValue(Stat.Strength) >= 1 and Status.GetValue(Stat.Dexterity) >= 1;","지혜 1 이상, 힘 1 이상, 민첩 1 이상","본인에게 '현상금' 효과를 부여한다.
-(현상금: 이번 턴 적을 공격한 횟수 * 2만큼의 돈을 획득한다.)","","","return ""Text(현상금) + GiveEffect(Player, Bounty{})"";"
-"1033","Skill","None","Strength","Epic","폭식","return Status.GetValue(Stat.Strength) >= 1;","힘 1 이상","본인에게 '폭식' 효과를 5턴간 부여한다.
+"1032","Skill","None","None","Epic","현상금","return Status.GetValue(Stat.Wisdom) >= 1 and Status.GetValue(Stat.Strength) >= 1 and Status.GetValue(Stat.Dexterity) >= 1;","지혜 1 이상, 힘 1 이상, 민첩 1 이상","본인에게 '현상금' 효과를 부여한다.
+(현상금: 이번 턴 사용한 스킬 심볼 횟수 * 2만큼의 돈을 획득한다.)","","","return ""Text(현상금) + GiveEffect(Player, Bounty{})"";"
+"1033","Skill","None","None","Epic","폭식","return Status.GetValue(Stat.Strength) >= 1;","힘 1 이상","본인에게 '폭식' 효과를 5턴간 부여한다.
 (폭식: 적을 쓰러뜨릴 때마다 체력을 5회복한다.)","","","return ""Text(폭식)+GiveEffect(Player, Eat{5})"";"
-"1034","Buff","None","Strength","Epic","다재다능","return true;","","모든 스탯을 2만큼 획득한다.","","","return ""StatusChange(Strength, `+, 2)+StatusChange(Wisdom, `+, 2)+StatusChange(Dexterity, `+, 2)"";"
+"1034","Buff","None","None","Unique","다재다능","return true;","","모든 스탯을 1만큼 획득한다.","","","return ""StatusChange(Strength, `+, 1)+StatusChange(Wisdom, `+, 1)+StatusChange(Dexterity, `+, 1)"";"
 "1035","Skill","Shuriken","Dexterity","Etc","갈고리 표창","return true;","","적에게 약간의 피해를 두번 입힙니다.(2-3)
 사용 후 사라집니다.","","","return ""Text(갈고리 표창)+Attack(2-3, Target, Shuriken) * 2+Change(""..column.."",""..row.."", 0)"";"
 "1036","Buff","None","Dexterity","Evolution","갈고리 표창 주머니","return true;","","주위에 '갈고리 표창'을 생성합니다.","","","local result = """";
@@ -164,5 +164,39 @@ for i = 1,4 do
     end
 end
 return result;"
-"1037","Skill","None","Strength","Normal","술집","return Roulette.Get(Column - 1, Row) == 0 and PlayerData.Money >= 4;","4G 소모, 왼쪽이 빈칸","4G를 소모하고 왼쪽에 술병을 생성한다.","","","PlayerData.GetMoney(-4);
-return ""Change(""..column - 1.."",""..row.."", 1019)"";"
+"1037","Skill","None","None","Normal","술집","for i = 1,Roulette.Width do
+  for j = 1,Roulette.Height do  
+    if(Roulette.Get(i - 1,j - 1) == 0) then
+      return true;
+    end
+  end
+end
+return fralse;","4G 소모, 빈칸이 존재","4G를 소모하고 빈칸에 술병을 생성한다.","","","for i = 1,Roulette.Width do
+  for j = 1,Roulette.Height do  
+    if(Roulette.Get(i - 1,j - 1) == 0) then
+      c = i - 1;
+      r = j - 1;
+      goto play;
+    end
+  end
+end
+::play::
+PlayerData.GetMoney(-4);
+return ""Text(술집)+Create(""..c.."",""..r.."", 1019)"";"
+"1038","Skill","None","Strength","Rare","피의 맹세","return Field.Player.Hp > 5;","hp 5 소모","힘을 3만큼 상승시킵니다.","","","return ""Text(피의 맹세)+Attack(5, Caster, Blood)+StatusChange(Strength, `+, 3)"";"
+"1039","Skill","None","Dexterity","Rare","피의 대가","return Field.Player.Hp > 5;","hp 5 소모","민첩을 3만큼 상승시킵니다.","","","return ""Text(피의 대가)+Attack(5, Caster, Blood)+StatusChange(Dexterity, `+, 3)"";"
+"1040","Skill","None","Wisdom","Rare","금단의 지식","return Field.Player.Hp > 5;","hp 5 소모","지능을 3만큼 상승시킵니다.","","","return ""Text(금단의 지식)+Attack(5, Caster, Blood)+StatusChange(Wisdom, `+, 3)"";"
+"1041","Skill","None","None","Normal","부메랑","return true;","","모든 적에게 3의 데미지를 입힌다.\n(사용 후 날아간 부메랑 상태가 된다)","","","return ""Text(부메랑)+Attack(3, AllEnemy, Swing)+Change(""..column.."",""..row.."",1042)"";"
+"1042","Buff","None","None","Etc","날아간 부메랑","return true;","","다시 부메랑으로 돌아온다.","","","return ""Change(""..column.."",""..row.."", 1041)"";"
+"1043","Buff","None","Strength","Unique","검술 자세","return true;","","주위의 검술의 개수만큼 근력을 획득한다.","","","cnt=0;
+local directionX = {0,0,-1,1};
+local directionY = {1,-1,0,0};
+for i = 1,4 do
+    code = Roulette.Get(column + directionX[i], row + directionY[i]) ;
+    if(Symbol:GetData(code):ContainCategory(Category.Sword)) then
+       cnt = cnt+1;
+    end
+end
+return ""StatusChange(Strength, `+,""..cnt.."")"";"
+"1044","Skill","Magic","Wisdom","Rare","얼음 마법","return Status.GetValue(Stat.Wisdom) >= 1;","지혜 1 소모","적에게 '빙결'상태를 부여합니다. 
+(적의 공격력이 75%가 됩니다, 사용 시 주변의 심볼 사용 불가)","","","return ""Text(얼음 마법)+StatusChange(Wisdom, `-, 1)+GiveEffect(Target, Freezing{1})+SetSymbolStatus(""..(column+1).."",""..row.."")+SetSymbolStatus(""..(column-1).."",""..row.."")+SetSymbolStatus(""..column.."",""..(row+1).."")+SetSymbolStatus(""..column.."",""..(row-1).."")"";"

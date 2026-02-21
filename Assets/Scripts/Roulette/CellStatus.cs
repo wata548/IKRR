@@ -3,5 +3,6 @@
         Usable,
         Used,
         Unavailable,
+        ForceUnavailable
     }
 }

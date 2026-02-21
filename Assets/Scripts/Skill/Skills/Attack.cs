@@ -1,3 +1,4 @@
+using System.Linq;
 using Character.Skill.Data;
 using Data;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Character.Skill {
         public Attack(string[] pData): base(pData){}
         protected override void Implement(Positions pCaster) {
             var caster = CharactersManager.GetEntity(pCaster);
-            var targets = CharactersManager.GetEntities(pCaster, Target.Value);
+            var targets = CharactersManager.GetEntities(pCaster, Target.Value).ToArray();
             
             var idx = targets.Length;
             foreach (var target in targets) {

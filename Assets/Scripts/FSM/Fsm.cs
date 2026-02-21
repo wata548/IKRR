@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Data;
 using DG.Tweening;
 using Extension;
 using FSM.StateStrategy;
@@ -26,8 +27,13 @@ namespace FSM {
                 { State.PlayerTurn, new PlayerTurnState() },
                 { State.EnemyTurn, new EnemyTurn() },
             };
-        public void StartBattle() =>
+
+        public void StartBattle() {
             Turn = 0;
+            foreach (var character in CharactersManager.GetEntities()) {
+                character.OnBattleStart();
+            }
+        }
 
         public void EndBattle() {
             foreach(var (_, strategy) in _matchStrategy)

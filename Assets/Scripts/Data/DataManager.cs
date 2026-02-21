@@ -13,21 +13,23 @@ namespace Data {
         public static IDB<int, EnemyData> Enemy { get; private set; }
         public static ILevelUpAppearanceDB LevelUp { get; private set; } = null;
         public static IDB<int, EffectData> Effect { get; private set; }
+        public static IDB<int, JobData> Job { get; private set; }
         private static IDB<int, List<List<int>>> _enemyAppearance;
         private static IDB<int, List<EventData>> _event;
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void SetSymbolDB() {
+        private static void SetDB() {
             
             Symbol = new SymbolDB();
-            Enemy = new DictionaryBaseDB<EnemyData>();
-            Effect = new DictionaryBaseDB<EffectData>();
-            _enemyAppearance = new DictionaryBaseDB<List<List<int>>>();
-            _event = new DictionaryBaseDB<List<EventData>>();
+            Enemy = new DictionaryBaseDB<int, EnemyData>();
+            Effect = new DictionaryBaseDB<int, EffectData>();
+            Job = new DictionaryBaseDB<int, JobData>(job => job.Init());
+            _enemyAppearance = new DictionaryBaseDB<int, List<List<int>>>();
+            _event = new DictionaryBaseDB<int, List<EventData>>();
                 
 #if UNITY_EDITOR
             LevelUp = new LevelUpAppearanceDB(new SSLevelUpAppearanceLoader());
-            
+            Job.LoadData(new SpreadSheetLoader<JobData>("Job"));
             Symbol.LoadData(new SpreadSheetLoader<SymbolData>("Symbol"));
             Enemy.LoadData(new SpreadSheetLoader<EnemyData>("Enemy"));
             Effect.LoadData(new SpreadSheetLoader<EffectData>("Effect"));
@@ -44,6 +46,7 @@ namespace Data {
             LevelUp = new LevelUpAppearanceDB(new CSVLevelUpAppearanceLoader());
             
             Symbol.LoadData(new CSVLoader<SymbolData>("Symbol"));
+            Job.LoadData(new CSVLoader<JobData>("Job"));
             Enemy.LoadData(new CSVLoader<EnemyData>("Enemy"));
             Effect.LoadData(new CSVLoader<EffectData>("Effect"));
             _enemyAppearance.LoadData(new CSVGroupLoader<EnemyAppearanceInfo, List<int>>(

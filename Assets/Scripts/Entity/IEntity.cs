@@ -21,6 +21,7 @@ namespace Character {
         public void OnTurnEnd();
         public void OnTurnStart();
         public void OnRouletteStop();
+        public void OnBattleStart();
         
         public void Heal(int pAmount, Action pOnComplete = null);
         public void KillSelf();

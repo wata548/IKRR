@@ -21,13 +21,13 @@ Close();}]
 |앞으로 나아간다.[{Clear();}]"
 "100","마법사의 유혹","@0:#Event/5100
 |당신이 모험을 계속하던 중 마법사가 눈 앞에 나타나 제안을 합니다. ""나에게 피를 줘... 네, 네 피를 준다면 엄청난 보상을 약속하지.""(<color=red>최대 체력 - 10</color>)
-|<[return Player.MaxHp > 10;]><color=green>다재다능</color>을 획득한다.
-(모든 스탯을 <color=red>+2</color>시켜준다.)
-[{Selector:Add(1034);
+|<[return Player.MaxHp > 10;]><color=green>다재다능</color>을 2개 획득한다.
+(모든 스탯을 <color=red>+1</color>시켜준다.)
+[{Selector:Add(1034, 2);
 Player:ChangeMaxHp(-10);
 Goto(2);}]
-|<[return Player.MaxHp > 10;]><color=yellow>100G</color>를 획득한다.
-[{PlayerData.GetMoney(100);
+|<[return Player.MaxHp > 10;]><color=yellow>50G</color>를 획득한다.
+[{PlayerData.GetMoney(50);
 Player:ChangeMaxHp(-10);
 Goto(2);}] 
 |그대로 떠난다.[{Goto(1);}]
@@ -35,3 +35,24 @@ Goto(2);}]
 |닫기[{Clear();}]
 @2:마녀는 만면에 환한 미소를 띈채 바람과 같이 사라졌습니다. 아플 지 몰라도 성공적인 거래였습니다.
 |닫기[{Clear();}]"
+"0","특급 세일","@0:#Event/5002
+|""날마다 오는 기회가 아니다. 특급 세일이오!, 특급세일!"" 마을에서 술집 주인이 20G만 먼저 내면 앞으로 술을 4G에 구매할 수 있는 쿠폰을 판매하고 있습니다.
+|<[return PlayerData.Money >= 6]>
+그저 술 한병 구매한다.
+(일회성, 적에게 10데미지를 입힌다.)
+[{PlayerData.GetMoeny(-6);
+Selector.Add(1019);
+Goto(1);}]
+|<[return PlayerData.Money >= 20]>
+술집 심볼을 획득한다.
+(스킬,빈칸을 찾아 4G를 소비해 술병을 생성한다.)[{PlayerData.GetMoeny(-20);
+Selector.Add(1037);
+Goto(2);}]
+|그냥 지나간다.[{Goto(3);}]
+@1:당신은 지나가는 길에 그저 술 한병만 챙겨 다시 모험에 오릅니다.
+|닫기[{Clear();}]
+@2:당신은 마앞으로도 술을 마실 당신을 위해 이번에 큰 지출을 감내하기로 마음먹었습니다.
+|닫기[{Clear();}]
+@3:당신은 아쉬운 마음은 뒤로한 채 지출을 줄이기로 했습니다.
+|닫기[{Clear();}]
+"

@@ -78,8 +78,11 @@ namespace Data {
         }
 
         public static IEntity GetEntity(Positions pTarget) => _entities[pTarget];
+
+        public static IEnumerable<IEntity> GetEntities() => 
+            _entities.Select(kvp => kvp.Value);
         
-        public static IEntity[] GetEntities(Positions pCaster, Positions pPosition) {
+        public static IEnumerable<IEntity> GetEntities(Positions pCaster, Positions pPosition) {
             if (pPosition.HasFlag(Positions.Caster)) {
                 pPosition ^= Positions.Caster;
                 pPosition |= pCaster;
@@ -92,8 +95,7 @@ namespace Data {
             return pPosition
                 .Split()
                 .Select(position => _entities.GetValueOrDefault(position))
-                .Where(entity => entity!= null)
-                .ToArray();
+                .Where(entity => entity != null);
         }
 
         public static void OnTurnStart(bool pIsPlayer) {

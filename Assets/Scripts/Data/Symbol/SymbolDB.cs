@@ -11,7 +11,7 @@ namespace Data {
         SymbolType Type = SymbolType.None
     );
     
-    public class SymbolDB: DictionaryBaseDB<SymbolData>, IQueryDB<int, SymbolData, SymbolQueryArgs> {
+    public class SymbolDB: DictionaryBaseDB<int, SymbolData>, IQueryDB<int, SymbolData, SymbolQueryArgs> {
 
         public List<int> Query(SymbolQueryArgs pArgs) =>
             _matchToSerialNumber

@@ -16,9 +16,25 @@ namespace Roulette {
             //==================================================||Fields 
             private CellInfo[] _column = new CellInfo[MAX_HEIGHT + 1];
             
-            //==================================================||Methods 
+           //==================================================||Operators 
             public static explicit  operator CellInfo[](RouletteColumn pTarget) =>
                 pTarget._column;
+            
+            //==================================================||Methods 
+            public CellStatus GetStatus(int pIdx) => _column[pIdx].Status;
+            
+            public void SetStatus(int pIdx, CellStatus pStatus) {
+                _column[pIdx].Status = pStatus;
+            }
+            
+            private void SetStatus(int pColumn, int pRow, bool pForce) {
+                if (!pForce && _column[pRow].Status is CellStatus.Used or CellStatus.ForceUnavailable)
+                    return;
+                                        
+                _column[pRow].Status = SymbolExecutor.IsUsable(pColumn, pRow)
+                    ? CellStatus.Usable
+                    : CellStatus.Unavailable;
+            }
             public void InitStatus() {
                 for (int i = 0; i < _column.Length; i++)
                     _column[i].Status = CellStatus.Usable;
@@ -35,33 +51,19 @@ namespace Roulette {
                 _column[pIdx].Code = pValue;
             }
             
-            public void SetAndCheckStatus(int pColumnIdx, int pIdx, int pValue, bool pForce = false) {
-                _column[pIdx].Code = pValue;
+            public void SetAndCheckStatus(int pColumnIdx, int pRow, int pValue, bool pForce = false) {
+                _column[pRow].Code = pValue;
                 
                 if (pValue == DataManager.EMPTY_SYMBOL)
                     return;
-                if (!pForce && _column[pIdx].Status == CellStatus.Used)
-                    return;
-                
-                _column[pIdx].Status = SymbolExecutor.IsUsable(pColumnIdx, pIdx)
-                    ? CellStatus.Usable
-                    : CellStatus.Unavailable;
+                SetStatus(pColumnIdx, pRow, pForce);
             }
 
             public int this[int pIdx] => _column[pIdx].Code;
-            public CellStatus GetStatus(int pIdx) => _column[pIdx].Status;
-
-            public void SetStatus(int pIdx, CellStatus pStatus) {
-                _column[pIdx].Status = pStatus;
-            } 
             
-            public void RefreshStatus(int pColumnIdx) {
+            public void RefreshStatus(int pColumn) {
                 for (int i = 0; i < Height; i++) {
-                    if(_column[i].Status == CellStatus.Used)
-                        continue;
-                    _column[i].Status = SymbolExecutor.IsUsable(pColumnIdx, i)
-                        ? CellStatus.Usable
-                        : CellStatus.Unavailable;
+                    SetStatus(pColumn, i, false);
                 }
 
                 for (int i = Height; i <= MAX_HEIGHT; i++) {

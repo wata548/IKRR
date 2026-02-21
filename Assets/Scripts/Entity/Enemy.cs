@@ -96,7 +96,7 @@ namespace Character {
                 OnDeath();
                 CharactersManager.OnDeathEnemy(Position);
                 UIManager.Instance.Entity[Position]
-                    .OnDeath(this, pAmount, pOnComplete);
+                    .OnDeath(this, pAmount, pType, pOnComplete);
                 return;
             }
             
@@ -152,6 +152,7 @@ namespace Character {
                 pEffect += effect;
             }
             Effects.Add(pEffect);
+            pEffect.OnAdded(this);
         }
 
         #region ApplyEffect
@@ -159,6 +160,13 @@ namespace Character {
         private void UpdateEffect() =>
             Effects = Effects.Where(effect => effect.Duration > 0).ToList();
 
+        public void OnBattleStart() {
+            foreach (var effect in Effects) {
+                effect.OnBattleStart(this);
+            }
+            UpdateEffect();
+        }
+        
         public int AttackDamageCalc(int pAmount, AttackType pType, IEntity pTarget) {
             
             var value = Effects.Aggregate(pAmount, (amount, effect) => effect.OnSendDamage(amount, pType, this, pTarget));

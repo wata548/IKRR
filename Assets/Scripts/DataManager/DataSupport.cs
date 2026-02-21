@@ -47,7 +47,7 @@ namespace Data.supportFont {
 
         [MenuItem("DataManager/GetEventText")]
         private static void GetEventText() {
-            var db = new DictionaryBaseDB<List<EventData>>();
+            var db = new DictionaryBaseDB<int, List<EventData>>();
             db.LoadData(new SSGroupLoader<EventData, EventData>(
                     "Event",
                     data => data.Chapter
