@@ -33,6 +33,9 @@ namespace UI.Title {
         
         private void Start() {
             _button.onClick.AddListener(Switch);
+
+            if (LanguageManager.Table == null)
+                return;
             
             var targetLanguages = LanguageManager.Table.AllowLanguages().ToArray();
             _buttonPannel.Place(_container, new(

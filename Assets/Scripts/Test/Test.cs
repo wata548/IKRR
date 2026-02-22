@@ -3,16 +3,27 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Character.Skill;
+using ColorMine.ColorSpaces;
 using Data;
 using Data.Event;
 using Extension;
 using Extension.Test;
 using Newtonsoft.Json;
 using UnityEngine;
+using Color = UnityEngine.Color;
 
 namespace Test {
     public static class Test {
 
+        [TestMethod]
+        public static void Get() {
+            var start = Color.red;
+            var startLch = new Rgb{ R = start.r * 255f, G = start.g * 255f, B = start.b * 255f }.To<Lch>();
+            Debug.Log(startLch.L);
+            Debug.Log(startLch.C);
+            Debug.Log(startLch.H);
+        }
+        
         [TestMethod]
         public static void GetJobs() {
             Debug.Log(string.Join(',', DataManager.Job.Keys));

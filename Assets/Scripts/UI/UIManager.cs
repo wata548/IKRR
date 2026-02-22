@@ -21,6 +21,5 @@ namespace UI {
         [field: SerializeField] public TurnShower TurnShower { get; private set; }
         [field: SerializeField] public EventShower Event { get; private set; }
         [field: SerializeField] public SymbolSelector.SymbolSelector Selector { get; private set; }
-        [field: SerializeField] public DistortionManager Distortion { get; private set; }
     }
 }

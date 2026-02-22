@@ -1,13 +1,15 @@
 ﻿using System;
+using Extension;
 using Extension.Test;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 namespace UI {
-    public class DistortionManager: MonoBehaviour {
+    public class DistortionManager: MonoSingleton<DistortionManager> {
         [SerializeField] private Renderer2DData _renderer;
         private bool _preventDistortion = false;
         private FullScreenPassRendererFeature _pass = null;
+        protected override bool IsNarrowSingleton => false;
 
         public bool PreventDistortion {
             get => _preventDistortion;
@@ -30,7 +32,9 @@ namespace UI {
             _pass.SetActive(pActive);
         }
 
-        private void Awake() {
+
+        protected override void Awake() {
+            base.Awake();
             Init();
         }
 

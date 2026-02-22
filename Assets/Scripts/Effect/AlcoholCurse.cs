@@ -7,7 +7,7 @@ namespace Data {
         public override int ShowCount => -1;
 
         public override void OnAdded(IEntity pTarget) =>
-            UIManager.Instance.Distortion.SetDistortion(true);
+            DistortionManager.Instance.SetDistortion(true);
         public override void OnTurnEnd(IEntity pTarget) {}
     }
 }
