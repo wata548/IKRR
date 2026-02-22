@@ -15,7 +15,7 @@ namespace Extension {
             return new Color((float)rgb.R / 255f, (float)rgb.G / 255f, (float)rgb.B / 255f);
         } 
                 
-        public static Lch ColorToLch (this Color pColor) =>
+        public static Lch ToLch (this Color pColor) =>
             new Rgb() { R = pColor.r * 255, G = pColor.g * 255, B = pColor.b * 255 }.To<Lch>();
     }
 }

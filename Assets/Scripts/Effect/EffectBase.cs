@@ -12,7 +12,7 @@ using Object = System.Object;
 
 namespace Data {
     public abstract class EffectBase {
-        public int Duration { get; protected set; }
+        public int Duration { get; protected set; } = 1;
         public abstract int Code { get; }
         
         [JsonIgnore]
@@ -27,6 +27,7 @@ namespace Data {
         public virtual int ShowCount => Duration;
 
         protected void Update() => LastUpdateFrame = Time.frameCount;
+        public virtual void OnGameStart(){}
         public virtual void OnBattleStart(IEntity pTarget){}
         public virtual int OnReceiveDamage(int pAmount, IEntity pTarget, IEntity pOpponent) => pAmount;
         public virtual int OnSendDamage(int pAmount, AttackType pType, IEntity pTarget, IEntity pOpponent) => pAmount;

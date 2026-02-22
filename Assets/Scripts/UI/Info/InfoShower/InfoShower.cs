@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Data;
+using Extension;
 using Lang;
 using UI.Icon;
 using UnityEditor;
@@ -9,7 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI {
-    public class InfoShower: MonoBehaviour {
+    public class InfoShower: MonoSingleton<InfoShower> {
 
        //==================================================||Fields 
         [SerializeField] private Image _board;
@@ -23,7 +24,7 @@ namespace UI {
         private const KeyCode ACTIVE_KEY = KeyCode.Mouse1;
         //==================================================||Properties
         public bool IsActive => _board.gameObject.activeSelf;
-        
+        protected override bool IsNarrowSingleton => true;
         //==================================================||Methods 
         public void SetInfo(Info pInfo) {
             _info = pInfo;
@@ -95,7 +96,8 @@ namespace UI {
         }
         
        //==================================================||Unity 
-        private void Update() {
+
+       private void Update() {
             if(_info != null && Input.GetKeyDown(ACTIVE_KEY))
                 SetData();
             

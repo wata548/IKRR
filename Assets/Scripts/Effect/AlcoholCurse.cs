@@ -6,8 +6,9 @@ namespace Data {
         public override int Code => 3011;
         public override int ShowCount => -1;
 
-        public override void OnAdded(IEntity pTarget) =>
+        public override void OnGameStart() =>
             DistortionManager.Instance.SetDistortion(true);
+        
         public override void OnTurnEnd(IEntity pTarget) {}
     }
 }

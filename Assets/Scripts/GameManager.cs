@@ -22,6 +22,11 @@ namespace Data {
             Seed = pSeed;
             Chapter = pChapter;
             _isInit = true;
+            
+            
+            foreach (var effect in CharactersManager.Player.Effects) {
+                effect.OnGameStart();
+            }
         }
         
         public static void StartBattle() {

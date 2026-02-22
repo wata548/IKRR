@@ -16,7 +16,10 @@ namespace Data {
         public string StartItemString { get; protected set; }
         
         [JsonIgnore]
-        public IEnumerable<int> StartItem { get; protected set; }
+        public IEnumerable<(int Code, int Amount)> StartItem { get; protected set; }
+
+        [JsonIgnore]
+        public IEnumerable<int> RawStartItem => StartItem.SelectMany(data => Enumerable.Repeat(data.Code, data.Amount));
         [JsonIgnore]
         public LevelUpReward LevelUpReward { get; protected set; }
 
@@ -24,11 +27,11 @@ namespace Data {
             InitialEffects.Split('\n').Select(EffectBase.Factory);
         
         public void Init() {
-            StartItem = StartItemString.Split('\n').SelectMany(row => {
+            StartItem = StartItemString.Split('\n').Select(row => {
                 var temp = row.Split('*');
                 var target = int.Parse(temp[0]);
                 var cnt = int.Parse(temp[1]);
-                return Enumerable.Repeat(target, cnt);
+                return (target, cnt);
             });
             LevelUpReward = new(LevelUpString);
         } 

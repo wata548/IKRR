@@ -20,7 +20,7 @@ namespace Data {
         public int Level{ get; set; }
         public int CurExp{ get; set; }
         public int Money{ get; set; }
-        public JobData Job { get; set; }
+        public int Job { get; set; }
         
         public List<Vector2Int> ClearStages { get; set; }
         
@@ -37,7 +37,7 @@ namespace Data {
             data.Level = PlayerData.Level;
             data.CurExp = PlayerData.CurExp;
             data.Money = PlayerData.Money;
-            data.Job = PlayerData.Job;
+            data.Job = PlayerData.Job.SerialNumber;
             data.Player = new(CharactersManager.Player);
             return data;
         }
@@ -46,7 +46,7 @@ namespace Data {
             UI.Map.Map.ClearStages.Clear();
 
             var job = DataManager.Job.GetData(pJob);
-            RouletteManager.Init(job.StartItem);
+            RouletteManager.Init(job.RawStartItem);
             PlayerData.Init(job);
             var player = new Player(job.MaxHp);
             CharactersManager.Init(player);
@@ -63,7 +63,7 @@ namespace Data {
             
             var context = File.ReadAllText(pPath);
             var data = JsonConvert.DeserializeObject<SaveSystem>(context, setting);
-            PlayerData.Init(data.Job, data.Money, data.Level, data.CurExp);
+            PlayerData.Init(DataManager.Job.GetData(data.Job), data.Money, data.Level, data.CurExp);
             UI.Map.Map.ClearStages = data.ClearStages;
             RouletteManager.Init(data.Width, data.Height, data.Hand.Length, data.Hand);
             CharactersManager.Init(new(data.Player));
