@@ -10,14 +10,11 @@ namespace UI.Title {
         [SerializeField] private Button _continue;
         [SerializeField] private Button _setting;
         [SerializeField] private Button _quit;
-        [SerializeField] private Tutorial.Tutorial _tutorial;
+        [SerializeField] private GameObject _jobPannel;
         
         private void StartGame() {
-            _tutorial.TurnOn();
+            _jobPannel.SetActive(true);
             return;
-            
-            SaveSystem.GameStart();
-            SceneManager.LoadScene(Scene.Main);
         }
 
         private void Continue() {

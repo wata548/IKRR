@@ -51,6 +51,8 @@ namespace Character.Skill {
             }
         }
 
+        public virtual string GetSkillName() => "";
+
         protected void End() => IsEnd = true;
     }
 }

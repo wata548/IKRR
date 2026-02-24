@@ -22,11 +22,6 @@ namespace Data {
             Seed = pSeed;
             Chapter = pChapter;
             _isInit = true;
-            
-            
-            foreach (var effect in CharactersManager.Player.Effects) {
-                effect.OnGameStart();
-            }
         }
         
         public static void StartBattle() {
@@ -79,7 +74,7 @@ namespace Data {
         //==================================================||Unity 
         private void Awake() {
             if (!_isInit) {
-                SaveSystem.GameStart();
+                SaveSystem.GameStart(4001);
                 Debug.Log("Skip title scene");
             }
 
@@ -91,6 +86,11 @@ namespace Data {
             UIManager.Instance.Map.GenerateMap(Seed, Chapter);
             var player = CharactersManager.Player;
             UIManager.Instance.Entity.Player.Refresh(player);
+            
+            foreach (var effect in player.Effects) {
+                Debug.Log(effect.Code);
+                effect.OnGameStart();
+            }
         }
 
         private void Update() {

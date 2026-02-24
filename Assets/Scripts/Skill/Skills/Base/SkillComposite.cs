@@ -30,7 +30,15 @@ namespace Character.Skill {
             RepeatCount = pRepeatAmount;
             _containner = pContent.ToList();
         }
-        
+
+        public override string ToString() {
+            var targets = _containner.Where(skill => skill.GetType() != typeof(Text)).ToList();
+            if (targets.Count == 1)
+                return RepeatCount != 1 ? $"{targets[0]} * {RepeatCount}" : targets[0].ToString();
+            var skillText = string.Join(", ", targets);
+            return RepeatCount != 1 ? $"({skillText}) * {RepeatCount}" : skillText;
+        }
+
         public void Execute(Positions pCaster) {
 
             IsEnd = false;
@@ -66,5 +74,15 @@ namespace Character.Skill {
                 startSkill.Execute(pCaster);
             }
         }
+
+        private IEnumerable<ISkill> GetElements() => _containner
+            .SelectMany(skill => {
+                if (skill is not SkillComposite composite)
+                    return new[] { skill };
+                return composite.GetElements();
+            });
+
+        public string GetSkillName() =>
+            GetElements().First(skill => skill is Text).ToString();
     }
 }

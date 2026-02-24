@@ -11,7 +11,7 @@ using UnityEngine;
 using Object = System.Object;
 
 namespace Data {
-    public abstract class EffectBase {
+    public abstract class EffectBase: IDisposable {
         public int Duration { get; protected set; } = 1;
         public abstract int Code { get; }
         
@@ -97,5 +97,7 @@ namespace Data {
             var constructor = Factory(pContext, out var args);
             return constructor!.Invoke(args) as EffectBase;
         }
+
+        public void Dispose() {}
     }
 }

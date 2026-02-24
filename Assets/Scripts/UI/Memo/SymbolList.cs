@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace UI.ContainSymbol {
     public class SymbolList: MonoBehaviour {
-        [SerializeField] private SymbolShower _symbolPrefab;
+        [SerializeField] private SymbolAmountShower _symbolPrefab;
         [SerializeField] private Vector2Int _tableSize = new(3, 5);
         [SerializeField] private Vector2 _padding = new(0.1f, 0);
-        private readonly List<SymbolShower> _elements = new();
+        private readonly List<SymbolAmountShower> _elements = new();
         private int _lastUpdate = -1;
         private int _defaultTableHeight;
 
@@ -24,7 +24,7 @@ namespace UI.ContainSymbol {
             var height = cnt / _tableSize.x + (cnt % _tableSize.x == 0 ? 0 : 1);
             _tableSize.y = Mathf.Max(height, _defaultTableHeight);
             
-            var args = new PlaceArgs<SymbolShower>(
+            var args = new PlaceArgs<SymbolAmountShower>(
                 _padding,
                 cnt,
                 _tableSize,

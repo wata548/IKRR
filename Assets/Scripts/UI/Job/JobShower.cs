@@ -2,12 +2,14 @@
 using System.Linq;
 using Data;
 using Extension;
+using Extension.Scene;
 using Lang;
 using TMPro;
 using UI.ContainSymbol;
 using UI.Icon;
 using UnityEngine;
 using UnityEngine.UI;
+using SceneManager = Extension.Scene.SceneManager;
 
 namespace UI.Job {
     public class JobShower: MonoBehaviour {
@@ -20,8 +22,9 @@ namespace UI.Job {
         [Space, Header("Symbol Table")]
         [SerializeField] private RectTransform _symbolList;
         [SerializeField] private Vector2Int _symbolTableSize;
-        [SerializeField] private SymbolShower _prefab;
-        private List<SymbolShower> _symbols = new();
+        [SerializeField] private SymbolAmountShower _prefab;
+        [SerializeField] private Button _startButton; 
+        private List<SymbolAmountShower> _symbols = new();
         private int _code = 0; 
 
         public void Update() {
@@ -37,7 +40,7 @@ namespace UI.Job {
             _money.text = data.Money.ToString();
 
             var symbols = data.StartItem.ToList();
-            var args = new PlaceArgs<SymbolShower>(
+            var args = new PlaceArgs<SymbolAmountShower>(
                 Vector2.zero, 
                 symbols.Count,
                 _symbolTableSize,
@@ -46,6 +49,13 @@ namespace UI.Job {
                 (element, idx) => element.Set(symbols[idx].Code, symbols[idx].Amount)
             );
             _symbolList.Place(_symbols, args);
+        }
+
+        private void Awake() {
+            _startButton.onClick.AddListener(() => {
+               SaveSystem.GameStart(JobButton.SelectedJob);
+               SceneManager.LoadScene(Scene.Main);
+            });
         }
     }
 }

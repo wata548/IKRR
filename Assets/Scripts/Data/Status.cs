@@ -34,22 +34,22 @@ namespace Data {
 
         public static void AddValue(TargetStatus pStatus, int pAmount) {
             foreach (var status in pStatus.Split()) {
-                SetFlagValue(status, GetValue(pStatus) + pAmount);
+                SetFlagValue(status, GetValue(status) + pAmount);
             }
         }
         public static void MulValue(TargetStatus pStatus, int pAmount) {
             foreach (var status in pStatus.Split()) {
-                SetFlagValue(status, GetValue(pStatus) * pAmount);
+                SetFlagValue(status, GetValue(status) * pAmount);
             }
         }
         public static void DivValue(TargetStatus pStatus, int pAmount) {
             foreach (var status in pStatus.Split()) {
-                SetFlagValue(status, GetValue(pStatus) / pAmount);
+                SetFlagValue(status, GetValue(status) / pAmount);
             }
         }
         public static void SubValue(TargetStatus pStatus, int pAmount) {
             foreach (var status in pStatus.Split()) {
-                SetFlagValue(status, GetValue(pStatus) - pAmount);
+                SetFlagValue(status, GetValue(status) - pAmount);
             }
         }
     }

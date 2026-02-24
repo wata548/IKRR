@@ -8,16 +8,18 @@ using UnityEngine.UI;
 
 namespace UI.Status {
     
-    public class StatusShower: MonoBehaviour {
+    public class StatusShower: ShowInfo {
         
         [SerializeField] private TMP_Text _shower;
         [SerializeField] private Image _image;
+        private Info _info;
         private TargetStatus _status;
         private int _value = -1;
         private float _fontSize; 
 
-        public void SetStatus(TargetStatus pStatus) {
+        public void SetStatus(TargetStatus pStatus, Info pSo) {
             _status = pStatus;
+            _info = pSo;
             
             _image.sprite = Resources.Load<Sprite>(Path.Combine("Status", pStatus.ToString()));
             Refresh();
@@ -53,5 +55,7 @@ namespace UI.Status {
             .Join(_shower.DOCounter(pStart, pEnd, 0.35f))
             .Join(_shower.DOFontSize(_fontSize * 1.5f, 0.2f).SetEase(Ease.OutCirc))
             .Append(_shower.DOFontSize(_fontSize, 0.2f).SetEase(Ease.OutQuad));
+
+        protected override Info Info() => _info;
     }
 }

@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Character.Skill.Data;
 using CSVData.Extensions;
 using Data;
+using Lang;
 
 namespace Character.Skill {
     public class GiveEffect: SkillBase {
@@ -20,5 +21,12 @@ namespace Character.Skill {
             IsEnd = true;
         }
 
+        public override string ToString() {
+            string FORMAT = "{0}에게 상태 이상({1})";
+            using (var effect = EffectBase.Factory(Effect)) {
+                var data = DataManager.Effect.GetData(effect.Code);
+                return string.Format(FORMAT.ApplyLang(), Target.Value.ToRuntimeLanguage(), data.Name.ApplyLang());
+            }
+        }
     }
 }

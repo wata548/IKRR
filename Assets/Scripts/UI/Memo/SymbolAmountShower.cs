@@ -2,11 +2,10 @@
 using TMPro;
 using UI.Icon;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI.ContainSymbol {
-    public class SymbolShower: ShowInfo {
+    public class SymbolAmountShower: ShowInfo {
         [SerializeField] private Image _shower;
         [SerializeField] private TMP_Text _amountShower;
         private bool _isDataSet;

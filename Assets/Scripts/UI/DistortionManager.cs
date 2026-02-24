@@ -22,6 +22,8 @@ namespace UI {
         private void Init() {
             if (_pass != null) 
                 return;
+            if (Instance != this)
+                return;
             
             _renderer.TryGetRendererFeature(out _pass);
             _pass.passMaterial.SetInt("_NoRotate", 0);
@@ -38,7 +40,7 @@ namespace UI {
             Init();
         }
 
-        private void OnDestroy() {
+        private void OnApplicationQuit() {
             SetDistortion(false);
         }
     }

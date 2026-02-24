@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Character.Skill.Data;
 using Data;
+using Lang;
 using UnityEngine.Scripting;
 
 namespace Character.Skill {
@@ -31,7 +32,11 @@ namespace Character.Skill {
                 if (idx == 0)
                     End();
             }
-            
+        }
+
+        public override string ToString() {
+            string FORMAT = "{0}에게 회복({1})";
+            return string.Format(FORMAT.ApplyLang(), Target.Value.ToRuntimeLanguage(), Value.Value);
         }
     }
 }

@@ -9,5 +9,6 @@ namespace Character.Skill {
         
         //==================================================||Methods 
         public void Execute(Positions pCaster);
+        public string GetSkillName();
     }
 }

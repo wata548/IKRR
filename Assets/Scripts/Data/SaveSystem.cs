@@ -42,7 +42,7 @@ namespace Data {
             return data;
         }
 
-        public static void GameStart(int pJob = 4004) {
+        public static void GameStart(int pJob) {
             UI.Map.Map.ClearStages.Clear();
 
             var job = DataManager.Job.GetData(pJob);

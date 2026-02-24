@@ -15,5 +15,8 @@ namespace Character.Skill {
             UIManager.Instance.SkillShower.Show(pCaster, Context, null);  
             End();
         }
+
+        public override string ToString() => Context;
+        public override string GetSkillName() => Context;
     }
 }

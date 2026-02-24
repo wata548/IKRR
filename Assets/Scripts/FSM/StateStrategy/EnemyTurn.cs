@@ -44,6 +44,7 @@ namespace FSM.StateStrategy {
             }
             
             var animationData = _animationBuffer.Dequeue();
+            Debug.Log(animationData.Skill.ToString());
             while (!CharactersManager.GetEntity(animationData.Caster).IsAlive) {
                 if (_animationBuffer.Count == 0)
                     return;

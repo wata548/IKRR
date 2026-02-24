@@ -10,6 +10,8 @@ namespace Data {
         public Support(int pAmount) =>
             Amount = pAmount;
 
+        public override int ShowCount => -1;
+
         public override Dictionary<string, object> Infos => new() {
             { "Amount", Amount }
         };

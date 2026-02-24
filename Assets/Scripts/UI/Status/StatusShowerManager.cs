@@ -10,6 +10,7 @@ namespace UI.Status {
     public class StatusShowerManager: MonoBehaviour {
 
         [SerializeField] private StatusShower _prefab;
+        [SerializeField] private List<SerializableKVP<TargetStatus, InfoSO>> _infos;
         private readonly Dictionary<TargetStatus, StatusShower> _matchShower = new();
 
         public void Clear() {
@@ -45,7 +46,7 @@ namespace UI.Status {
             var isFirst = true; 
             foreach (var status in statuses) {
                 var shower = Instantiate(_prefab, transform);
-                shower.SetStatus(status);
+                shower.SetStatus(status, _infos.First(kvp => kvp.Key == status).Value);
                 _matchShower.Add(status, shower);
                                 
                 var showerRect = shower.transform as RectTransform;

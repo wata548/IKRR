@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8cb8d3d530e534e8678df0857717e2, type: 3}
+  m_Name: MotionSick
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: "\uBA40\uBBF8 \uBC29\uC9C0 \uBAA8\uB4DC"
+  <Details>k__BackingField:
+  - Category: "\uC124\uBA85"
+    Context: "\uC8FC\uC815\uBC45\uC774\uB85C \uD50C\uB808\uC774\uC2DC \uC5B4\uC9C0\uB7EC\uC6C0
+      \uD6A8\uACFC\uB97C \uC904\uC5EC\uC90D\uB2C8\uB2E4."
