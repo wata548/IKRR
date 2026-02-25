@@ -8,13 +8,19 @@ namespace UI.Map {
         private const float _mapLower = -380f;
         private const float _mapHigher = -3570f;
         private bool _isMobile = false;
+
+        public void TurnOn(float pRatio) {
+            var targetPos = _mapHigher * pRatio;
+            var pos = transform.localPosition;
+            pos.y = targetPos;
+            transform.localPosition = pos;
+        }
         
         private void Awake() {
             _isMobile = Application.isMobilePlatform;
         }
         
         private void Update() {
-            
             transform.position = TouchInput(); 
             transform.position = MouseInput();
 

@@ -83,6 +83,8 @@ namespace Data {
         }
 
         private void Start() {
+            VFXManager.SetUp();
+            
             UIManager.Instance.Map.GenerateMap(Seed, Chapter);
             var player = CharactersManager.Player;
             UIManager.Instance.Entity.Player.Refresh(player);

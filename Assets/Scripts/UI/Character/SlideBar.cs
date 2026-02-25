@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace UI.Character {
     public class SlideBar: MonoBehaviour {
         
-        [SerializeField] private Image _fill;
+        [SerializeField] protected Image _fill;
         protected Tween _animation;
         protected const float ANIMATION_SPEED = 0.15f;
         

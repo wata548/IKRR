@@ -9,8 +9,7 @@ namespace Data {
         private static IReadOnlyDictionary<string, VFXPool> _vfxs;
         private static Transform _folder;
         
-        [RuntimeInitializeOnLoadMethod]
-        private static void SetUp() {
+        public static void SetUp() {
             _vfxs = Resources.LoadAll<VisualEffectAsset>("VFX")
                 .ToDictionary(vfx => vfx.name, vfx => new VFXPool(vfx));
             _folder = new GameObject("VFX").transform;
@@ -36,8 +35,10 @@ namespace Data {
 
         public VisualEffect Get(Transform pParent) {
             var candidate = _pool.FirstOrDefault(vfx => vfx.aliveParticleCount == 0);
-            if (candidate != null) 
+            if (candidate != null) {
+                candidate.Reinit();
                 return candidate;
+            }
             
             var target = new GameObject();
             target.transform.parent = pParent;

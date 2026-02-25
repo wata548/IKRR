@@ -41,6 +41,7 @@ namespace UI.Map {
         [Space] 
         [Header("Node Info")] 
         [SerializeField] private List<SerializableKVP<Stage, InfoSO>> _infos;
+        [SerializeField] private MapMouse _positionController;
         
         //==================================================||Fields 
         private List<List<MapNode>> _mapNodes = new();
@@ -82,11 +83,14 @@ namespace UI.Map {
                 SetActive(true);
             }
         }
-        
-        public void SetActive(bool pActive) =>  
+
+        public void SetActive(bool pActive) {
             _mapPannel.SetActive(pActive);
+            var interval = 1f / (_roundCount + 1.5f + TOP_INTERVAL);
+            _positionController.TurnOn(interval * (Height + 1.5f));
+        }
         public void SetActiveBySwitch() =>
-            _mapPannel.SetActive(!_mapPannel.activeSelf);
+            SetActive(!_mapPannel.activeSelf);
 
         private void Load() {
             if (ClearStages.Count == 0) {

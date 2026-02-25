@@ -344,7 +344,6 @@ MonoBehaviour:
   _fill: {fileID: 1732101629}
   _current: {fileID: 2067175288}
   _max: {fileID: 893009219}
-  _damageShower: {fileID: 750049018}
 --- !u!114 &50932843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8901,7 +8900,6 @@ MonoBehaviour:
   _fill: {fileID: 974882869}
   _current: {fileID: 1013211547}
   _max: {fileID: 945928608}
-  _damageShower: {fileID: 1746915684}
 --- !u!1 &1023846853
 GameObject:
   m_ObjectHideFlags: 0
@@ -11721,7 +11719,6 @@ MonoBehaviour:
   _fill: {fileID: 1083439164}
   _current: {fileID: 260238950}
   _max: {fileID: 1979676695}
-  _damageShower: {fileID: 819632346}
 --- !u!114 &1319243760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11924,6 +11921,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331662662}
   m_CullTransparentMesh: 1
+--- !u!223 &1341438334 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 7473999789462745613, guid: 01db42a3cc29b614e9ce18d632293a45, type: 3}
+  m_PrefabInstance: {fileID: 1368666028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1368666028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12035,6 +12037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1369434078}
   - component: {fileID: 1369434077}
+  - component: {fileID: 1369434079}
   m_Layer: 0
   m_Name: GmaeManager
   m_TagString: Untagged
@@ -12069,6 +12072,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1369434079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369434076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af5a42d5569442fbdf3a0c4c11c03eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effect: {fileID: 7824279199764190732, guid: 6a74d49e7875a7949b8215ae467387d4, type: 3}
+  _canvas: {fileID: 1341438334}
 --- !u!1 &1386327862
 GameObject:
   m_ObjectHideFlags: 0
@@ -13193,6 +13210,7 @@ MonoBehaviour:
     <Value>k__BackingField: {fileID: 11400000, guid: 1f2fe061362c18449851be25d77a5bdf, type: 2}
   - <Key>k__BackingField: 5
     <Value>k__BackingField: {fileID: 11400000, guid: ccce1261e8a9ac4418932e45d963b161, type: 2}
+  _positionController: {fileID: 410942034}
 --- !u!1 &1559562218
 GameObject:
   m_ObjectHideFlags: 0
@@ -14132,7 +14150,6 @@ MonoBehaviour:
   _fill: {fileID: 1824205913}
   _current: {fileID: 1457404036}
   _max: {fileID: 720643888}
-  _damageShower: {fileID: 1052063902}
 --- !u!114 &1736289212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15692,7 +15709,6 @@ MonoBehaviour:
   _fill: {fileID: 588777358}
   _current: {fileID: 447967283}
   _max: {fileID: 2078648011}
-  _damageShower: {fileID: 1110266982}
 --- !u!224 &1973233352
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15804,7 +15820,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 130, y: 0}
+  m_AnchoredPosition: {x: 130.00003, y: 0}
   m_SizeDelta: {x: -260, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1979676695

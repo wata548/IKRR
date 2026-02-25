@@ -65,16 +65,25 @@ namespace UI.Character {
                 .SetLoops(-1, LoopType.Yoyo);
         }
 
+        private Tween _shake = null;
         private void PlayVfx(AttackType pType) {
+            
+            _shake?.Kill();
+            var localPos = transform.localPosition;
+            _shake = _shower.transform.DOShakePosition(0.4f, new Vector3(10f, 3f)).OnKill(() => transform.localPosition = localPos);
+            
             var vfx = VFXManager.Get(pType.ToString());
+            var defaultVfx = VFXManager.Get("Damage");
             if (vfx is null)
                 return;
             
-            var height = (transform as RectTransform)!.rect.height * transform.lossyScale.y / 2f;
             var pos = transform.position;
+            var height = (transform as RectTransform)!.rect.height * transform.lossyScale.y / 2f;
             pos.y += height;
             vfx.transform.position = pos;
-            vfx.ApplySize(_size);
+            //vfx.ApplySize(_size);
+            defaultVfx.transform.position = pos;
+            defaultVfx.Play();
             vfx.Play();
         }
         

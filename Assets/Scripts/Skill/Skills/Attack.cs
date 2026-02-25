@@ -43,7 +43,7 @@ namespace Character.Skill {
         
         public override string ToString() {
             string FORMAT = "{0}에게 공격({1})";
-            return string.Format(FORMAT.ApplyLang(), Target.Value.ToRuntimeLanguage(), Value.Value);
+            return string.Format(FORMAT.ApplyLang(), Target.Value.ToRuntimeLanguage(), Value);
         }
     }
 }

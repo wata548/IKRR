@@ -14,7 +14,7 @@ namespace Data.Event {
             if (temp.StartsWith("<[")) {
                 var tempArray = temp.Split("]>");
                 Condition = tempArray[0][2..];
-                Option = tempArray[1];
+                Option = tempArray[1].Trim();
             }
             else
                 Option = temp;

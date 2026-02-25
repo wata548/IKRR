@@ -48,8 +48,8 @@ namespace Extension {
         private void Animation(bool pActive) {
             var (start, end) = pActive ? (_beforeColor, _afterColor) : (_afterColor, _beforeColor);
             Set(!pActive);
-            var startLch = start.ToLch();
-            var endLch = end.ToLch();
+            var startLch = start.ToLab();
+            var endLch = end.ToLab();
             var process = 0f;
             
             _animation = DOTween.Sequence()

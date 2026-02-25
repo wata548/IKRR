@@ -1,4 +1,5 @@
 ﻿using Data;
+using Roulette;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,9 @@ namespace UI.LevelUpReward {
 
             var item = PlayerData.Job.LevelUpReward.GetReward(++_level);
             _levelShower.text = _level.ToString();
+            RouletteManager.AddHandSize(1, item);
+            _effect.Reinit();
+            _effect.Play();
             _shower.Set(item);
             IsActive = true;
             _pannel.SetActive(true);
