@@ -31,7 +31,7 @@ namespace UI.Character {
             _shower.color = pHighlightColor;
             
             _animation = DOTween.Sequence()
-                .Append(_shower.DOFontSize(fontSize, _animationDuration))
+                .Append(_shower.DOFontSize(fontSize, _animationDuration * Time.timeScale))
                 .Join(DOTween.To(
                     () => progress,
                     t => {
@@ -39,8 +39,8 @@ namespace UI.Character {
                         _shower.color = ExColor.Lerp(startLch, endLch, progress).ToColor();
                     },
                     1,
-                    _animationDuration)
-                ).Append(_shower.DOFade(0, _stayDuration))
+                    _animationDuration * Time.timeScale)
+                ).Append(_shower.DOFade(0, _stayDuration * Time.timeScale))
                 .SetEase(_ease);
         }
         
@@ -48,7 +48,7 @@ namespace UI.Character {
             if (!IsPlaying)
                 return;
             _remainForce.y -= Time.deltaTime * _gravity;
-            _shower.transform.localPosition += _remainForce * Time.deltaTime;
+            _shower.transform.localPosition += _remainForce * (Time.deltaTime / Time.timeScale);
         }  
     }
 }

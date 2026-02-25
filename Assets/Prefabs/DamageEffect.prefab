@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 114bca8c49d82c942a43437be6bf9a5c, type: 2}
-  m_sharedMaterial: {fileID: 6497014074798880340, guid: 114bca8c49d82c942a43437be6bf9a5c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7707befbdef1f7c4ab9543a7f90880f0, type: 2}
+  m_sharedMaterial: {fileID: 720470115270970156, guid: 7707befbdef1f7c4ab9543a7f90880f0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shower: {fileID: 2608500598140430908}
-  _gravity: 330
+  _gravity: 660
   _force: {x: 77, y: 90, z: 0}
   _highLightScale: 1.8
   _animationDuration: 0.8
