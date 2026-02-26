@@ -7,6 +7,11 @@ namespace Roulette {
     public struct CellInfo {
         public int Code;
         public CellStatus Status;
+
+        public CellInfo(int pCode, CellStatus pStatus = CellStatus.Usable) {
+            Code = pCode;
+            Status = pStatus;
+        }
     }
     
     public static partial class RouletteManager {

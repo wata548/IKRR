@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Extension {
     public static class ExEnumerable {
+        public static List<T> Shuffle<T>(this IEnumerable<T> pContent) => 
+            pContent.ToList().Shuffle();
+        
         public static List<T> Shuffle<T>(this List<T> pContent) {
 
             var random = new Random();

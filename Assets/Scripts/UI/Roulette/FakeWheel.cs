@@ -5,40 +5,35 @@ using System.Linq;
 using Extension;
 using Roulette;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace UI.Roulette {
     public class FakeWheel: Wheel {
 
         private List<int> _queue;
-        private int _queueIdx = 0;
         private bool _isLastOneAppear = false;
         private int _lastOne;
         private bool _needLastOneGenerate = false;
         private int _height;
         private int _remainCnt;
 
-        public void SetLastOne(int pCode) => _lastOne = pCode;
+        public void SetResult(int pCode) => _lastOne = pCode;
         
-        public override void Init(int pIdx, int pHeight, IEnumerable<CellInfo> pData, Action<RouletteCell> pOnClick = null, Action pOnStop = null) {
-            _queue = pData.Select(data => data.Code).ToList();
+        public override void Init(int pIdx, int pHeight, List<int> pData, Action<RouletteCell> pOnClick = null, Action pOnStop = null) {
+            _queue = pData;
             _height = pHeight;
             base.Init(pIdx, pHeight, pData, pOnClick, pOnStop);
         }
 
         public override void StartRoll() {
-            const float ANIMATION_DURATION = 3;
-
             _remainCnt = _height;
-            _queueIdx = 0;
             _isLastOneAppear = false;
             _needLastOneGenerate = false;
             base.StartRoll();
-            StartCoroutine(Wait());
+        }
 
-            IEnumerator Wait() {
-                yield return new WaitForSeconds(ANIMATION_DURATION * Time.timeScale);
-                _needLastOneGenerate = true;
-            } 
+        public void Stop() {
+            _needLastOneGenerate = true;
         }
 
         protected override void ShowNewCell() {
@@ -50,11 +45,8 @@ namespace UI.Roulette {
             temp.RectTransform.SetLocalPositionY(RectTransform, PivotLocation.Down, pos);
             _cells.Add(temp);
 
-            _queueIdx++;
-            if (_queueIdx >= _queue.Count)
-                _queueIdx = 0;
-
-            var code = _queue[_queueIdx];
+            var idx = Random.Range(0, _queue.Count);
+            var code = _queue[idx];
             if (_isLastOneAppear) {
                 _remainCnt--;
             }

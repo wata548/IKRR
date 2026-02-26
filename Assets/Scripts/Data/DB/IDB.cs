@@ -9,6 +9,6 @@ namespace Data {
     
     public interface IQueryDB<TKey, TValue, TQueryArgs> : IDB<TKey, TValue> {
         public List<TKey> Query(TQueryArgs pArgs);
-        public List<TKey> SubQuery(List<TKey> pTarget, TQueryArgs pArgs);
+        public List<TKey> MiniQuery(List<TKey> pMiniDB, TQueryArgs pArgs);
     }
 }

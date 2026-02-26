@@ -25,7 +25,7 @@ namespace Data {
                 ).Select(symbol => symbol.SerialNumber)
                 .ToList();
 
-        public List<int> SubQuery(List<int> pTarget, SymbolQueryArgs pArgs) =>
+        public List<int> MiniQuery(List<int> pTarget, SymbolQueryArgs pArgs) =>
             pTarget
                 .Select(code => _matchToSerialNumber[code])
                 .Where(symbol =>

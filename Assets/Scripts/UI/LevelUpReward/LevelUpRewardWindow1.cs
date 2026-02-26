@@ -65,7 +65,7 @@ namespace UI.LevelUpReward {
             var fakeCandidate = DataManager.Symbol.Query(new(
                 Status: targetStatus
             ));
-            var candidate = DataManager.Symbol.SubQuery(fakeCandidate, new(
+            var candidate = DataManager.Symbol.MiniQuery(fakeCandidate, new(
                 Rarity: rarity
             ));
             _rouletteResult = candidate[Random.Range(0, candidate.Count)];
@@ -82,7 +82,7 @@ namespace UI.LevelUpReward {
                     Status = CellStatus.Usable
                 });
             _fakeWheel.gameObject.SetActive(true);
-                        _fakeWheel.SetLastOne(pResult);
+                        _fakeWheel.SetResult(pResult);
             _fakeWheel.Init(-1, 1, candidate, null, () => SetActiveApplyButtons(true));
             _fakeWheel.StartRoll();
         }

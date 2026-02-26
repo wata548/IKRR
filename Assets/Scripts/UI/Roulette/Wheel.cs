@@ -6,6 +6,7 @@ using DG.Tweening;
 using Extension;
 using Roulette;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -13,25 +14,33 @@ namespace UI.Roulette {
     [RequireComponent(typeof(Image))]
     public class Wheel: MonoBehaviour {
 
-       //==================================================||Fields 
+        //==================================================||Fields 
         [SerializeField] protected RouletteCell _cellPrefab;
-        [SerializeField] protected float _power;
-        [SerializeField] protected float _powerDelta = 300;
+        [SerializeField] private float _defaultPower = 2500;
+        [SerializeField] private float _powerDelta = 300;
         private Image _board; 
         protected readonly List<RouletteCell> _cells = new();
         public bool IsRoll { get; private set; } = false;
-        private int _idx;
+        
+        protected int _idx;
+        protected float _power; 
         private Action _onStop;
         
-       //==================================================||Properties
-       public RectTransform RectTransform { get; private set; }
+        //==================================================||Properties
+        public RectTransform RectTransform { get; private set; }
        
-       //==================================================||Methods 
+        //==================================================||Methods 
+        public virtual void Init(int pIdx, int pHeight, List<int> pData, Action<RouletteCell> pOnClick = null, Action pOnStop = null) {
+            var temp = pData.Take(pHeight + 1).Select(code => new CellInfo(code));
+            Init(pIdx, pHeight, temp, pOnClick, pOnStop);
+        }
+       
         public virtual void Init(int pIdx, int pHeight, IEnumerable<CellInfo> pData, Action<RouletteCell> pOnClick = null, Action pOnStop = null) {
             
             if (pHeight == 0)
                 return;
 
+            _power = _defaultPower + Random.Range(0, _powerDelta);
             _onStop = pOnStop;
             _idx = pIdx;
             while (_cells.Count != pHeight + 1) {
@@ -170,7 +179,7 @@ namespace UI.Roulette {
             _board.material = mat;
         }
         
-       //==================================================||Unity 
+        //==================================================||Unity 
         private void Update() {
             if (!IsRoll)
                 return;
@@ -180,7 +189,6 @@ namespace UI.Roulette {
 
         private void Awake() {
             RectTransform = GetComponent<RectTransform>();
-            _power += Random.Range(0, _powerDelta);
             _board = GetComponent<Image>();
         }
         
