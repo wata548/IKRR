@@ -33,6 +33,8 @@ namespace UI.Roulette {
         }
 
         public void Stop() {
+            if (!IsRoll || _isLastOneAppear)
+                return;
             _needLastOneGenerate = true;
         }
 

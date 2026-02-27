@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Test {
     public static class Test_Lang {
-        [TestMethod]
+        [TestMethod(pRuntimeOnly:true)]
         public static void Change(Language pLang) {
             
             LanguageManager.LangPack = pLang;

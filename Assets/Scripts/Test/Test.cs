@@ -9,12 +9,17 @@ using Data.Event;
 using Extension;
 using Extension.Test;
 using Newtonsoft.Json;
+using Roulette;
 using UnityEngine;
 using Color = UnityEngine.Color;
 
 namespace Test {
     public static class Test {
 
+        [TestMethod]
+        public static void AddSymbol(int pCode, int pAmount) =>
+            RouletteManager.TryAdd(pCode, pAmount, out _);
+        
         [TestMethod]
         public static void Get() {
             var start = Color.red;

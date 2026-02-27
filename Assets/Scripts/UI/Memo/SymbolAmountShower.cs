@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace UI.ContainSymbol {
     public class SymbolAmountShower: ShowInfo {
-        [SerializeField] private Image _shower;
+        [SerializeField] protected Image _shower;
         [SerializeField] private TMP_Text _amountShower;
         private bool _isDataSet;
-        private int _data;
+        protected int _data;
 
         public void Clear() {
             _isDataSet = false;
@@ -17,7 +17,7 @@ namespace UI.ContainSymbol {
             _amountShower.text = "";
         }
 
-        public void Set(int pTarget, int pAmount) {
+        public virtual void Set(int pTarget, int pAmount) {
             _isDataSet = true;
             _data = pTarget;
             _shower.sprite = pTarget.GetIcon();

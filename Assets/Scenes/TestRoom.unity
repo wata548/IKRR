@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 83686094}
   - component: {fileID: 83686093}
   - component: {fileID: 83686092}
+  - component: {fileID: 83686096}
   m_Layer: 5
   m_Name: Reward
   m_TagString: Untagged
@@ -213,7 +214,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 935289828}
   - {fileID: 1421261077}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -222,6 +222,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &83686096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83686091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866ffe84c528482a9d794eb21953a7bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roulette: {fileID: 147935687}
+  _wheel: {fileID: 5690111098616434380, guid: b3fd00fb9cc7d8449a0d6fa83d24cb0a, type: 3}
+  _button: {fileID: 7193070244842060870, guid: 6d77009d7696c334485a26c13f9a3608, type: 3}
+  _buttonTerm: 140
+  _pannel: {fileID: 1421261076}
+  _close: {fileID: 852880949}
+  <Width>k__BackingField: 3
 --- !u!1 &147935686
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +499,6 @@ GameObject:
   - component: {fileID: 258254490}
   - component: {fileID: 258254492}
   - component: {fileID: 258254491}
-  - component: {fileID: 258254493}
   m_Layer: 5
   m_Name: Result
   m_TagString: Untagged
@@ -548,21 +566,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258254489}
   m_CullTransparentMesh: 1
---- !u!114 &258254493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258254489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 866ffe84c528482a9d794eb21953a7bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wheel: {fileID: 5690111098616434380, guid: b3fd00fb9cc7d8449a0d6fa83d24cb0a, type: 3}
-  _roulette: {fileID: 147935687}
-  <Width>k__BackingField: 3
 --- !u!1 &354703542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,7 +1644,7 @@ GameObject:
   - component: {fileID: 852880949}
   - component: {fileID: 852880952}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Close
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2038,81 +2041,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919872074}
-  m_CullTransparentMesh: 1
---- !u!1 &935289827
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 935289828}
-  - component: {fileID: 935289830}
-  - component: {fileID: 935289829}
-  m_Layer: 5
-  m_Name: BG
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &935289828
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935289827}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 83686095}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &935289829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935289827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.12646851, g: 0.1271105, b: 0.13207549, a: 0.83137256}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &935289830
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935289827}
   m_CullTransparentMesh: 1
 --- !u!1 &946797563
 GameObject:
@@ -3267,7 +3195,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 258254493}
+      - m_Target: {fileID: 83686096}
         m_TargetAssemblyTypeName: UI.Reward.RewardWindow, Assembly-CSharp
         m_MethodName: Stop
         m_Mode: 1
@@ -3410,7 +3338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB2EB\uAE30"
+  m_text: "\uD3EC\uAE30\uD558\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 114bca8c49d82c942a43437be6bf9a5c, type: 2}
   m_sharedMaterial: {fileID: 6497014074798880340, guid: 114bca8c49d82c942a43437be6bf9a5c, type: 2}
@@ -3585,7 +3513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1421261077
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3619,14 +3547,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.17163582, g: 0.17172456, b: 0.1792453, a: 0.92941177}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7895601659516305588, guid: 5427144c5a6976e4899cf3c90e7c3d6e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

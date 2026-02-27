@@ -128,7 +128,7 @@ namespace Roulette {
             }
 
             _hand[pSymbol] -= pAmount;
-            _hand[0] += pAmount;
+            _hand[DataManager.EMPTY_SYMBOL] += pAmount;
             LastUpdateFrame = Time.frameCount;
             ResetRoulette();
         }
@@ -140,26 +140,27 @@ namespace Roulette {
             }
 
             _hand[_current[pColumn][pRow]]--;
-            _hand[0]++;
+            _hand[DataManager.EMPTY_SYMBOL]++;
             _current[pColumn].Set(pRow, 0);
             LastUpdateFrame = Time.frameCount;
         }
         
         public static bool TryAdd(int pSymbol, int pAmount, out int notAdded) {
-            if (_hand[0] < pAmount) {
-                if (_hand[0] == 0) {
+            if (_hand[DataManager.EMPTY_SYMBOL] < pAmount) {
+                if (_hand[DataManager.EMPTY_SYMBOL] == 0) {
                     notAdded = pAmount;
                     return false;
                 }
 
-                var temp = _hand[0];
+                var temp = _hand[DataManager.EMPTY_SYMBOL];
+                _hand[DataManager.EMPTY_SYMBOL] = 0;
                 if(!_hand.TryAdd(pSymbol, temp))
                     _hand[pSymbol] += temp;
                 notAdded = pAmount - temp;
                 return false;
             }
             
-            _hand[0] -= pAmount;
+            _hand[DataManager.EMPTY_SYMBOL] -= pAmount;
             if(!_hand.TryAdd(pSymbol, pAmount))
                 _hand[pSymbol] += pAmount;
             ResetRoulette();
