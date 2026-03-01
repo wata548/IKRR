@@ -69,6 +69,7 @@ namespace Roulette {
             _hand.Clear();
             _hand.Add(0, HandSize - pInitHand.Count());
             foreach (var symbol in pInitHand) {
+                UseInfo.Get(symbol);
                 if (!_hand.TryAdd(symbol, 1))
                     _hand[symbol]++;
             }
@@ -147,18 +148,19 @@ namespace Roulette {
         
         public static bool TryAdd(int pSymbol, int pAmount, out int notAdded) {
             if (_hand[DataManager.EMPTY_SYMBOL] < pAmount) {
-                if (_hand[DataManager.EMPTY_SYMBOL] == 0) {
-                    notAdded = pAmount;
-                    return false;
-                }
-
                 var temp = _hand[DataManager.EMPTY_SYMBOL];
                 _hand[DataManager.EMPTY_SYMBOL] = 0;
                 if(!_hand.TryAdd(pSymbol, temp))
                     _hand[pSymbol] += temp;
+                if(temp != 0)
+                    UseInfo.Get(pSymbol);
+                
                 notAdded = pAmount - temp;
                 return false;
             }
+            
+            if(pAmount != 0)
+                UseInfo.Get(pSymbol);
             
             _hand[DataManager.EMPTY_SYMBOL] -= pAmount;
             if(!_hand.TryAdd(pSymbol, pAmount))

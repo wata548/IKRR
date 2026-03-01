@@ -10,9 +10,11 @@ namespace UI.Character {
         
         [SerializeField] private TMP_Text _current;
         [SerializeField] private TMP_Text _max;
+        [SerializeField] private Image _shield;
+        [SerializeField] private TMP_Text _shieldAmount;
+        private static readonly Color SHIELD_COLOR = new(0, 0.615f, 1);
         
         //==================================================||Methods 
-        [TestMethod(pRuntimeOnly:true)]
         public override Tween SetWithAnimation(int pMax, int pCurrent) {
             
             _animation?.Kill();
@@ -28,14 +30,27 @@ namespace UI.Character {
             _max.text = pMax.ToString();
             return _animation;
         }
+
+        public void SetShield(int pShield) {
+            _fill.color = pShield > 0 ? SHIELD_COLOR : Color.red;
+            _shield.gameObject.SetActive(pShield > 0);
+            _shieldAmount.text = pShield.ToString();
+
+        }
         
-        public Tween Heal(int pMax, int pCurrent, int pAmount) {
-            PlayEffect(pAmount, Color.green);
+        public Tween SetWithAnimation(int pMax, int pCurrent, int pShield) {
+            SetShield(pShield);
             return SetWithAnimation(pMax, pCurrent);
         }
-        public Tween Damage(int pMax, int pCurrent, int pAmount) {
-            PlayEffect(pAmount, Color.red);
-            return SetWithAnimation(pMax, pCurrent);
+        
+        public Tween Heal(int pMax, int pCurrent, int pAmount, int pShield) {
+            
+            PlayEffect(pAmount, Color.green);
+            return SetWithAnimation(pMax, pCurrent, pShield);
+        }
+        public Tween Damage(int pMax, int pCurrent, int pAmount, int pShield, bool pDefenced) {
+            PlayEffect(pAmount, pDefenced ? SHIELD_COLOR : Color.red);
+            return SetWithAnimation(pMax, pCurrent, pShield);
         }
 
         private void PlayEffect(int pAmount, Color pColor) {

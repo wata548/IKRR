@@ -27,6 +27,7 @@ namespace Character {
         //==================================================||Properties 
         public int MaxHp { get; private set; }
         public int Hp { get; private set; }
+        public int Shield { get; private set; }
         public bool IsAlive { get; private set; }
         public List<EffectBase> Effects { get; private set; } = new();
 
@@ -61,11 +62,16 @@ namespace Character {
         public void OnAttack() {
             
         }
-        
+
+        public void AddShield(int pAmount) {
+            Shield += Mathf.Max(0, pAmount);
+            UIManager.Instance.Entity.Player.RefreshHpBar(this);
+        }
+
         public void ChangeMaxHp(int pDelta) {
             MaxHp += pDelta;
             Hp = Mathf.Min(MaxHp, Hp);
-            UIManager.Instance.Entity.Player.OnMaxHpChange(this, pDelta);
+            UIManager.Instance.Entity.Player.RefreshHpBar(this);
         }
         
         public void ReceiveDamage(int pAmount,IEntity pOpponent, bool pApplyEffect, AttackType pType, Action pOnComplete) {
@@ -74,9 +80,25 @@ namespace Character {
                 return;
             }
             
-            pAmount = Effects.Aggregate(pAmount, (current, effect) => effect.OnReceiveDamage(current, this, pOpponent));
+            if(pApplyEffect)
+                pAmount = Effects.Aggregate(pAmount, (current, effect) => effect.OnReceiveDamage(current, this, pOpponent));
+            var receive = pAmount;
             
-            Hp = Math.Max(0, Hp - pAmount);
+            var defence = false;           
+            if (Shield > 0) {
+                defence = true;
+                if (receive > Shield) {
+                    receive -= Shield;
+                    Shield = 0;
+                }
+                else {
+                    Shield -= receive;
+                    receive = 0;
+                }
+                    
+            }
+            
+            Hp = Math.Max(0, Hp - receive);
             if (Hp == 0) {
                 IsAlive = false;
              
@@ -87,7 +109,7 @@ namespace Character {
             }
              
             UIManager.Instance.Entity[Position].
-                OnReceiveDamage(this, pAmount, pType, pOnComplete);
+                OnReceiveDamage(this, pAmount, pType, defence, pOnComplete);
         }
         
         public void Heal(int pAmount, Action pOnComplete) {
@@ -131,10 +153,12 @@ namespace Character {
         }
         
         public void OnTurnStart() {
+            Shield = 0;
             foreach (var effect in Effects) {
                 effect.OnTurnStart(this);
             }
             UpdateEffect();
+            UIManager.Instance.Entity[Position].OnTurnStart(Shield);
         }
                 
         public void OnSkillUse() {

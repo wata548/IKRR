@@ -5,7 +5,6 @@ using UnityEngine;
 using Data;
 using DG.Tweening;
 using UI.Icon;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI.Character {
@@ -17,6 +16,7 @@ namespace UI.Character {
         private Tween _idleAnimation;
         private Tween _attackAnimation;
         private Vector3? _origin = null;
+        private Tween _shake = null;
 
         private EnemySize _size;
         //==================================================||Methods 
@@ -33,9 +33,13 @@ namespace UI.Character {
             _shower.sprite = pData.SerialNumber.GetIcon();
             transform.localScale = (float)pData.Size / 100f * Vector3.one;
         }
+        
+        public override void RefreshHpBar(IEntity pEntity) {
+            _hpBar.SetWithAnimation(pEntity.MaxHp, pEntity.Hp, pEntity.Shield);
+        }
 
-        public override void OnMaxHpChange(IEntity pEntity, int pDelta) {
-            _hpBar.SetWithAnimation(pEntity.MaxHp, pEntity.Hp);
+        public override void OnTurnStart(int pShield) {
+            _hpBar.SetShield(pShield);
         }
 
         public virtual void AttackAnimation() {
@@ -47,7 +51,7 @@ namespace UI.Character {
                 );
         } 
         
-        private void IdleAnimation() {
+        /*private void IdleAnimation() {
             const float VERTICAL_MOVEMENT = 0.015f; 
             const float STRETCH_RATIO = 1.03f; 
             const float ANIMATION_SPEED = 0.8f; 
@@ -63,9 +67,8 @@ namespace UI.Character {
                 .Join(_shower.transform.DOScaleY(STRETCH_RATIO, ANIMATION_SPEED))
                 .SetEase(Ease.OutSine)
                 .SetLoops(-1, LoopType.Yoyo);
-        }
+        }*/
 
-        private Tween _shake = null;
         private void PlayVfx(AttackType pType) {
             
             _shake?.Kill();
@@ -87,16 +90,16 @@ namespace UI.Character {
             vfx.Play();
         }
         
-        public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
+        public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, bool pDefence, Action pOnComplete) {
             
             PlayVfx(pType);   
-            _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
+            _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount, pEntity.Shield, pDefence)
                 .OnComplete(() => pOnComplete?.Invoke());
         }
 
         public override void OnDeath(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
             PlayVfx(pType);   
-            _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
+            _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount, 0, false)
                 .OnComplete(() => StartCoroutine(Death()));
             IEnumerator Death() {
                 pOnComplete?.Invoke(); 
@@ -116,7 +119,7 @@ namespace UI.Character {
         }
 
         public override void OnHeal(IEntity pEntity, int pAmount, Action pOnComplete) {
-            _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
+            _hpBar.Heal(pEntity.MaxHp, pEntity.Hp, pAmount, pEntity.Shield)
                 .OnComplete(() => pOnComplete?.Invoke());
         }
 
@@ -125,11 +128,6 @@ namespace UI.Character {
         }
         
         //==================================================||Unity 
-        
-        protected void OnBecameVisible() {
-            IdleAnimation();
-        }
-
         protected virtual void Awake() {
             _button.onClick.AddListener(OnClick);
             gameObject.SetActive(false);

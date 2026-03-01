@@ -10,8 +10,10 @@ namespace Character {
         public Positions Position { get; }
         public int MaxHp { get; }
         public int Hp { get; }
+        public int Shield { get; }
         public bool IsAlive { get; }
 
+        public void AddShield(int pAmount);
         public void ChangeMaxHp(int pDelta);
         public void AddEffect(EffectBase pEffect);
         public int AttackDamageCalc(int pAmount, AttackType pType, IEntity pTarget);

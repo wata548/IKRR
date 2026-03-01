@@ -32,7 +32,7 @@ namespace Data {
             if (!string.IsNullOrWhiteSpace(EvolveDescription))
                 details.Add(new(
                     "진화",
-                    UseInfo.Get(SerialNumber) 
+                    UseInfo.GetEvolve(SerialNumber) 
                         ? EvolveDescription 
                         : "???"
                     )

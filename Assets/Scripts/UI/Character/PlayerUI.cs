@@ -24,12 +24,16 @@ namespace UI.Character {
            _hpBar.Set(pEntity.MaxHp, pEntity.Hp);
        }
        
-       public override void OnMaxHpChange(IEntity pEntity, int pDelta) {
-           _hpBar.SetWithAnimation(pEntity.MaxHp, pEntity.Hp);
+       public override void RefreshHpBar(IEntity pEntity) {
+           _hpBar.SetWithAnimation(pEntity.MaxHp, pEntity.Hp, pEntity.Shield);
        }
-       
-        public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
-            _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount)
+
+       public override void OnTurnStart(int pShield) {
+           _hpBar.SetShield(pShield);
+       }
+
+       public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, bool pDefence, Action pOnComplete) {
+            _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount, pEntity.Shield, pDefence)
                 .OnComplete(() => pOnComplete?.Invoke());
         }
 
@@ -38,7 +42,7 @@ namespace UI.Character {
         }
 
         public override void OnHeal(IEntity pEntity, int pAmount, Action pOnComplete) {
-            _hpBar.Heal(pEntity.MaxHp, pEntity.Hp, pAmount)
+            _hpBar.Heal(pEntity.MaxHp, pEntity.Hp, pAmount, pEntity.Shield)
                 .OnComplete(() => pOnComplete?.Invoke());
         }
 

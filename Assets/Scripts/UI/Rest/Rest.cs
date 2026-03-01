@@ -42,7 +42,7 @@ namespace UI.Rest {
                     var data = DataManager.Symbol.GetData(code);
                     if (string.IsNullOrWhiteSpace(data.EvolveCondition))
                         return false;
-                   return !UseInfo.Get(code); 
+                   return !UseInfo.GetEvolve(code); 
                 });
             _knowledge.interactable = _knowledgeCandidates.Any();
         }

@@ -13,11 +13,13 @@ namespace UI.Character {
         private int _lastEffectUpdate = 0;
         private int _lastEffectCnt = 0;
         
-        public abstract void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete);
+        public abstract void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, bool pDefence, Action pOnComplete);
         public abstract void OnDeath(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete);
         public abstract void OnHeal(IEntity pEntity, int pAmount, Action pOnComplete);
-        public abstract void OnMaxHpChange(IEntity pEntity, int pDelta);
+        public abstract void RefreshHpBar(IEntity pEntity);
 
+        public abstract void OnTurnStart(int pShield);
+        
         protected void RefreshEffectBox(bool pForce = false) {
             var entity = CharactersManager.GetEntity(_position);
             if (entity is {IsAlive: false})
