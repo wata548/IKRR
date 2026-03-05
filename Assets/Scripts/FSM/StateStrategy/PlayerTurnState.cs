@@ -7,11 +7,8 @@ namespace FSM {
         public void OnEnter(State pPrev) { }
 
         public void Update() {
-            if (!CharactersManager.IsFighting) {
-                Fsm.Instance.Change(State.SelectStage);
-                UIManager.Instance.Map.ClearStage(true);
+            if (Fsm.Instance.CheckBattleEnd())
                 return;
-            }
             
             if (AnimationStateBase.AnimationBuffer.Count == 0)
                 return;

@@ -3,6 +3,7 @@ using UI.Character;
 using UI.Event;
 using UI.LevelUpReward;
 using UI.Reward;
+using UI.Shop;
 using UI.SkillShower;
 using UI.Status;
 using UnityEngine;
@@ -22,5 +23,7 @@ namespace UI {
         [field: SerializeField] public EventShower Event { get; private set; }
         [field: SerializeField] public SymbolSelector.SymbolSelector Selector { get; private set; }
         [field: SerializeField] public RewardWindow Reward { get; private set; }
+        [field: SerializeField] public OXPannel OXEffect { get; private set; }
+        [field: SerializeField] public ShopManager Shop { get; private set; }
     }
 }

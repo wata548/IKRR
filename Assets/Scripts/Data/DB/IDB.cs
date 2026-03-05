@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Data {
     public interface IDB<TKey, TValue> {
@@ -8,6 +9,7 @@ namespace Data {
     }
     
     public interface IQueryDB<TKey, TValue, TQueryArgs> : IDB<TKey, TValue> {
+        public List<TKey> Query(Func<TValue, bool> pComparer);
         public List<TKey> Query(TQueryArgs pArgs);
         public List<TKey> MiniQuery(List<TKey> pMiniDB, TQueryArgs pArgs);
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Data;
 using DG.Tweening;
 using Extension;
@@ -15,9 +16,10 @@ namespace FSM {
         private IStrategy _strategy;
 
         private static readonly IReadOnlyDictionary<State, IStrategy> _matchStrategy =
-            new Dictionary<State, IStrategy>() {
+            new Dictionary<State, IStrategy> {
                 { State.SelectStage, new SelectStage() },
                 { State.Rolling, new Rolling() },
+                { State.LevelUp, new LevelUpRewardState() },
                 { State.Reward, new RewardState() },
                     
                 { State.EvolveCheck, new EvolveCheckState() },
@@ -28,6 +30,15 @@ namespace FSM {
                 { State.EnemyTurn, new EnemyTurn() },
             };
 
+        public bool CheckBattleEnd() {
+            if (CharactersManager.IsFighting)
+                return false;
+            
+            Change(State.Reward);
+            UIManager.Instance.Map.ClearStage(true);
+            return true;
+        }
+        
         public void StartBattle() {
             Turn = 0;
             foreach (var character in CharactersManager.GetEntities()) {
@@ -78,7 +89,7 @@ namespace FSM {
 
         protected override void Update() {
 
-            if (State is not (State.Reward or State.EffectAnimation) && EffectAnimationState.AnimationBuffer.Count > 0) {
+            if (State is not (State.LevelUp or State.EffectAnimation) && EffectAnimationState.AnimationBuffer.Count > 0) {
                 Change(State.EffectAnimation);
             }
             

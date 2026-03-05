@@ -30,7 +30,7 @@ namespace FSM.StateStrategy {
             if (_playingSkill is { IsEnd: false })
                 return;
             if (UIManager.Instance.LevelUp.NeedUpdate) {
-                Fsm.Instance.Change(State.Reward);
+                Fsm.Instance.Change(State.LevelUp);
                 return;
             }
             

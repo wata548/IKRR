@@ -5,6 +5,7 @@ namespace Data {
        
     public class SymbolData{
         public int SerialNumber { get; protected set; } 
+        public int Price { get; protected set; } 
         public string Name { get; protected set; }
         public string Condition { get; protected set; }
         public string ConditionCode { get; protected set; }

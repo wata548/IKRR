@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="74e5b786-8faa-4852-bf71-68b40ba9ea51" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Books/Eipc.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Books/Eipc.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Books/Legendery.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Books/Legendery.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Books/NormalBook.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Books/NormalBook.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Books/Rare.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Books/Rare.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Books/UniqueBook.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Books/UniqueBook.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/IKRR_Icons/Effect/3009.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/IKRR_Icons/Effect/3009.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Volum.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Volum.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataManager/DataSupport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataManager/DataSupport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/Coin/CoinBase Color.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Coin/CoinBase Color.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/OX/O/Untitled.001.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/OX/O/Untitled.001.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/OX/X/Untitled.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/OX/X/Untitled.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/Shuriken/Untitled.001.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Shuriken/Untitled.001.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/Swing/Untitled.002.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Swing/Untitled.002.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Doc/Materials/logo.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Doc/Materials/logo.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/01_Helloworld/Helloworld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/01_Helloworld/Helloworld.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/02_U3DScripting/U3DScripting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/02_U3DScripting/U3DScripting.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/03_UIEvent/UI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/03_UIEvent/UI.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/04_LuaObjectOrented/InvokeLua.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/04_LuaObjectOrented/InvokeLua.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/05_NoGc/NoGc.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/05_NoGc/NoGc.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/06_Coroutine/Coroutine.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/06_Coroutine/Coroutine.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/AsyncTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/AsyncTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/Resources/AlertBox.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/Resources/AlertBox.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/Resources/ConfirmBox.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/Resources/ConfirmBox.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/08_Hotfix/HotfixTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/08_Hotfix/HotfixTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/08_Hotfix/HotfixTest2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/08_Hotfix/HotfixTest2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/09_GenericMethod/GenericMethod.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/09_GenericMethod/GenericMethod.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/10_SignatureLoader/SignatureLoaderTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/10_SignatureLoader/SignatureLoaderTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/11_RawObject/RawObject.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/11_RawObject/RawObject.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/12_ReImplementInLua/ReImplementInLua.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/12_ReImplementInLua/ReImplementInLua.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Tutorial/CSharpCallLua/CSCallLua.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Tutorial/CSharpCallLua/CSCallLua.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/ByFile/ByFile.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/ByFile/ByFile.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/ByString/ByString.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/ByString/ByString.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/Loader/CustomLoader.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/Loader/CustomLoader.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XLua/Tutorial/LuaCallCSharp/LuaCallCs.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Tutorial/LuaCallCSharp/LuaCallCs.unity" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;wata548&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/wata548/IKRR.git&quot;,
+    &quot;accountId&quot;: &quot;67454004-00f8-4dec-88e1-3ccd96281a07&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Symbol/SymbolDB.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DataManager/DataSupport.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LanguageEmbed/ILanguageEmbed.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Symbol/ISymbolExecutor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Symbol/LuaSymbolExecutor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Symbol/SymbolExecutor.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="39jjkO6CjrRyCuTLPuEuLVSQCkc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="74e5b786-8faa-4852-bf71-68b40ba9ea51" name="Changes" comment="" />
+      <created>1771216517842</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771216517842</updated>
+      <workItem from="1771216524541" duration="105000" />
+      <workItem from="1771216668318" duration="752000" />
+      <workItem from="1772490161145" duration="637000" />
+      <workItem from="1772495768394" duration="395000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityProjectDiscoverer">
+    <option name="unityProjectFolder" value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

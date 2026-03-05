@@ -62,7 +62,7 @@ namespace UI.LevelUpReward {
 
             var rarity = DataManager.LevelUp.GetRarity();
             var targetStatus = (TargetStatus)(1 << Select.GetSelection(STATUS));
-            var fakeCandidate = DataManager.Symbol.Query(new(
+            var fakeCandidate = DataManager.Symbol.Query(new SymbolQueryArgs(
                 Status: targetStatus
             ));
             var candidate = DataManager.Symbol.MiniQuery(fakeCandidate, new(

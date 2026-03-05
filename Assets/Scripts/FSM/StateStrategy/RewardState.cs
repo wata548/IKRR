@@ -2,22 +2,18 @@
 
 namespace FSM.StateStrategy {
     public class RewardState: IStrategy {
-
-        private State _prevState; 
-        
         public void OnEnter(State pPrev) {
-            _prevState = pPrev;
-            UIManager.Instance.LevelUp.TurnOn();
+            UIManager.Instance.Reward.TurnOn();
         }
 
         public void Update() {
-
-            if (!UIManager.Instance.LevelUp.IsActive)
-                Fsm.Instance.Change(_prevState, true);
+            if (UIManager.Instance.Reward.IsActive)
+                return;
+            Fsm.Instance.Change(State.SelectStage);
         }
 
         public void OnExit() {}
 
-        public void EndBattle() { }
+        public void EndBattle() {}
     }
 }

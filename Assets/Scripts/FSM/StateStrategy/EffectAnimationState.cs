@@ -20,7 +20,7 @@ namespace FSM {
         public void EndBattle() {}
 
         public void OnEnter(State pPrev) {
-            if (pPrev != State.Reward)
+            if (pPrev != State.LevelUp)
                 _prev = pPrev;
         }
 
@@ -29,7 +29,7 @@ namespace FSM {
                 return;
 
             if (UIManager.Instance.LevelUp.NeedUpdate) {
-                Fsm.Instance.Change(State.Reward);
+                Fsm.Instance.Change(State.LevelUp);
                 return;
             }
             

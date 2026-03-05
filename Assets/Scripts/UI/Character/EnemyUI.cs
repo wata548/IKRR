@@ -52,13 +52,13 @@ namespace UI.Character {
         } 
         
         /*private void IdleAnimation() {
-            const float VERTICAL_MOVEMENT = 0.015f; 
-            const float STRETCH_RATIO = 1.03f; 
-            const float ANIMATION_SPEED = 0.8f; 
-            
+            const float VERTICAL_MOVEMENT = 0.015f;
+            const float STRETCH_RATIO = 1.03f;
+            const float ANIMATION_SPEED = 0.8f;
+
             var posY = _shower.rectTransform.sizeDelta.y * _shower.transform.localScale.y * VERTICAL_MOVEMENT
                        + _shower.rectTransform.localPosition.y;
-            
+
             _idleAnimation?.Kill();
             _origin ??= _shower.transform.localPosition;
             _shower.transform.localPosition = (Vector3)_origin;
@@ -77,17 +77,17 @@ namespace UI.Character {
             
             var vfx = VFXManager.Get(pType.ToString());
             var defaultVfx = VFXManager.Get("Damage");
-            if (vfx is null)
-                return;
             
             var pos = transform.position;
             var height = (transform as RectTransform)!.rect.height * transform.lossyScale.y / 2f;
             pos.y += height;
-            vfx.transform.position = pos;
-            //vfx.ApplySize(_size);
+            if (vfx is not null) {
+                vfx.transform.position = pos;
+                //vfx.ApplySize(_size);
+                vfx.Play();
+            }
             defaultVfx.transform.position = pos;
             defaultVfx.Play();
-            vfx.Play();
         }
         
         public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, bool pDefence, Action pOnComplete) {
@@ -133,7 +133,7 @@ namespace UI.Character {
             gameObject.SetActive(false);
         }
 
-       protected override Info Info() {
+        protected override Info Info() {
             var code = (CharactersManager.GetEntity(_position) as Enemy)!.SerialNumber;
             return DataManager.Enemy.GetData(code).GetInfo();
         }

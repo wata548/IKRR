@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Extension;
@@ -12,6 +13,11 @@ namespace Data {
     );
     
     public class SymbolDB: DictionaryBaseDB<int, SymbolData>, IQueryDB<int, SymbolData, SymbolQueryArgs> {
+        public List<int> Query(Func<SymbolData, bool> pComparer) =>
+            _matchToSerialNumber
+                .Where(kvp => pComparer(kvp.Value))
+                .Select(kvp => kvp.Key)
+                .ToList();
 
         public List<int> Query(SymbolQueryArgs pArgs) =>
             _matchToSerialNumber

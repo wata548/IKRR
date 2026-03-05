@@ -27,6 +27,7 @@ namespace Data.supportFont {
             "Enemy",
             "StageEnemy",
             "LevelUpAppearance",
+            "Job",
         };
         static readonly string[] TRANSLATE_ITEMS = new [] {
             "UI",

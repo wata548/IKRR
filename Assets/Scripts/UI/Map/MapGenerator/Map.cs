@@ -80,7 +80,6 @@ namespace UI.Map {
                 ClearStages.Add(_curStage);
                 var save = SaveSystem.Save();
                 save.Save();
-                SetActive(true);
             }
         }
 
@@ -89,7 +88,7 @@ namespace UI.Map {
             var interval = 1f / (_roundCount + 1.5f + TOP_INTERVAL);
             _positionController.TurnOn(interval * (Height + 1.5f));
         }
-        public void SetActiveBySwitch() =>
+        public void SetActiveSwitch() =>
             SetActive(!_mapPannel.activeSelf);
 
         private void Load() {

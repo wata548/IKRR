@@ -6,11 +6,8 @@ namespace FSM.StateStrategy {
         
         public void OnEnter(State pPrev) {
 
-            if (!CharactersManager.IsFighting) {
-                Fsm.Instance.Change(State.SelectStage);
-                UIManager.Instance.Map.ClearStage(true);
+            if (Fsm.Instance.CheckBattleEnd())
                 return;
-            }
                 
             
             if (UIManager.Instance.Roulette.IsRoll)

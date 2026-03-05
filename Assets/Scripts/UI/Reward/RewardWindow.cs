@@ -24,18 +24,21 @@ namespace UI.Reward {
         private readonly List<Button> _buttons = new();
         private readonly List<int> _rewards = new();
         private int _idx = 0;
-        public bool IsStop => !_wheels.Any(wheel => wheel.IsRoll);
-        
+
+        public bool IsActive { get; private set; } = false;
 
         [TestMethod]
         public void TurnOn() {
             _idx = 0;
+            IsActive = true;
             _pannel.SetActive(true);
             SetUp();
             _rewards.Clear();
             var candidate = DataManager.Symbol.Keys.ToList();
             foreach (var wheel in _wheels) {
-                var candidates = DataManager.Symbol.Query(new(DataManager.LevelUp.GetRarity()));
+                var candidates = DataManager.Symbol.Query(
+                    new SymbolQueryArgs(DataManager.LevelUp.GetRarity())
+                );
                 var result = DataManager.ERROR_SYMBOL;
                 if(candidates.Count > 0)
                     result = candidates[Random.Range(0, candidates.Count)];
@@ -52,6 +55,7 @@ namespace UI.Reward {
                 wheel.Stop();
             }
             _pannel.SetActive(false);
+            IsActive = false;
         }
 
         public void Stop() {
@@ -91,7 +95,7 @@ namespace UI.Reward {
         }
         
         private void Update() {
-            if (!IsStop)
+            if (_wheels.Any(wheel => wheel.IsRoll))
                 return;
             if(_buttons.Count <= 0 || _buttons[0].gameObject.activeSelf)
                 return;

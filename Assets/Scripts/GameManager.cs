@@ -74,7 +74,7 @@ namespace Data {
         //==================================================||Unity 
         private void Awake() {
             if (!_isInit) {
-                SaveSystem.GameStart(4001);
+                SaveSystem.GameStart(4004);
                 Debug.Log("Skip title scene");
             }
 

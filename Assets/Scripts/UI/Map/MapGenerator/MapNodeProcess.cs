@@ -38,7 +38,7 @@ namespace UI.Map {
                 Stage.Event => GameManager.SetEvent,
                 Stage.Tresure => GameManager.SetTresure,
                 Stage.Rest => () => UIManager.Instance.Rest.Show(true),
-                Stage.Shop => GameManager.SetEnemy
+                Stage.Shop => () => UIManager.Instance.Shop.Show(),
             };
             func.Invoke();
         }

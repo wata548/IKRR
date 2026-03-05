@@ -5,6 +5,7 @@
         Body,
         Crush,
         Money,
+        Blood,
         Shuriken,
         Needle,
         Burn,

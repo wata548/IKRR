@@ -30,20 +30,13 @@ namespace UI.Event {
         [TestMethod]
         public void SetEvent(string pTitle, Data.Event.Event pEvent) {
             _button.gameObject.SetActive(true);
-            _animation = ButtonAnimation();
+            _animation = _button.ButtonHighlight();
             
             _pannel.SetActive(true);
             _title.text = pTitle;
             _curEvent = pEvent;
             var script = pEvent.Goto(0);
             SetScript(script);
-
-            Tween ButtonAnimation() {
-                const float DEGREE = 20;
-                _button.transform.rotation = Quaternion.Euler(0, 0, DEGREE);
-                return _button.transform.DORotate(new Vector3(0, 0, -DEGREE), 0.5f * Time.timeScale)
-                    .SetLoops(-1, LoopType.Yoyo);
-            } 
         }
         
         public void SetScript(SingleScript pScript) {
