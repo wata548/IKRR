@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Character.Skill;
 using Data;
 using UI;
@@ -9,9 +8,6 @@ using UnityEngine;
 
 namespace Character {
     public class Enemy : IEntity {
-        
-        //==================================================||Contants 
-        private const string PATTERN = @"\s*(?<Skill>.+?)\s*=\s*(?<Appearance>\d+)";
         
         //==================================================||Properties 
         public Positions Position { get; private set; }
@@ -23,17 +19,18 @@ namespace Character {
         public int Exp { get; private set; }
         public int DropMoney { get; private set; }
         public bool IsAlive { get; private set; }
-        private List<(int Appearance, ISkill Skill)> _skillAppearance = new();
         public List<EffectBase> Effects { get; private set; } = new();
+        private IReadOnlyList<PatternInfo> _patterns;
+        private IEnumerator<ISkill> _currentSkill;
 
         //==================================================||Constructors 
         public Enemy(Positions pPosition, int pCode): this(pPosition, DataManager.Enemy.GetData(pCode)){}
         
-       
         public Enemy(Positions pPosition, EnemyData pData) {
             SerialNumber = pData.SerialNumber;
             Position = pPosition;
             Size = pData.Size;
+            _patterns = pData.PatternData;
 
             DropMoney = pData.DropMoney.Value;
             Exp = pData.Exp;
@@ -41,10 +38,6 @@ namespace Character {
             MaxHp = pData.MaxHp;
             Hp = MaxHp;
             IsAlive = true;
-                        
-            SetSkillSet(pData.SkillInfo);
-            
-            
         }
         
         //==================================================||Methods 
@@ -64,22 +57,6 @@ namespace Character {
             UIManager.Instance.Entity.GetEnemyUI(Position).AttackAnimation();
         }
         
-        private void SetSkillSet(string pSkillSet) {
-                    
-            _skillAppearance.Clear();
-            var matches = Regex.Matches(pSkillSet, PATTERN);
-                                
-            foreach (Match match in matches) {
-                var appearance = int.Parse(match.Groups["Appearance"].Value);
-                //prefix
-                if (_skillAppearance.Count > 0)
-                    appearance += _skillAppearance[^1].Appearance;
-                                    
-                var skill = SkillInterpreter.Interpret(match.Groups["Skill"].Value);
-                _skillAppearance.Add((appearance, skill));
-            }
-        }
-
         private void OnDeath() {
             PlayerData.GetExp(Exp);
             PlayerData.GetMoney(DropMoney);
@@ -143,29 +120,6 @@ namespace Character {
             IsAlive = false;
         }
         
-        public ISkill GetSkill() {
-            
-            var point = UnityEngine.Random.Range(1, _skillAppearance[^1].Appearance + 1);
-            var start = 0;
-            var end = _skillAppearance.Count - 1;
-            while (start < end) {
-                var middle = (start + end) / 2;
-                var compare = point.CompareTo(_skillAppearance[middle].Appearance);
-                
-                if (compare == 0) {
-                    start = middle;
-                    break;
-                }
-                if (compare > 0)
-                    start = middle + 1;
-                else
-                    end = middle;
-            }
-
-            var skill = _skillAppearance[start].Skill;
-            return skill;
-        }
-
         public void AddEffect(EffectBase pEffect) {
             var effect = Effects.FirstOrDefault(effect => effect.Code == pEffect.Code);
             if (effect != null) {
@@ -174,6 +128,21 @@ namespace Character {
             }
             Effects.Add(pEffect);
             pEffect.OnAdded(this);
+        }
+
+        public bool HasEffect(int pCode) => Effects.Any(effect => effect.Code == pCode);
+
+        public ISkill GetSkill() {
+            if (_currentSkill == null || _currentSkill.Current == null) {
+                _currentSkill = _patterns
+                    .First(pattern => pattern.Usable(this))
+                    .GetSkill()
+                    .GetEnumerator();
+                _currentSkill.MoveNext();
+            }
+            var value = _currentSkill.Current;
+            _currentSkill.MoveNext();
+            return value;
         }
 
         #region ApplyEffect

@@ -1,4 +1,6 @@
-﻿using Character.Skill.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Character.Skill.Data;
 
 namespace Data {
     public class EnemyData {
@@ -10,6 +12,14 @@ namespace Data {
         public int Exp { get; protected set; }
         public RangeValue DropMoney { get; protected set; }
         public string SkillInfo { get; protected set; }
+
+        public IReadOnlyList<PatternInfo> PatternData => _patternData ??= SkillInfo
+            .Split("|>")
+            .Skip(1)
+            .Select(pattern => new PatternInfo(pattern))
+            .ToList();
+
+        protected IReadOnlyList<PatternInfo> _patternData = null;
 
         public Info GetInfo() =>
             new(Name, new() {

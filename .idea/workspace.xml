@@ -5,40 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74e5b786-8faa-4852-bf71-68b40ba9ea51" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Books/Eipc.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Books/Eipc.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Books/Legendery.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Books/Legendery.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Books/NormalBook.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Books/NormalBook.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Books/Rare.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Books/Rare.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Books/UniqueBook.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Books/UniqueBook.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/IKRR_Icons/Effect/3009.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/IKRR_Icons/Effect/3009.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Volum.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Volum.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataManager/DataSupport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataManager/DataSupport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/Coin/CoinBase Color.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Coin/CoinBase Color.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/OX/O/Untitled.001.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/OX/O/Untitled.001.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/OX/X/Untitled.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/OX/X/Untitled.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/Shuriken/Untitled.001.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Shuriken/Untitled.001.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/Swing/Untitled.002.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Swing/Untitled.002.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Doc/Materials/logo.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Doc/Materials/logo.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/01_Helloworld/Helloworld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/01_Helloworld/Helloworld.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/02_U3DScripting/U3DScripting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/02_U3DScripting/U3DScripting.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/03_UIEvent/UI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/03_UIEvent/UI.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/04_LuaObjectOrented/InvokeLua.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/04_LuaObjectOrented/InvokeLua.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/05_NoGc/NoGc.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/05_NoGc/NoGc.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/06_Coroutine/Coroutine.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/06_Coroutine/Coroutine.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/AsyncTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/AsyncTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/Resources/AlertBox.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/Resources/AlertBox.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/Resources/ConfirmBox.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/07_AsyncTest/Resources/ConfirmBox.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/08_Hotfix/HotfixTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/08_Hotfix/HotfixTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/08_Hotfix/HotfixTest2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/08_Hotfix/HotfixTest2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/09_GenericMethod/GenericMethod.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/09_GenericMethod/GenericMethod.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/10_SignatureLoader/SignatureLoaderTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/10_SignatureLoader/SignatureLoaderTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/11_RawObject/RawObject.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/11_RawObject/RawObject.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Examples/12_ReImplementInLua/ReImplementInLua.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Examples/12_ReImplementInLua/ReImplementInLua.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Tutorial/CSharpCallLua/CSCallLua.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Tutorial/CSharpCallLua/CSCallLua.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/ByFile/ByFile.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/ByFile/ByFile.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/ByString/ByString.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/ByString/ByString.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/Loader/CustomLoader.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Tutorial/LoadLuaScript/Loader/CustomLoader.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XLua/Tutorial/LuaCallCSharp/LuaCallCs.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XLua/Tutorial/LuaCallCSharp/LuaCallCs.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/VFX/Shuriken.vfx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/VFX/Shuriken.vfx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/VFX/Swing.vfx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/VFX/Swing.vfx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +33,8 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Symbol/SymbolDB.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DataManager/DataSupport.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LanguageEmbed/ILanguageEmbed.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DataManager/DataSupport.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LanguageEmbed/ILanguageEmbed.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Symbol/ISymbolExecutor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Symbol/LuaSymbolExecutor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Symbol/SymbolExecutor.cs" root0="FORCE_HIGHLIGHTING" />
@@ -100,6 +71,7 @@
       <workItem from="1771216668318" duration="752000" />
       <workItem from="1772490161145" duration="637000" />
       <workItem from="1772495768394" duration="395000" />
+      <workItem from="1772944311954" duration="1059000" />
     </task>
     <servers />
   </component>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text.RegularExpressions;
-using Character.Skill.Data;
-using CSVData.Extensions;
+﻿using Character.Skill.Data;
 using Data;
 using Lang;
 

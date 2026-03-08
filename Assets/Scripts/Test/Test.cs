@@ -17,6 +17,9 @@ namespace Test {
     public static class Test {
 
         [TestMethod]
+        public static void Split(string o, string d) => Debug.Log(o.Split(d).Length);
+
+        [TestMethod]
         public static void AddSymbol(int pCode, int pAmount) =>
             RouletteManager.TryAdd(pCode, pAmount, out _);
         

@@ -1,0 +1,13 @@
+﻿function {0}(enemy) 
+    Field = CS.Data.CharactersManager;
+    Symbol = CS.Data.DataManager.Symbol;
+    Roulette = CS.Roulette.RouletteManager;
+    Selector = CS.UI.UIManager.Instance.Selector;
+    Status = CS.Data.Status;
+    Stat = CS.Data.TargetStatus;
+    Pos = CS.Data.Positions;
+    Game = CS.Data.GameManager;
+    PlayerData = CS.Data.PlayerData;
+    Player = Field.Player;
+    {1}
+end

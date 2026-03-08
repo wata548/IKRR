@@ -7,10 +7,10 @@ namespace Data {
         public override int Code => 3010;
         public int Amount { get; private set; }
 
-        public Support(int pAmount) =>
-            Amount = pAmount;
+        public Support(RangeValue pAmount) =>
+            Amount = pAmount.Value;
 
-        public override int ShowCount => -1;
+        public override int ShowCount => Amount;
 
         public override Dictionary<string, object> Infos => new() {
             { "Amount", Amount }

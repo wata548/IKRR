@@ -58,7 +58,7 @@ namespace Character {
             Effects.Add(pEffect);
             pEffect.OnAdded(this);
         }
-
+        public bool HasEffect(int pCode) => Effects.Any(effect => effect.Code == pCode);
         public void OnAttack() {
             
         }

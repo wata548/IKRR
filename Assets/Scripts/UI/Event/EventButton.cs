@@ -15,7 +15,6 @@ namespace UI.Event {
         [SerializeField] private TMP_Text _context;
         private string _funcContext;
         public static string LastClickButton { get; private set; }
-        private static ILanguageEmbed _executor = new LuaEmbed();
         
         public void SetData(Button pData) {
             _context.text = pData.Option;
@@ -23,13 +22,13 @@ namespace UI.Event {
             if (string.IsNullOrWhiteSpace(pData.Condition))
                 _button.interactable = true;
             else {
-                _button.interactable = _executor.Invoke<bool>(GetFunc(pData.Condition), "Invoke");
+                _button.interactable = LanguageExecutor.Executor.Invoke<bool>(GetFunc(pData.Condition), "Invoke");
             }
         }
         
         private void Invoke() {
             LastClickButton = _context.text;
-            _executor.Invoke(GetFunc(_funcContext), "Invoke");
+            LanguageExecutor.Executor.Invoke(GetFunc(_funcContext), "Invoke");
         }
 
         private void Awake() {
@@ -38,7 +37,7 @@ namespace UI.Event {
 
         [StaticUpdate]
         private static void EmbedLanguageUpdate() {
-            _executor.Update();
+            LanguageExecutor.Executor.Update();
         }
 
         private string _eventFuncFormat = null;
