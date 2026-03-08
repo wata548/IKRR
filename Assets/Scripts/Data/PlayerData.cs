@@ -23,7 +23,7 @@ namespace Data {
         }
 
         public static void GetMoney(int pAmount) {
-            Money += pAmount;
+            Money = Mathf.Max(0, Money + pAmount);
             LastUpdate = Time.frameCount;
         }
         

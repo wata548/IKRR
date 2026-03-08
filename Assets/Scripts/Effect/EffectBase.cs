@@ -35,6 +35,7 @@ namespace Data {
         public virtual void OnRouletteStop(IEntity pTarget){}
         public virtual void OnTurnStart(IEntity pTarget){}
         public virtual void OnAdded(IEntity pTarget){}
+        public virtual void OnDeath(IEntity pTarget){}
 
         public virtual void OnTurnEnd(IEntity pTarget) {
             Duration--;

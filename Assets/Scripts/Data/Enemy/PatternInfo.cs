@@ -36,7 +36,6 @@ namespace Data {
                 var sequence = match.Groups["Skill"].Value
                     .Split("->")
                     .Select(SkillInterpreter.Interpret);
-                Debug.Log(sequence.Count());
                 data.Add((appearance, sequence));
             }
 

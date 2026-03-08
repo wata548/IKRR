@@ -19,6 +19,7 @@ namespace Character {
         public int Exp { get; private set; }
         public int DropMoney { get; private set; }
         public bool IsAlive { get; private set; }
+        public int Phase { get; set; }
         public List<EffectBase> Effects { get; private set; } = new();
         private IReadOnlyList<PatternInfo> _patterns;
         private IEnumerator<ISkill> _currentSkill;
@@ -27,6 +28,7 @@ namespace Character {
         public Enemy(Positions pPosition, int pCode): this(pPosition, DataManager.Enemy.GetData(pCode)){}
         
         public Enemy(Positions pPosition, EnemyData pData) {
+            Phase = 0;
             SerialNumber = pData.SerialNumber;
             Position = pPosition;
             Size = pData.Size;
@@ -58,6 +60,8 @@ namespace Character {
         }
         
         private void OnDeath() {
+            foreach (var effect in Effects)
+                effect.OnDeath(this);
             PlayerData.GetExp(Exp);
             PlayerData.GetMoney(DropMoney);
         }

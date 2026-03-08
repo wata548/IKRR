@@ -3,6 +3,7 @@
     Symbol = CS.Data.DataManager.Symbol;
     Roulette = CS.Roulette.RouletteManager;
     Selector = CS.UI.UIManager.Instance.Selector;
+    Turn = CS.FSM.Fsm.Instance.Turn;
     Status = CS.Data.Status;
     Stat = CS.Data.TargetStatus;
     Pos = CS.Data.Positions;

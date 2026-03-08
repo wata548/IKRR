@@ -6,7 +6,6 @@ using Extension;
 using FSM.StateStrategy;
 using Roulette;
 using UI;
-using UnityEngine.Serialization;
 
 namespace FSM {
     public class Fsm: MonoSingleton<Fsm> {
