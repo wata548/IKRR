@@ -51,7 +51,7 @@ Material:
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     m_Colors:
-    - _AfterColor: {r: 0.0000038848766, g: 1, b: 0.11771335, a: 1}
+    - _AfterColor: {r: 1, g: 0, b: 0.11764706, a: 0}
     - _BeforeColor: {r: 0.9176471, g: 0.21176466, b: 1, a: 1}
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

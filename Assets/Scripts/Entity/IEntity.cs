@@ -27,6 +27,6 @@ namespace Character {
         public void OnBattleStart();
         
         public void Heal(int pAmount, Action pOnComplete = null);
-        public void KillSelf();
+        public void KillSelf(Action pOnComplete = null);
     }
 }

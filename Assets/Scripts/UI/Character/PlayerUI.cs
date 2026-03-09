@@ -28,9 +28,12 @@ namespace UI.Character {
            _hpBar.SetWithAnimation(pEntity.MaxHp, pEntity.Hp, pEntity.Shield);
        }
 
-       public override void OnTurnStart(int pShield) {
-           _hpBar.SetShield(pShield);
+       public override void OnTurnStart() {
+           var shield = CharactersManager.GetEntity(_position).Shield;
+            _hpBar.SetShield(shield);
        }
+
+       public override void OnTurnEnd() { }
 
        public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, bool pDefence, Action pOnComplete) {
             _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount, pEntity.Shield, pDefence)
@@ -40,6 +43,8 @@ namespace UI.Character {
         public override void OnDeath(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
             SceneManager.LoadScene(Scene.GameOver);
         }
+
+        public override void Run(Action pOnComplete) { }
 
         public override void OnHeal(IEntity pEntity, int pAmount, Action pOnComplete) {
             _hpBar.Heal(pEntity.MaxHp, pEntity.Hp, pAmount, pEntity.Shield)
@@ -57,7 +62,7 @@ namespace UI.Character {
         }
         
        //==================================================||Unity 
-       protected override Info Info() {
+       public override Info Info() {
            var info = _info.GetInfo();
 
            _infoParams["Level"] = PlayerData.Level;

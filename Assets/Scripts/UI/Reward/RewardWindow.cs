@@ -89,7 +89,6 @@ namespace UI.Reward {
         }
 
         private void Select(int pIdx) {
-            Debug.Log(pIdx);
             UIManager.Instance.Selector.Add(_rewards[pIdx]);
             TurnOff();
         }

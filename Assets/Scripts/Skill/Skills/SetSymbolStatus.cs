@@ -1,4 +1,5 @@
 ﻿using Data;
+using Lang;
 using Roulette;
 
 namespace Character.Skill {

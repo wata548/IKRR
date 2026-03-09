@@ -124,7 +124,7 @@ namespace Character {
                 OnHeal(this, pAmount, pOnComplete);
         }
 
-        public void KillSelf() {
+        public void KillSelf(Action pOnComplete) {
             SceneManager.LoadScene(Scene.GameOver);
         }
         #region ApplyEffect
@@ -150,6 +150,7 @@ namespace Character {
                 effect.OnTurnEnd(this);
             }
             UpdateEffect();
+            UIManager.Instance.Entity[Position].OnTurnEnd();
         }
         
         public void OnTurnStart() {
@@ -158,7 +159,7 @@ namespace Character {
                 effect.OnTurnStart(this);
             }
             UpdateEffect();
-            UIManager.Instance.Entity[Position].OnTurnStart(Shield);
+            UIManager.Instance.Entity[Position].OnTurnStart();
         }
                 
         public void OnSkillUse() {

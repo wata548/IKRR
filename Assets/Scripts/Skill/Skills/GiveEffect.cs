@@ -18,9 +18,11 @@ namespace Character.Skill {
         }
 
         public override string ToString() {
-            string FORMAT = "{0}에게 상태 이상({1})";
+            string FORMAT = "{0}에게 상태 이상";
             using (var effect = EffectBase.Factory(Effect)) {
                 var data = DataManager.Effect.GetData(effect.Code);
+                return string.Format(FORMAT.ApplyLang(), Target.Value.ToRuntimeLanguage());
+                //Contain type
                 return string.Format(FORMAT.ApplyLang(), Target.Value.ToRuntimeLanguage(), data.Name.ApplyLang());
             }
         }

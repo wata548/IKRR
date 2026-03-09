@@ -1,6 +1,7 @@
 ﻿using System;
 using Character.Skill.Data;
 using Data;
+using Lang;
 using UI;
 using UI.Status;
 using UnityEngine.Scripting;
@@ -29,6 +30,11 @@ namespace Character.Skill {
             };
             func.Invoke(TargetStat.Value, Rhs);
             UIManager.Instance.Status.Refresh(TargetStat.Value, End);                      
+        }
+        
+        public override string ToString() {
+            const string FORMAT = "{0}을 조정";
+            return string.Format(FORMAT.ApplyLang(), TargetStat.Value.ToRuntimeLanguage());
         }
     }
 }

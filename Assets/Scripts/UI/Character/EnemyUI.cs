@@ -13,6 +13,7 @@ namespace UI.Character {
         [SerializeField] private HpBar _hpBar;
         [SerializeField] private Image _shower;
         [SerializeField] private Button _button;
+        [SerializeField] private NextAttackContainer _nextAttack;
         private Tween _idleAnimation;
         private Tween _attackAnimation;
         private Vector3? _origin = null;
@@ -20,6 +21,11 @@ namespace UI.Character {
 
         private EnemySize _size;
         //==================================================||Methods 
+        private void RefreshNextAttackData() {
+            var skill = (CharactersManager.GetEntity(_position) as Enemy)!.Skill;
+            _nextAttack.Refresh(skill);
+        } 
+        
         public void SetMaterial(string pMaterialName) {
             _shower.material = MaterialStore.Get(pMaterialName);
         }
@@ -32,15 +38,21 @@ namespace UI.Character {
             _hpBar.Set(pData.MaxHp, pData.MaxHp);
             _shower.sprite = pData.SerialNumber.GetIcon();
             transform.localScale = (float)pData.Size / 100f * Vector3.one;
+
+            RefreshNextAttackData();
         }
         
         public override void RefreshHpBar(IEntity pEntity) {
             _hpBar.SetWithAnimation(pEntity.MaxHp, pEntity.Hp, pEntity.Shield);
         }
 
-        public override void OnTurnStart(int pShield) {
-            _hpBar.SetShield(pShield);
+        public override void OnTurnStart() {
+            var shield = CharactersManager.GetEntity(_position).Shield;
+            _hpBar.SetShield(shield);
         }
+        
+        public override void OnTurnEnd() =>
+            RefreshNextAttackData();
 
         public virtual void AttackAnimation() {
             _attackAnimation?.Kill();
@@ -118,6 +130,27 @@ namespace UI.Character {
             }
         }
 
+        public override void Run(Action pOnComplete) {
+            StartCoroutine(Run());
+            IEnumerator Run() {
+                const float DURATION = 0.8f;
+                
+                var time = 0f;
+                var color = _shower.color;
+                while (time < DURATION) {
+                    time += Time.deltaTime;
+                    color.a = 1 - time / DURATION;
+                    _shower.color = color;
+                    yield return null; 
+                }
+
+                pOnComplete?.Invoke();
+                gameObject.SetActive(false);
+                color.a = 1;
+                _shower.color = color;
+            }   
+        }
+
         public override void OnHeal(IEntity pEntity, int pAmount, Action pOnComplete) {
             _hpBar.Heal(pEntity.MaxHp, pEntity.Hp, pAmount, pEntity.Shield)
                 .OnComplete(() => pOnComplete?.Invoke());
@@ -126,16 +159,14 @@ namespace UI.Character {
         private void OnClick() {
             CharactersManager.TargetEnemy = _position;
         }
-        
+        public override Info Info() {
+            var code = (CharactersManager.GetEntity(_position) as Enemy)!.SerialNumber;
+            return DataManager.Enemy.GetData(code).GetInfo();
+        }
         //==================================================||Unity 
         protected virtual void Awake() {
             _button.onClick.AddListener(OnClick);
             gameObject.SetActive(false);
-        }
-
-        protected override Info Info() {
-            var code = (CharactersManager.GetEntity(_position) as Enemy)!.SerialNumber;
-            return DataManager.Enemy.GetData(code).GetInfo();
         }
     }
 }

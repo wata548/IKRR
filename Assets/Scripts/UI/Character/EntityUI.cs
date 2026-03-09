@@ -6,7 +6,7 @@ using Data;
 using Extension.Effect;
 
 namespace UI.Character {
-    public abstract class EntityUI: ShowInfo {
+    public abstract class EntityUI: MonoBehaviour {
 
         [SerializeField] private EffectBox _effectBox;
         [SerializeField] protected Positions _position;
@@ -15,10 +15,12 @@ namespace UI.Character {
         
         public abstract void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, bool pDefence, Action pOnComplete);
         public abstract void OnDeath(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete);
+        public abstract void Run(Action pOnComplete = null);
         public abstract void OnHeal(IEntity pEntity, int pAmount, Action pOnComplete);
         public abstract void RefreshHpBar(IEntity pEntity);
 
-        public abstract void OnTurnStart(int pShield);
+        public abstract void OnTurnStart();
+        public abstract void OnTurnEnd();
         
         protected void RefreshEffectBox(bool pForce = false) {
             var entity = CharactersManager.GetEntity(_position);
@@ -43,9 +45,9 @@ namespace UI.Character {
             _effectBox.Refresh(effects);
         }
 
+        public abstract Info Info();
+        
         protected virtual void Update() {
-            base.Update();
-            
             RefreshEffectBox();
         }
     }

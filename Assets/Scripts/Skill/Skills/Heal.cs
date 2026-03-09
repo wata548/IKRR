@@ -35,7 +35,9 @@ namespace Character.Skill {
         }
 
         public override string ToString() {
-            string FORMAT = "{0}에게 회복({1})";
+            string FORMAT = "{0}에게 회복";
+            return string.Format(FORMAT.ApplyLang(), Target.Value.ToRuntimeLanguage());
+            //Contain value
             return string.Format(FORMAT.ApplyLang(), Target.Value.ToRuntimeLanguage(), Value.Value);
         }
     }

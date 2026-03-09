@@ -20,6 +20,7 @@ namespace Character {
         public int DropMoney { get; private set; }
         public bool IsAlive { get; private set; }
         public int Phase { get; set; }
+        public ISkill Skill { get; private set; } 
         public List<EffectBase> Effects { get; private set; } = new();
         private IReadOnlyList<PatternInfo> _patterns;
         private IEnumerator<ISkill> _currentSkill;
@@ -33,6 +34,7 @@ namespace Character {
             Position = pPosition;
             Size = pData.Size;
             _patterns = pData.PatternData;
+            MoveNextSkill();
 
             DropMoney = pData.DropMoney.Value;
             Exp = pData.Exp;
@@ -119,9 +121,11 @@ namespace Character {
                 .OnHeal(this, pAmount, pOnComplete);
         }
 
-        public void KillSelf() {
+        public void KillSelf(Action pOnComplete = null) {
             Hp = 0;
             IsAlive = false;
+            UIManager.Instance.Entity[Position].Run(pOnComplete);
+            CharactersManager.OnDeathEnemy(Position);
         }
         
         public void AddEffect(EffectBase pEffect) {
@@ -136,7 +140,7 @@ namespace Character {
 
         public bool HasEffect(int pCode) => Effects.Any(effect => effect.Code == pCode);
 
-        public ISkill GetSkill() {
+        public void MoveNextSkill() {
             if (_currentSkill == null || _currentSkill.Current == null) {
                 _currentSkill = _patterns
                     .First(pattern => pattern.Usable(this))
@@ -144,9 +148,8 @@ namespace Character {
                     .GetEnumerator();
                 _currentSkill.MoveNext();
             }
-            var value = _currentSkill.Current;
+            Skill = _currentSkill.Current;
             _currentSkill.MoveNext();
-            return value;
         }
 
         #region ApplyEffect
@@ -174,6 +177,7 @@ namespace Character {
             }
             Effects = Effects.Where(effect => effect.Duration > 0).ToList();
             UpdateEffect();
+            UIManager.Instance.Entity[Position].OnTurnEnd();
         }
 
         public void OnTurnStart() {
@@ -182,7 +186,7 @@ namespace Character {
                 effect.OnTurnStart(this);
             }
             UpdateEffect();
-            UIManager.Instance.Entity[Position].OnTurnStart(Shield);
+            UIManager.Instance.Entity[Position].OnTurnStart();
         }
         
         public void OnSkillUse() {

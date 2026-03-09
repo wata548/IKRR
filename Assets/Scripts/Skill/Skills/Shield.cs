@@ -1,6 +1,7 @@
 ﻿using Character.Skill.Data;
 using Data;
 using Extension;
+using Lang;
 
 namespace Character.Skill {
     public class Shield: SkillBase {
@@ -16,6 +17,10 @@ namespace Character.Skill {
                 Amount.Next();
             }
             End();
+        }
+
+        public override string ToString() {
+            return "방어 획득".ApplyLang();
         }
     }
 

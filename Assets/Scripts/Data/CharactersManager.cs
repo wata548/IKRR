@@ -30,8 +30,10 @@ namespace Data {
             foreach (var position in Positions.AllEnemy.Split()) {
                 if(!_entities.TryGetValue(position, out var target) || !target.IsAlive)
                     continue;
-                
-                skills.Enqueue(new(position, (target as Enemy)!.GetSkill()));
+
+                var enemy = (target as Enemy)!;
+                skills.Enqueue(new(position, enemy.Skill));
+                enemy.MoveNextSkill();
             }
 
             return skills;

@@ -2,7 +2,6 @@
 using Data;
 using DG.Tweening;
 using Extension;
-using Extension.Test;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

@@ -4,14 +4,23 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Extension {
-    public record PlaceArgs<T>(
-        in Vector2 Padding,
-        in int Amount,
-        in Vector2Int TableSize,
-        in T Prefab,
-        in Action<T, int> OnGenerate,
-        in Action<T, int> Foreach = null
-    );
+    public struct PlaceArgs<T>{
+        public Vector2 Padding;
+        public int Amount;
+        public Vector2Int TableSize;
+        public T Prefab;
+        public Action<T, int> OnGenerate;
+        public Action<T, int> Foreach;
+
+        public PlaceArgs(Vector2 pPadding, int pAmount, Vector2Int pTableSize, T pPrefab, Action<T, int> pOnGenerate = null, Action<T, int> pForeach = null) {
+            Padding = pPadding;
+            Amount = pAmount;
+            TableSize = pTableSize;
+            Prefab = pPrefab;
+            OnGenerate = pOnGenerate;
+            Foreach = pForeach;
+        }
+    };
     public static class ExRect2 {
 
         public static void Place<T>(this RectTransform pRect, List<T> pContainer, PlaceArgs<T> pArgs) where T: MonoBehaviour {
@@ -36,12 +45,11 @@ namespace Extension {
             if (pArgs.TableSize.y <= 1)
                 interval.y = 0;
             var initPos = pArgs.Padding / 2;
-            initPos.x += prefabRatio.x / 2f;
-            initPos.y += prefabRatio.y / 2f;
+            initPos += prefabRatio / 2f;
             initPos.y *= -1;
 
             if (pArgs.TableSize.x <= 1)
-                initPos.x = (1f - prefabRatio.x) / 2f;
+                initPos.x += (1f - prefabRatio.x) / 2f;
             if (pArgs.TableSize.y <= 1)
                 initPos.y -= (1f - prefabRatio.y) / 2f;
             

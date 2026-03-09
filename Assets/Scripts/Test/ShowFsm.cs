@@ -8,7 +8,7 @@ namespace Test {
         [SerializeField] private TMP_Text _shower;
 
         private void Update() {
-            _shower.text = $"State: {Fsm.Instance.State}";
+            _shower.text = $"State: {Fsm.Instance.State}\nTurn: {Fsm.Instance.Turn}";
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Character.Skill {
         [SkillParameter(100)]
         public AttackType Type { get; protected set; } = AttackType.Swing;
 
+        public override string ShowCount => Value.ToString();
 
         public Attack(RangeValue pValue, TargetValue pPositions, AttackType pType):base() =>
             (Value, Target, Type) = (pValue, pPositions, pType);

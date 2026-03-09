@@ -5,7 +5,7 @@ using Data;
 
 namespace Character.Skill {
     public class SkillComposite: ISkill {
-
+        public string ShowCount => "";
         public bool IsEnd { get; private set; } = true;
         public Action OnEnd { get; set; }
         public int RepeatCount { get; private set; }
@@ -75,7 +75,7 @@ namespace Character.Skill {
             }
         }
 
-        private IEnumerable<ISkill> GetElements() => _containner
+        public IEnumerable<ISkill> GetElements() => _containner
             .SelectMany(skill => {
                 if (skill is not SkillComposite composite)
                     return new[] { skill };
@@ -83,6 +83,6 @@ namespace Character.Skill {
             });
 
         public string GetSkillName() =>
-            GetElements().First(skill => skill is Text).ToString();
+            GetElements().FirstOrDefault(skill => skill is Text)?.ToString() ?? "행동";
     }
 }

@@ -39,7 +39,6 @@ namespace FSM {
         }
         
         public void StartBattle() {
-            Turn = 0;
             foreach (var character in CharactersManager.GetEntities()) {
                 character.OnBattleStart();
             }
@@ -48,6 +47,7 @@ namespace FSM {
         public void EndBattle() {
             foreach(var (_, strategy) in _matchStrategy)
                 strategy.EndBattle();
+            Turn = 0;
         }
 
         public void NextTurn() {
