@@ -39,6 +39,8 @@ namespace Character.Skill {
         }
         
         //==================================================||Methods 
+        public override string ToString() => "";
+
         protected abstract void Implement(Positions pCaster);
 
         public void Execute(Positions pCaster) {

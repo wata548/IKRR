@@ -25,6 +25,12 @@ namespace Data {
         public static Positions TargetEnemy { get; set; } = Positions.Middle;
         
         //==================================================||Methods 
+        public static bool Exist(Positions pPositions) {
+            if (!_entities.TryGetValue(pPositions, out var value))
+                return false;
+            return value.IsAlive;
+        } 
+        
         public static Queue<EntityAnimation> GetEnemySkills() {
             var skills = new Queue<EntityAnimation>();
             foreach (var position in Positions.AllEnemy.Split()) {

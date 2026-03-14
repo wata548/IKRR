@@ -30,6 +30,7 @@ namespace Character {
         
         public Enemy(Positions pPosition, EnemyData pData) {
             Phase = 0;
+            
             SerialNumber = pData.SerialNumber;
             Position = pPosition;
             Size = pData.Size;
@@ -42,6 +43,14 @@ namespace Character {
             MaxHp = pData.MaxHp;
             Hp = MaxHp;
             IsAlive = true;
+            
+            var effects = pData.InitialEffect
+                .Split('\n')
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Select(s => EffectBase.Factory((s)));
+            foreach (var effect in effects) {
+                AddEffect(effect);
+            }
         }
         
         //==================================================||Methods 
@@ -137,6 +146,11 @@ namespace Character {
             Effects.Add(pEffect);
             pEffect.OnAdded(this);
         }
+
+        public void ClearEffect() => Effects.Clear();
+        public void RemoveEffect(int pType) =>
+            Effects = Effects.Where(effect => effect.Code != pType)
+                .ToList();
 
         public bool HasEffect(int pCode) => Effects.Any(effect => effect.Code == pCode);
 

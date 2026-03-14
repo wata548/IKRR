@@ -58,6 +58,11 @@ namespace Character {
             Effects.Add(pEffect);
             pEffect.OnAdded(this);
         }
+
+        public void ClearEffect() => Effects.Clear();
+        public void RemoveEffect(int pType) =>
+            Effects = Effects.Where(effect => effect.Code != pType)
+                .ToList();
         public bool HasEffect(int pCode) => Effects.Any(effect => effect.Code == pCode);
         public void OnAttack() {
             

@@ -16,6 +16,8 @@ namespace Character {
         public void AddShield(int pAmount);
         public void ChangeMaxHp(int pDelta);
         public void AddEffect(EffectBase pEffect);
+        public void ClearEffect();
+        public void RemoveEffect(int pType);
         public bool HasEffect(int pCode);
         public int AttackDamageCalc(int pAmount, AttackType pType, IEntity pTarget);
         public void OnAttack();
