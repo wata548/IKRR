@@ -28,7 +28,7 @@ namespace Data {
             if(_matchToSerialNumber.TryGetValue(pNumber, out var data))
                 return data;
 
-            Debug.LogError($"This {pNumber}Number isn't symbol number. checkAgain");
+            Debug.LogError($"This {pNumber}Number isn't exist. checkAgain");
             return null;
         }
 

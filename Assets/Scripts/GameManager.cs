@@ -8,6 +8,7 @@ namespace Data {
         
         //==================================================||Fields 
         private static bool _isInit = false;
+        [SerializeField] private int _job = 4001;
         //==================================================||Properties 
         public static int Seed { get; private set; } = 987654321;
         public static int Chapter{ get; private set; } = 0;
@@ -74,7 +75,7 @@ namespace Data {
         //==================================================||Unity 
         private void Awake() {
             if (!_isInit) {
-                SaveSystem.GameStart(4004);
+                SaveSystem.GameStart(_job);
                 Debug.Log("Skip title scene");
             }
 

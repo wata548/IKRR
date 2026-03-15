@@ -12,7 +12,7 @@ namespace UI.Rest {
     public class Rest: MonoBehaviour {
         
         const float HEAL_RATIO = 0.2f;
-       //==================================================||Fields 
+        //==================================================||Fields 
         [SerializeField] private Button _rest;
         [SerializeField] private Button _knowledge;
         [SerializeField] private RectTransform _pannel;
@@ -21,7 +21,7 @@ namespace UI.Rest {
         [SerializeField] private Image _estimate;
         private IEnumerable<int> _knowledgeCandidates;
         
-       //==================================================||Methods 
+        //==================================================||Methods 
         public void Show(bool pActive) {
 
             if (pActive) {
@@ -31,9 +31,11 @@ namespace UI.Rest {
                 _bar.Set(player.MaxHp, player.Hp);
                 _estimate.fillAmount = estimate / player.MaxHp;
                 Fade(() => _pannel.gameObject.SetActive(true), null);
+                return;
             }
-            else
-                _pannel.gameObject.SetActive(false);
+                
+            _pannel.gameObject.SetActive(false);
+            UIManager.Instance.Map.SetActive(true);
         }
 
         private void EvolveCondition() {
@@ -42,7 +44,7 @@ namespace UI.Rest {
                     var data = DataManager.Symbol.GetData(code);
                     if (string.IsNullOrWhiteSpace(data.EvolveCondition))
                         return false;
-                   return !UseInfo.GetEvolve(code); 
+                    return !UseInfo.GetEvolve(code); 
                 });
             _knowledge.interactable = _knowledgeCandidates.Any();
         }
@@ -74,7 +76,7 @@ namespace UI.Rest {
             );
         }
 
-       //==================================================||Unity 
+        //==================================================||Unity 
         private void Awake() {
             _rest.onClick.AddListener(RestFunc);
         }

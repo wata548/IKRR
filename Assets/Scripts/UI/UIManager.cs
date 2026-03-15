@@ -25,5 +25,6 @@ namespace UI {
         [field: SerializeField] public RewardWindow Reward { get; private set; }
         [field: SerializeField] public OXPannel OXEffect { get; private set; }
         [field: SerializeField] public ShopManager Shop { get; private set; }
+        [field: SerializeField] public Tutorial.Tutorial Tutorial { get; private set; }
     }
 }
