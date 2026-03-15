@@ -72,8 +72,10 @@ namespace UI.Rest {
             var amount = Mathf.FloorToInt(player.MaxHp * HEAL_RATIO);
             player.Heal(amount, null);
             Fade(() => Show(false),
-                () => UIManager.Instance.Map.ClearStage(true)
-            );
+                () => {
+                    UIManager.Instance.Map.ClearStage(true);
+                    UIManager.Instance.Map.SetActive(true);
+                });
         }
 
         //==================================================||Unity 
