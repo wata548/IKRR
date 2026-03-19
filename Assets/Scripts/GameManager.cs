@@ -26,6 +26,7 @@ namespace Data {
         }
         
         public static void StartBattle() {
+            UI.Tutorial.Tutorial.Instance.Set("Desc");
             Fsm.Instance.StartBattle();
             Fsm.Instance.Change(State.Rolling);
         }

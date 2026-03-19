@@ -27,9 +27,11 @@ namespace Data {
             var desc = Rarity.ToKorean().ApplyLang() + 
                        ", " + Type.ToKorean().ApplyLang() + 
                        '\n'+ Description.ApplyLang();
-            details.Add(new("정보", desc));
             if(!string.IsNullOrWhiteSpace(Condition))
                 details.Add(new("조건", Condition));
+            
+            details.Add(new("정보", desc));
+            
             if (!string.IsNullOrWhiteSpace(EvolveDescription))
                 details.Add(new(
                     "진화",

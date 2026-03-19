@@ -46,6 +46,7 @@ namespace Font {
             
             Debug.Log("Translate Pack completely loaded");
             LanguageManager.Table = pack;
+            LanguageManager.LangPack = Language.Korean;
         }
 #endif
         

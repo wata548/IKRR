@@ -7,6 +7,7 @@ using System.Text;
 using CSVData;
 using CSVData.Extensions;
 using Lang;
+using UI.Tutorial;
 using UnityEditor;
 using UnityEngine;
 
@@ -46,6 +47,17 @@ namespace Data.supportFont {
             "Symbol",
         };
 
+        [MenuItem("DataManager/GetTutorialText")]
+        public static void GetTutorialText() {
+            var builder = new StringBuilder();
+            foreach (var tutorial in Resources.LoadAll<TutorialSO>("Tutorial")) {
+                foreach (var line in tutorial.Datas.Select(row => $"\"{row.Context}\""))
+                    builder.AppendLine(line);
+            }
+
+            Debug.Log(builder);
+        }
+        
         [MenuItem("DataManager/GetEventText")]
         private static void GetEventText() {
             var db = new DictionaryBaseDB<int, List<EventData>>();
@@ -123,6 +135,7 @@ namespace Data.supportFont {
             File.WriteAllText(Path.Combine(directoryPath, "Chinese.txt"), new string(chinese.ToString().Distinct().OrderBy(c => c).ToArray()));
             File.WriteAllText(Path.Combine(directoryPath, "Various.txt"), new string(various.ToString().Distinct().OrderBy(c => c).ToArray()));
             Debug.Log("Complete Save");
+            AssetDatabase.Refresh();
             return;
             
             void Add(List<List<string>> pContext) {

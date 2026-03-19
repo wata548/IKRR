@@ -95,6 +95,8 @@ namespace Data {
         }
         
         public static EffectBase Factory(string pContext) {
+            if (string.IsNullOrWhiteSpace(pContext))
+                return null;
             var constructor = Factory(pContext, out var args);
             return constructor!.Invoke(args) as EffectBase;
         }

@@ -2,7 +2,8 @@
 "Int32","String","String"
 "0","농부와의 만남","@0:#Event/5000
 |당신은 길을 가던 중 자신의 작물을 팔러 떠나는 농부와 마주쳤습니다.\n농부는 자신의 농작물을 지키기 위해 동행을 요청합니다.
-|동행한다.\n(<color=green>50G 획득</color> <color=red>단, 50%의 확률로 슬라임무리와 만난다.</color>)[{
+|동행한다.\n(<color=green>25G 획득</color> <color=red>단, 50%의 확률로 슬라임무리와 만난다.</color>)[{
+PlayerData.GetMoney(25);
 if(math.random(2) == 1) then
   Goto(1);
 else
@@ -26,8 +27,8 @@ Close();}]
 [{Selector:Add(1034, 2);
 Player:ChangeMaxHp(-10);
 Goto(2);}]
-|<[return Player.MaxHp > 10;]><color=yellow>50G</color>를 획득한다.
-[{PlayerData.GetMoney(50);
+|<[return Player.MaxHp > 10;]><color=yellow>40G</color>를 획득한다.
+[{PlayerData.GetMoney(40);
 Player:ChangeMaxHp(-10);
 Goto(2);}] 
 |그대로 떠난다.[{Goto(1);}]
@@ -36,16 +37,16 @@ Goto(2);}]
 @2:마녀는 만면에 환한 미소를 띈채 바람과 같이 사라졌습니다. 아플 지 몰라도 성공적인 거래였습니다.
 |닫기[{Clear();}]"
 "0","특급 세일","@0:#Event/5002
-|""날마다 오는 기회가 아니다. 특급 세일이오!, 특급세일!"" 마을에서 술집 주인이 20G만 먼저 내면 앞으로 술을 4G에 구매할 수 있는 쿠폰을 판매하고 있습니다.
-|<[return PlayerData.Money >= 6]>
-그저 술 한병 구매한다.
-(일회성, 적에게 10데미지를 입힌다.)
-[{PlayerData.GetMoeny(-6);
+|""날마다 오는 기회가 아니다. 특급 세일이오!, 특급세일!"" 마을에서 술집 주인이 20G만 먼저 내면 앞으로 술을 8G에 구매할 수 있는 쿠폰을 판매하고 있습니다.
+|<[return PlayerData.Money >= 15]>
+그저 술 한병 구매한다.(15G)
+(일회성, 적에게 4-5데미지를 입힌다.)
+[{PlayerData.GetMoney(-6);
 Selector.Add(1019);
 Goto(1);}]
 |<[return PlayerData.Money >= 20]>
 술집 심볼을 획득한다.
-(스킬,빈칸을 찾아 4G를 소비해 술병을 생성한다.)[{PlayerData.GetMoeny(-20);
+(스킬,빈칸을 찾아 8G를 소비해 술병을 생성한다.)[{PlayerData.GetMoney(-20);
 Selector.Add(1037);
 Goto(2);}]
 |그냥 지나간다.[{Goto(3);}]

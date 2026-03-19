@@ -50,6 +50,9 @@ namespace Character {
         
         //==================================================||Methods 
         public void AddEffect(EffectBase pEffect) {
+            if (pEffect == null)
+                return;
+            
             var effect = Effects.FirstOrDefault(effect => effect.Code == pEffect.Code);
             if (effect != null) {
                 Effects.Remove(effect);

@@ -1,4 +1,5 @@
 ﻿using Character;
+using UnityEngine;
 
 namespace Data {
     public class BloodSuck: EffectBase {
@@ -10,7 +11,7 @@ namespace Data {
 
         public override void OnTurnEnd(IEntity pTarget) { }
         public override int OnSendDamage(int pAmount, AttackType pType, IEntity pTarget, IEntity pOpponent) {
-            pTarget.Heal(pAmount / 3);
+            pTarget.Heal(Mathf.CeilToInt(pAmount / 3f));
             return base.OnSendDamage(pAmount, pType, pTarget, pOpponent);
         }
         

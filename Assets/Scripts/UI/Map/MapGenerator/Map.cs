@@ -84,6 +84,7 @@ namespace UI.Map {
         }
 
         public void SetActive(bool pActive) {
+            Tutorial.Tutorial.Instance.Set("Map");
             _mapPannel.SetActive(pActive);
             var interval = 1f / (_roundCount + 1.5f + TOP_INTERVAL);
             _positionController.TurnOn(interval * (Height + 1.5f));
@@ -130,6 +131,7 @@ namespace UI.Map {
                 foreach (var node in round) {
                     var type = roundIdx switch {
                         0 => Stage.Battle,
+                        _ when roundIdx == (_mapNodes.Count - 1) / 2 => Stage.Rest,
                         _ when roundIdx == _mapNodes.Count - 2 => Stage.Rest,
                         _ when roundIdx == _mapNodes.Count - 1 => Stage.Boss,
                         _ => StageTypeFrequency.Random(_random)

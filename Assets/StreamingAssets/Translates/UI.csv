@@ -8,24 +8,52 @@
 "메인 화면으로","メイン画面へ","To the main screen","返回主屏幕","Zum Hauptbildschirm","Retour à l'écran principal","На главный экран"
 "적과 전투한다.","敵と戦闘する。","Fight the enemy.","杀敌。","Bekämpfe den Feind.","Combattez l'ennemi.","Сражайтесь с врагом."
 "무언가 독특한 일이 일어납니다.","何かユニークなことが起こります。","Something unique happens.","发生了一件独特的事情。","Etwas Einzigartiges geschieht.","Il se passe quelque chose d'unique.","Происходит нечто уникальное."
-"보물이 있는 곳.","宝のあるところ。","Where the treasure is.","宝藏在哪里？","Wo der Schatz liegt.","Où se trouve le trésor.","Где находится сокровище."
+"보물이 있는 곳.","宝のあるところ。","The place where the treasure is.","宝藏所在的地方。","Der Ort, wo der Schatz liegt.","L'endroit où se trouve le trésor.","Место, где находится сокровище."
 "체력의 30%만큼 회복한다.","体力の30％ほど回復する。","Recovers 30% of stamina.","恢复30%的体力。","Stellt 30 % der Ausdauer wieder her.","Récupère 30 % de l'endurance.","Восстанавливает 30% выносливости."
 "휴식하기 
 체력을 <color=green>20%</color>회복한다.","休憩 
-体力を<color=green>20%</color>回復する。","Rest 
-Restores <color=green>20%</color> of health.","休息
-恢复20%生命值。","Ruhe Stellt <color=green>20%</color> der Gesundheit wieder her.","Repos
-
-Restaure <color=green>20%</color> de la santé.","Отдых
-Восстанавливает <color=green>20%</color> здоровья."
+体力を<color=green>20%</color>回復する。","Resting restores <color=green>20%</color> of stamina.","休息可恢复20%的体力。","Ruhepausen stellen <color=green>20%</color> der Ausdauer wieder her.","Le repos restaure <color=green>20%</color> d'endurance.","Отдых восстанавливает <color=green>20%</color> выносливости."
 "연구하기
 심볼의 <color=red>진화 조건</color>을 알아낸다.","研究する
 シンボルの<color=red>進化条件</color>を調べる。","Research
-Find out the <color=red>evolutionary conditions</color> of a symbol.","研究
 
-找出符号的<color=red>演化条件</color>。","Recherche
-Ermittle die <color=red>evolutionären Bedingungen</color> eines Symbols.","Recherche
+Find out the <color=red>evolution conditions</color> of the symbol.","研究
 
-Découvrez les <color=red>conditions évolutives</color> d'un symbole.","Исследование
+找出该符号的<color=red>演化条件</color>。","Recherche
+
+Ermittle die <color=red>Evolutionsbedingungen</color> des Symbols.","Recherche
+
+Découvrez les <color=red>conditions d'évolution</color> du symbole.","Исследование
+
 Узнайте об условиях эволюции символа."
-"평소와는 다른 강력한 적이 등장합니다.","いつもとは違う強力な敵が登場します。","A more powerful enemy than usual appears.","出现了一个比以往更强大的敌人。","Ein mächtigerer Feind als sonst erscheint.","Un ennemi plus puissant que d'habitude fait son apparition.","Появляется более сильный враг, чем обычно."
+"평소와는 다른 강력한 적이 등장합니다.","いつもとは違う強力な敵が登場します。","A powerful enemy unlike the usual appears.","一个与以往不同的强大敌人出现了。","Ein mächtiger Feind, ganz anders als sonst, erscheint.","Un ennemi puissant et différent de tous les autres apparaît.","Появляется могущественный враг, не похожий на обычных."
+"이 게임은 2025년 8월 27일부터 제작된 게임으로 처음에는 수행평가를 위해 16일간 제작되었지만 그 이후 12월 25일부터 x월 xx일까지 제작되었습니다.","このゲームは2025年8月27日から制作されたゲームで、最初は遂行評価のために16日間制作されましたが、その後12月25日からx月xx日まで制作されました。","This game was created starting August 27, 2025. Initially, it was created over 16 days for a performance assessment, but subsequently, it was created from December 25 to x month xx day.","该游戏于 2025 年 8 月 27 日开始制作。最初，它是为了进行性能评估而制作的，耗时 16 天，但随后，它从 12 月 25 日一直制作到 x 月 xx 日。","Dieses Spiel wurde ab dem 27. August 2025 erstellt. Ursprünglich wurde es innerhalb von 16 Tagen für eine Leistungsbeurteilung erstellt, später jedoch vom 25. Dezember bis zum x Monat xx Tag.","Ce jeu a été créé à partir du 27 août 2025. Initialement, il a été créé sur 16 jours pour une évaluation des performances, mais par la suite, il a été créé du 25 décembre au x mois xx jour.","Эта игра создавалась начиная с 27 августа 2025 года. Изначально её разработка велась в течение 16 дней для оценки производительности, но впоследствии её создание было перенесено с 25 декабря на x месяц xx день."
+"직업을 선택 후 게임을 처음부터 플레이합니다.","ジョブを選択した後、ゲームを最初からプレイします。","After selecting a profession, play the game from the beginning.","选择职业后，从头开始玩游戏。","Nachdem du einen Beruf gewählt hast, spiele das Spiel von vorn.","Après avoir choisi une profession, jouez depuis le début.","После выбора профессии начните игру с самого начала."
+"세이브 파일이 있다면 마지막으로 진행한 곳에서 다시 시작합니다.","セーブファイルがある場合は、最後に行った場所から再起動します。","If you have a save file, you will resume from where you last left off.","如果您有存档文件，您将从上次离开的地方继续游戏。","Wenn Sie einen Spielstand gespeichert haben, können Sie dort weiterspielen, wo Sie zuletzt aufgehört haben.","Si vous avez une sauvegarde, vous reprendrez là où vous en étiez.","Если у вас есть файл сохранения, вы продолжите игру с того места, где остановились в прошлый раз."
+"게임을 종료합니다.","ゲームを終了します。","Exit the game.","退出游戏。","Verlasse das Spiel.","Quittez le jeu.","Выйти из игры."
+"주정뱅이로 플레이시 어지러움 효과를 줄여줍니다.","ジュジョンバンイでプレイ時めまい効果を低減します。","Reduces dizziness when playing as a drunkard.","减少扮演醉汉时产生的眩晕感。","Verringert Schwindelgefühle beim Spielen als Betrunkener.","Réduit les vertiges lorsqu'on joue le rôle d'un ivrogne.","Уменьшает головокружение при игре за пьяницу."
+"게임 내 소리를 조절합니다.","ゲーム内の音を調整します。","Adjusts in-game sound.","调整游戏内音效。","Passt den Sound im Spiel an.","Ajuste le son du jeu.","Настраивает звук в игре."
+"게임 내 애니메이션 배속을 설정합니다.","ゲーム内のアニメーションの倍速を設定します。","Sets the in-game animation speed.","设置游戏内动画速度。","Legt die Animationsgeschwindigkeit im Spiel fest.","Définit la vitesse d'animation en jeu.","Задает скорость анимации в игре."
+"게임의 언어를 변환합니다.","ゲームの言語を変換します。","Converts the game language.","转换游戏语言。","Konvertiert die Spielsprache.","Convertit la langue du jeu.","Преобразует язык игры."
+"현재의 창을 닫습니다.","現在のウィンドウを閉じます。","Closes the current window.","关闭当前窗口。","Schließt das aktuelle Fenster.","Ferme la fenêtre actuelle.","Закрывает текущее окно."
+"다양한 상태이상을 걸 수 있으며 주로 마법으로 전투합니다.","様々な状態異常をかけることができ、主に魔法で戦闘します。","It can inflict various status ailments and primarily fights using magic.","它能造成各种异常状态，主要使用魔法进行战斗。","Es kann verschiedene Statusveränderungen verursachen und kämpft hauptsächlich mit Magie.","Il peut infliger divers altérations d'état et combat principalement à l'aide de magie.","Оно может наносить различные негативные эффекты и в основном сражается с использованием магии."
+"강력한 한방을 자랑하며 주로 검 또는 신체를 사용합니다.","強力な漢方を誇り、主に剣や体を使用しています。","Boasting a powerful single blow, he primarily uses a sword or his body.","他拥有强大的单次攻击能力，主要使用剑或身体进行攻击。","Mit einem einzigen, kraftvollen Schlag ist er besonders effektiv und setzt dabei vorwiegend ein Schwert oder seinen Körper ein.","Doté d'un coup unique et puissant, il utilise principalement une épée ou son corps.","Обладая мощным одиночным ударом, он использует в основном меч или своё тело."
+"많은 물량을 자랑하며 주로 닌자 도구 사용에 활용됩니다.","多くの量を誇り、主に忍者ツールの使用に使用されます。","It boasts a large quantity and is mainly used for ninja tool usage.","它数量众多，主要用于忍者工具的使用。","Es zeichnet sich durch eine große Menge aus und wird hauptsächlich für Ninja-Werkzeuge verwendet.","Elle se targue d'une grande quantité et est principalement utilisée pour l'usage d'outils ninja.","Оно отличается большим количеством и в основном используется в качестве инструмента ниндзя."
+"상점 등에서 새로운 심볼을 구매할 수 있는 재화입니다.","ショップなどで新しいシンボルを購入できる商品です。","It is a commodity that allows you to purchase new symbols at shops, etc.","它是一种商品，可以让你在商店等地购买新的符号。","Es handelt sich um eine Ware, mit der man in Geschäften usw. neue Symbole kaufen kann.","Il s'agit d'un produit qui vous permet d'acheter de nouveaux symboles dans les magasins, etc.","Это товар, позволяющий приобретать новые символы в магазинах и т.д."
+"플레이어","プレイヤー","player","玩家","Spieler","joueur","игрок"
+"가장 왼쪽 적","一番左の敵","The enemy on the far left","最左边的敌人","Der Feind ganz links","L'ennemi à l'extrême gauche","Враг находится в крайнем левом углу."
+"가장 오른쪽 적","一番右の敵","The enemy on the far right","最右边的敌人","Der Feind ganz rechts","L'ennemi à l'extrême droite","Противник находится справа."
+"중앙 적","中央敵","Central enemy","中央敌人","Hauptfeind","Ennemi central","Центральный враг"
+"모든 적","すべての敵","All enemies","所有敌人","Alle Feinde","Tous les ennemis","Все враги"
+"본인","本人","principal","主要的","Rektor","principal","главный"
+"타겟","ターゲット","Target","目标","Ziel","Cible","Цель"
+"{0}에게 회복","{0}に回復","Recovery to {0}","恢复到 {0}","Wiederherstellung auf {0}","Récupération à {0}","Восстановление до {0}"
+"{0}에게 상태 이상","{0}にステータス異常","Status abnormalities for {0}","{0} 的状态异常","Statusanomalien für {0}","Anomalies d'état pour {0}","Отклонения от нормы для {0}"
+"{0}에게 공격({1})","{0}に攻撃（{1}）","Attack {0}({1})","攻击 {0}({1})","Angriff {0}({1})","Attaque {0}({1})","Атака {0}({1})"
+"룰렛에 그려진 심볼의 최대치를 1만큼 늘립니다.","ルーレットに描かれたシンボルの最大値を1だけ増やします。","Increases the maximum value of the symbols drawn on the roulette wheel by 1.","将轮盘上绘制符号的最大值增加 1。","Erhöht den Maximalwert der auf dem Rouletterad gezeichneten Symbole um 1.","Augmente de 1 la valeur maximale des symboles tirés sur la roulette.","Увеличивает максимальное значение символов, выпадающих на рулетке, на 1."
+"현재 상점의 상품을 새로운 상품으로 교체합니다.","現在店舗の商品を新商品に交換します。","Replaces the current store items with new items.","将现有商店商品替换为新商品。","Ersetzt die aktuellen Artikel im Shop durch neue Artikel.","Remplace les articles actuellement en magasin par de nouveaux articles.","Заменяет текущие товары в магазине новыми."
+"{0}을 조정","{0}を調整","Adjust {0}","调整 {0}","Anpassen {0}","Ajuster {0}","Настройте {0}"
+"방어 획득","防御獲得","Defense acquisition","国防采购","Verteidigungsbeschaffung","Acquisition de défense","оборонные закупки"
+"전투에서 사라진다.","戦闘から消える。","Disappears in battle.","战死沙场。","Verschwindet im Kampf.","Disparaît au combat.","Исчезает в бою."
+"{0}의 {1}효과를 제거한다.","{0}の{1}効果を削除します。","Removes the {1} effect of {0}.","移除 {0} 的 {1} 效果。","Entfernt den {1}-Effekt von {0}.","Supprime l'effet {1} de {0}.","Устраняет эффект {1} от {0}."
+"{0}의 효과를 전부 제거한다.","{0}の効果をすべて削除します。","Removes all effects of {0}.","移除 {0} 的所有效果。","Entfernt alle Effekte von {0}.","Supprime tous les effets de {0}.","Устраняет все эффекты {0}."

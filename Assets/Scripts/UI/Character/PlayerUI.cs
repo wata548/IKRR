@@ -41,7 +41,8 @@ namespace UI.Character {
         }
 
         public override void OnDeath(IEntity pEntity, int pAmount, AttackType pType, Action pOnComplete) {
-            SceneManager.LoadScene(Scene.GameOver);
+            _hpBar.Damage(pEntity.MaxHp, pEntity.Hp, pAmount, pEntity.Shield, false)
+                .OnComplete(() => UIManager.Instance.GameOver.Show());
         }
 
         public override void Run(Action pOnComplete) { }

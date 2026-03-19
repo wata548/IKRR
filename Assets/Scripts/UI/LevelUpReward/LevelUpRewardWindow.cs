@@ -26,6 +26,7 @@ namespace UI.LevelUpReward {
             if (IsActive || !NeedUpdate)
                 return false;
 
+            Tutorial.Tutorial.Instance.Set("LevelUp");
             var item = PlayerData.Job.LevelUpReward.GetReward(++_level);
             _levelShower.text = _level.ToString();
             RouletteManager.AddHandSize(1, item);

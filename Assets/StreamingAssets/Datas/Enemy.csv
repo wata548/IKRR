@@ -1,13 +1,49 @@
-"SerialNumber","Name","Desc","Size","DropMoney","Exp","MaxHp","SkillInfo"
-"Int32","String","String","Data.EnemySize","Character.Skill.Data.RangeValue","Int32","Int32","String"
+"SerialNumber","Name","Desc","Size","DropMoney","Exp","MaxHp","InitialEffect","SkillInfo"
+"Int32","String","String","Data.EnemySize","Character.Skill.Data.RangeValue","Int32","Int32","String","String"
 "2001","소형 슬라임","산을 돌아다니는 슬라임.
-나약하다.","Small","5~8","3","10","Text(뛰어 들기)+Attack(3~6, Player) = 1"
+성인 남성이 힘을 줘서 끊어버릴 수 있다.
+","Small","5~8","3","13","","|>
+Text(뛰어 들기)+Attack(3~4, Player) = 1"
 "2002","중형 슬라임","산을 돌아다니는 조금 큰 슬라임.
-두껍다.","Middle","8-10","7","17","Text(몸통 박치기)+Attack(4~8, Player) = 1
-Text(삼연타)+Attack(2~3, Player) * 3 = 1"
-"2003","대형 슬라임","산을 돌아다니는 꽤 큰 슬라임.
-묵직하다.","Big","13-18","12","28","Text(몸통 박치기)+Attack(6~10, Player) = 1
-Text(삼연타)+Attack(3-4, Player) * 3 = 1"
+ 평균 성인 남성의 명치까지 오는 크기를 가진다.","Middle","8-10","7","20","","|>
+Text(몸통 박치기)+Attack(6, Player) = 1
+Text(들러붙기)+Attack(3, Player) * 3 = 1"
+"2003","대형 슬라임","산을 돌아다니는 큰 슬라임.
+사람을 잡아먹을 수 있을 정도의 큰 크기를 자랑한다.","Big","13-18","12","28","","|>
+Text(몸통 박치기)+Attack(8~10, Player) = 1
+Text(감싸기)+Attack(4-5, Player) * 2 = 1"
 "2004","저주받은 거목","저주가 들린 거목.
-거대할 뿐 강하지 않다.","Big","15","10","26","Text(뛰어 들기)+Attack(7, Player) = 2
-Text(넘어지기)+Attack(8, Player)+Attack(3, Caster) = 1"
+거대할 뿐 그다지 강하지 않다.","Big","15","10","35","","|>
+Text(뛰어 들기)+Attack(8, Player) = 2
+Text(넘어지기)+Attack(13, Player)+Attack(3, Caster) = 1"
+"2005","나약한 마족","약하지만 특유의 차지 공격은 충분한 위협이 된다.","Middle","8-10","8","25","","|>
+Text(난동부리기)+Attack(3, Player) * 3 = 1
+Text(차지) -> Text(마력 방출) + Attack(12, Player, Magic) + GiveEffect(Caster, Power{1}) = 1"
+"2006","성실한 마족","평범한 나약한 마족.
+아군이 모일수록 진가를 발휘한다.","Small","10-12","12","20","","|>
+Text(마구 휘두르기)+Attack(3-4,Player) * 2 = 1
+Text(응원) + Shield(3, AllEnemy) = 1"
+"2007","박쥐","끈질긴 박쥐.
+ 가끔 돈을 훔치고 도망가니 주의.","Small","9","7","20","BloodSuck{}
+Plunder{}","|> return Turn >= 3;
+Text(도망치기) + Run() = 1
+|>
+Text(날개치기) +  Attack(5, Player) = 1
+Text(마구할퀴기) + Attack(1-2, Player) * 3 = 1
+"
+"2008","발화성 슬라임","몸이 쉽게 불타는 슬라임.
+자칫 공격하다가는 화상을 겪을 수 있다.","Big","32","30","100"," Pyrophonic{}","|> return enemy.Phase == 0 and enemy.Hp <= 35
+Text(포효) + NextPhase() = 1
+|> return enemy.Phase == 0 and not Field.Exist(Data.Positions.Left);
+Text(함성) + CallEnemy(2009, Left) = 1
+|> return enemy.Phase == 0 and not Field.Exist(Data.Positions.Right);
+Text(함성) + CallEnemy(2009, Right) = 1
+|>
+Text(태우기) + GiveEffect(Player, Burn{4}) = 1
+Text(흩뿌리기) + Attack(Player, 4-5) * 2 = 1
+Text(몸통 박치기) + Attack(Player, 7-10)+ GiveEffect(Player, Burn{2}) = 1"
+"2009","바람 정령","발화성 슬라임과 공생하는 생명체 
+발화성 슬라임의 체력을 회복시켜준다.","Small","0","0","18","Wind{}","|>
+Text(생명의 바람) + Heal(AllEnemy, 5) = 1
+Text(매서운 바람) + Attack(Player, 2-3) * 3  = 2
+Text(산들 바람) + Attack(Player, 5)  = 1"
