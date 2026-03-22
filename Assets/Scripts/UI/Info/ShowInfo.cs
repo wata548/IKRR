@@ -24,6 +24,10 @@ namespace UI {
             InfoShower.Instance.Hide();
         }
 
+        public void OnDisable() {
+            OnPointerExit(null);
+        }
+        
         protected void Update() {
             if (_onMouse && !InfoShower.Instance.IsActive) {
                 InfoShower.Instance.SetInfo(Info());

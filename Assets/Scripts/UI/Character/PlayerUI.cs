@@ -77,6 +77,11 @@ namespace UI.Character {
        protected override void Update() {
             base.Update();
             ExpAndMoneyUpdate();
-        }
+       }
+
+       private void OnDisable() {
+           foreach (var effect in CharactersManager.GetEntity(_position).Effects)
+               effect.OnDisable();
+       }
     }
 }

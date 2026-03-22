@@ -1,5 +1,6 @@
 ﻿using Character;
 using UI;
+using Unity.VisualScripting;
 
 namespace Data {
     public class AlcoholCurse: EffectBase {
@@ -10,5 +11,8 @@ namespace Data {
             DistortionManager.Instance.SetDistortion(true);
         
         public override void OnTurnEnd(IEntity pTarget) {}
+        public override void OnDisable() {
+            DistortionManager.Instance.SetDistortion(false);
+        }
     }
 }

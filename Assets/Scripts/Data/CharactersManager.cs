@@ -85,7 +85,8 @@ namespace Data {
             throw new NullReferenceException("Alive enemy isn't exist");
         }
 
-        public static IEntity GetEntity(Positions pTarget) => _entities[pTarget];
+        public static IEntity GetEntity(Positions pTarget) =>
+            _entities.GetValueOrDefault(pTarget);
 
         public static IEnumerable<IEntity> GetEntities() => 
             _entities.Select(kvp => kvp.Value);

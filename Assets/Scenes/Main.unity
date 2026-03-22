@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 87899825}
   - component: {fileID: 87899824}
   - component: {fileID: 87899823}
+  - component: {fileID: 87899826}
   m_Layer: 5
   m_Name: Reroll
   m_TagString: Untagged
@@ -653,7 +654,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 649223268058989734, guid: 046b10f2b65be8a40815b1fdc03bdf07, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -662,7 +663,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.5
 --- !u!222 &87899825
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -671,6 +672,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87899821}
   m_CullTransparentMesh: 1
+--- !u!114 &87899826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87899821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 7, y: -8}
+  m_UseGraphicAlpha: 1
 --- !u!1 &107505841
 GameObject:
   m_ObjectHideFlags: 0
@@ -4234,7 +4250,7 @@ GameObject:
   - component: {fileID: 344949491}
   - component: {fileID: 344949490}
   m_Layer: 0
-  m_Name: Distortion_InGame
+  m_Name: Distortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6081,6 +6097,7 @@ MonoBehaviour:
   <Reward>k__BackingField: {fileID: 1369321055}
   <OXEffect>k__BackingField: {fileID: 1181247910}
   <Shop>k__BackingField: {fileID: 710399684}
+  <GameOver>k__BackingField: {fileID: 0}
 --- !u!4 &544609127
 Transform:
   m_ObjectHideFlags: 0
@@ -15767,8 +15784,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17368,7 +17385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _map: {fileID: 410942032}
   _mapPannel: {fileID: 164728124}
-  _randomNoise: {x: 0.65, y: 0.45}
+  _randomNoise: {x: 0.4, y: 0.4}
   _roundCount: 15
   _roundSymbol: {fileID: 7925018694991941056, guid: 70ce7536796417247b37204475e63055, type: 3}
   _edge: {fileID: 5759426602111166229, guid: 72684a9b6433e9944a391c84ffb6d5ff, type: 3}

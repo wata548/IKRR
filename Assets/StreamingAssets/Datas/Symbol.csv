@@ -150,7 +150,7 @@ return ""Text(동전 투척) + Attack(4-5, Target, Money)"";"
 지혜 1을 소모해 제거 가능하다.
 (룰렛에 등장 시 1-2만큼 피해를 입습니다.)","","return ""Text(재) + Attack(1-2, Player, Magic)"";","-1","return ""Change(""..column.."",""..row.."", 0)"";"
 "1032","Skill","None","None","Epic","현상금","return true;","","본인에게 '현상금' 효과를 부여한다.
-(현상금: 이번 턴 사용한 스킬 심볼 횟수 * 2만큼의 돈을 획득한다.)","","","60","return ""Text(현상금) + GiveEffect(Player, Bounty{})"";"
+(현상금: 이번 턴 사용한 스킬 심볼 개수 * 2만큼의 돈을 획득한다.)","","","60","return ""Text(현상금) + GiveEffect(Player, Bounty{})"";"
 "1033","Skill","None","None","Epic","폭식","return true;","","본인에게 '폭식' 효과를 5턴간 부여한다.
 (폭식: 적을 쓰러뜨릴 때마다 체력을 3회복한다.)","","","60","return ""Text(폭식)+GiveEffect(Player, Eat{3})"";"
 "1034","Buff","None","None","Unique","다재다능","return true;","","모든 스탯을 1만큼 획득한다.","","","80","return ""StatusChange(All, `+, 1)"";"

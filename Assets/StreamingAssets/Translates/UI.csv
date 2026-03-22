@@ -9,7 +9,7 @@
 "적과 전투한다.","敵と戦闘する。","Fight the enemy.","杀敌。","Bekämpfe den Feind.","Combattez l'ennemi.","Сражайтесь с врагом."
 "무언가 독특한 일이 일어납니다.","何かユニークなことが起こります。","Something unique happens.","发生了一件独特的事情。","Etwas Einzigartiges geschieht.","Il se passe quelque chose d'unique.","Происходит нечто уникальное."
 "보물이 있는 곳.","宝のあるところ。","The place where the treasure is.","宝藏所在的地方。","Der Ort, wo der Schatz liegt.","L'endroit où se trouve le trésor.","Место, где находится сокровище."
-"체력의 30%만큼 회복한다.","体力の30％ほど回復する。","Recovers 30% of stamina.","恢复30%的体力。","Stellt 30 % der Ausdauer wieder her.","Récupère 30 % de l'endurance.","Восстанавливает 30% выносливости."
+"체력의 20%만큼 회복한다.","体力の20％ほど回復する。","Recovers 20% of stamina.","恢复20%的体力。","Stellt 20 % der Ausdauer wieder her.","Récupère 20 % de l'endurance.","Восстанавливает 20% выносливости."
 "휴식하기 
 체력을 <color=green>20%</color>회복한다.","休憩 
 体力を<color=green>20%</color>回復する。","Resting restores <color=green>20%</color> of stamina.","休息可恢复20%的体力。","Ruhepausen stellen <color=green>20%</color> der Ausdauer wieder her.","Le repos restaure <color=green>20%</color> d'endurance.","Отдых восстанавливает <color=green>20%</color> выносливости."
@@ -27,7 +27,7 @@ Découvrez les <color=red>conditions d'évolution</color> du symbole.","Иссл
 
 Узнайте об условиях эволюции символа."
 "평소와는 다른 강력한 적이 등장합니다.","いつもとは違う強力な敵が登場します。","A powerful enemy unlike the usual appears.","一个与以往不同的强大敌人出现了。","Ein mächtiger Feind, ganz anders als sonst, erscheint.","Un ennemi puissant et différent de tous les autres apparaît.","Появляется могущественный враг, не похожий на обычных."
-"이 게임은 2025년 8월 27일부터 제작된 게임으로 처음에는 수행평가를 위해 16일간 제작되었지만 그 이후 12월 25일부터 x월 xx일까지 제작되었습니다.","このゲームは2025年8月27日から制作されたゲームで、最初は遂行評価のために16日間制作されましたが、その後12月25日からx月xx日まで制作されました。","This game was created starting August 27, 2025. Initially, it was created over 16 days for a performance assessment, but subsequently, it was created from December 25 to x month xx day.","该游戏于 2025 年 8 月 27 日开始制作。最初，它是为了进行性能评估而制作的，耗时 16 天，但随后，它从 12 月 25 日一直制作到 x 月 xx 日。","Dieses Spiel wurde ab dem 27. August 2025 erstellt. Ursprünglich wurde es innerhalb von 16 Tagen für eine Leistungsbeurteilung erstellt, später jedoch vom 25. Dezember bis zum x Monat xx Tag.","Ce jeu a été créé à partir du 27 août 2025. Initialement, il a été créé sur 16 jours pour une évaluation des performances, mais par la suite, il a été créé du 25 décembre au x mois xx jour.","Эта игра создавалась начиная с 27 августа 2025 года. Изначально её разработка велась в течение 16 дней для оценки производительности, но впоследствии её создание было перенесено с 25 декабря на x месяц xx день."
+"재밌게 플레이해 주세요!","楽しくプレイしてください！","Please enjoy playing!","请尽情游戏！","Viel Spaß beim Spielen!","Amusez-vous bien !","Приятной игры!"
 "직업을 선택 후 게임을 처음부터 플레이합니다.","ジョブを選択した後、ゲームを最初からプレイします。","After selecting a profession, play the game from the beginning.","选择职业后，从头开始玩游戏。","Nachdem du einen Beruf gewählt hast, spiele das Spiel von vorn.","Après avoir choisi une profession, jouez depuis le début.","После выбора профессии начните игру с самого начала."
 "세이브 파일이 있다면 마지막으로 진행한 곳에서 다시 시작합니다.","セーブファイルがある場合は、最後に行った場所から再起動します。","If you have a save file, you will resume from where you last left off.","如果您有存档文件，您将从上次离开的地方继续游戏。","Wenn Sie einen Spielstand gespeichert haben, können Sie dort weiterspielen, wo Sie zuletzt aufgehört haben.","Si vous avez une sauvegarde, vous reprendrez là où vous en étiez.","Если у вас есть файл сохранения, вы продолжите игру с того места, где остановились в прошлый раз."
 "게임을 종료합니다.","ゲームを終了します。","Exit the game.","退出游戏。","Verlasse das Spiel.","Quittez le jeu.","Выйти из игры."
@@ -54,6 +54,6 @@ Découvrez les <color=red>conditions d'évolution</color> du symbole.","Иссл
 "현재 상점의 상품을 새로운 상품으로 교체합니다.","現在店舗の商品を新商品に交換します。","Replaces the current store items with new items.","将现有商店商品替换为新商品。","Ersetzt die aktuellen Artikel im Shop durch neue Artikel.","Remplace les articles actuellement en magasin par de nouveaux articles.","Заменяет текущие товары в магазине новыми."
 "{0}을 조정","{0}を調整","Adjust {0}","调整 {0}","Anpassen {0}","Ajuster {0}","Настройте {0}"
 "방어 획득","防御獲得","Defense acquisition","国防采购","Verteidigungsbeschaffung","Acquisition de défense","оборонные закупки"
-"전투에서 사라진다.","戦闘から消える。","Disappears in battle.","战死沙场。","Verschwindet im Kampf.","Disparaît au combat.","Исчезает в бою."
+"전투에서 사라진다.","戦闘から消える","Disappears in battle.","战死沙场。","Verschwindet im Kampf.","Disparaît au combat.","Исчезает в бою."
 "{0}의 {1}효과를 제거한다.","{0}の{1}効果を削除します。","Removes the {1} effect of {0}.","移除 {0} 的 {1} 效果。","Entfernt den {1}-Effekt von {0}.","Supprime l'effet {1} de {0}.","Устраняет эффект {1} от {0}."
 "{0}의 효과를 전부 제거한다.","{0}の効果をすべて削除します。","Removes all effects of {0}.","移除 {0} 的所有效果。","Entfernt alle Effekte von {0}.","Supprime tous les effets de {0}.","Устраняет все эффекты {0}."

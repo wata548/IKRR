@@ -168,5 +168,12 @@ namespace UI.Character {
             _button.onClick.AddListener(OnClick);
             gameObject.SetActive(false);
         }
+        private void OnDisable() {
+            var entity = CharactersManager.GetEntity(_position);
+            if (entity is null)
+                return;
+            foreach (var effect in entity.Effects)
+                effect.OnDisable();
+        }
     }
 }

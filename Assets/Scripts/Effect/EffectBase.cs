@@ -28,6 +28,7 @@ namespace Data {
 
         protected void Update() => LastUpdateFrame = Time.frameCount;
         public virtual void OnGameStart(){}
+        public virtual void OnDisable(){}
         public virtual void OnBattleStart(IEntity pTarget){}
         public virtual int OnReceiveDamage(int pAmount, IEntity pTarget, IEntity pOpponent) => pAmount;
         public virtual int OnSendDamage(int pAmount, AttackType pType, IEntity pTarget, IEntity pOpponent) => pAmount;
