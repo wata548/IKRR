@@ -11,17 +11,11 @@ namespace UI.Title {
         [SerializeField] private Button _setting;
         [SerializeField] private Button _quit;
         [SerializeField] private GameObject _jobPannel;
-        private bool _isActiveJobWindow = false;
         
         private void StartGame() {
-            _isActiveJobWindow = true;
             _jobPannel.SetActive(true);
             Tutorial.Tutorial.Instance.Set("Job");
             return;
-        }
-        public void HideJobPanel() {
-            _isActiveJobWindow = false;
-            _jobPannel.SetActive(false);
         }
 
         private void Continue() {
@@ -45,11 +39,5 @@ namespace UI.Title {
             _start.onClick.AddListener(StartGame);
             _quit.onClick.AddListener(Application.Quit);
         }
-
-        private void Update() {
-            if (_isActiveJobWindow && Input.GetKeyDown(KeyCode.Escape)) {
-                HideJobPanel();
-            }
-        } 
     }
 }
