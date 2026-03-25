@@ -96,10 +96,10 @@ namespace UI.Character {
             if (vfx is not null) {
                 vfx.transform.position = pos;
                 //vfx.ApplySize(_size);
-                vfx.Play();
+                vfx.PlayWithEvent();
             }
             defaultVfx.transform.position = pos;
-            defaultVfx.Play();
+            defaultVfx.PlayWithEvent();
         }
         
         public override void OnReceiveDamage(IEntity pEntity, int pAmount, AttackType pType, bool pDefence, Action pOnComplete) {

@@ -34,7 +34,6 @@ namespace FSM {
                 return false;
             
             Change(State.Reward);
-            UIManager.Instance.Map.ClearStage(true);
             return true;
         }
         

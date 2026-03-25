@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Extension;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -10,7 +12,7 @@ namespace Data {
         private static Transform _folder;
         
         public static void SetUp() {
-            _vfxs = Resources.LoadAll<VisualEffectAsset>("VFX")
+            _vfxs = Resources.LoadAll<VisualEffect>("VFX")
                 .ToDictionary(vfx => vfx.name, vfx => new VFXPool(vfx));
             _folder = new GameObject("VFX").transform;
         }
@@ -21,6 +23,12 @@ namespace Data {
             return pool?.Get(_folder);
         }
 
+        public static void PlayWithEvent(this VisualEffect pVFX) {
+            var startEvent = pVFX.GetComponent<VFXStartEvent>();
+            if(startEvent)
+                startEvent.OnPlay();
+        }
+
         public static void ApplySize(this VisualEffect pVFX, EnemySize pSize) {
             pVFX.SetFloat("Scale", (int)pSize / 100f);
         }
@@ -28,10 +36,10 @@ namespace Data {
 
     public class VFXPool {
 
-        private readonly VisualEffectAsset _prefab;
+        private readonly VisualEffect _prefab;
         private readonly List<VisualEffect> _pool = new();
 
-        public VFXPool(VisualEffectAsset pVFX) => _prefab = pVFX;
+        public VFXPool(VisualEffect pVFX) => _prefab = pVFX;
 
         public VisualEffect Get(Transform pParent) {
             var candidate = _pool.FirstOrDefault(vfx => vfx.aliveParticleCount == 0);
@@ -39,11 +47,8 @@ namespace Data {
                 candidate.Reinit();
                 return candidate;
             }
-            
-            var target = new GameObject();
-            target.transform.parent = pParent;
-            var vfx = target.AddComponent<VisualEffect>();
-            vfx.visualEffectAsset = _prefab;
+
+            var vfx = Object.Instantiate(_prefab);
             _pool.Add(vfx);
             return vfx;
         }

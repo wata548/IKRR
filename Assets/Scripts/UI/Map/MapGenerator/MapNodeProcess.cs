@@ -1,6 +1,7 @@
 ﻿using System;
 using Data;
 using Data.Map;
+using Extension;
 using UnityEngine;
 
 namespace UI.Map {
@@ -32,6 +33,10 @@ namespace UI.Map {
         }
         
         private void OnSelect(Stage pType) {
+            if(pType == Stage.Boss)
+                BGMManager.Instance.Change("BossBattle");
+            else
+                BGMManager.Instance.Change("Battle");
             Action func = pType switch {
                 Stage.Battle => GameManager.SetEnemy,
                 Stage.Boss => GameManager.SetBoss,

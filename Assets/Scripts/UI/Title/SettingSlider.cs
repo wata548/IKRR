@@ -8,12 +8,12 @@ namespace UI.Title {
         [SerializeField] protected TMP_Text _shower;
         [SerializeField] protected string _format;
 
-        protected abstract void Show(float pValue);
+        protected abstract void OnValueChanged(float pValue);
         protected abstract void OnAwake(Slider pSlider);
         
         private void Awake() {
             var slider = GetComponent<Slider>();
-            slider.onValueChanged.AddListener(Show);
+            slider.onValueChanged.AddListener(OnValueChanged);
             OnAwake(slider);
         }
     }

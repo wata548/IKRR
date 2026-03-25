@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace UI.Title {
     public class AnimationSpeedSlider: SettingSlider {
-        protected override void Show(float pValue) {
+        protected override void OnValueChanged(float pValue) {
             if (Mathf.Approximately(Time.timeScale, 0.3f))
                 return;
             var temp = (int)pValue;

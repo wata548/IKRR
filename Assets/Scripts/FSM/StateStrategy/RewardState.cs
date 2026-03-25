@@ -9,6 +9,7 @@ namespace FSM.StateStrategy {
         public void Update() {
             if (UIManager.Instance.Reward.IsActive)
                 return;
+            UIManager.Instance.Map.ClearStage(true);
             Fsm.Instance.Change(State.SelectStage);
         }
 
