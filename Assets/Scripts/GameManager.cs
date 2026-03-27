@@ -33,7 +33,10 @@ namespace Data {
         
         public static void SetEnemy() {
             var position = Positions.Middle;
-            var enemies = DataManager.GetStageEnemy(Chapter);
+            var targetChapter = Chapter;
+            if (UIManager.Instance.Map.IsStrongEnemy)
+                targetChapter += 10;
+            var enemies = DataManager.GetStageEnemy(targetChapter);
             foreach (var enemyCode in enemies) {
                 
                 CharactersManager.SetEnemy(enemyCode, position);

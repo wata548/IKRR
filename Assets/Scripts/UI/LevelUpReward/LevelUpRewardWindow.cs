@@ -45,6 +45,7 @@ namespace UI.LevelUpReward {
         
         //==================================================||Unity 
         private void Awake() {
+            _level = PlayerData.Level;
             _close.onClick.AddListener(TurnOff);
         }
     }

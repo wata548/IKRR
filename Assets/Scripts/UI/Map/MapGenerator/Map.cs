@@ -62,6 +62,7 @@ namespace UI.Map {
         public int Height { get; private set; }
         public static List<Vector2Int> ClearStages { get; set; } = new();
         public IReadOnlyDictionary<Stage, InfoSO> MatchInfo;
+        public bool IsStrongEnemy => (_mapNodes.Count - 1) / 2 < Height;
             
         //==================================================||Methods 
         public void ClearChapter() => ClearStages.Clear();
