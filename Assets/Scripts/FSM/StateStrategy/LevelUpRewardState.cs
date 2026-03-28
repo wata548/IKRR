@@ -3,8 +3,10 @@
 namespace FSM.StateStrategy {
     public class LevelUpRewardState: IStrategy {
 
-        private State _prevState; 
-        
+        private State _prevState;
+
+        public void Init() {}
+
         public void OnEnter(State pPrev) {
             _prevState = pPrev;
             UIManager.Instance.LevelUp.TurnOn();

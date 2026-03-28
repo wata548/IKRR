@@ -77,6 +77,9 @@ namespace Character {
             PlayerData.GetMoney(DropMoney);
         }
 
+        public void ReceiveDamage(int pAmount) => 
+            ReceiveDamage(pAmount, null, false, AttackType.Blood, null);
+        
         public void ReceiveDamage(int pAmount, IEntity pOpponent, bool pApplyEffect, AttackType pType, Action pOnComplete) {
             if (!IsAlive) {
                 pOnComplete!.Invoke();
@@ -119,7 +122,7 @@ namespace Character {
 
         public void Heal(int pAmount, Action pOnComplete) {
             if (!IsAlive) {
-                pOnComplete!.Invoke();
+                pOnComplete?.Invoke();
                 return;
             }
 

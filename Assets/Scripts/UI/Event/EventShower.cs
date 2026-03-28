@@ -22,11 +22,15 @@ namespace UI.Event {
         [SerializeField] private EventButtonContainer _container;
         [SerializeField] private FontSetting _fontSetting;
         
+        private int _tempValue = 0;
         private Tween _animation;
         private Data.Event.Event _curEvent;
         const float INTERVAL = 0.03f;
         const float SELECT_SHOW_TERM = 0.5f;
 
+        public int GetTemp() => _tempValue;
+        public int SetTemp(int pValue) => _tempValue = pValue;
+        
         [TestMethod]
         public void SetEvent(string pTitle, Data.Event.Event pEvent) {
             _button.gameObject.SetActive(true);

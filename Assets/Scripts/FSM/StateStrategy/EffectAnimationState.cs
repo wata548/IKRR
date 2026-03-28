@@ -19,6 +19,9 @@ namespace FSM {
         
         public void EndBattle() {}
 
+        public void Init() =>
+            _playingSkill = null;
+
         public void OnEnter(State pPrev) {
             if (pPrev != State.LevelUp)
                 _prev = pPrev;

@@ -18,5 +18,7 @@
     Game = CS.Data.GameManager;
     PlayerData = CS.Data.PlayerData;
     Player = Field.Player;
+    Event = CS.UI.UIManager.Instance.Event;
+    Pos = CS.Data.Positions;
     {1}
 end

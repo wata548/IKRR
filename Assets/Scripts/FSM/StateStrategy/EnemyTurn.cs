@@ -15,7 +15,10 @@ namespace FSM.StateStrategy {
         private int _lastTurn = -1;
 
         public void EndBattle() => _lastTurn = -1;
-        
+
+        public void Init() =>
+            _playingSkill = null;
+
         public void OnEnter(State pPrev) {
             if (Fsm.Instance.Turn == _lastTurn)
                 return;

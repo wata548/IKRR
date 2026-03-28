@@ -4,6 +4,8 @@ using UI;
 
 namespace FSM {
     public class PlayerTurnState : IStrategy {
+        public void Init() {}
+
         public void OnEnter(State pPrev) { }
 
         public void Update() {

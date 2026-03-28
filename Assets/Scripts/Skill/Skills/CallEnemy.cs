@@ -9,13 +9,15 @@ namespace Character.Skill {
         [SkillParameter]
         public TargetValue Pos { get; private set; }
         
+        public CallEnemy(string[] pData) : base(pData) {}
         protected override void Implement(Positions pCaster) {
-            if (CharactersManager.Exist(Pos.Value)) {
-                End();
-                return;
+            foreach (var entity in CharactersManager.GetEntities(pCaster, Pos.Value)) {
+                if(!entity.IsAlive)
+                    CharactersManager.SetEnemy(Enemy, Pos.Value);
             }
-            CharactersManager.SetEnemy(Enemy, Pos.Value);
             End();
         }
+
+        public override string ToString() => "동료를 불러냅니다.";
     }
 }

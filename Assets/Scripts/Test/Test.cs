@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 using Character.Skill;
 using ColorMine.ColorSpaces;
@@ -8,6 +9,7 @@ using Data;
 using Data.Event;
 using Extension;
 using Extension.Test;
+using Lang;
 using Newtonsoft.Json;
 using Roulette;
 using UnityEngine;
@@ -16,6 +18,19 @@ using Color = UnityEngine.Color;
 namespace Test {
     public static class Test {
 
+        [TestMethod]
+        public static void ShowRoulette() {
+            var builder = new StringBuilder(); 
+            foreach (var row in Enumerable.Range(0, RouletteManager.Height)) {
+                var datas = Enumerable.Range(0, RouletteManager.Width)
+                    .Select(column => DataManager.Symbol.GetData(
+                        RouletteManager.Get(column, row)).Name.ApplyLang()
+                    );
+                builder.AppendLine(string.Join(',', datas));
+            }
+            Debug.Log(builder);
+        }
+        
         [TestMethod]
         public static void Split(string o, string d) => Debug.Log(o.Split(d).Length);
 

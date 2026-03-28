@@ -1,5 +1,7 @@
-﻿using Character;
+﻿using System.Collections.Generic;
+using Character;
 using Character.Skill.Data;
+using UI;
 
 namespace Data {
     public class NinjasBless: EffectBase {
@@ -18,10 +20,20 @@ namespace Data {
             Update();
         }
 
+        protected override EffectBase AddOperation(EffectBase rhs) {
+            if (rhs is NinjasBless ninja)
+                _amount += ninja._amount;
+            return this;
+        }
+
         public override int OnSendDamage(int pAmount, AttackType pType, IEntity pTarget, IEntity pOpponent) {
             if (pType == AttackType.Shuriken)
                 pAmount += _amount;
             return pAmount;
         }
+
+        public override Dictionary<string, object> Infos => new() {
+            { "Amount", _amount }
+        };
     }
 }

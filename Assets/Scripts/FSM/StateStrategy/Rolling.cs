@@ -3,7 +3,8 @@ using UI;
 
 namespace FSM.StateStrategy {
     public class Rolling: IStrategy {
-        
+        public void Init() {}
+
         public void OnEnter(State pPrev) {
 
             if (Fsm.Instance.CheckBattleEnd())

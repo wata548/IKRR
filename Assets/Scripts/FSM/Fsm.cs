@@ -82,7 +82,10 @@ namespace FSM {
         }
 
         protected void Start() {
+            foreach (var state in _matchStrategy)
+                state.Value.Init();
             Change(State.SelectStage);
+            
         }
 
         protected override void Update() {

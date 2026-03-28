@@ -81,7 +81,10 @@ namespace Character {
             Hp = Mathf.Min(MaxHp, Hp);
             UIManager.Instance.Entity.Player.RefreshHpBar(this);
         }
-        
+
+        public void ReceiveDamage(int pAmount) => 
+            ReceiveDamage(pAmount, null, false, AttackType.Blood, null);
+
         public void ReceiveDamage(int pAmount,IEntity pOpponent, bool pApplyEffect, AttackType pType, Action pOnComplete) {
             if (!IsAlive) {
                 pOnComplete!.Invoke();
@@ -103,7 +106,6 @@ namespace Character {
                     Shield -= receive;
                     receive = 0;
                 }
-                    
             }
             
             Hp = Math.Max(0, Hp - receive);

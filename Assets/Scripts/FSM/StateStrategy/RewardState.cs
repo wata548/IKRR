@@ -2,6 +2,8 @@
 
 namespace FSM.StateStrategy {
     public class RewardState: IStrategy {
+        public void Init() {}
+
         public void OnEnter(State pPrev) {
             UIManager.Instance.Reward.TurnOn();
         }

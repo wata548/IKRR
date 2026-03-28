@@ -30,7 +30,7 @@ namespace Character.Skill {
             foreach (var target in targets) {
 
                 var amount = caster.AttackDamageCalc(Value.Value,  Type, target);
-                target.ReceiveDamage(amount, target, pType: Type, pOnComplete: CustomEnd);
+                target.ReceiveDamage(amount, CharactersManager.Player, pType: Type, pOnComplete: CustomEnd);
                 Value.Next();
             }
 

@@ -2394,7 +2394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &751891224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2551,11 +2551,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _kvps:
   - <Key>k__BackingField: Battle
-    <Value>k__BackingField: {fileID: 8300000, guid: d29ae6c00bf7abf4db42c96da4220dbe, type: 3}
+    <Value>k__BackingField: {fileID: 0}
   - <Key>k__BackingField: BossBattle
-    <Value>k__BackingField: {fileID: 8300000, guid: bea01bb1fc3ce97429b4b320e1c768cf, type: 3}
+    <Value>k__BackingField: {fileID: 0}
   - <Key>k__BackingField: Lobby
-    <Value>k__BackingField: {fileID: 8300000, guid: fe65743eb8f3fb54c8f689d71f3e110c, type: 3}
+    <Value>k__BackingField: {fileID: 0}
 --- !u!114 &880105399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5879,8 +5879,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shower: {fileID: 1398731624}
   _format: '{0}%'
-  _mixer: {fileID: 24100000, guid: a9fc053276b100c4b886872050e032dc, type: 2}
-  _tag: Master
+  _mixer: {fileID: 0}
+  _tag: 
 --- !u!114 &1524758601
 MonoBehaviour:
   m_ObjectHideFlags: 0

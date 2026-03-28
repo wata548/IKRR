@@ -42,12 +42,12 @@ Goto(2);}]
 그저 술 한병 구매한다.(15G)
 (일회성, 적에게 4-5데미지를 입힌다.)
 [{PlayerData.GetMoney(-6);
-Selector.Add(1019);
+Selector:Add(1019, 1);
 Goto(1);}]
 |<[return PlayerData.Money >= 20]>
-술집 심볼을 획득한다.
+술집 심볼을 획득한다.(20G)
 (스킬,빈칸을 찾아 8G를 소비해 술병을 생성한다.)[{PlayerData.GetMoney(-20);
-Selector.Add(1037);
+Selector:Add(1037, 1);
 Goto(2);}]
 |그냥 지나간다.[{Goto(3);}]
 @1:당신은 지나가는 길에 그저 술 한병만 챙겨 다시 모험에 오릅니다.
@@ -57,3 +57,30 @@ Goto(2);}]
 @3:당신은 아쉬운 마음은 뒤로한 채 지출을 줄이기로 했습니다.
 |닫기[{Clear();}]
 "
+"100","도박장","@0:#Event/5101
+|당신은 우연히 들린 마을에서 도박장을 발견했습니다.
+|<[return PlayerData.Money > 10;]>가볍게 건다.(10G)[{PlayerData.GetMoney(-10); Event:SetTemp(10); Goto(2)}]
+|<[return PlayerData.Money > 50;]>약간 건다.(50G)[{PlayerData.GetMoney(-50); Event:SetTemp(50); Goto(2)}]
+|<[return PlayerData.Money > 100;]>크게 건다.(100G)[{PlayerData.GetMoney(-100); Event:SetTemp(100); Goto(2)}]
+|돌아간다.[{Goto(1)}]
+@1:당신은 아쉬운 마음을 안고 발길을 돌렸습니다.
+|닫기[{Clear();}]
+@2:#Event/5102|결과는 어떨까요?
+|결과보기[{if(math.random(2)==1) then 
+Goto(3);
+else 
+Goto(4);
+end}]
+@3:#Event/5103|꽝! 아쉽게 됬습니다. 당신은 아쉬운 마음을 안고 모험길에 오릅니다.|닫기[{Clear();}]
+@4:#Event/5104|당첨! 건 돈이 2배가 되어 돌아왔습니다! 신나는 마음을 안고 모험의 일상으로 돌아옵니다.|닫기[{PlayerData.GetMoney(Event:GetTemp() * 2);Clear();}]"
+"0","함정!","@0:#Event/5003|이런! 당신은 길을 가다 목수가 깔아둔 곰 덫에 걸리고 말았습니다.
+|억지로 빠져 나온다.(체력 5잃습니다.)[{Field.Player:ReceiveDamage(5);Goto(1)}]
+|운에 맞기고 아무렇게 건드려본다.(<color=red>65%의 확율로 체력 8을 잃습니다.</color>)[{if(math.random(3)~=1) then 
+Field.Player:ReceiveDamage(8);
+Goto(2);
+else 
+Goto(3);
+end}]
+@1:당신은 아픔을 참으며 덫에서 나올 수 있었습니다. |닫기[{Clear();}]
+@2:#Event/5004|이런!, 당신은 잘못된 곳을 건드렸습니다. 곰덫은 더욱 강하게 조여왔고 당신은 겨우 탈출할 수 있었습니다.|닫기[{Clear();}]
+@3: #Event/5005|이럴수가! 당신은 이 덫의 원리를 모르는데도 우연히 나올 수 있었습니다!|닫기[{Clear();}]"

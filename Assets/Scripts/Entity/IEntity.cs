@@ -22,6 +22,7 @@ namespace Character {
         public int AttackDamageCalc(int pAmount, AttackType pType, IEntity pTarget);
         public void OnAttack();
         public void OnSkillUse();
+        public void ReceiveDamage(int pAmount);
         public void ReceiveDamage(int pAmount, IEntity pOpponent, bool pApplyEffect = true, AttackType pType = AttackType.Swing, Action pOnComplete = null);
         public void OnTurnEnd();
         public void OnTurnStart();
