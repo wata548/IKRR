@@ -2427,6 +2427,7 @@ MonoBehaviour:
   - Tutorial
   - Job
   - JobDesc
+  _localMode: 1
 --- !u!4 &751891225
 Transform:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 "Korean","Japanese","English","Chinese","German","French","Russian"
 "산을 돌아다니는 슬라임.
 성인 남성이 힘을 줘서 끊어버릴 수 있다.
-","山を歩き回るスライム。
+","山を巡るスライム。
 大人の男性が力を与えて断つことができる。
 ","A slime roaming the mountains.
 
@@ -25,7 +25,7 @@ Un mâle adulte peut la briser en exerçant une force.
 
 "
 "산을 돌아다니는 조금 큰 슬라임.
- 평균 성인 남성의 명치까지 오는 크기를 가진다.","山を歩く少し大きなスライム。
+ 평균 성인 남성의 명치까지 오는 크기를 가진다.","山を巡る少し大きなスライム。
  平均成人男性の名称まで来る大きさを持つ。","A slightly large slime roaming the mountains.
 
 It reaches the solar plexus of an average adult male.","一种体型稍大的黏液生物在山间游荡。
@@ -92,7 +92,7 @@ Attention, elle vole parfois de l'argent et s'enfuit.","Настойчивая �
 Будьте осторожны, она иногда ворует деньги и убегает."
 "몸이 쉽게 불타는 슬라임.
 자칫 공격하다가는 화상을 겪을 수 있다.","体が簡単に燃えるスライム。
-やや攻撃するという火傷を受けることができる。","Slime that catches fire easily.
+やがて攻撃していくというやけどを受けることができる。","Slime that catches fire easily.
 
 You could suffer burns if you attack it carelessly.","易燃的黏液。
 
@@ -106,3 +106,50 @@ Vous risquez des brûlures si vous l'attaquez sans précaution.","Слизь, к
 "발화성 슬라임과 공생하는 생명체 
 발화성 슬라임의 체력을 회복시켜준다.","発火性スライムと共生する生命体 
 発火性スライムの体力を回復させてくれる。","A creature that lives in symbiosis with flammable slime. Restores the stamina of flammable slime.","一种与易燃黏液共生的生物。能够恢复易燃黏液的耐力。","Ein Wesen, das in Symbiose mit brennbarem Schleim lebt. Stellt die Ausdauer des brennbaren Schleims wieder her.","Une créature vivant en symbiose avec une substance visqueuse inflammable. Restaure l'endurance de cette substance.","Существо, живущее в симбиозе с легковоспламеняющейся слизью. Восстанавливает выносливость легковоспламеняющейся слизи."
+"악마의 형상을 띄는 돌맹이 
+어느 순간인지 자아가 생겼다.","悪魔の形をした石 
+どの瞬間なのか自我ができた。","At some point, a stone with the shape of a devil developed a self.","在某个时刻，一块形状像魔鬼的石头产生了自我意识。","Irgendwann entwickelte ein Stein in Form eines Teufels ein Selbst.","À un certain moment, une pierre en forme de diable a développé une conscience de soi.","В какой-то момент камень, имеющий форму дьявола, обрёл собственное «я»."
+"마왕성을 지키는 병사
+마법을 사용하기도 하니 주의
+","魔王星を守る兵士
+魔法を使うこともあるので注意
+","Soldiers guarding the Demon King's castle
+
+Beware, they use magic.","守卫魔王城堡的士兵
+
+小心，他们会使用魔法。","Soldaten bewachen die Burg des Dämonenkönigs.
+
+Vorsicht, sie beherrschen Magie.","Soldats gardant le château du Roi Démon
+
+Attention, ils utilisent la magie.","Солдаты охраняют замок Короля Демонов.
+
+Осторожно, они используют магию."
+"한 무리의 슬라임의 왕
+꽤나 강력하니 주의
+","一群のスライムの王
+かなり強力なので注意
+","King of a group of slimes
+
+Beware, he is quite powerful
+
+","史莱姆族之王
+
+小心，他非常强大
+
+","König einer Schleimbande
+
+Vorsicht, er ist sehr mächtig!
+
+","Roi d'un groupe de slimes
+
+Attention, il est très puissant.
+
+","Король группы слизней
+
+Осторожно, он очень силён!
+
+"
+"게 단단하다.","が硬い。","The crab is hard.","螃蟹很硬。","Die Krabbe ist hart.","Le crabe est dur.","Краб твёрдый."
+"꽃게
+단단하다.","カニ
+硬い。","Blue crab is hard.","蓝蟹很硬。","Blaukrabbenfleisch ist zäh.","Le crabe bleu est difficile à cuisiner.","Синий краб — твердый."

@@ -27,7 +27,7 @@ Découvrez les <color=red>conditions d'évolution</color> du symbole.","Иссл
 
 Узнайте об условиях эволюции символа."
 "평소와는 다른 강력한 적이 등장합니다.","いつもとは違う強力な敵が登場します。","A powerful enemy unlike the usual appears.","一个与以往不同的强大敌人出现了。","Ein mächtiger Feind, ganz anders als sonst, erscheint.","Un ennemi puissant et différent de tous les autres apparaît.","Появляется могущественный враг, не похожий на обычных."
-"재밌게 플레이해 주세요!","楽しくプレイしてください！","Please enjoy playing!","请尽情享受游戏吧！","Viel Spaß beim Spielen!","Amusez-vous bien !","Приятной игры!"
+"재밌게 플레이해 주세요!","楽しくプレイしてください！","Please enjoy playing!","请尽情游戏！","Viel Spaß beim Spielen!","Amusez-vous bien !","Приятной игры!"
 "직업을 선택 후 게임을 처음부터 플레이합니다.","ジョブを選択した後、ゲームを最初からプレイします。","After selecting a profession, play the game from the beginning.","选择职业后，从头开始玩游戏。","Nachdem du einen Beruf gewählt hast, spiele das Spiel von vorn.","Après avoir choisi une profession, jouez depuis le début.","После выбора профессии начните игру с самого начала."
 "세이브 파일이 있다면 마지막으로 진행한 곳에서 다시 시작합니다.","セーブファイルがある場合は、最後に行った場所から再起動します。","If you have a save file, you will resume from where you last left off.","如果您有存档文件，您将从上次离开的地方继续游戏。","Wenn Sie einen Spielstand gespeichert haben, können Sie dort weiterspielen, wo Sie zuletzt aufgehört haben.","Si vous avez une sauvegarde, vous reprendrez là où vous en étiez.","Если у вас есть файл сохранения, вы продолжите игру с того места, где остановились в прошлый раз."
 "게임을 종료합니다.","ゲームを終了します。","Exit the game.","退出游戏。","Verlasse das Spiel.","Quittez le jeu.","Выйти из игры."
@@ -57,3 +57,17 @@ Découvrez les <color=red>conditions d'évolution</color> du symbole.","Иссл
 "전투에서 사라진다.","戦闘から消える","Disappears in battle.","战死沙场。","Verschwindet im Kampf.","Disparaît au combat.","Исчезает в бою."
 "{0}의 {1}효과를 제거한다.","{0}の{1}効果を削除します。","Removes the {1} effect of {0}.","移除 {0} 的 {1} 效果。","Entfernt den {1}-Effekt von {0}.","Supprime l'effet {1} de {0}.","Устраняет эффект {1} от {0}."
 "{0}의 효과를 전부 제거한다.","{0}の効果をすべて削除します。","Removes all effects of {0}.","移除 {0} 的所有效果。","Entfernt alle Effekte von {0}.","Supprime tous les effets de {0}.","Устраняет все эффекты {0}."
+"동료를 불러냅니다.","同僚を呼びます。","Call out a colleague.","","Einen Kollegen zur Rede stellen.","Dénoncez un collègue.","Позовите коллегу."
+"<color=yellow>Thanks to play</color>
+현재까지 구현된 곳은 여기까집니다!","<color=yellow>Thanks to play</color>
+今まで実装されているところはここまでです！","<color=yellow>Thanks to play</color>
+
+This is as far as has been implemented so far!","<color=yellow>感谢游玩</color>
+
+目前为止，功能就实现到这个程度了！","Vielen Dank an Play!
+
+Dies ist der bisherige Stand der Umsetzung.","<color=yellow>Merci à Play</color>
+
+Voici où en est la fonctionnalité pour le moment !","<color=yellow>Спасибо за игру</color>
+
+На этом этапе реализация завершена!"

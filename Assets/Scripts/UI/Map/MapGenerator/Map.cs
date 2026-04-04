@@ -68,6 +68,10 @@ namespace UI.Map {
         public void ClearChapter() => ClearStages.Clear();
         public void ClearStage(bool pSave) {
             Height++;
+            if (Height > _roundCount) {
+                UIManager.Instance.ClearWindow.Show();
+                return;
+            }
             
             _mapNodes[_curStage.y][_curStage.x].SetActive(false);
             _mapNodes[_curStage.y][_curStage.x].SetMaterialVisited();

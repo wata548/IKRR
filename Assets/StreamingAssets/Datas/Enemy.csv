@@ -9,9 +9,9 @@ Text(뛰어 들기)+Attack(3~4, Player) = 1"
 Text(몸통 박치기)+Attack(6, Player) = 1
 Text(들러붙기)+Attack(3, Player) * 3 = 1"
 "2003","대형 슬라임","산을 돌아다니는 큰 슬라임.
-사람을 잡아먹을 수 있을 정도의 큰 크기를 자랑한다.","Big","13-18","12","28","","|>
-Text(몸통 박치기)+Attack(8~10, Player) = 1
-Text(감싸기)+Attack(4-5, Player) * 2 = 1"
+사람을 잡아먹을 수 있을 정도의 큰 크기를 자랑한다.","Big","13-18","12","25","","|>
+Text(몸통 박치기)+Attack(7~9, Player) = 1
+Text(감싸기)+Attack(3-4, Player) * 2 = 1"
 "2004","저주받은 거목","저주가 들린 거목.
 거대할 뿐 그다지 강하지 않다.","Big","15","10","35","","|>
 Text(뛰어 들기)+Attack(8, Player) = 2
@@ -32,9 +32,7 @@ Text(날개치기) +  Attack(5, Player) = 1
 Text(마구할퀴기) + Attack(1-2, Player) * 3 = 1
 "
 "2008","발화성 슬라임","몸이 쉽게 불타는 슬라임.
-자칫 공격하다가는 화상을 겪을 수 있다.","Big","32","35","100"," Pyrophonic{}","|> return enemy.Phase == 0 and enemy.Hp <= 35
-Text(포효) + NextPhase() = 1
-|> return enemy.Phase == 0 and not (Field.Exist(Pos.Left) and Field.Exist(Pos.Right));
+자칫 공격하다가는 화상을 겪을 수 있다.","Big","32","35","100"," Pyrophonic{}","|> return enemy.Phase == 0 and not (Field.Exist(Pos.Left) and Field.Exist(Pos.Right));
 Text(함성) + CallEnemy(2009, Left) + CallEnemy(2009, Right)  = 1
 Text(태우기) + GiveEffect(Player, Burn{4}) = 1
 Text(흩뿌리기) + Attack(4-5, Player) * 3 = 1
@@ -44,34 +42,35 @@ Text(태우기) + GiveEffect(Player, Burn{4}) = 1
 Text(흩뿌리기) + Attack(4-5, Player) * 3 = 1
 Text(몸통 박치기) + Attack(7-10, AllEnemy)+ GiveEffect(Player, Burn{2}) = 1"
 "2009","바람 정령","발화성 슬라임과 공생하는 생명체 
-발화성 슬라임의 체력을 회복시켜준다.","Small","0","0","18","Wind{}","|>
+발화성 슬라임의 체력을 회복시켜준다.","Small","0","0","18","Wind{}
+Servant{Middle}","|>
 Text(생명의 바람) + Heal(5, AllEnemy) = 1
 Text(매서운 바람) + Attack(2-3, Player) * 3  = 2
 Text(산들 바람) + Attack(5, Player)  = 1"
 "2010","가고일","악마의 형상을 띄는 돌맹이 
 어느 순간인지 자아가 생겼다.","Middle","8","3","12","Servant{Middle}","|> 
-Text(짓누르기) +Attack(10, Player) = 1
-Text(수호의 힘) + Shield(8, AllEnemy) = 1"
+Text(짓누르기) +Attack(8, Player) = 1
+Text(수호의 힘) + Shield(6, AllEnemy) = 1"
 "2011","근위병","마왕성을 지키는 병사
 마법을 사용하기도 하니 주의
-","Middle","35","20","50","","|> return not Field.Exist(Pos.Left);
+","Middle","35","20","42","","|> return not Field.Exist(Pos.Left);
 Text(함성) + CallEnemy(2010, Left) = 1
 Text(휘두르기) + Attack(10, Player) = 2
 |>
-Text(휘두르기) + Attack(10, Player) = 1
+Text(휘두르기) + Attack(8, Player) = 1
  Text(마구 휘두르기) + Attack(4-5, Player) * 2 = 1"
-"2012","킹슬라임","슬라임의 왕
+"2012","킹슬라임","한 무리의 슬라임의 왕
 꽤나 강력하니 주의
-","Big","22-25","20","45"," ","|> return Turn == 0;
+","Big","22-25","20","30"," ","|> return Turn == 0;
 Text(함성)+GiveEffect(AllEnemy, Power{2}) = 1
 |> 
 Text(함성)+GiveEffect(AllEnemy, Power{2}) = 1
-Text(거대한 일격) + Attack(14, Player) = 5
+Text(거대한 일격) + Attack(10, Player) = 3
 "
 "2013","게","게 단단하다.","Big","30","14","25","Limit{5}","|> 
-Text(찍기)+Attack(12, Player) = 1
+Text(찍기)+Attack(9, Player) = 2
 Text(물뿜기) +Attack(3-4, Player) * 3 = 1"
 "2014","꽃게","꽃게
-단단하다.","Middle","30","14","30","Shell{8}","|> 
-Text(찍기)+Attack(12, Player) = 1
-Text(물뿜기) +Attack(3-4, Player) * 3 = 1"
+단단하다.","Middle","30","14","20","Shell{3}","|> 
+Text(찍기)+Attack(7, Player) = 1
+Text(물뿜기) +Attack(3-4, Player) * 2 = 1"

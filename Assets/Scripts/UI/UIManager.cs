@@ -7,6 +7,7 @@ using UI.Shop;
 using UI.SkillShower;
 using UI.Status;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI {
     public class UIManager: MonoSingleton<UIManager> {
@@ -26,5 +27,6 @@ namespace UI {
         [field: SerializeField] public OXPannel OXEffect { get; private set; }
         [field: SerializeField] public ShopManager Shop { get; private set; }
         [field: SerializeField] public GameOver.GameOver GameOver  { get; private set; }
+        [field: SerializeField] public ClearWindow ClearWindow  { get; private set; }
     }
 }

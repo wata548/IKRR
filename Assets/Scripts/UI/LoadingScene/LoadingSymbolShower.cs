@@ -13,6 +13,9 @@ namespace UI.LoadingScene {
         [SerializeField] private TMP_Text _context;
 
         private void Awake() {
+            _name.font = TMP_LangText.GetFont(LanguageManager.LangPack);
+            _context.font = TMP_LangText.GetFont(LanguageManager.LangPack);
+            
             var code = UseInfo.GetRandomGetInfo();
             var data = DataManager.Symbol.GetData(code);
             _name.text = data.Name.ApplyLang();

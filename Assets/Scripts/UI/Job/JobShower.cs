@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Data;
 using Extension;
@@ -25,7 +26,9 @@ namespace UI.Job {
         [SerializeField] private SymbolAmountShower _prefab;
         [SerializeField] private Button _startButton; 
         private List<SymbolAmountShower> _symbols = new();
-        private int _code = 0; 
+        private int _code = 0;
+
+        
 
         public void Update() {
             if (_code == JobButton.SelectedJob)

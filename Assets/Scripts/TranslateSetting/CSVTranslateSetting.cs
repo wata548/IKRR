@@ -16,6 +16,7 @@ namespace Font {
         [SerializeField] private string _apiKey;
         [SerializeField] private string _path;
         [SerializeField] private string[] _sheets;
+        [SerializeField] private bool _localMode = false;
 
         [TestMethod]
         private void ChangeLanguage(Language pLanguage) {
@@ -23,6 +24,10 @@ namespace Font {
         }
 
         private void Load() {
+            if (_localMode) {
+                LocalLoad();
+                return;
+            }
             var pack = new ColumnCSVPack(Language.Korean);
             foreach (var sheet in _sheets) {
                 var data = SpreadSheet.LoadData(_path, sheet, _apiKey);
@@ -33,8 +38,8 @@ namespace Font {
             LanguageManager.Table = pack;
             LanguageManager.LangPack = Language.Korean;
         }
-#else
-        private void Load() {
+#endif
+        private void LocalLoad() {
             
             var pack = new ColumnCSVPack(Language.Korean);
             var path = Path.Combine(Application.streamingAssetsPath, "Translates");
@@ -48,14 +53,18 @@ namespace Font {
             LanguageManager.Table = pack;
             LanguageManager.LangPack = Language.Korean;
         }
-#endif
         
         private void Awake() {
             if (_isInited)
                 return;
             
             _fontSetting.Init();
+            
+#if UNITY_EDITOR
             Load();
+#else
+            LocalLoad();
+#endif
             _isInited = true;
         }
     }

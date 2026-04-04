@@ -189,9 +189,9 @@ end
 ::play::
 PlayerData.GetMoney(-8);
 return ""Text(술집)+Create(""..c.."",""..r.."", 1019)"";"
-"1038","Skill","None","Strength","Rare","피의 맹세","return Field.Player.Hp > 5;","hp 5 소모","힘을 3만큼 상승시킵니다.","","","40","return ""Text(피의 맹세)+Attack(5, Caster, Blood)+StatusChange(Strength, `+, 3)"";"
-"1039","Skill","None","Dexterity","Rare","피의 대가","return Field.Player.Hp > 5;","hp 5 소모","민첩을 3만큼 상승시킵니다.","","","40","return ""Text(피의 대가)+Attack(5, Caster, Blood)+StatusChange(Dexterity, `+, 3)"";"
-"1040","Skill","None","Wisdom","Rare","금단의 지식","return Field.Player.Hp > 5;","hp 5 소모","지능을 3만큼 상승시킵니다.","","","40","return ""Text(금단의 지식)+Attack(5, Caster, Blood)+StatusChange(Wisdom, `+, 3)"";"
+"1038","Skill","None","Strength","Rare","피의 맹세","return Field.Player.Hp > 5;","체력 5 소모","힘을 3만큼 상승시킵니다.","","","40","return ""Text(피의 맹세)+Attack(5, Caster, Blood)+StatusChange(Strength, `+, 3)"";"
+"1039","Skill","None","Dexterity","Rare","피의 대가","return Field.Player.Hp > 5;","체력 5 소모","민첩을 3만큼 상승시킵니다.","","","40","return ""Text(피의 대가)+Attack(5, Caster, Blood)+StatusChange(Dexterity, `+, 3)"";"
+"1040","Skill","None","Wisdom","Rare","금단의 지식","return Field.Player.Hp > 5;","체력 5 소모","지능을 3만큼 상승시킵니다.","","","40","return ""Text(금단의 지식)+Attack(5, Caster, Blood)+StatusChange(Wisdom, `+, 3)"";"
 "1041","Skill","None","None","Normal","부메랑","return true;","","모든 적에게 3의 데미지를 입힌다.\n(사용 후 날아간 부메랑 상태가 된다)","","","25","return ""Text(부메랑)+Attack(3, AllEnemy, Swing)+Change(""..column.."",""..row.."",1042)"";"
 "1042","Buff","None","None","Etc","날아간 부메랑","return true;","","다시 부메랑으로 돌아온다.","","","-1","return ""Change(""..column.."",""..row.."", 1041)"";"
 "1043","Buff","None","Strength","Unique","검술 자세","return true;","","주위의 검술의 개수만큼 근력을 획득한다.","","","80","cnt=0;
@@ -225,16 +225,16 @@ end
 return result;"
 "1050","Skill","Magic","Wisdom","Rare","메테오","return Status.GetValue(Stat.Wisdom) >= 3;","지혜 3 소모","적 전체에게 10데미지를 입힙니다.","","","40","return ""Text(메테오) + Attack(10, AllEnemy, Magic) + StatusChange(Wisdom, `-, 3)"";"
 "1051","Skill","Magic","Wisdom","Rare","지옥비","return Status.GetValue(Stat.Wisdom) >= 2;","지혜 2 소모","적 전체에게 '화염'상태를 부여합니다. 또한 2-5의 데미지를 입힙니다.","","","40","return ""Text(저주의 불) + Attack(2-5, AllEnemy, Magic) + GiveEffect(AllEnemy, Burn{3-4}) + StatusChange(Wisdom, `-, 2)""; "
-"1052","Skill","Shuriken","Dexterity","Legendary","닌자의 발악","return Field.Player.Hp > 10;","체력 10 소모","모든 빈칸을 표창으로 가득 채운다.","","","200","result =""Text(닌자의 발악) + Attack(10, Player, Blood)""; 
+"1052","Skill","Shuriken","Dexterity","Legendary","닌자의 발악","return Field.Player.Hp > 5;","체력 5 소모","모든 빈칸을 표창으로 가득 채운다.","","","200","result =""Text(닌자의 발악) + Attack(5, Player, Blood)""; 
 for i = 1,Roulette.Width do
   for j = 1,Roulette.Height do  
     if(Roulette.Get(i - 1,j - 1) == 0) then
-      result=result..""+Change(""..(i-1).."",""..(j-1).."",1016)"";
+      result=result..""+Change(""..(i-1).."",""..(j-1).."",1016) + SetSymbolStatus(""..(i-1).."",'..(j-1).."", Usable)"";
     end
   end
 end
 return result;"
-"1053","Skill","Magic","Wisdom","Unique","마력 난사","return Status.GetValue(Stat.Wisdom) >= 5;","지혜 6 소모","적을 3 데미지로 5 ~ 7회 타격한다.","","","100","count = math.random(5,7);
+"1053","Skill","Magic","Wisdom","Unique","마력 난사","return Status.GetValue(Stat.Wisdom) >= 5;","지혜 5 소모","적을 3 데미지로 7 ~ 15회 타격한다.","","","100","count = math.random(7,15);
 return ""Text(마력 난사)+StatusChange(Wisdom,-,5)+Attack(3, Target, Magic)*""..count;
   "
 "1054","Skill","Magic","Wisdom","Unique","압도적 마력","return Status.GetValue(Stat.Wisdom) >= 7;","지혜 7 이상","적이 받는 데미지가 두 배가 됩니다.","","","150","return ""GiveEffect(Player, Double{1, 1})"";"

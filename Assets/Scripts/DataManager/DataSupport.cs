@@ -45,6 +45,8 @@ namespace Data.supportFont {
             "SymbolEffect",
             "Condition",
             "Symbol",
+            "JobDesc",
+            "Job",
         };
 
         [MenuItem("DataManager/GetTutorialText")]
@@ -65,19 +67,23 @@ namespace Data.supportFont {
                     "Event",
                     data => data.Chapter
             ));
+            var datas = new List<string>();
             var result = new StringBuilder();
             result.Append("<noparse>");
             foreach (var chapter in db.GetData()) {
                 foreach (var @event in chapter.Value) {
-                    result.AppendLine($@"""{@event.Name}""");
+                    datas.Add($@"""{@event.Name}""");
                     foreach (var script in @event.Event.Scripts) {
-                        result.AppendLine($@"""{script.Context}""");
+                        datas.Add($@"""{script.Context}""");
                         foreach (var button in script.Buttons) {
-                            result.AppendLine($@"""{button.Option}""");
+                            datas.Add($@"""{button.Option}""");
                         }
                     }
                 }
             }
+
+            foreach (var data in datas.Distinct().ToList())
+                result.AppendLine(data);
             Debug.Log(result.ToString());
         }
         
