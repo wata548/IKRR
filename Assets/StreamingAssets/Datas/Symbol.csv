@@ -36,7 +36,7 @@ if(Roulette.Get(column-1, row)~=1018) then
     result = result..""+Change(""..(column-1).."",""..row.."",0)"";
 end
 return result;"
-"1010","Skill","Sword","Strength","Rare","강타","return Status.GetValue(Stat.Strength) >= 2;","힘 2 이상, 힘 1 소모","적에게 피해를 입힙니다.(6-9)","","","40","return ""Text(강타)+Attack(6-9, Target, Swing)+StatusChange(Strength, `-, 1)"";"
+"1010","Skill","Sword","Strength","Rare","강타","return Status.GetValue(Stat.Strength) >= 2;","힘 2 이상, 힘 1 소모","적에게 피해를 입힙니다.(6-7)","","","40","return ""Text(강타)+Attack(6-7, Target, Swing)+StatusChange(Strength, `-, 1)"";"
 "1011","Skill","Sword","Strength","Rare","3연타","return Status.GetValue(Stat.Strength) >= 3;","힘 3 이상, 힘 2 소모","적에게 세 번 피해를 입힙니다.(2-4)","","","40","return ""Text(3연타)+Attack(2-4, Target, Swing)*3+StatusChange(Strength, `-, 2)"";"
 "1012","Buff","None","Strength","Evolution","괴력","return true;","","힘을 2만큼 상승시킵니다.","","","-1","return ""StatusChange(Strength, `+, 2)"";"
 "1013","Skill","Magic","Wisdom","Unique","여백의 미","return true;","","현재 룰렛의 빈칸 개수 * 2만큼의 피해를 입힙니다.","","","80","cnt = 0;

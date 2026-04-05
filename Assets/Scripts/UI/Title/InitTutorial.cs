@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Data;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Title {
@@ -7,6 +8,7 @@ namespace UI.Title {
         private void Awake() {
             var button = GetComponent <Button>();
             button.onClick.AddListener(() => Tutorial.Tutorial.Instance.InitTutorial());
+            UseInfo.Clear();
         }
     }
 }

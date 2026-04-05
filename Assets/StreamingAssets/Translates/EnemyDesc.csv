@@ -19,7 +19,7 @@ Ein ausgewachsenes Männchen kann es mit Kraftaufwand zerbrechen.
 
 Un mâle adulte peut la briser en exerçant une force.
 
-","Слизняк, бродящий по горам.
+","Слизняк, обитающий в горах.
 
 Взрослый самец может его уничтожить, применив силу.
 
@@ -113,17 +113,27 @@ Vous risquez des brûlures si vous l'attaquez sans précaution.","Слизь, к
 마법을 사용하기도 하니 주의
 ","魔王星を守る兵士
 魔法を使うこともあるので注意
-","Soldiers guarding the Demon King's castle
+","Soldier guarding the Demon King's castle
 
-Beware, they use magic.","守卫魔王城堡的士兵
+Beware, as they also use magic
 
-小心，他们会使用魔法。","Soldaten bewachen die Burg des Dämonenkönigs.
+","守卫魔王城堡的士兵
 
-Vorsicht, sie beherrschen Magie.","Soldats gardant le château du Roi Démon
+小心，他们也会使用魔法。
 
-Attention, ils utilisent la magie.","Солдаты охраняют замок Короля Демонов.
+","Ein Soldat bewacht die Burg des Dämonenkönigs.
 
-Осторожно, они используют магию."
+Vorsicht, er beherrscht auch Magie.
+
+","Soldat gardant le château du Roi Démon
+
+Attention, ils utilisent aussi la magie.
+
+","Солдат, охраняющий замок Короля Демонов
+
+Осторожно, они также используют магию
+
+"
 "한 무리의 슬라임의 왕
 꽤나 강력하니 주의
 ","一群のスライムの王
@@ -142,7 +152,7 @@ Vorsicht, er ist sehr mächtig!
 
 ","Roi d'un groupe de slimes
 
-Attention, il est très puissant.
+Attention, il est très puissant
 
 ","Король группы слизней
 
@@ -152,4 +162,4 @@ Attention, il est très puissant.
 "게 단단하다.","が硬い。","The crab is hard.","螃蟹很硬。","Die Krabbe ist hart.","Le crabe est dur.","Краб твёрдый."
 "꽃게
 단단하다.","カニ
-硬い。","Blue crab is hard.","蓝蟹很硬。","Blaukrabbenfleisch ist zäh.","Le crabe bleu est difficile à cuisiner.","Синий краб — твердый."
+硬い。","Blue crab is hard.","蓝蟹很硬。","Blaukrabben sind hart.","Le crabe bleu est difficile à cuisiner.","Синий краб — твердый."

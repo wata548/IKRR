@@ -35,7 +35,7 @@ Supprime le symbole de gauche.","Увеличивает силу на 3.
 
 Удаляет символ слева."
 "적에게 피해를 입힙니다.(6-9)","敵にダメージを与えます（6-9）","Deals damage to enemies. (6-9)","对敌人造成伤害。（6-9）","Fügt Feinden Schaden zu. (6-9)","Inflige des dégâts aux ennemis. (6-9)","Наносит урон врагам. (6-9)"
-"적에게 세 번 피해를 입힙니다.(2-4)","敵に3回ダメージを与える（2-4）","Deals damage to the enemy three times. (2-4)","对敌人造成三次伤害。（2-4）","Fügt dem Gegner dreimal Schaden zu. (2-4)","Inflige des dégâts à l'ennemi trois fois. (2-4)","Наносит урон противнику трижды. (2-4)"
+"적에게 세 번 피해를 입힙니다.(2-4)","敵に3回ダメージを与える（2-4）","Deals damage to the enemy three times. (2-4)","对敌人造成三次伤害。（2-4）","Fügt dem Gegner drei Schadenspunkte zu. (2-4)","Inflige des dégâts à l'ennemi trois fois. (2-4)","Наносит урон противнику трижды. (2-4)"
 "힘을 2만큼 상승시킵니다.","力を2だけ上昇させます。","Increases Strength by 2.","力量提升2点。","Erhöht die Stärke um 2.","Augmente la force de 2.","Увеличивает силу на 2."
 "현재 룰렛의 빈칸 개수 * 2만큼의 피해를 입힙니다.","現在ルーレットの空白数×2だけのダメージを与えます。","Deals damage equal to the current number of empty spaces on the roulette * 2.","造成的伤害等于轮盘上当前空格数乘以 2。","Verursacht Schaden in Höhe der aktuellen Anzahl leerer Felder auf dem Rouletterad * 2.","Inflige des dégâts égaux au nombre actuel de cases vides sur la roulette * 2.","Наносит урон, равный текущему количеству пустых ячеек на рулетке, умноженному на 2."
 "적에게 약간의 피해를 입힙니다.(4-6)","敵に少しダメージを与えます。 （4-6）","Deals a small amount of damage to the enemy. (4-6)","对敌人造成少量伤害。（4-6）","Fügt dem Gegner geringen Schaden zu. (4-6)","Inflige de faibles dégâts à l'ennemi. (4-6)","Наносит противнику небольшой урон. (4-6)"
@@ -78,19 +78,19 @@ Cependant, le joueur a également 50 % de chances de subir des dégâts.","На�
 
 Однако существует 50% вероятность того, что урон будет нанесен игроку."
 "적에게 약간의 피해를 입힙니다.(4)
-단 가운데 열일 경우 추가의 데미지를 입힙니다.(3-4)","敵に若干のダメージを与えます。 （4）
+단 가운데 열일 경우 추가의 데미지를 입힙니다.(3-4)","敵に若干のダメージを与えます。 (4)
 ただし、真ん中の列の場合、追加のダメージを与えます。 （3-4）","Deals a small amount of damage to enemies.(4)
 
 However, deals additional damage if in the center column.(3-4)","对敌人造成少量伤害。(4)
 
-但是，如果位于中间一列，则造成额外伤害。(3-4)","Verursacht geringen Schaden an Gegnern. (4)
+但是，如果位于中间列，则造成额外伤害。(3-4)","Verursacht geringen Schaden an Gegnern. (4)
 
 In der mittleren Spalte verursacht es jedoch zusätzlichen Schaden. (3–4)","Inflige des dégâts mineurs aux ennemis. (4)
 
 Cependant, inflige des dégâts supplémentaires si la cible se trouve dans la colonne centrale. (3-4)","Наносит небольшой урон врагам.(4)
 
 Однако, если находится в центральном столбце, наносит дополнительный урон.(3-4)"
-"모든 지혜를 소모하고 소모한 지혜의 3배의 데미지를 가한다.","すべての知恵を消費し、消費した知恵の3倍のダメージを加える。","Consumes all wisdom and deals 3 times the amount of wisdom consumed.","消耗所有智慧，造成相当于消耗智慧3倍的伤害。","Verbraucht alle Weisheit und verteilt das Dreifache der verbrauchten Weisheit.","Consomme toute la sagesse et inflige trois fois la quantité de sagesse consommée.","Поглощает всю мудрость и наносит урон в 3 раза большему количеству, чем поглощено."
+"모든 지혜를 소모하고 소모한 지혜의 3배의 데미지를 가한다.","すべての知恵を消費し、消費した知恵の3倍のダメージを加える。","Consumes all wisdom and deals 3 times the amount of wisdom consumed.","消耗所有智慧，造成相当于消耗智慧3倍的伤害。","Verbraucht alle Weisheit und verteilt das Dreifache der verbrauchten Weisheit.","Consomme toute la sagesse et inflige trois fois la quantité de sagesse consommée.","Поглощает всю мудрость и наносит урон в 3 раза большему количеству, чем поглощено мудрости."
 "모든 지혜를 소모하고 적 전체에게 소모한 지혜의 3배의 데미지를 가한다.","すべての知恵を消費し、敵全体に消費した知恵の3倍のダメージを与える。","Consumes all wisdom and deals 3 times the amount of wisdom consumed to all enemies.","消耗所有智慧，并对所有敌人造成相当于消耗智慧值3倍的伤害。","Verbraucht alle Weisheit und fügt allen Feinden das Dreifache der verbrauchten Weisheit zu.","Consomme toute la sagesse et inflige à tous les ennemis trois fois la quantité de sagesse consommée.","Поглощает всю мудрость и наносит всем врагам урон, в 3 раза превышающий количество поглощенной мудрости."
 "턴에 처음으로 밖에 사용할 수 없는 기술.
 모든 적에게 데미지(5)를 입힌다.","ターンに初めてしか使えない技術。
@@ -106,14 +106,14 @@ Inflige 5 points de dégâts à tous les ennemis.","Навык, который �
 
 Наносит урон (5) всем врагам."
 "닌자의 축복(수리검의 데미지 1 상승)을 본인에게 건다.","忍者の祝福（修理剣のダメージ1上昇）を本人にかける。","Casts Ninja's Blessing (increases Shuriken damage by 1) on yourself.","对自身施放忍者祝福（手里剑伤害提高 1）。","Wirkt Ninjas Segen (erhöht den Shuriken-Schaden um 1) auf sich selbst.","Lance Bénédiction du Ninja (augmente les dégâts des Shurikens de 1) sur vous-même.","Накладывает на себя заклинание «Благословение ниндзя» (увеличивает урон от сюрикенов на 1)."
-"다음 턴 지혜를 추가로 3획득한다.","次のターン知恵を追加で3獲得する。","Gain 3 additional Wisdom on the next turn.","下回合获得3点额外智慧。","Erhalte in der nächsten Runde 3 zusätzliche Weisheit.","Gagnez 3 points de Sagesse supplémentaires au prochain tour.","Получите 3 дополнительных очка мудрости на следующем ходу."
+"다음 턴 지혜를 추가로 3획득한다.","次のターン知恵を追加で3獲得する。","Gain 3 additional Wisdom on the next turn.","下回合获得3点额外智慧。","Erhalte in der nächsten Runde 3 zusätzliche Weisheitspunkte.","Gagnez 3 points de Sagesse supplémentaires au prochain tour.","Получите 3 дополнительных очка мудрости на следующем ходу."
 "모든 적에게 '화염'상태를 3-4턴간 부여 후 10의 데미지를 입힙니다.
 사용 후 주위에 재를 생성한다.","全ての敵に「炎」状態を3～4ターン間与えた後、10のダメージを与える。
 使用後、周囲に灰を生成する。","Inflicts 'Flame' status on all enemies for 3-4 turns, then deals 10 damage.
 
 Creates ash around after use.","使所有敌人陷入“火焰”状态，持续3-4回合，然后造成10点伤害。
 
-使用后周围会生成灰烬。","Verursacht bei allen Gegnern für 3–4 Runden den Status „Flamme“ und fügt ihnen anschließend 10 Schaden zu.
+使用后周围会生成灰烬。","Belegt alle Gegner 3–4 Runden lang mit dem Status „Flamme“ und verursacht anschließend 10 Schaden.
 
 Erzeugt nach der Anwendung Asche in der Umgebung.","Inflige l'état « Flammes » à tous les ennemis pendant 3 à 4 tours, puis inflige 10 points de dégâts.
 
@@ -127,23 +127,23 @@ Crée des cendres autour de l'ennemi après utilisation.","Накладывае�
 知恵１を消費して除去可能だ。
 （ルーレットに登場すると1-2ほどダメージを受けます。）","It is meaningless ash.
 
-Can be removed by consuming 1 Wisdom.
+It can be removed by consuming 1 Wisdom.
 
-(Takes 1-2 damage when it appears on the roulette.)","这是毫无意义的灰烬。
+(Takes 1-2 damage when it appears on the roulette.)","它只是毫无意义的灰烬。
 
 消耗1点智慧即可移除。
 
 （出现在轮盘上时会受到1-2点伤害。）","Es ist wertlose Asche.
 
-Kann durch den Verbrauch von 1 Weisheitspunkt entfernt werden.
+Sie kann durch den Verbrauch von 1 Weisheitspunkt entfernt werden.
 
-(Erleidet 1–2 Schadenspunkte, wenn es auf dem Roulette erscheint.)","Ce ne sont que des cendres sans valeur.
+(Erleidet 1–2 Schadenspunkte, wenn sie auf dem Roulette erscheint.)","Ce ne sont que des cendres sans valeur.
 
-Peut être éliminé en dépensant 1 point de Sagesse.
+On peut les éliminer en dépensant 1 point de Sagesse.
 
-(Inflige 1 à 2 points de dégâts lorsqu'il apparaît à la roulette.)","Это бессмысленный пепел.
+(Inflige 1 à 2 points de dégâts lorsqu'elles apparaissent à la roulette.)","Это бессмысленный пепел.
 
-Удаляется, если потратить 1 единицу Мудрости.
+Его можно удалить, потратив 1 единицу Мудрости.
 
 (Получает 1-2 урона, когда появляется на рулетке.)"
 "본인에게 '현상금' 효과를 부여한다.
@@ -172,18 +172,18 @@ Peut être éliminé en dépensant 1 point de Sagesse.
 (Gourmandise : Récupère 3 PV à chaque ennemi vaincu.)","Накладывает на вас эффект «Чревоугодие» на 5 ходов.
 
 (Чревоугодие: Восстанавливает 3 HP каждый раз, когда вы побеждаете врага.)"
-"모든 스탯을 1만큼 획득한다.","すべてのステータスを1だけ獲得する。","Gain 1 point in all stats.","所有属性增加1点。","Erhalte in allen Statuswerten 1 Punkt.","Gagnez 1 point dans toutes les statistiques.","Получите 1 балл по всем характеристикам."
+"모든 스탯을 1만큼 획득한다.","すべてのステータスを1だけ獲得する。","Gain 1 point in all stats.","所有属性增加1点。","Erhalte in allen Statuswerten jeweils 1 Punkt.","Gagnez 1 point dans toutes les statistiques.","Получите 1 балл по всем характеристикам."
 "적에게 약간의 피해를 두번 입힙니다.(2-3)
 사용 후 사라집니다.","敵に若干のダメージを2回与えます。 （2-3）
 使用後は消えます。","Deals a small amount of damage to the enemy twice (2-3). Disappears after use.","对敌人造成少量伤害，持续两次（2-3点）。使用后消失。","Fügt dem Gegner zweimal (2-3) geringen Schaden zu. Verschwindet nach der Benutzung.","Inflige deux fois de faibles dégâts à l'ennemi (2-3). Disparaît après utilisation.","Наносит противнику небольшой урон дважды (2-3). Исчезает после использования."
 "주위에 '갈고리 표창'을 생성합니다.","周りに「フック表彰」を作成します。","Creates 'Hook Shuriken' around you.","在你周围生成“钩手里剑”。","Erzeugt 'Haken-Shuriken' um dich herum.","Crée des « shurikens à crochet » autour de vous.","Создает вокруг вас «крючковые сюрикены»."
-"8G를 소모하고 빈칸에 술병을 생성한다.","8Gを消費し、空白に酒瓶を生成する。","Consumes 8G and creates a bottle of alcohol in the empty space.","消耗 8G 能量，并在空余空间中生成一瓶酒。","Verbraucht 8 g und erzeugt im leeren Raum eine Flasche Alkohol.","Consomme 8G et crée une bouteille d'alcool dans l'espace vide.","Потребляет 8 ГБ памяти и создает бутылку алкоголя в пустом пространстве."
+"8G를 소모하고 빈칸에 술병을 생성한다.","8Gを消費し、空白に酒瓶を生成する。","Consumes 8G and creates a bottle of alcohol in the empty space.","消耗 8G，并在空余空间中生成一瓶酒。","Verbraucht 8 g und erzeugt im leeren Raum eine Flasche Alkohol.","Consomme 8G et crée une bouteille d'alcool dans l'espace vide.","Потребляет 8 ГБ памяти и создает бутылку алкоголя в пустом пространстве."
 "힘을 3만큼 상승시킵니다.","力を3だけ上昇させます。","Increases strength by 3.","力量提升3点。","Erhöht die Festigkeit um das Dreifache.","Augmente la force de 3.","Увеличивает силу на 3."
 "민첩을 3만큼 상승시킵니다.","アジャイルを3だけ上昇させます。","Increases Agility by 3.","敏捷性提升3点。","Erhöht die Beweglichkeit um 3.","Augmente l'agilité de 3.","Повышает ловкость на 3."
 "지능을 3만큼 상승시킵니다.","インテリジェンスを3だけ上げます。","Increases intelligence by 3.","智力提升3倍。","Steigert die Intelligenz um das Dreifache.","Augmente l'intelligence de 3.","Повышает интеллект на 3."
 "모든 적에게 3의 데미지를 입힌다.\n(사용 후 날아간 부메랑 상태가 된다)","全ての敵に3のダメージを与える。\n（使用後に飛んだブーメラン状態になる）","Deals 3 damage to all enemies. (After use, becomes a flying boomerang)","对所有敌人造成3点伤害。（使用后变为飞行回旋镖）","Verursacht 3 Schadenspunkte an allen Gegnern. (Nach der Benutzung verwandelt es sich in einen fliegenden Bumerang.)","Inflige 3 points de dégâts à tous les ennemis. (Après utilisation, se transforme en boomerang volant.)","Наносит 3 урона всем врагам. (После использования превращается в летающий бумеранг)"
 "다시 부메랑으로 돌아온다.","再びブーメランに戻る。","It comes back like a boomerang.","它像回旋镖一样反弹回来。","Es kommt zurück wie ein Bumerang.","Ça revient comme un boomerang.","Оно возвращается, как бумеранг."
-"주위의 검술의 개수만큼 근력을 획득한다.","周囲の剣術の数だけ筋力を獲得する。","Gain strength equal to the number of surrounding swords.","获得的力量等于周围剑的数量。","Erhalte Stärke in Höhe der Anzahl der umgebenden Schwerter.","Gagnez en force, proportionnellement au nombre d'épées qui vous entourent.","Наберите силу, равную количеству окружающих мечей."
+"주위의 검술의 개수만큼 근력을 획득한다.","周囲の剣術の数だけ筋力を獲得する。","Gain strength equal to the number of surrounding swords.","获得的力量等于周围剑的数量。","Erhalte Stärke in Höhe der Anzahl der umgebenden Schwerter.","Gagnez en force, proportionnellement au nombre d'épées environnantes.","Наберите силу, равную количеству окружающих мечей."
 "적에게 '빙결'상태를 부여합니다. 
 (적의 공격력이 75%가 됩니다, 사용 시 주변의 심볼 사용 불가)","敵に「氷結」状態を与える。 
 （敵の攻撃力が75％になります、使用時周辺のシンボル使用不可）","Inflicts 'Freeze' status on the enemy.
@@ -205,5 +205,5 @@ Peut être éliminé en dépensant 1 point de Sagesse.
 "적 전체에게 10데미지를 입힙니다.","敵全体に10ダメージを与える。","Deals 10 damage to all enemies.","对所有敌人造成10点伤害。","Fügt allen Feinden 10 Schadenspunkte zu.","Inflige 10 points de dégâts à tous les ennemis.","Наносит 10 урона всем врагам."
 "적 전체에게 '화염'상태를 부여합니다. 또한 2-5의 데미지를 입힙니다.","敵全体に「炎」状態を与える。また、2-5のダメージを与える。","Inflicts 'Flame' status on all enemies. Also deals 2-5 damage.","对所有敌人施加“火焰”状态，并造成2-5点伤害。","Belegt alle Gegner mit dem Status „Flamme“. Verursacht außerdem 2–5 Schaden.","Inflige l'état « Flammes » à tous les ennemis. Inflige également 2 à 5 points de dégâts.","Накладывает на всех врагов эффект «Пламя». Также наносит 2-5 урона."
 "모든 빈칸을 표창으로 가득 채운다.","すべての空白を表彰でいっぱいに満たします。","Fill all the blank spaces with awards.","请在空白处填写获奖情况。","Füllen Sie alle leeren Felder mit Auszeichnungen.","Remplissez tous les espaces vides avec les récompenses.","Заполните все пустые места наградами."
-"적을 3 데미지로 7 ~ 15회 타격한다.","敵を3ダメージで7～15回打撃する。","Hits the enemy 7 to 15 times with 3 damage.","对敌人造成7到15次攻击，每次攻击造成3点伤害。","Trifft den Gegner 7 bis 15 Mal und verursacht dabei 3 Schadenspunkte.","Frappe l'ennemi 7 à 15 fois, infligeant 3 points de dégâts.","Наносит врагу от 7 до 15 ударов, причиняя 3 урона."
+"적을 3 데미지로 7 ~ 15회 타격한다.","敵を3ダメージで7～15回打撃する。","Hits the enemy 7 to 15 times with 3 damage.","对敌人造成 7 到 15 次攻击，每次攻击造成 3 点伤害。","Trifft den Gegner 7 bis 15 Mal und verursacht dabei 3 Schadenspunkte.","Frappe l'ennemi 7 à 15 fois, infligeant 3 points de dégâts.","Наносит врагу от 7 до 15 ударов, причиняя 3 урона."
 "적이 받는 데미지가 두 배가 됩니다.","敵が受けるダメージが2倍になります。","The damage taken by the enemy is doubled.","敌方受到的伤害翻倍。","Der Schaden, den der Feind erleidet, wird verdoppelt.","Les dégâts subis par l'ennemi sont doublés.","Урон, наносимый противнику, удваивается."

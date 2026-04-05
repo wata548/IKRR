@@ -20,11 +20,13 @@ namespace UI.Rest {
         [SerializeField] private HpBar _bar;
         [SerializeField] private Image _estimate;
         private IEnumerable<int> _knowledgeCandidates;
+        private bool _restable = false;
         
         //==================================================||Methods 
         public void Show(bool pActive) {
 
             if (pActive) {
+                _restable = true;
                 var player = CharactersManager.Player;
                 _bar.Set(player.MaxHp, player.Hp);
                 var estimate = Mathf.Min(player.MaxHp * HEAL_RATIO + player.Hp, player.MaxHp);
@@ -33,7 +35,7 @@ namespace UI.Rest {
                 Fade(() => _pannel.gameObject.SetActive(true), null);
                 return;
             }
-                
+
             _pannel.gameObject.SetActive(false);
             UIManager.Instance.Map.SetActive(true);
         }
@@ -67,6 +69,10 @@ namespace UI.Rest {
         }
 
         private void RestFunc() {
+
+            if (_restable)
+                return;
+            _restable = false;
             
             var player = CharactersManager.Player;
             var amount = Mathf.FloorToInt(player.MaxHp * HEAL_RATIO);

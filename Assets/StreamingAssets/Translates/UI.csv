@@ -54,7 +54,7 @@ Découvrez les <color=red>conditions d'évolution</color> du symbole.","Иссл
 "현재 상점의 상품을 새로운 상품으로 교체합니다.","現在店舗の商品を新商品に交換します。","Replaces the current store items with new items.","将现有商店商品替换为新商品。","Ersetzt die aktuellen Artikel im Shop durch neue Artikel.","Remplace les articles actuellement en magasin par de nouveaux articles.","Заменяет текущие товары в магазине новыми."
 "{0}을 조정","{0}を調整","Adjust {0}","调整 {0}","Anpassen {0}","Ajuster {0}","Настройте {0}"
 "방어 획득","防御獲得","Defense acquisition","国防采购","Verteidigungsbeschaffung","Acquisition de défense","оборонные закупки"
-"전투에서 사라진다.","戦闘から消える","Disappears in battle.","战死沙场。","Verschwindet im Kampf.","Disparaît au combat.","Исчезает в бою."
+"전투에서 사라진다.","戦闘から消える。","Disappears in battle.","战死沙场。","Verschwindet im Kampf.","Disparaît au combat.","Исчезает в бою."
 "{0}의 {1}효과를 제거한다.","{0}の{1}効果を削除します。","Removes the {1} effect of {0}.","移除 {0} 的 {1} 效果。","Entfernt den {1}-Effekt von {0}.","Supprime l'effet {1} de {0}.","Устраняет эффект {1} от {0}."
 "{0}의 효과를 전부 제거한다.","{0}の効果をすべて削除します。","Removes all effects of {0}.","移除 {0} 的所有效果。","Entfernt alle Effekte von {0}.","Supprime tous les effets de {0}.","Устраняет все эффекты {0}."
 "동료를 불러냅니다.","同僚を呼びます。","Call out a colleague.","","Einen Kollegen zur Rede stellen.","Dénoncez un collègue.","Позовите коллегу."
@@ -66,7 +66,7 @@ This is as far as has been implemented so far!","<color=yellow>感谢游玩</col
 
 目前为止，功能就实现到这个程度了！","Vielen Dank an Play!
 
-Dies ist der bisherige Stand der Umsetzung.","<color=yellow>Merci à Play</color>
+Dies ist der bisherige Stand der Umsetzung!","<color=yellow>Merci à Play</color>
 
 Voici où en est la fonctionnalité pour le moment !","<color=yellow>Спасибо за игру</color>
 

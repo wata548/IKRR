@@ -48,16 +48,16 @@ Text(생명의 바람) + Heal(5, AllEnemy) = 1
 Text(매서운 바람) + Attack(2-3, Player) * 3  = 2
 Text(산들 바람) + Attack(5, Player)  = 1"
 "2010","가고일","악마의 형상을 띄는 돌맹이 
-어느 순간인지 자아가 생겼다.","Middle","8","3","12","Servant{Middle}","|> 
-Text(짓누르기) +Attack(8, Player) = 1
+어느 순간인지 자아가 생겼다.","Middle","8","3","18","Servant{Middle}","|> 
+Text(짓누르기) +Attack(10, Player) = 1
 Text(수호의 힘) + Shield(6, AllEnemy) = 1"
 "2011","근위병","마왕성을 지키는 병사
 마법을 사용하기도 하니 주의
-","Middle","35","20","42","","|> return not Field.Exist(Pos.Left);
+","Middle","35","20","50","","|> return not Field.Exist(Pos.Left);
 Text(함성) + CallEnemy(2010, Left) = 1
-Text(휘두르기) + Attack(10, Player) = 2
+Text(휘두르기) + Attack(12, Player) = 2
 |>
-Text(휘두르기) + Attack(8, Player) = 1
+Text(휘두르기) + Attack(12, Player) = 1
  Text(마구 휘두르기) + Attack(4-5, Player) * 2 = 1"
 "2012","킹슬라임","한 무리의 슬라임의 왕
 꽤나 강력하니 주의
@@ -71,6 +71,6 @@ Text(거대한 일격) + Attack(10, Player) = 3
 Text(찍기)+Attack(9, Player) = 2
 Text(물뿜기) +Attack(3-4, Player) * 3 = 1"
 "2014","꽃게","꽃게
-단단하다.","Middle","30","14","20","Shell{3}","|> 
+단단하다.","Middle","30","14","25","Shell{3}","|> 
 Text(찍기)+Attack(7, Player) = 1
 Text(물뿜기) +Attack(3-4, Player) * 2 = 1"

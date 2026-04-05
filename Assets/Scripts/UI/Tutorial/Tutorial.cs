@@ -40,7 +40,7 @@ namespace UI.Tutorial {
         public void Set(List<TurorialData> pData) {
 
             _time = Time.timeScale;
-            Time.timeScale = 0.3f;
+            Time.timeScale = 0.01f;
             _idx = 0;
             _list = pData;
             _panel.SetActive(true);
